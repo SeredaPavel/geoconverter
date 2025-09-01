@@ -1,0 +1,20 @@
+# /geoconverter/.gitignore
+# Node
+node_modules/
+.next/
+npm-debug.log
+yarn.lock
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Docker
+caddy_data/
+caddy_config/
+backend/uploads/
+
+# OS
+.DS_Store
+Thumbs.db

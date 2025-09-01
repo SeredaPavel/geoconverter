@@ -1,0 +1,10 @@
+/* /geoconverter/frontend/src/styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light dark; }
+body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
+.card { @apply border border-slate-200/60 dark:border-slate-700/60 rounded-2xl shadow-sm; }
+.btn  { @apply px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 hover:border-brand-500 transition; }
+.input{ @apply border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 bg-transparent; }

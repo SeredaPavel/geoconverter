@@ -1,0 +1,47 @@
+# /geoconverter/docker-compose.yml
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: geoconverter-backend
+    environment:
+      - UVICORN_HOST=0.0.0.0
+      - UVICORN_PORT=8000
+      - PROJ_NETWORK=ON
+      - UPLOAD_DIR=/app/uploads
+      - UPLOAD_RETENTION_SEC=3600   # хранить Excel не более 1 часа
+    volumes:
+      - ./backend/data/grids:/usr/share/proj:ro
+      - ./backend/uploads:/app/uploads
+    expose:
+      - "8000"
+
+  frontend:
+    build: ./frontend
+    container_name: geoconverter-frontend
+    environment:
+      - NEXT_PUBLIC_API_BASE=/api
+    depends_on:
+      - backend
+    expose:
+      - "3000"
+
+  caddy:
+    image: caddy:2.7
+    container_name: geoconverter-caddy
+    depends_on:
+      - frontend
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:

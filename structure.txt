@@ -1,0 +1,38 @@
+C:.
+|   .gitattributes
+|   .gitignore
+|   Caddyfile
+|   docker-compose.yml
+|   structure.txt
+|   
++---backend
+|   |   Dockerfile
+|   |   requirements.txt
+|   |   
+|   \---app
+|       |   main.py
+|       |   schemas.py
+|       |   utils.py
+|       |   
+|       \---crs_registry
+|               msk_registry.yml
+|               
+\---frontend
+    |   Dockerfile
+    |   next.config.ts
+    |   package.json
+    |   postcss.config.js
+    |   tailwind.config.ts
+    |   tsconfig.json
+    |   
+    \---src
+        +---app
+        |       layout.tsx
+        |       page.tsx
+        |       
+        +---components
+        |       ConverterPanel.tsx
+        |       
+        \---styles
+                globals.css
+                
