@@ -1,0 +1,2 @@
+type $env:USERPROFILE\.ssh\geoconverter_ci.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG8KBcCQnyWDwJUdZPthbY3dqa/y02RHk5CMCj1J2pq6 github-ci@geoconverter

@@ -1,0 +1,50 @@
+name: Deploy to geoconverter.ru
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Add server to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Sync files to VPS (no git on server)
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: |
+            .
+            !.git/**
+            !.github/**
+            !backend/uploads/**
+            !caddy_data/**
+            !caddy_config/**
+            !**/node_modules/**
+            !**/.next/**
+          target: ${{ secrets.VPS_PATH }}
+          overwrite: true
+          rm: true
+
+      - name: Compose up (build on server)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -euo pipefail
+            cd ${{ secrets.VPS_PATH }}
+            docker compose pull || true
+            docker compose up -d --build --remove-orphans
+            docker system prune -f
