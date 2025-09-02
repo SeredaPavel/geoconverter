@@ -15,7 +15,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # Поднимаем секреты в env
     env:
       VPS_HOST:    ${{ secrets.VPS_HOST }}
       VPS_USER:    ${{ secrets.VPS_USER }}
@@ -33,7 +32,6 @@ jobs:
         run: |
           echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
           ls -la
-          echo "Top-level:"
           find . -maxdepth 2 -print
 
       - name: Add server to known_hosts
@@ -46,24 +44,25 @@ jobs:
             ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
           fi
 
-      - name: Prepare directory on VPS
+      - name: Prepare directory on VPS (and ensure docker/compose)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host:     ${{ env.VPS_HOST }}
           username: ${{ env.VPS_USER }}
           key:      ${{ env.VPS_SSH_KEY }}
           port:     ${{ env.VPS_PORT }}
-          # передаём переменные окружения внутрь SSH-сессии
           envs: VPS_PATH,VPS_USER
           script: |
             set -e
             sudo mkdir -p "$VPS_PATH"
             OWNER="${USER:-$VPS_USER}"
             sudo chown "$OWNER:$OWNER" "$VPS_PATH"
-            # docker + compose, если вдруг не стоят
+
             if ! command -v docker >/dev/null; then
               curl -fsSL https://get.docker.com | sh
+              sudo usermod -aG docker "$OWNER" || true
             fi
+
             if ! docker compose version >/dev/null 2>&1; then
               DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
               mkdir -p "$DOCKER_CONFIG/cli-plugins"
@@ -72,7 +71,23 @@ jobs:
               chmod +x "$DOCKER_CONFIG/cli-plugins/docker-compose"
             fi
 
-      - name: Sync files to VPS (no git on server)
+      # ---- ключевое изменение: собираем единый архив на раннере ----
+      - name: Pack deploy artifact
+        run: |
+          set -e
+          test -f docker-compose.yml
+          test -f Caddyfile
+          test -d backend
+          test -d frontend
+          tar -czf deploy.tar.gz \
+            docker-compose.yml \
+            Caddyfile \
+            backend \
+            frontend
+          echo "Artifact size:" && du -h deploy.tar.gz
+          echo "Archive contents:" && tar -tzf deploy.tar.gz | head -n 50
+
+      - name: Upload artifact to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
           host:     ${{ env.VPS_HOST }}
@@ -80,18 +95,13 @@ jobs:
           key:      ${{ env.VPS_SSH_KEY }}
           port:     ${{ env.VPS_PORT }}
           overwrite: true
-          rm: true
+          rm: false
           debug: true
-          # ВАЖНО: многострочное значение с pipe и корректными отступами
-          source: |
-            docker-compose.yml
-            Caddyfile
-            backend
-            frontend
+          source: deploy.tar.gz
           target: ${{ env.VPS_PATH }}
           strip_components: 0
 
-      - name: Compose up (build on server)
+      - name: Unpack & compose up on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host:     ${{ env.VPS_HOST }}
@@ -102,11 +112,15 @@ jobs:
           script: |
             set -e
             cd "$VPS_PATH"
+            tar -xzf deploy.tar.gz
+            rm -f deploy.tar.gz
+
             docker compose down || true
             docker compose up -d --build
             docker compose ps
+
             echo "------ Caddy logs (tail) ------"
-            docker logs --tail=50 geoconverter-caddy || true
-            echo "------ Frontend health (inside caddy) ------"
+            docker logs --tail=80 geoconverter-caddy || true
+            echo "------ Frontend health through caddy ------"
             docker exec geoconverter-caddy sh -lc "wget -qO- http://frontend:3000/ | head -c 400 || true"
             echo
