@@ -1,13 +1,27 @@
-
 name: deploy
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
+
+# чтобы не было двух одновременных деплоев
+concurrency:
+  group: geoconverter-deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    # <-- все секреты поднимаем в env и дальше используем как $SSH_HOST/$SSH_USER/$SSH_KEY
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_KEY:  ${{ secrets.SSH_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
 
     steps:
       - name: Checkout repository
@@ -15,7 +29,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 1) Санити-чек: посмотрим, что реально есть в рабочем каталоге раннера
       - name: Show workspace tree
         run: |
           echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
@@ -23,52 +36,78 @@ jobs:
           echo "Top-level:"
           find . -maxdepth 2 -print
 
-      # 2) Добавим ключ хоста (не обязателен, но полезно)
+      # known_hosts — используем переменные окружения, а не прямой secrets доступ
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -p 22 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          echo "Adding $SSH_HOST:$SSH_PORT to known_hosts"
+          if [ -n "$SSH_PORT" ] && [ "$SSH_PORT" != "22" ]; then
+            ssh-keyscan -H -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+          else
+            ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          fi
 
-      # 3) На сервере гарантированно создадим каталог деплоя
-      - name: Prepare directory on VPS
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            sudo mkdir -p /opt/geoconverter
-            sudo chown $USER:$USER /opt/geoconverter
+      # на сервере гарантированно создаём целевой каталог и отдаём права пользователю
+      #- name: Prepare directory on VPS
+      #  uses: appleboy/ssh-action@v1.0.3
+      #  with:
+      #    host:     ${{ env.SSH_HOST }}
+      #    username: ${{ env.SSH_USER }}
+      #    key:      ${{ env.SSH_KEY }}
+      #    port:     ${{ env.SSH_PORT }}
+      #    script: |
+      #      set -e
+      #      sudo mkdir -p /opt/geoconverter
+      #      # если $USER пуст в non-login shell, подставим имя руками
+      #      OWNER="${USER:-$SSH_USER}"
+      #      sudo chown "$OWNER:$OWNER" /opt/geoconverter
+      #      sudo apt-get update -y
+      #      # убедимся, что docker/compose установлены
+      #      if ! command -v docker >/dev/null; then
+      #        curl -fsSL https://get.docker.com | sh
+      #      fi
+      #      if ! docker compose version >/dev/null 2>&1; then
+      #        DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+      #        mkdir -p $DOCKER_CONFIG/cli-plugins
+      #        curl -SL https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m) \
+      #          -o $DOCKER_CONFIG/cli-plugins/docker-compose
+      #        chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+      #      fi
 
-      # 4) Копирование файлов (исправленный source)
+      # Копируем только существующие артефакты; .env намеренно не копируем (частая причина "empty archive")
       - name: Sync files to VPS (no git on server)
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: 22
+          host:     ${{ env.SSH_HOST }}
+          username: ${{ env.SSH_USER }}
+          key:      ${{ env.SSH_KEY }}
+          port:     ${{ env.SSH_PORT }}
           overwrite: true
           rm: true
-          # ВАЖНО: пути от корня репозитория (.) и без лишних масок
           source: |
             ./docker-compose.yml
             ./Caddyfile
-            ./.env
             ./backend/**
             ./frontend/**
           target: /opt/geoconverter
           strip_components: 0
 
-      # 5) Сборка и запуск на сервере
+      # Сборка и запуск контейнеров на сервере
       - name: Compose up (build on server)
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          host:     ${{ env.SSH_HOST }}
+          username: ${{ env.SSH_USER }}
+          key:      ${{ env.SSH_KEY }}
+          port:     ${{ env.SSH_PORT }}
           script: |
+            set -e
             cd /opt/geoconverter
-            docker compose down
+            docker compose down || true
             docker compose up -d --build
             docker compose ps
+            echo "------ Caddy logs (tail) ------"
+            docker logs --tail=50 geoconverter-caddy || true
+            echo "------ Frontend health (inside caddy) ------"
+            docker exec geoconverter-caddy sh -lc "wget -qO- http://frontend:3000/ | head -c 400 || true"
+            echo
