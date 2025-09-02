@@ -4,7 +4,6 @@ on:
   push:
     branches: ["main"]
 
-# чтобы не было двух одновременных деплоев
 concurrency:
   group: geoconverter-deploy
   cancel-in-progress: true
@@ -16,12 +15,13 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # <-- все секреты поднимаем в env и дальше используем как $SSH_HOST/$SSH_USER/$SSH_KEY
+    # все секреты поднимаем в env и далее используем как ${{ env.* }} / $VAR
     env:
-      SSH_HOST: ${{ secrets.SSH_HOST }}
-      SSH_USER: ${{ secrets.SSH_USER }}
-      SSH_KEY:  ${{ secrets.SSH_KEY }}
-      SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+      VPS_HOST:    ${{ secrets.VPS_HOST }}
+      VPS_USER:    ${{ secrets.VPS_USER }}
+      VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+      VPS_PATH:    ${{ secrets.VPS_PATH || '/opt/geoconverter' }}
+      VPS_PORT:    ${{ secrets.VPS_PORT || '22' }}
 
     steps:
       - name: Checkout repository
@@ -36,52 +36,47 @@ jobs:
           echo "Top-level:"
           find . -maxdepth 2 -print
 
-      # known_hosts — используем переменные окружения, а не прямой secrets доступ
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
-          echo "Adding $SSH_HOST:$SSH_PORT to known_hosts"
-          if [ -n "$SSH_PORT" ] && [ "$SSH_PORT" != "22" ]; then
-            ssh-keyscan -H -p "$SSH_PORT" "$SSH_HOST" >> ~/.ssh/known_hosts
+          echo "Adding $VPS_HOST:$VPS_PORT to known_hosts"
+          if [ -n "$VPS_PORT" ] && [ "$VPS_PORT" != "22" ]; then
+            ssh-keyscan -H -p "$VPS_PORT" "$VPS_HOST" >> ~/.ssh/known_hosts
           else
-            ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+            ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
           fi
 
-      # на сервере гарантированно создаём целевой каталог и отдаём права пользователю
-      #- name: Prepare directory on VPS
-      #  uses: appleboy/ssh-action@v1.0.3
-      #  with:
-      #    host:     ${{ env.SSH_HOST }}
-      #    username: ${{ env.SSH_USER }}
-      #    key:      ${{ env.SSH_KEY }}
-      #    port:     ${{ env.SSH_PORT }}
-      #    script: |
-      #      set -e
-      #      sudo mkdir -p /opt/geoconverter
-      #      # если $USER пуст в non-login shell, подставим имя руками
-      #      OWNER="${USER:-$SSH_USER}"
-      #      sudo chown "$OWNER:$OWNER" /opt/geoconverter
-      #      sudo apt-get update -y
-      #      # убедимся, что docker/compose установлены
-      #      if ! command -v docker >/dev/null; then
-      #        curl -fsSL https://get.docker.com | sh
-      #      fi
-      #      if ! docker compose version >/dev/null 2>&1; then
-      #        DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
-      #        mkdir -p $DOCKER_CONFIG/cli-plugins
-      #        curl -SL https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m) \
-      #          -o $DOCKER_CONFIG/cli-plugins/docker-compose
-      #        chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
-      #      fi
+      - name: Prepare directory on VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host:     ${{ env.VPS_HOST }}
+          username: ${{ env.VPS_USER }}
+          key:      ${{ env.VPS_SSH_KEY }}
+          port:     ${{ env.VPS_PORT }}
+          script: |
+            set -e
+            sudo mkdir -p "$VPS_PATH"
+            OWNER="${USER:-$VPS_USER}"
+            sudo chown "$OWNER:$OWNER" "$VPS_PATH"
+            # docker + compose, если вдруг не стоят
+            if ! command -v docker >/dev/null; then
+              curl -fsSL https://get.docker.com | sh
+            fi
+            if ! docker compose version >/dev/null 2>&1; then
+              DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+              mkdir -p $DOCKER_CONFIG/cli-plugins
+              curl -SL https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m) \
+                -o $DOCKER_CONFIG/cli-plugins/docker-compose
+              chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+            fi
 
-      # Копируем только существующие артефакты; .env намеренно не копируем (частая причина "empty archive")
       - name: Sync files to VPS (no git on server)
         uses: appleboy/scp-action@v0.1.7
         with:
-          host:     ${{ env.SSH_HOST }}
-          username: ${{ env.SSH_USER }}
-          key:      ${{ env.SSH_KEY }}
-          port:     ${{ env.SSH_PORT }}
+          host:     ${{ env.VPS_HOST }}
+          username: ${{ env.VPS_USER }}
+          key:      ${{ env.VPS_SSH_KEY }}
+          port:     ${{ env.VPS_PORT }}
           overwrite: true
           rm: true
           source: |
@@ -89,20 +84,19 @@ jobs:
             ./Caddyfile
             ./backend/**
             ./frontend/**
-          target: /opt/geoconverter
+          target: ${{ env.VPS_PATH }}
           strip_components: 0
 
-      # Сборка и запуск контейнеров на сервере
       - name: Compose up (build on server)
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host:     ${{ env.SSH_HOST }}
-          username: ${{ env.SSH_USER }}
-          key:      ${{ env.SSH_KEY }}
-          port:     ${{ env.SSH_PORT }}
+          host:     ${{ env.VPS_HOST }}
+          username: ${{ env.VPS_USER }}
+          key:      ${{ env.VPS_SSH_KEY }}
+          port:     ${{ env.VPS_PORT }}
           script: |
             set -e
-            cd /opt/geoconverter
+            cd "$VPS_PATH"
             docker compose down || true
             docker compose up -d --build
             docker compose ps
