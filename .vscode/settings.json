@@ -3,6 +3,9 @@
   "css.lint.unknownAtRules": "ignore",
   "tailwindCSS.emmetCompletions": true,
   "files.associations": {
-    "**/frontend/src/styles/globals.css": "tailwindcss"
+    "**/frontend/src/styles/globals.css": "tailwindcss" 
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml"
   }
 }
