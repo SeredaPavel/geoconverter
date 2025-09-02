@@ -1,8 +1,9 @@
-name: Deploy to geoconverter.ru
+
+name: deploy
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
 
 jobs:
   deploy:
@@ -11,40 +12,63 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      # 1) Санити-чек: посмотрим, что реально есть в рабочем каталоге раннера
+      - name: Show workspace tree
+        run: |
+          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
+          ls -la
+          echo "Top-level:"
+          find . -maxdepth 2 -print
+
+      # 2) Добавим ключ хоста (не обязателен, но полезно)
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -p 22 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
+      # 3) На сервере гарантированно создадим каталог деплоя
+      - name: Prepare directory on VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo mkdir -p /opt/geoconverter
+            sudo chown $USER:$USER /opt/geoconverter
+
+      # 4) Копирование файлов (исправленный source)
       - name: Sync files to VPS (no git on server)
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          source: |
-            .
-            !.git/**
-            !.github/**
-            !backend/uploads/**
-            !caddy_data/**
-            !caddy_config/**
-            !**/node_modules/**
-            !**/.next/**
-          target: ${{ secrets.VPS_PATH }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
           overwrite: true
           rm: true
+          # ВАЖНО: пути от корня репозитория (.) и без лишних масок
+          source: |
+            ./docker-compose.yml
+            ./Caddyfile
+            ./.env
+            ./backend/**
+            ./frontend/**
+          target: /opt/geoconverter
+          strip_components: 0
 
+      # 5) Сборка и запуск на сервере
       - name: Compose up (build on server)
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
-            set -euo pipefail
-            cd ${{ secrets.VPS_PATH }}
-            docker compose pull || true
-            docker compose up -d --build --remove-orphans
-            docker system prune -f
+            cd /opt/geoconverter
+            docker compose down
+            docker compose up -d --build
+            docker compose ps
