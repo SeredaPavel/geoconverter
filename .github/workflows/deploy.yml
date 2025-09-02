@@ -4,6 +4,7 @@ on:
   push:
     branches: ["main"]
 
+# чтобы параллельные деплои не накладывались
 concurrency:
   group: geoconverter-deploy
   cancel-in-progress: true
@@ -15,7 +16,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # все секреты поднимаем в env и далее используем как ${{ env.* }} / $VAR
+    # все секреты поднимаем в env (используются дальше как ${{ env.* }} на раннере)
     env:
       VPS_HOST:    ${{ secrets.VPS_HOST }}
       VPS_USER:    ${{ secrets.VPS_USER }}
@@ -46,6 +47,8 @@ jobs:
             ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
           fi
 
+      # 1) Готовим каталог и при необходимости ставим docker/compose.
+      #    КЛЮЧЕВОЕ: пробрасываем переменные на удалённый хост через envs:
       - name: Prepare directory on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -53,23 +56,29 @@ jobs:
           username: ${{ env.VPS_USER }}
           key:      ${{ env.VPS_SSH_KEY }}
           port:     ${{ env.VPS_PORT }}
+          envs: VPS_PATH,VPS_USER
           script: |
             set -e
+            # дефолты на случай пустых переменных
+            VPS_PATH="${VPS_PATH:-/opt/geoconverter}"
+            OWNER="${VPS_USER:-$USER}"
+
             sudo mkdir -p "$VPS_PATH"
-            OWNER="${USER:-$VPS_USER}"
             sudo chown "$OWNER:$OWNER" "$VPS_PATH"
+
             # docker + compose, если вдруг не стоят
-            if ! command -v docker >/dev/null; then
+            if ! command -v docker >/dev/null 2>&1; then
               curl -fsSL https://get.docker.com | sh
             fi
             if ! docker compose version >/dev/null 2>&1; then
               DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
-              mkdir -p $DOCKER_CONFIG/cli-plugins
-              curl -SL https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m) \
-                -o $DOCKER_CONFIG/cli-plugins/docker-compose
-              chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+              mkdir -p "$DOCKER_CONFIG/cli-plugins"
+              curl -SL "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m)" \
+                -o "$DOCKER_CONFIG/cli-plugins/docker-compose"
+              chmod +x "$DOCKER_CONFIG/cli-plugins/docker-compose"
             fi
 
+      # 2) Копируем файлы на сервер (git на сервере не нужен)
       - name: Sync files to VPS (no git on server)
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -87,6 +96,8 @@ jobs:
           target: ${{ env.VPS_PATH }}
           strip_components: 0
 
+      # 3) Сборка и запуск контейнеров
+      #    КЛЮЧЕВОЕ: снова пробрасываем VPS_PATH.
       - name: Compose up (build on server)
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -94,14 +105,19 @@ jobs:
           username: ${{ env.VPS_USER }}
           key:      ${{ env.VPS_SSH_KEY }}
           port:     ${{ env.VPS_PORT }}
+          envs: VPS_PATH
           script: |
             set -e
+            VPS_PATH="${VPS_PATH:-/opt/geoconverter}"
+
             cd "$VPS_PATH"
             docker compose down || true
             docker compose up -d --build
             docker compose ps
+
             echo "------ Caddy logs (tail) ------"
             docker logs --tail=50 geoconverter-caddy || true
+
             echo "------ Frontend health (inside caddy) ------"
             docker exec geoconverter-caddy sh -lc "wget -qO- http://frontend:3000/ | head -c 400 || true"
             echo
