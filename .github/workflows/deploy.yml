@@ -4,7 +4,6 @@ on:
   push:
     branches: ["main"]
 
-# чтобы параллельные деплои не накладывались
 concurrency:
   group: geoconverter-deploy
   cancel-in-progress: true
@@ -16,7 +15,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # все секреты поднимаем в env (используются дальше как ${{ env.* }} на раннере)
     env:
       VPS_HOST:    ${{ secrets.VPS_HOST }}
       VPS_USER:    ${{ secrets.VPS_USER }}
@@ -37,18 +35,24 @@ jobs:
           echo "Top-level:"
           find . -maxdepth 2 -print
 
+      - name: Sanity check sources exist
+        run: |
+          set -e
+          test -f docker-compose.yml || (echo "No docker-compose.yml at repo root" && exit 1)
+          test -f Caddyfile || (echo "No Caddyfile at repo root" && exit 1)
+          test -d backend || (echo "No backend/ dir at repo root" && exit 1)
+          test -d frontend || (echo "No frontend/ dir at repo root" && exit 1)
+          echo "OK: sources present"
+
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
-          echo "Adding $VPS_HOST:$VPS_PORT to known_hosts"
           if [ -n "$VPS_PORT" ] && [ "$VPS_PORT" != "22" ]; then
             ssh-keyscan -H -p "$VPS_PORT" "$VPS_HOST" >> ~/.ssh/known_hosts
           else
             ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
           fi
 
-      # 1) Готовим каталог и при необходимости ставим docker/compose.
-      #    КЛЮЧЕВОЕ: пробрасываем переменные на удалённый хост через envs:
       - name: Prepare directory on VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -59,14 +63,11 @@ jobs:
           envs: VPS_PATH,VPS_USER
           script: |
             set -e
-            # дефолты на случай пустых переменных
             VPS_PATH="${VPS_PATH:-/opt/geoconverter}"
             OWNER="${VPS_USER:-$USER}"
-
             sudo mkdir -p "$VPS_PATH"
             sudo chown "$OWNER:$OWNER" "$VPS_PATH"
 
-            # docker + compose, если вдруг не стоят
             if ! command -v docker >/dev/null 2>&1; then
               curl -fsSL https://get.docker.com | sh
             fi
@@ -78,7 +79,6 @@ jobs:
               chmod +x "$DOCKER_CONFIG/cli-plugins/docker-compose"
             fi
 
-      # 2) Копируем файлы на сервер (git на сервере не нужен)
       - name: Sync files to VPS (no git on server)
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -88,16 +88,16 @@ jobs:
           port:     ${{ env.VPS_PORT }}
           overwrite: true
           rm: true
+          debug: true
+          # БЕЗ ./ и с /**/*, чтобы точно сматчить файлы
           source: |
-            ./docker-compose.yml
-            ./Caddyfile
-            ./backend/**
-            ./frontend/**
+            docker-compose.yml
+            Caddyfile
+            backend/**/*
+            frontend/**/*
           target: ${{ env.VPS_PATH }}
           strip_components: 0
 
-      # 3) Сборка и запуск контейнеров
-      #    КЛЮЧЕВОЕ: снова пробрасываем VPS_PATH.
       - name: Compose up (build on server)
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -109,15 +109,12 @@ jobs:
           script: |
             set -e
             VPS_PATH="${VPS_PATH:-/opt/geoconverter}"
-
             cd "$VPS_PATH"
             docker compose down || true
             docker compose up -d --build
             docker compose ps
-
             echo "------ Caddy logs (tail) ------"
             docker logs --tail=50 geoconverter-caddy || true
-
             echo "------ Frontend health (inside caddy) ------"
             docker exec geoconverter-caddy sh -lc "wget -qO- http://frontend:3000/ | head -c 400 || true"
             echo
