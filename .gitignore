@@ -14,7 +14,12 @@ __pycache__/
 caddy_data/
 caddy_config/
 backend/uploads/
+docker-compose.override.yml
 
 # OS
 .DS_Store
 Thumbs.db
+
+#readme
+README.MD
+structure.txt

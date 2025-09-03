@@ -1,18 +1,24 @@
-# /geoconverter/frontend/Dockerfile
-FROM node:20-alpine AS deps
-WORKDIR /app
-COPY package.json package-lock.json* ./
-RUN npm ci
+# /geoconverter/backend/Dockerfile
+FROM python:3.11-slim-bookworm
 
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN npm run build
+ENV PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
 
-FROM node:20-alpine AS runner
+# Важно для pyproj: ставим библиотеки PROJ + обновляем систему
+RUN apt-get update \
+ && apt-get upgrade -y \
+ && apt-get install -y --no-install-recommends \
+      libproj-dev proj-bin proj-data build-essential curl ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
-ENV NODE_ENV=production
-COPY --from=builder /app ./
-EXPOSE 3000
-CMD ["npm", "run", "start"]
+
+# Python-зависимости
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Приложение
+COPY app ./app
+
+EXPOSE 8000
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
