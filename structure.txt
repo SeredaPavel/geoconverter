@@ -1,30 +1,55 @@
+
 C:.
 |   .gitattributes
 |   .gitignore
 |   Caddyfile
 |   docker-compose.yml
+|   REDME.MD
 |   structure.txt
 |   
++---.github
+|   \---workflows
+|           deploy.yml
+|           
++---.vscode
+|       settings.json
+|       
 +---backend
 |   |   Dockerfile
 |   |   requirements.txt
 |   |   
-|   \---app
-|       |   main.py
-|       |   schemas.py
-|       |   utils.py
-|       |   
-|       \---crs_registry
-|               msk_registry.yml
-|               
+|   +---app
+|   |   |   main.py
+|   |   |   schemas.py
+|   |   |   utils.py
+|   |   |   
+|   |   \---crs_registry
+|   |           msk_registry.yml
+|   |           
+|   +---data
+|   |   \---grids
+|   \---uploads
 \---frontend
+    |   .dockerignore
+    |   .gitignore
     |   Dockerfile
     |   next.config.ts
+    |   package-lock.json
     |   package.json
     |   postcss.config.js
     |   tailwind.config.ts
     |   tsconfig.json
     |   
+    
+    |                   
+    +---public
+    |   +---assets
+    |   |       geoconverter_logo.svg
+    |   |       
+    |   \---templates
+    |           template_latlon.xlsx
+    |           template_xy.xlsx
+    |           
     \---src
         +---app
         |       layout.tsx
