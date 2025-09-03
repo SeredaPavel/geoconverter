@@ -1,24 +1,24 @@
-# /geoconverter/backend/Dockerfile
-FROM python:3.11-slim-bookworm
+# /geoconverter/frontend/Dockerfile
 
-ENV PYTHONUNBUFFERED=1 \
-    PIP_NO_CACHE_DIR=1
-
-# Важно для pyproj: ставим библиотеки PROJ + обновляем систему
-RUN apt-get update \
- && apt-get upgrade -y \
- && apt-get install -y --no-install-recommends \
-      libproj-dev proj-bin proj-data build-essential curl ca-certificates \
- && rm -rf /var/lib/apt/lists/*
-
+# Один общий базовый слой с обновлением пакетов
+FROM node:20.17.0-alpine3.20 AS base
+RUN apk --no-cache update && apk --no-cache upgrade
 WORKDIR /app
 
-# Python-зависимости
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# deps: устанавливаем node_modules
+FROM base AS deps
+COPY package.json package-lock.json* ./
+RUN npm ci
 
-# Приложение
-COPY app ./app
+# builder: собираем Next.js
+FROM base AS builder
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
 
-EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# runner: минимальный рантайм
+FROM base AS runner
+ENV NODE_ENV=production
+COPY --from=builder /app ./
+EXPOSE 3000
+CMD ["npm", "run", "start"]
