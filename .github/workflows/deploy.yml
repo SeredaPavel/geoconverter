@@ -95,12 +95,8 @@ jobs:
           overwrite: true
           rm: true
           debug: true
-          # ВАЖНО: многострочное значение с pipe и корректными отступами
-          source: |
-            docker-compose.yml
-            Caddyfile
-            backend
-            frontend
+          # ВАЖНО: одна строка, элементы через запятую!
+          source: "docker-compose.yml,Caddyfile,backend/**,frontend/**"
           target: ${{ env.VPS_PATH }}
           strip_components: 0
 
