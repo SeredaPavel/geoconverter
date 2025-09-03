@@ -36,6 +36,19 @@ jobs:
           echo "Top-level:"
           find . -maxdepth 2 -print
 
+      - name: Debug files for SCP
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Files for SCP:"
+          ls -la docker-compose.yml Caddyfile backend/ frontend/
+          echo "Checking if directories exist:"
+          [ -d "backend" ] && echo "backend exists" || echo "backend MISSING"
+          [ -d "frontend" ] && echo "frontend exists" || echo "frontend MISSING"
+          echo "Contents of backend:"
+          ls -la backend/ || echo "backend directory not found"
+          echo "Contents of frontend:"
+          ls -la frontend/ || echo "frontend directory not found"
+
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
@@ -109,4 +122,3 @@ jobs:
             docker logs --tail=50 geoconverter-caddy || true
             echo "------ Frontend health (inside caddy) ------"
             docker exec geoconverter-caddy sh -lc "wget -qO- http://frontend:3000/ | head -c 400 || true"
-            echo
