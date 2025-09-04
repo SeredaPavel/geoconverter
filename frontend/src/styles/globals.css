@@ -1,10 +1,68 @@
 /* /geoconverter/frontend/src/styles/globals.css */
+/* ... базовые стили из твоей текущей версии остаются ... */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root { color-scheme: light dark; }
 body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
-.card { @apply border border-slate-200/60 dark:border-slate-700/60 rounded-2xl shadow-sm; }
-.btn  { @apply px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-600 hover:border-brand-500 transition; }
-.input{ @apply border border-slate-300 dark:border-slate-600 rounded-lg px-3 py-2 bg-transparent; }
+
+/* Карточки/кнопки */
+.card { @apply rounded-2xl border border-slate-200/70 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur shadow-soft; }
+.btn  { @apply inline-flex items-center gap-2 px-4 h-10 rounded-xl border border-slate-300/80 dark:border-slate-600 hover:border-brand-500/80 transition-colors; }
+.btn-primary { @apply bg-brand-500 text-white border-brand-500 hover:bg-brand-500/90; }
+.btn-ghost { @apply border-transparent hover:border-slate-300/80; }
+.input{ @apply border border-slate-300 dark:border-slate-600 rounded-lg px-3 h-10 bg-white/70 dark:bg-slate-900/60 outline-none focus:border-brand-500; }
+.select{ @apply input pr-8; }
+.shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.06) }
+
+/* Сегмент-переключатель */
+.segment { @apply inline-flex rounded-xl p-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700; }
+.segment button { @apply px-3 h-9 rounded-lg text-sm text-slate-600 dark:text-slate-300; }
+.segment .active { @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-soft; }
+
+/* Дропдаун и дропзона */
+.dropdown { @apply relative; }
+.dropdown-menu { @apply absolute z-40 mt-2 min-w-56 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2; }
+.dropzone { @apply mt-3 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-600 p-6 text-sm text-slate-500 dark:text-slate-400 text-center; }
+.dropzone.drag { @apply border-brand-500 bg-brand-50/40 dark:bg-slate-800; }
+
+/* Плавающие соц-кнопки */
+.social-fab { @apply fixed left-4 bottom-4 flex flex-col gap-2 z-50; }
+.social-fab a { @apply w-11 h-11 rounded-full flex items-center justify-center border bg-white/80 dark:bg-slate-900/70 border-slate-200 dark:border-slate-700 shadow-soft hover:border-brand-500; }
+
+/* === Анимации сплэша === */
+
+/* Бегущая светящаяся линия по прямоугольнику */
+@keyframes borderRun {
+  0%   { background-size: 0% 2px, 2px 0%, 0% 2px, 2px 0%; }
+  25%  { background-size: 100% 2px, 2px 0%, 0% 2px, 2px 0%; }
+  50%  { background-size: 100% 2px, 2px 100%, 0% 2px, 2px 0%; }
+  75%  { background-size: 100% 2px, 2px 100%, 100% 2px, 2px 0%; }
+  100% { background-size: 100% 2px, 2px 100%, 100% 2px, 2px 100%; }
+}
+.splash-box {
+  @apply relative inline-block px-8 py-6 rounded-2xl text-2xl font-semibold tracking-wide;
+  background:
+    linear-gradient(#5bd6ff, #5bd6ff) 0 0 / 0% 3px no-repeat,
+    linear-gradient(#5bd6ff, #5bd6ff) 100% 0 / 3px 0% no-repeat,
+    linear-gradient(#5bd6ff, #5bd6ff) 100% 100% / 0% 3px no-repeat,
+    linear-gradient(#5bd6ff, #5bd6ff) 0 100% / 3px 0% no-repeat;
+  color: #0e5a85;
+  box-shadow: 0 0 22px rgba(91,214,255,.35), inset 0 0 0 1px rgba(255,255,255,.12);
+}
+.splash-run { animation: borderRun 1.8s ease-in-out forwards; }
+
+/* Штора снизу вверх (старт после рамки) */
+@keyframes curtainUp {
+  0%   { transform: translateY(0%); }
+  100% { transform: translateY(-100%); }
+}
+.splash-curtain {
+  position: absolute;
+  inset: auto 0 0 0; /* снизу */
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.35));
+  animation: curtainUp 0.7s ease-in-out forwards;
+  animation-delay: 1.8s; /* после рамки */
+}
