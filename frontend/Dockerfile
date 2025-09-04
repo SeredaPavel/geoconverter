@@ -1,11 +1,13 @@
 # /geoconverter/frontend/Dockerfile
+# Multi-stage Next.js с обновлением индексov пакетов (без тяжелого upgrade)
 
-# Один общий базовый слой с обновлением пакетов
+# Общий базовый слой
 FROM node:20.17.0-alpine3.20 AS base
-RUN apk --no-cache update && apk --no-cache upgrade
 WORKDIR /app
+# Держим индекс пакетов свежим (без апгрейда всего дистрибутива)
+RUN apk --no-cache update
 
-# deps: устанавливаем node_modules
+# deps: ставим node_modules
 FROM base AS deps
 COPY package.json package-lock.json* ./
 RUN npm ci
