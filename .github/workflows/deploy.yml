@@ -1,8 +1,11 @@
+# /.github/workflows/deploy.yml
 name: deploy
 
 on:
   push:
     branches: ["main"]
+  # по желанию: ручной запуск из вкладки Actions
+  workflow_dispatch: {}
 
 concurrency:
   group: geoconverter-deploy
@@ -15,7 +18,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    # Поднимаем секреты в env
     env:
       VPS_HOST:    ${{ secrets.VPS_HOST }}
       VPS_USER:    ${{ secrets.VPS_USER }}
@@ -36,19 +38,6 @@ jobs:
           echo "Top-level:"
           find . -maxdepth 2 -print
 
-      - name: Debug files for SCP
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Files for SCP:"
-          ls -la docker-compose.yml Caddyfile backend/ frontend/
-          echo "Checking if directories exist:"
-          [ -d "backend" ] && echo "backend exists" || echo "backend MISSING"
-          [ -d "frontend" ] && echo "frontend exists" || echo "frontend MISSING"
-          echo "Contents of backend:"
-          ls -la backend/ || echo "backend directory not found"
-          echo "Contents of frontend:"
-          ls -la frontend/ || echo "frontend directory not found"
-
       - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
@@ -66,7 +55,6 @@ jobs:
           username: ${{ env.VPS_USER }}
           key:      ${{ env.VPS_SSH_KEY }}
           port:     ${{ env.VPS_PORT }}
-          # передаём переменные окружения внутрь SSH-сессии
           envs: VPS_PATH,VPS_USER
           script: |
             set -e
@@ -85,7 +73,7 @@ jobs:
               chmod +x "$DOCKER_CONFIG/cli-plugins/docker-compose"
             fi
 
-      - name: Sync files to VPS (no git on server)
+      - name: Sync files to VPS (SCP)
         uses: appleboy/scp-action@v0.1.7
         with:
           host:     ${{ env.VPS_HOST }}
@@ -95,12 +83,12 @@ jobs:
           overwrite: true
           rm: true
           debug: true
-          # ВАЖНО: одна строка, элементы через запятую!
+          # важно: одна строка, элементы через запятую
           source: "docker-compose.yml,Caddyfile,backend/**,frontend/**"
-          target: ${{ env.VPS_PATH }}
+          target: "${{ env.VPS_PATH }}"
           strip_components: 0
 
-      - name: Compose up (build on server)
+      - name: Compose up (build on server, no downtime)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host:     ${{ env.VPS_HOST }}
@@ -111,10 +99,23 @@ jobs:
           script: |
             set -e
             cd "$VPS_PATH"
-            docker compose down || true
-            docker compose up -d --build
+
+            # обновляем только нужные сервисы, без остановки caddy
+            docker compose up -d --build --no-deps backend
+            docker compose up -d --build --no-deps frontend
+
+            # если менялся Caddyfile — "горячо" перечитаем конфиг (без рестарта контейнера)
+            docker exec geoconverter-caddy caddy reload --config /etc/caddy/Caddyfile || true
+
+            echo "------ compose ps ------"
             docker compose ps
-            echo "------ Caddy logs (tail) ------"
-            docker logs --tail=50 geoconverter-caddy || true
-            echo "------ Frontend health (inside caddy) ------"
-            docker exec geoconverter-caddy sh -lc "wget -qO- http://frontend:3000/ | head -c 400 || true"
+
+            echo "------ Backend health ------"
+            curl -sS http://localhost:8000/docs | head -c 200 || true
+
+            echo "------ Frontend via Caddy ------"
+            curl -sS http://localhost/ | head -c 200 || true
+
+            echo "------ prune old images/cache ------"
+            docker image prune -af || true
+            docker builder prune -af || true
