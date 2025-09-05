@@ -1,5 +1,5 @@
 /* /geoconverter/frontend/src/styles/globals.css */
-/* ... базовые стили из твоей текущей версии остаются ... */
+/* ... базовые стили из вашей версии остаются ... */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,22 +33,22 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 
 /* === SPLASH: большая рамка, непрозрачная штора, синхронное исчезновение надписи === */
 
-/* Настраиваемые переменные (можно менять из TSX через inline-style) */
+/* Настраиваемые переменные (оставил как у вас) */
 :root {
-  --splash-curtain-bg: #0b1220;           /* цвет шторы (непрозрачный) */
-  --splash-border-color: #5bd6ff;         /* цвет бегущей подсветки */
-  --splash-text-color: #0e5a85;           /* цвет текста */
-  --splash-box-pad-y: 62px;               /* вертикальный паддинг рамки */
-  --splash-box-pad-x: 76px;               /* горизонтальный паддинг рамки */
-  --splash-box-radius: 20px;              /* скругление */
-  --splash-box-font: 28px;                /* размер шрифта надписи */
-  --splash-border-thickness: 2px;         /* толщина бегущей линии */
-  --splash-border-glow: 28px;             /* свечение вокруг рамки */
-  --splash-border-duration: 1.7s;         /* длительность бега линии */
-  --splash-curtain-duration: 0.9s;        /* длительность подъёма шторы */
+  --splash-curtain-bg: #0b1220;
+  --splash-border-color: #5bd6ff;
+  --splash-text-color: #0e5a85;
+  --splash-box-pad-y: 62px;
+  --splash-box-pad-x: 76px;
+  --splash-box-radius: 20px;
+  --splash-box-font: 28px;
+  --splash-border-thickness: 2px;
+  --splash-border-glow: 28px;
+  --splash-border-duration: 1.7s;
+  --splash-curtain-duration: 0.9s;
 }
 
-/* Контейнер сплэша — прозрачный, страница под ним видна сразу */
+/* Контейнер сплэша */
 .splash-overlay {
   position: fixed;
   inset: 0;
@@ -58,7 +58,7 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
   pointer-events: none;
 }
 
-/* Бегущая светящаяся линия по прямоугольнику */
+/* Бегущая линия */
 @keyframes borderRun {
   0%   { background-size: 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%, 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
   25%  { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 0%, 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
@@ -67,7 +67,7 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
   100% { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%, 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%; }
 }
 
-/* Плавное исчезновение надписи синхронно с шторой */
+/* Плавное исчезновение */
 @keyframes splashFadeOut {
   0%   { opacity: 1; transform: translateY(0); }
   100% { opacity: 0; transform: translateY(-12px); }
@@ -92,11 +92,10 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
   position: relative;
   z-index: 2;
 
-  /* запуск бега рамки */
   animation: borderRun var(--splash-border-duration) ease-in-out forwards;
 }
 
-/* Штора: 100% непрозрачная, едет снизу вверх и ОТКРЫВАЕТ страницу */
+/* Штора открывает страницу */
 @keyframes curtainUp {
   0%   { transform: translateY(0%); }
   100% { transform: translateY(-100%); }
@@ -104,22 +103,30 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 .splash-curtain {
   position: fixed;
   inset: 0;
-  z-index: 1; /* под надписью, но над страницей */
-  background: var(--splash-curtain-bg); /* непрозрачно! */
+  z-index: 1;
+  background: var(--splash-curtain-bg);
   animation: curtainUp var(--splash-curtain-duration) ease-in-out forwards;
-  animation-delay: var(--splash-border-duration); /* старт после бега рамки */
+  animation-delay: var(--splash-border-duration);
   will-change: transform;
 }
 
-/* Чтобы надпись исчезала синхронно с шторой (начинаем, когда поехала штора) */
+/* Синхронное исчезновение надписи */
 .splash-box.splash-fade-out {
   animation:
     borderRun var(--splash-border-duration) ease-in-out forwards,
     splashFadeOut var(--splash-curtain-duration) ease-in-out forwards var(--splash-border-duration);
 }
 
-/* ===== Mobile tweaks ===== */
-@media (max-width: 640px) {
+/* ===== ДОБАВЛЕНЫ ТОЛЬКО БЕЗОПАСНЫЕ МОБИЛЬНЫЕ ФИКСЫ ===== */
+
+/* iOS прокрутка: body высота 100% для корректной работы vh */
+html, body { height: 100%; }
+
+/* отключаем fixed-фон на маленьких экранах (iOS баг) */
+@media (max-width: 767px) {
+  body { background-attachment: scroll !important; }
+
+  /* ваши мобильные трюки оставлены и слегка упорядочены */
   :root{
     --splash-box-pad-y: 14px;
     --splash-box-pad-x: 22px;
@@ -127,15 +134,10 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
     --splash-box-font: 20px;
     --splash-border-thickness: 2px;
     --splash-border-glow: 18px;
-    --splash-border-duration: 1.4s;  /* чуть быстрее */
+    --splash-border-duration: 1.4s;
     --splash-curtain-duration: 0.55s;
   }
-
-  /* FAB не перекрывает CTA-кнопку */
   .social-fab { left: 12px; bottom: 12px; }
-
-  /* Таблица на мобиле: уменьшить кегль и сделать прокрутку */
   .table-wrap { overflow-x: auto; }
   .table-xs { font-size: 12px; }
 }
-

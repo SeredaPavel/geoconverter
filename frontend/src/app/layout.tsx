@@ -4,31 +4,32 @@ import type { ReactNode } from "react";
 import Header from "@/components/Header";
 import Splash from "@/components/Splash";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
+export const metadata = {
+  title: "ГеоКонвертер",
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ru">
-      <head>
-        <title>ГеоКонвертер</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
       <body
-        style={{
-          backgroundImage: "url(/assets/earth_hero.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-        }}
-        className="min-h-screen"
+        className="
+          min-h-screen
+          bg-[url('/assets/earth_hero.jpg')] bg-cover bg-center
+          md:bg-fixed
+        "
       >
-        {/* затемняющая подложка поверх фона */}
         <div className="bg-black/30 dark:bg-black/50 min-h-screen">
           <Header />
           <main className="max-w-[1200px] mx-auto px-4 py-6">
             {children}
           </main>
         </div>
-
-        {/* Глобальный сплэш (на всех страницах) */}
         <Splash />
       </body>
     </html>
