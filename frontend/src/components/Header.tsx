@@ -17,7 +17,7 @@ export default function Header() {
 
     return (
         <header className={`sticky top-0 z-40 transition-all ${scrolled ? "backdrop-blur bg-white/65 dark:bg-slate-950/65 border-b border-slate-200/70 dark:border-slate-800" : ""}`}>
-            <div className="max-w-[1200px] mx-auto px-4 flex items-center gap-3 py-3">
+            <div className="max-w-[1200px] mx-auto px-4 flex items-center gap-4 py-3">
                 <Link href="/" className="flex items-center gap-3">
                     {/* фикс: правильное расширение и только поддерживаемые пропы */}
                     <GlobeLogo
@@ -36,12 +36,12 @@ export default function Header() {
                         // скорость
                         rotationSpeed={0.01}
                     />
-                    <span className="font-semibold tracking-wide">ГеоКонвертер</span>
+                    <span className="font-semibold tracking-wide text-lg md:text-xl">ГеоКонвертер</span>
                 </Link>
                 <nav className="ml-auto flex items-center gap-2">
-                    <a className="btn btn-ghost" href="#features">Возможности</a>
-                    <a className="btn btn-ghost" href="#faq">FAQ</a>
-                    <a className="btn btn-primary" href="#start">Запуск</a>
+                    <a className="btn btn-ghost h-11 text-base md:text-lg font-medium" href="#features">Возможности</a>
+                    <a className="btn btn-ghost h-11 text-base md:text-lg font-medium" href="#faq">FAQ</a>
+                    <a className="btn btn-ghost h-11 text-base md:text-lg font-semibold" href="#start">Запуск</a>
                 </nav>
             </div>
         </header>
