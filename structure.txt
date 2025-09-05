@@ -1,10 +1,13 @@
-
+��������� ����� ���� OS
+�������� ����� ����: 9242-76EF
 C:.
 |   .gitattributes
 |   .gitignore
 |   Caddyfile
+|   docker-compose.override.yml
 |   docker-compose.yml
-|   REDME.MD
+|   README.MD
+|   reset-vps.sh
 |   structure.txt
 |   
 +---.github
@@ -23,8 +26,13 @@ C:.
 |   |   |   schemas.py
 |   |   |   utils.py
 |   |   |   
-|   |   \---crs_registry
-|   |           msk_registry.yml
+|   |   +---crs_registry
+|   |   |       msk_registry.yml
+|   |   |       
+|   |   \---__pycache__
+|   |           main.cpython-311.pyc
+|   |           schemas.cpython-311.pyc
+|   |           utils.cpython-311.pyc
 |   |           
 |   +---data
 |   |   \---grids
@@ -33,6 +41,7 @@ C:.
     |   .dockerignore
     |   .gitignore
     |   Dockerfile
+    |   next-env.d.ts
     |   next.config.ts
     |   package-lock.json
     |   package.json
@@ -40,11 +49,14 @@ C:.
     |   tailwind.config.ts
     |   tsconfig.json
     |   
-    
+
     |                   
     +---public
     |   +---assets
-    |   |       geoconverter_logo.svg
+    |   |       earth_hero.jpg
+    |   |       
+    |   +---images
+    |   |       earth_equirect.jpg
     |   |       
     |   \---templates
     |           template_latlon.xlsx
@@ -57,6 +69,9 @@ C:.
         |       
         +---components
         |       ConverterPanel.tsx
+        |       GlobeLogo.tsx
+        |       Header.tsx
+        |       Splash.tsx
         |       
         \---styles
                 globals.css
