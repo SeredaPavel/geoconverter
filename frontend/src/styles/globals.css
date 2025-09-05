@@ -117,3 +117,25 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
     borderRun var(--splash-border-duration) ease-in-out forwards,
     splashFadeOut var(--splash-curtain-duration) ease-in-out forwards var(--splash-border-duration);
 }
+
+/* ===== Mobile tweaks ===== */
+@media (max-width: 640px) {
+  :root{
+    --splash-box-pad-y: 14px;
+    --splash-box-pad-x: 22px;
+    --splash-box-radius: 14px;
+    --splash-box-font: 20px;
+    --splash-border-thickness: 2px;
+    --splash-border-glow: 18px;
+    --splash-border-duration: 1.4s;  /* чуть быстрее */
+    --splash-curtain-duration: 0.55s;
+  }
+
+  /* FAB не перекрывает CTA-кнопку */
+  .social-fab { left: 12px; bottom: 12px; }
+
+  /* Таблица на мобиле: уменьшить кегль и сделать прокрутку */
+  .table-wrap { overflow-x: auto; }
+  .table-xs { font-size: 12px; }
+}
+

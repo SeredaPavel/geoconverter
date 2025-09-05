@@ -69,7 +69,7 @@ export default function Page() {
             backgroundPosition: "center",
           }}
         >
-          <button className="btn btn-primary h-40 text-xl px-8 shadow-soft" onClick={() => setOpen(true)}>
+          <button className="btn btn-primary h-11 text-lg md:h-12 md:text-xl px-6 md:px-8 shadow-soft" onClick={() => setOpen(true)}>
             <IconPlay /> Запуск конвертера
           </button>
         </div>
