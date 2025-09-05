@@ -1,3 +1,4 @@
+// /geoconverter/frontend/src/components/ConverterPanel.tsx
 "use client";
 import { useMemo, useState } from "react";
 
@@ -191,8 +192,9 @@ export default function ConverterPanel() {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-sm">
+        {/* Таблица ввода: обёртка для горизонтального скролла + компактный кегль на мобиле */}
+        <div className="table-wrap">
+          <table className="min-w-full text-sm table-xs">
             <thead>
               <tr className="text-left">
                 <th className="p-2">№</th>
@@ -207,22 +209,36 @@ export default function ConverterPanel() {
                 <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
                   <td className="p-2">{i + 1}</td>
                   <td className="p-2">
-                    <input className="input w-40" type="number" value={r.lat ?? ""} onChange={e => {
-                      const v = e.target.value === "" ? undefined : Number(e.target.value);
-                      setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lat: v } : rr));
-                    }} />
+                    <input
+                      className="input w-40"
+                      type="number"
+                      value={r.lat ?? ""}
+                      onChange={e => {
+                        const v = e.target.value === "" ? undefined : Number(e.target.value);
+                        setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lat: v } : rr));
+                      }}
+                    />
                   </td>
                   <td className="p-2">
-                    <input className="input w-40" type="number" value={r.lon ?? ""} onChange={e => {
-                      const v = e.target.value === "" ? undefined : Number(e.target.value);
-                      setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lon: v } : rr));
-                    }} />
+                    <input
+                      className="input w-40"
+                      type="number"
+                      value={r.lon ?? ""}
+                      onChange={e => {
+                        const v = e.target.value === "" ? undefined : Number(e.target.value);
+                        setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lon: v } : rr));
+                      }}
+                    />
                   </td>
                   <td className="p-2">
-                    <input className="input w-52" value={r.name ?? ""} onChange={e => {
-                      const v = e.target.value || undefined;
-                      setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, name: v } : rr));
-                    }} />
+                    <input
+                      className="input w-52"
+                      value={r.name ?? ""}
+                      onChange={e => {
+                        const v = e.target.value || undefined;
+                        setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, name: v } : rr));
+                      }}
+                    />
                   </td>
                   <td className="p-2">
                     <button className="btn" onClick={() => delRow(i)} title="Удалить">
@@ -246,11 +262,16 @@ export default function ConverterPanel() {
             {openImport && (
               <div className="dropdown-menu" onMouseLeave={() => setOpenImport(false)}>
                 <label className="btn w-full justify-start">
-                  <input hidden type="file" accept=".xlsx" onChange={(e) => {
-                    const f = e.target.files?.[0]; if (f) onImport(f);
-                    e.currentTarget.value = "";
-                    setOpenImport(false);
-                  }} />
+                  <input
+                    hidden
+                    type="file"
+                    accept=".xlsx"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0]; if (f) onImport(f);
+                      e.currentTarget.value = "";
+                      setOpenImport(false);
+                    }}
+                  />
                   <IconUpload /> Загрузить Excel
                 </label>
                 <a className="btn w-full justify-start" href="/templates/template_latlon.xlsx">
@@ -285,7 +306,7 @@ export default function ConverterPanel() {
       </section>
 
       {/* ПРАВАЯ КОЛОНКА — РЕЗУЛЬТАТЫ */}
-      <section className="md:sticky md:top-4 h-fit card p-5 space-y-4">
+      <section className="lg:sticky lg:top-6 h-fit card p-5 space-y-4">
         <div className="flex items-center justify-between">
           <div className="text-lg font-semibold">Результат</div>
           <button className="btn btn-primary" onClick={recalc} disabled={loading}>
@@ -293,8 +314,9 @@ export default function ConverterPanel() {
           </button>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-sm">
+        {/* Таблица результата: та же обёртка для скролла и компактный кегль */}
+        <div className="table-wrap">
+          <table className="min-w-full text-sm table-xs">
             <thead>
               <tr className="text-left">
                 <th className="p-2">№</th>

@@ -10,7 +10,7 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 /* Карточки/кнопки */
 .card { @apply rounded-2xl border border-slate-200/70 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur shadow-soft; }
 .btn  { @apply inline-flex items-center gap-2 px-4 h-10 rounded-xl border border-slate-300/80 dark:border-slate-600 hover:border-brand-500/80 transition-colors; }
-.btn-primary { @apply bg-brand-500 text-white border-brand-500 hover:bg-brand-500/90; }
+.btn-primary { @apply bg-brand-600 text-white border-brand-600 hover:bg-brand-700; }
 .btn-ghost { @apply border-transparent hover:border-slate-300/80; }
 .input{ @apply border border-slate-300 dark:border-slate-600 rounded-lg px-3 h-10 bg-white/70 dark:bg-slate-900/60 outline-none focus:border-brand-500; }
 .select{ @apply input pr-8; }
@@ -31,38 +31,111 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 .social-fab { @apply fixed left-4 bottom-4 flex flex-col gap-2 z-50; }
 .social-fab a { @apply w-11 h-11 rounded-full flex items-center justify-center border bg-white/80 dark:bg-slate-900/70 border-slate-200 dark:border-slate-700 shadow-soft hover:border-brand-500; }
 
-/* === Анимации сплэша === */
+/* === SPLASH: большая рамка, непрозрачная штора, синхронное исчезновение надписи === */
+
+/* Настраиваемые переменные (можно менять из TSX через inline-style) */
+:root {
+  --splash-curtain-bg: #0b1220;           /* цвет шторы (непрозрачный) */
+  --splash-border-color: #5bd6ff;         /* цвет бегущей подсветки */
+  --splash-text-color: #0e5a85;           /* цвет текста */
+  --splash-box-pad-y: 62px;               /* вертикальный паддинг рамки */
+  --splash-box-pad-x: 76px;               /* горизонтальный паддинг рамки */
+  --splash-box-radius: 20px;              /* скругление */
+  --splash-box-font: 28px;                /* размер шрифта надписи */
+  --splash-border-thickness: 2px;         /* толщина бегущей линии */
+  --splash-border-glow: 28px;             /* свечение вокруг рамки */
+  --splash-border-duration: 1.7s;         /* длительность бега линии */
+  --splash-curtain-duration: 0.9s;        /* длительность подъёма шторы */
+}
+
+/* Контейнер сплэша — прозрачный, страница под ним видна сразу */
+.splash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
 
 /* Бегущая светящаяся линия по прямоугольнику */
 @keyframes borderRun {
-  0%   { background-size: 0% 2px, 2px 0%, 0% 2px, 2px 0%; }
-  25%  { background-size: 100% 2px, 2px 0%, 0% 2px, 2px 0%; }
-  50%  { background-size: 100% 2px, 2px 100%, 0% 2px, 2px 0%; }
-  75%  { background-size: 100% 2px, 2px 100%, 100% 2px, 2px 0%; }
-  100% { background-size: 100% 2px, 2px 100%, 100% 2px, 2px 100%; }
+  0%   { background-size: 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%, 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
+  25%  { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 0%, 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
+  50%  { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%, 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
+  75%  { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%, 100% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
+  100% { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%, 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%; }
 }
-.splash-box {
-  @apply relative inline-block px-8 py-6 rounded-2xl text-2xl font-semibold tracking-wide;
-  background:
-    linear-gradient(#5bd6ff, #5bd6ff) 0 0 / 0% 3px no-repeat,
-    linear-gradient(#5bd6ff, #5bd6ff) 100% 0 / 3px 0% no-repeat,
-    linear-gradient(#5bd6ff, #5bd6ff) 100% 100% / 0% 3px no-repeat,
-    linear-gradient(#5bd6ff, #5bd6ff) 0 100% / 3px 0% no-repeat;
-  color: #0e5a85;
-  box-shadow: 0 0 22px rgba(91,214,255,.35), inset 0 0 0 1px rgba(255,255,255,.12);
-}
-.splash-run { animation: borderRun 1.8s ease-in-out forwards; }
 
-/* Штора снизу вверх (старт после рамки) */
+/* Плавное исчезновение надписи синхронно с шторой */
+@keyframes splashFadeOut {
+  0%   { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-12px); }
+}
+
+.splash-box {
+  padding: var(--splash-box-pad-y) var(--splash-box-pad-x);
+  border-radius: var(--splash-box-radius);
+  font-size: var(--splash-box-font);
+  font-weight: 600;
+  letter-spacing: .02em;
+
+  background:
+    linear-gradient(var(--splash-border-color), var(--splash-border-color)) 0 0 / 0% var(--splash-border-thickness) no-repeat,
+    linear-gradient(var(--splash-border-color), var(--splash-border-color)) 100% 0 / var(--splash-border-thickness) 0% no-repeat,
+    linear-gradient(var(--splash-border-color), var(--splash-border-color)) 100% 100% / 0% var(--splash-border-thickness) no-repeat,
+    linear-gradient(var(--splash-border-color), var(--splash-border-color)) 0 100% / var(--splash-border-thickness) 0% no-repeat;
+  color: var(--splash-text-color);
+  box-shadow: 0 0 var(--splash-border-glow) color-mix(in oklab, var(--splash-border-color) 70%, transparent),
+              inset 0 0 0 1px rgba(255,255,255,.12);
+
+  position: relative;
+  z-index: 2;
+
+  /* запуск бега рамки */
+  animation: borderRun var(--splash-border-duration) ease-in-out forwards;
+}
+
+/* Штора: 100% непрозрачная, едет снизу вверх и ОТКРЫВАЕТ страницу */
 @keyframes curtainUp {
   0%   { transform: translateY(0%); }
   100% { transform: translateY(-100%); }
 }
 .splash-curtain {
-  position: absolute;
-  inset: auto 0 0 0; /* снизу */
-  height: 100%;
-  background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.35));
-  animation: curtainUp 0.7s ease-in-out forwards;
-  animation-delay: 1.8s; /* после рамки */
+  position: fixed;
+  inset: 0;
+  z-index: 1; /* под надписью, но над страницей */
+  background: var(--splash-curtain-bg); /* непрозрачно! */
+  animation: curtainUp var(--splash-curtain-duration) ease-in-out forwards;
+  animation-delay: var(--splash-border-duration); /* старт после бега рамки */
+  will-change: transform;
 }
+
+/* Чтобы надпись исчезала синхронно с шторой (начинаем, когда поехала штора) */
+.splash-box.splash-fade-out {
+  animation:
+    borderRun var(--splash-border-duration) ease-in-out forwards,
+    splashFadeOut var(--splash-curtain-duration) ease-in-out forwards var(--splash-border-duration);
+}
+
+/* ===== Mobile tweaks ===== */
+@media (max-width: 640px) {
+  :root{
+    --splash-box-pad-y: 14px;
+    --splash-box-pad-x: 22px;
+    --splash-box-radius: 14px;
+    --splash-box-font: 20px;
+    --splash-border-thickness: 2px;
+    --splash-border-glow: 18px;
+    --splash-border-duration: 1.4s;  /* чуть быстрее */
+    --splash-curtain-duration: 0.55s;
+  }
+
+  /* FAB не перекрывает CTA-кнопку */
+  .social-fab { left: 12px; bottom: 12px; }
+
+  /* Таблица на мобиле: уменьшить кегль и сделать прокрутку */
+  .table-wrap { overflow-x: auto; }
+  .table-xs { font-size: 12px; }
+}
+
