@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           md:bg-fixed
         "
       >
-        <div className="bg-black/30 dark:bg-black/50 min-h-screen">
+        <div className="bg-black/10 dark:bg-black/20 min-h-screen">
           <Header />
           <main className="max-w-[1200px] mx-auto px-4 py-6">
             {children}

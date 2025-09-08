@@ -5,14 +5,15 @@ import ConverterPanel from "@/components/ConverterPanel";
 
 function IconPlay() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path d="M8 5v14l11-7-11-7z" fill="currentColor" />
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+      <path d="M8 5v14l11-7-11-7z" fill="currentColor"/>
     </svg>
   );
 }
+
 function IconClose() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
       <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
@@ -76,10 +77,10 @@ export default function Page() {
           "
         >
           <button
-            className="btn btn-primary h-11 text-lg md:h-12 md:text-xl px-6 md:px-8 shadow-soft"
+            className="gc-cta gc-cta-lg"
             onClick={() => setOpen(true)}
           >
-            <IconPlay /> Запуск конвертера
+            <span className="gc-icon"><IconPlay /></span> Запуск конвертера
           </button>
         </div>
       </section>
@@ -87,7 +88,7 @@ export default function Page() {
       {/* Модал с конвертером */}
       {open && (
         <div className="fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} aria-hidden />
+          <div className="absolute inset-0 bg-black/20" onClick={() => setOpen(false)} aria-hidden />
           <div className="absolute inset-0 flex items-start md:items-center justify-center p-4 md:p-6">
             <div className="w-full md:max-w-[1200px]">
               <div className="card p-4 md:p-5 max-h-[90svh] overflow-auto">
