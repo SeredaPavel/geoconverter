@@ -88,10 +88,20 @@ export default function Page() {
       {/* Модал с конвертером */}
       {open && (
         <div className="fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/20" onClick={() => setOpen(false)} aria-hidden />
-          <div className="absolute inset-0 flex items-start md:items-center justify-center modal-wrap p-4 md:p-6">
-            <div className="w-full md:max-w-[1200px]">
-              <div className="card p-4 md:p-5 max-h-90svh overflow-auto">
+          <div
+            className="absolute inset-0 bg-black/20"
+            aria-hidden="true"     // явно скрываем от скринридеров
+            role="presentation"    // декоративный слой
+            onClick={() => setOpen(false)}
+          />
+          {/* ВАЖНО: даём контейнеру свой скролл, он учитывает safe-area и не мешает карточке */}
+          <div className="absolute inset-0 flex items-start md:items-center justify-center modal-wrap overflow-y-auto p-4 md:p-6">
+            {/* ВАЖНО: мин. высота ноль, иначе Safari «зажимает» внутренний скролл */}
+            <div className="w-full md:max-w-[1200px] min-h-0">
+              <div className="card modal-card p-4 md:p-5 overflow-auto"
+                role="dialog"
+                aria-modal="true"
+                aria-label="ГеоКонвертер">
                 <div className="flex justify-between items-center mb-3">
                   <div className="text-lg md:text-xl font-semibold">ГеоКонвертер</div>
                   <button
