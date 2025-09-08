@@ -160,4 +160,35 @@ html, body { height: 100%; }
     width: 20px; height: 20px;
   }
 }
+/* ----- iOS safe-area для модалки ----- */
+.modal-wrap{
+  /* базовый паддинг уже задаётся в классе p-4, мы добавляем безопасные края */
+  padding-left: calc(env(safe-area-inset-left) + 1rem);
+  padding-right: calc(env(safe-area-inset-right) + 1rem);
+}
+
+/* ----- Карточка: фикс артефактов с backdrop-filter на iOS ----- */
+.card{
+  position: relative;
+  overflow: hidden;                 /* чтобы границы не «уезжали» */
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* антиалиас скругления в Safari */
+}
+
+/* На старых Safari blur+radius дергается — слегка увеличим непрозрачность и отключим backdrop */
+@supports (-webkit-touch-callout: none){
+  .card{
+    -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+    /* чуть более плотный фон, чтобы компенсировать отсутствие blur */
+    background-color: rgba(2, 6, 23, 0.82); /* ~slate-950/82 */
+  }
+}
+
+/* ----- svh → vh фолбэк, если svh не поддерживается ----- */
+.max-h-90svh{ max-height: 90svh; }
+@supports not (height: 1svh){
+  .max-h-90svh{ max-height: 90vh; }
+}
 
