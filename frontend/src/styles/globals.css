@@ -9,12 +9,16 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 
 /* Карточки/кнопки */
 .card { @apply rounded-2xl border border-slate-200/70 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur shadow-soft; }
-.btn  { @apply inline-flex items-center gap-2 px-4 h-10 rounded-xl border border-slate-300/80 dark:border-slate-600 hover:border-brand-500/80 transition-colors; }
+.btn  { @apply inline-flex items-center gap-2 px-4 rounded-xl border border-slate-300/80 dark:border-slate-600 hover:border-brand-500/80 transition-colors; }
 .btn-primary { @apply bg-brand-600 text-white border-brand-600 hover:bg-brand-700; }
 .btn-ghost { @apply border-transparent hover:border-slate-300/80; }
 .input{ @apply border border-slate-300 dark:border-slate-600 rounded-lg px-3 h-10 bg-white/70 dark:bg-slate-900/60 outline-none focus:border-brand-500; }
 .select{ @apply input pr-8; }
 .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.06) }
+
+/* Размеры кнопок */
+.btn-md { @apply h-11 text-base; }
+.btn-lg { @apply h-12 md:h-14 text-lg md:text-xl px-7 md:px-9; }
 
 /* Сегмент-переключатель */
 .segment { @apply inline-flex rounded-xl p-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700; }
@@ -141,3 +145,19 @@ html, body { height: 100%; }
   .table-wrap { overflow-x: auto; }
   .table-xs { font-size: 12px; }
 }
+@layer components {
+  /* отдельная большая CTA-кнопка, не конфликтует с .btn */
+  .gc-cta {
+    @apply inline-flex items-center gap-2
+           rounded-2xl shadow-soft
+           bg-brand-600 text-white border border-brand-600 hover:bg-brand-700
+           transition-colors;
+  }
+  .gc-cta-lg {
+    @apply h-[60px] md:h-[64px] text-xl md:text-2xl px-8 md:px-10;
+  }
+  .gc-icon {
+    width: 20px; height: 20px;
+  }
+}
+
