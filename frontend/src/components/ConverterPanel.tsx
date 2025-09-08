@@ -1,51 +1,79 @@
-// /geoconverter/frontend/src/components/ConverterPanel.tsx
 "use client";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-type Point = { lat?: number; lon?: number; x?: number; y?: number; name?: string };
+type Point = { lat?: number; lon?: number; x?: number; y?: number };
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "/api";
 
-/* Лёгкие inline-иконки (без внешних зависимостей) */
+/* Иконки */
 const IconTrash = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
     <path d="M3 6h18M8 6V4h8v2m-9 0l1 14h8l1-14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 const IconUpload = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
     <path d="M12 16V4m0 0l-4 4m4-4l4 4M4 20h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 const IconFile = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
     <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12V8l-4-6z" stroke="currentColor" strokeWidth="2"/>
     <path d="M14 2v6h6" stroke="currentColor" strokeWidth="2"/>
   </svg>
 );
 const IconChevronDown = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
     <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 const IconDownload = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-    <path d="M12 4v10m0 0l-4-4m4 4l4-4M4 20h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <path d="M12 20V10m0 0l-4 4m4-4l4 4M4 4h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
+/* helpers */
+const isRowEmpty = (r: Point) =>
+  (r.lat === undefined || r.lat === null || Number.isNaN(r.lat as any)) &&
+  (r.lon === undefined || r.lon === null || Number.isNaN(r.lon as any));
+
+const placeholders = {
+  deg_dec: { lat: "43.771447°", lon: "44.595190°" },
+  deg_min: { lat: "43°46.287′", lon: "44°35.711′" },
+  deg_min_sec: { lat: "43°46′17.3″", lon: "44°35′42.7″" },
+} as const;
+
 export default function ConverterPanel() {
+  // CRS
   const [crsFrom, setCrsFrom] = useState("EPSG:4326");
   const [crsTo, setCrsTo] = useState("EPSG:4326");
-  const [format, setFormat] = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
+
+  // независимые форматы
+  const [formatIn, setFormatIn]   = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
+  const [formatOut, setFormatOut] = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
+
+  // данные
   const [rowsIn, setRowsIn] = useState<Point[]>([{ lat: 43.771447, lon: 44.59519 }]);
-  const [rowsOut, setRowsOut] = useState<Point[]>([]);
+  const [rowsOut, setRowsOut] = useState<Point[]>([{ lat: undefined, lon: undefined }]);
+
+  // опции
   const [zoneMode, setZoneMode] = useState<3 | 6>(6);
   const [autoZone, setAutoZone] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  // UI/вспомогательное
   const [preview, setPreview] = useState<any[]>([]);
   const [toast, setToast] = useState<string | null>(null);
+  const [ok, setOk] = useState(false);
   const [drag, setDrag] = useState(false);
+
+  // выпадашки
   const [openImport, setOpenImport] = useState(false);
+  const [openExport, setOpenExport] = useState(false);
+  const importRef = useRef<HTMLDivElement>(null);
+  const exportRef = useRef<HTMLDivElement>(null);
+  const importTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const exportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const crsOptions = useMemo(() => ([
     { code: "EPSG:4326", title: "WGS 84 (готово)" },
@@ -60,8 +88,32 @@ export default function ConverterPanel() {
   ]), []);
 
   const addRow = () => setRowsIn(r => [...r, {}]);
-  const delRow = (idx: number) => setRowsIn(r => r.filter((_, i) => i !== idx));
+  const removeRow = (idx: number) => setRowsIn(r => r.filter((_, i) => i !== idx));
   const reverse = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
+
+  // клик-вне и ESC — закрыть меню
+  useEffect(() => {
+    const onDocDown = (e: PointerEvent | MouseEvent) => {
+      const t = e.target as Node;
+      if (!importRef.current?.contains(t) && !exportRef.current?.contains(t)) {
+        setOpenImport(false); setOpenExport(false);
+      }
+    };
+    const onEsc = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpenImport(false); setOpenExport(false); } };
+    document.addEventListener("pointerdown", onDocDown);
+    document.addEventListener("keydown", onEsc);
+    return () => {
+      document.removeEventListener("pointerdown", onDocDown);
+      document.removeEventListener("keydown", onEsc);
+    };
+  }, []);
+
+  // локальное «готово»
+  useEffect(() => {
+    if (!ok) return;
+    const t = setTimeout(() => setOk(false), 3500);
+    return () => clearTimeout(t);
+  }, [ok]);
 
   const recalc = async () => {
     setLoading(true);
@@ -72,16 +124,16 @@ export default function ConverterPanel() {
         body: JSON.stringify({
           crs_from: crsFrom,
           crs_to: crsTo,
-          format_in: format,
-          format_out: format,
+          format_in: formatIn,
+          format_out: formatOut,
           points: rowsIn,
           options: { auto_zone: autoZone, zone_mode: zoneMode }
         })
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || "Ошибка пересчёта");
-      setRowsOut(data.points || []);
-      setToast("Готово: координаты пересчитаны");
+      setRowsOut((data.points && data.points.length > 0) ? data.points : [{ lat: undefined, lon: undefined }]);
+      setOk(true);
     } catch (e: any) {
       setToast(e.message);
     } finally {
@@ -106,7 +158,10 @@ export default function ConverterPanel() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          crs_from: crsFrom, crs_to: crsTo, format, rows_in: rowsIn, rows_out: rowsOut
+          crs_from: crsFrom, crs_to: crsTo,
+          format: formatOut, // не ломаем бэк
+          format_in: formatIn, format_out: formatOut,
+          rows_in: rowsIn, rows_out: rowsOut,
         }),
       });
       if (!res.ok) throw new Error("Экспорт недоступен");
@@ -123,149 +178,74 @@ export default function ConverterPanel() {
   };
 
   return (
-    <div className="grid md:grid-cols-2 gap-5">
-      {/* ЛЕВАЯ КОЛОНКА — ВВОД */}
-      <section className="card p-5 space-y-4">
-        <div className="flex items-center gap-3">
-          <img src="/assets/geoconverter_logo.svg" alt="ГеоКонвертер" className="h-9" />
-          <div className="text-lg font-semibold">Исходные данные</div>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-3">
-          <div className="space-y-1">
-            <label className="text-xs opacity-70">Исходная СК</label>
-            <select className="select w-full" value={crsFrom} onChange={e => setCrsFrom(e.target.value)}>
-              {crsOptions.map(o => <option key={o.code} value={o.code}>{o.title}</option>)}
-            </select>
-          </div>
-          <div className="space-y-1">
-            <label className="text-xs opacity-70">Целевая СК</label>
-            <select className="select w-full" value={crsTo} onChange={e => setCrsTo(e.target.value)}>
-              {crsOptions.map(o => <option key={o.code} value={o.code}>{o.title}</option>)}
-            </select>
-          </div>
-          <div className="space-y-1">
-            <label className="text-xs opacity-70">Формат</label>
-            <div className="segment">
-              {[
-                { k: "deg_dec", t: "гг.ггг°" },
-                { k: "deg_min", t: "гг°мм.мм′" },
-                { k: "deg_min_sec", t: "гг°мм′сс″" },
-              ].map(s => (
-                <button
-                  key={s.k}
-                  onClick={() => setFormat(s.k as any)}
-                  className={s.k === format ? "active" : ""}
-                >
-                  {s.t}
-                </button>
-              ))}
-            </div>
+    <div className="grid gap-5 md:gap-6">
+      {/* 1) Верхняя горизонтальная */}
+      <section className="card p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
+        {/* Авто-зона */}
+        <div className="space-y-1 min-w-0">
+          <label className="text-xs opacity-70">Авто-зона ГК</label>
+          <div className="flex items-center gap-2 h-10">
+            <input id="autoZone" type="checkbox" checked={autoZone} onChange={e => setAutoZone(e.target.checked)} />
+            <label htmlFor="autoZone" className="text-sm">вкл.</label>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-3">
-          <div className="space-y-1">
-            <label className="text-xs opacity-70">Авто-зона ГК</label>
-            <div className="flex items-center gap-2 h-10">
-              <input id="autoZone" type="checkbox" checked={autoZone} onChange={e => setAutoZone(e.target.checked)} />
-              <label htmlFor="autoZone" className="text-sm">вкл.</label>
-            </div>
-          </div>
-          <div className="space-y-1">
-            <label className="text-xs opacity-70">Ширина зоны</label>
-            <select className="select w-full" value={zoneMode} onChange={e => setZoneMode(Number(e.target.value) as any)}>
+        {/* Ширина зоны */}
+        <div className="space-y-1 min-w-0">
+          <label className="text-xs opacity-70">Ширина зоны</label>
+          <div className="relative">
+            <select className="select w-full h-10 pr-8 appearance-none" value={zoneMode} onChange={e => setZoneMode(Number(e.target.value) as any)}>
               <option value={6}>6°</option>
               <option value={3}>3°</option>
             </select>
-          </div>
-          <div className="space-y-1">
-            <label className="text-xs opacity-70">Каталоги/Ведомости</label>
-            <div className="flex items-center gap-2">
-              <button className="btn" onClick={() => exportFile("statement")} title="Ведомость пересчёта">
-                <IconDownload /> Ведомость
-              </button>
-              <button className="btn" onClick={() => exportFile("catalog")} title="Каталог координат">
-                <IconDownload /> Каталог
-              </button>
-            </div>
+            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70"><IconChevronDown /></span>
           </div>
         </div>
 
-        {/* Таблица ввода: обёртка для горизонтального скролла + компактный кегль на мобиле */}
-        <div className="table-wrap">
-          <table className="min-w-full text-sm table-xs">
-            <thead>
-              <tr className="text-left">
-                <th className="p-2">№</th>
-                <th className="p-2">Широта (lat)</th>
-                <th className="p-2">Долгота (lon)</th>
-                <th className="p-2">Имя точки</th>
-                <th className="p-2"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {rowsIn.map((r, i) => (
-                <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
-                  <td className="p-2">{i + 1}</td>
-                  <td className="p-2">
-                    <input
-                      className="input w-40"
-                      type="number"
-                      value={r.lat ?? ""}
-                      onChange={e => {
-                        const v = e.target.value === "" ? undefined : Number(e.target.value);
-                        setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lat: v } : rr));
-                      }}
-                    />
-                  </td>
-                  <td className="p-2">
-                    <input
-                      className="input w-40"
-                      type="number"
-                      value={r.lon ?? ""}
-                      onChange={e => {
-                        const v = e.target.value === "" ? undefined : Number(e.target.value);
-                        setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lon: v } : rr));
-                      }}
-                    />
-                  </td>
-                  <td className="p-2">
-                    <input
-                      className="input w-52"
-                      value={r.name ?? ""}
-                      onChange={e => {
-                        const v = e.target.value || undefined;
-                        setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, name: v } : rr));
-                      }}
-                    />
-                  </td>
-                  <td className="p-2">
-                    <button className="btn" onClick={() => delRow(i)} title="Удалить">
-                      <IconTrash />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {/* Выгрузить координаты */}
+        <div className="space-y-1 min-w-0" ref={exportRef}
+             onMouseEnter={() => { if (exportTimer.current) { clearTimeout(exportTimer.current); exportTimer.current = null; } }}
+             onMouseLeave={() => { exportTimer.current = setTimeout(() => setOpenExport(false), 200); }}>
+          <label className="text-xs opacity-70">Выгрузить координаты</label>
+          <div className="relative">
+            <button className="btn w-full h-10 justify-between" onClick={() => { setOpenExport(v => !v); setOpenImport(false); }}>
+              <span className="inline-flex items-center gap-2"><IconDownload /> Выбрать формат</span>
+              <IconChevronDown />
+            </button>
+            {openExport && (
+              <div
+                className="absolute top-full right-0 mt-2 z-[999] min-w-56 flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
+                onMouseLeave={() => setOpenExport(false)}
+              >
+                <button className="btn w-full justify-start" onClick={() => { exportFile("statement"); setOpenExport(false); }}>
+                  <IconDownload /> Ведомость
+                </button>
+                <button className="btn w-full justify-start" onClick={() => { exportFile("catalog"); setOpenExport(false); }}>
+                  <IconDownload /> Каталог
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          <button className="btn" onClick={addRow}>Добавить точку</button>
-          <button className="btn" onClick={reverse}>Реверс</button>
-
-          <div className="dropdown">
-            <button className="btn" onClick={() => setOpenImport(v => !v)}>
-              <IconUpload /> Импорт <IconChevronDown />
+        {/* Загрузить координаты */}
+        <div className="space-y-1 min-w-0" ref={importRef}
+             onMouseEnter={() => { if (importTimer.current) { clearTimeout(importTimer.current); importTimer.current = null; } }}
+             onMouseLeave={() => { importTimer.current = setTimeout(() => setOpenImport(false), 200); }}>
+          <label className="text-xs opacity-70">Загрузить координаты</label>
+          <div className="relative">
+            <button className="btn w-full h-10 justify-between" onClick={() => { setOpenImport(v => !v); setOpenExport(false); }}>
+              <span className="inline-flex items-center gap-2"><IconUpload /> Выбрать формат</span>
+              <IconChevronDown />
             </button>
             {openImport && (
-              <div className="dropdown-menu" onMouseLeave={() => setOpenImport(false)}>
+              <div
+                className="absolute top-full right-0 mt-2 z-[999] min-w-56 flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
+                onMouseLeave={() => setOpenImport(false)}
+              >
                 <label className="btn w-full justify-start">
                   <input
-                    hidden
-                    type="file"
-                    accept=".xlsx"
+                    hidden type="file" accept=".xlsx"
                     onChange={(e) => {
                       const f = e.target.files?.[0]; if (f) onImport(f);
                       e.currentTarget.value = "";
@@ -274,12 +254,8 @@ export default function ConverterPanel() {
                   />
                   <IconUpload /> Загрузить Excel
                 </label>
-                <a className="btn w-full justify-start" href="/templates/template_latlon.xlsx">
-                  <IconFile /> Шаблон Lat/Lon
-                </a>
-                <a className="btn w-full justify-start" href="/templates/template_xy.xlsx">
-                  <IconFile /> Шаблон X/Y
-                </a>
+                <a className="btn w-full justify-start" href="/templates/template_latlon.xlsx"><IconFile /> Шаблон Lat/Lon</a>
+                <a className="btn w-full justify-start" href="/templates/template_xy.xlsx"><IconFile /> Шаблон X/Y</a>
                 <div
                   className={`dropzone ${drag ? "drag" : ""}`}
                   onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
@@ -297,53 +273,190 @@ export default function ConverterPanel() {
           </div>
         </div>
 
-        {preview.length > 0 && (
-          <div className="card p-3">
-            <div className="font-medium mb-2">Предпросмотр Excel (первые строки):</div>
-            <pre className="text-xs overflow-auto">{JSON.stringify(preview, null, 2)}</pre>
+        {/* Реверс */}
+        <div className="space-y-1 min-w-0">
+          <label className="text-xs opacity-0 select-none">Реверс</label>
+          <button className="btn w-full h-10" onClick={reverse}>Реверс</button>
+        </div>
+      </section>
+
+      {/* 2 + 3) Средний ряд */}
+      <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+        {/* Исходные данные */}
+        <section className="card p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
+          <div className="text-lg font-semibold">Исходные данные</div>
+
+          <div className="grid md:grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <label className="text-xs opacity-70">Исходная СК</label>
+              <div className="relative">
+                <select className="select w-full h-10 pr-8 appearance-none" value={crsFrom} onChange={e => setCrsFrom(e.target.value)}>
+                  {crsOptions.map(o => <option key={o.code} value={o.code}>{o.title}</option>)}
+                </select>
+                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70"><IconChevronDown /></span>
+              </div>
+            </div>
+            <div className="space-y-1">
+              <label className="text-xs opacity-70">Формат</label>
+              <div className="segment">
+                {[
+                  { k: "deg_dec", t: "гг.ггг°" },
+                  { k: "deg_min", t: "гг°мм.мм′" },
+                  { k: "deg_min_sec", t: "гг°мм′сс″" },
+                ].map(s => (
+                  <button key={s.k} onClick={() => setFormatIn(s.k as any)} className={s.k === formatIn ? "active" : ""}>
+                    {s.t}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
-        )}
-      </section>
 
-      {/* ПРАВАЯ КОЛОНКА — РЕЗУЛЬТАТЫ */}
-      <section className="lg:sticky lg:top-6 h-fit card p-5 space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="text-lg font-semibold">Результат</div>
-          <button className="btn btn-primary" onClick={recalc} disabled={loading}>
-            {loading ? "Пересчитываю..." : "Пересчитать"}
-          </button>
-        </div>
-
-        {/* Таблица результата: та же обёртка для скролла и компактный кегль */}
-        <div className="table-wrap">
-          <table className="min-w-full text-sm table-xs">
-            <thead>
-              <tr className="text-left">
-                <th className="p-2">№</th>
-                <th className="p-2">Широта</th>
-                <th className="p-2">Долгота</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rowsOut.length === 0 ? (
-                <tr><td className="p-2 text-slate-500" colSpan={3}>Нет данных. Нажмите «Пересчитать».</td></tr>
-              ) : rowsOut.map((r, i) => (
-                <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
-                  <td className="p-2">{i + 1}</td>
-                  <td className="p-2">{r.lat ?? r.y ?? "-"}</td>
-                  <td className="p-2">{r.lon ?? r.x ?? "-"}</td>
+          {/* Таблица ввода */}
+          <div className="table-wrap">
+            <table className="min-w-full text-sm table-xs">
+              <thead>
+                <tr className="text-left">
+                  <th className="p-2">№</th>
+                  <th className="p-2">Широта (lat)</th>
+                  <th className="p-2">Долгота (lon)</th>
+                  <th className="p-2"></th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
+              </thead>
+              <tbody>
+                {rowsIn.map((r, i) => {
+                  const single = rowsIn.length === 1;
+                  const empty = isRowEmpty(rowsIn[i]);
+                  const disableTrash = single && empty;
+                  return (
+                    <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
+                      <td className="p-2">{i + 1}</td>
+                      <td className="p-2">
+                        <input
+                          className="input w-40 border-brand-500"
+                          type="number"
+                          placeholder={placeholders[formatIn].lat}
+                          value={r.lat ?? ""}
+                          onChange={e => {
+                            const v = e.target.value === "" ? undefined : Number(e.target.value);
+                            setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lat: v } : rr));
+                          }}
+                        />
+                      </td>
+                      <td className="p-2">
+                        <input
+                          className="input w-40 border-brand-500"
+                          type="number"
+                          placeholder={placeholders[formatIn].lon}
+                          value={r.lon ?? ""}
+                          onChange={e => {
+                            const v = e.target.value === "" ? undefined : Number(e.target.value);
+                            setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lon: v } : rr));
+                          }}
+                        />
+                      </td>
+                      <td className="p-2">
+                        <button
+                          className="btn"
+                          disabled={disableTrash}
+                          title={disableTrash ? "Нечего удалять" : (single ? "Очистить строку" : "Удалить строку")}
+                          onClick={() => {
+                            if (rowsIn.length === 1) {
+                              setRowsIn([{ lat: undefined, lon: undefined }]);
+                            } else {
+                              removeRow(i);
+                            }
+                          }}
+                        >
+                          <IconTrash />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
 
-      {/* Тост */}
+          <div className="flex flex-wrap gap-2">
+            <button className="btn h-10 px-4" onClick={addRow}>Добавить точку</button>
+          </div>
+        </section>
+
+        {/* Результат */}
+        <section className="card p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
+          <div className="text-lg font-semibold">Результат</div>
+
+          <div className="grid md:grid-cols-2 gap-3">
+            <div className="space-y-1">
+              <label className="text-xs opacity-70">Целевая СК</label>
+              <div className="relative">
+                <select className="select w-full h-10 pr-8 appearance-none" value={crsTo} onChange={e => setCrsTo(e.target.value)}>
+                  {crsOptions.map(o => <option key={o.code} value={o.code}>{o.title}</option>)}
+                </select>
+                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70"><IconChevronDown /></span>
+              </div>
+            </div>
+            <div className="space-y-1">
+              <label className="text-xs opacity-70">Формат</label>
+              <div className="segment">
+                {[
+                  { k: "deg_dec", t: "гг.ггг°" },
+                  { k: "deg_min", t: "гг°мм.мм′" },
+                  { k: "deg_min_sec", t: "гг°мм′сс″" },
+                ].map(s => (
+                  <button key={s.k} onClick={() => setFormatOut(s.k as any)} className={s.k === formatOut ? "active" : ""}>
+                    {s.t}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Таблица результата — readOnly инпуты для симметрии */}
+          <div className="table-wrap">
+            <table className="min-w-full text-sm table-xs">
+              <thead>
+                <tr className="text-left">
+                  <th className="p-2">№</th>
+                  <th className="p-2">Широта</th>
+                  <th className="p-2">Долгота</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rowsOut.map((r, i) => (
+                  <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
+                    <td className="p-2">{i + 1}</td>
+                    <td className="p-2"><input className="input w-40" value={(r.lat ?? r.y ?? "-") as any} readOnly /></td>
+                    <td className="p-2"><input className="input w-40" value={(r.lon ?? r.x ?? "-") as any} readOnly /></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Кнопка + «Готово…» */}
+          <div className="flex items-center gap-3">
+            <button className="btn btn-primary h-10 px-4" onClick={recalc} disabled={loading}>
+              {loading ? "Пересчитываю..." : "Пересчитать"}
+            </button>
+            {ok && <div className="card px-3 py-2 text-sm">Готово: координаты пересчитаны</div>}
+          </div>
+        </section>
+      </div>
+
+      {/* Предпросмотр Excel */}
+      {preview.length > 0 && (
+        <section className="card p-3">
+          <div className="font-medium mb-2">Предпросмотр Excel (первые строки):</div>
+          <pre className="text-xs overflow-auto max-h-48">{JSON.stringify(preview, null, 2)}</pre>
+        </section>
+      )}
+
+      {/* Ошибки — глобальный тост */}
       {toast && (
-        <div className="fixed right-4 bottom-4 z-50">
+        <div className="fixed right-4 bottom-4 z-[1000] pointer-events-none">
           <div className="card px-4 py-3">{toast}</div>
-          <button className="mt-2 btn" onClick={() => setToast(null)}>Ок</button>
         </div>
       )}
     </div>
