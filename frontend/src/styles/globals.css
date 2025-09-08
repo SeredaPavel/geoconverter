@@ -37,7 +37,6 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 
 /* === SPLASH: большая рамка, непрозрачная штора, синхронное исчезновение надписи === */
 
-/* Настраиваемые переменные (оставил как у вас) */
 :root {
   --splash-curtain-bg: #0b1220;
   --splash-border-color: #5bd6ff;
@@ -83,7 +82,6 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
   font-size: var(--splash-box-font);
   font-weight: 600;
   letter-spacing: .02em;
-
   background:
     linear-gradient(var(--splash-border-color), var(--splash-border-color)) 0 0 / 0% var(--splash-border-thickness) no-repeat,
     linear-gradient(var(--splash-border-color), var(--splash-border-color)) 100% 0 / var(--splash-border-thickness) 0% no-repeat,
@@ -92,22 +90,15 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
   color: var(--splash-text-color);
   box-shadow: 0 0 var(--splash-border-glow) color-mix(in oklab, var(--splash-border-color) 70%, transparent),
               inset 0 0 0 1px rgba(255,255,255,.12);
-
   position: relative;
   z-index: 2;
-
   animation: borderRun var(--splash-border-duration) ease-in-out forwards;
 }
 
 /* Штора открывает страницу */
-@keyframes curtainUp {
-  0%   { transform: translateY(0%); }
-  100% { transform: translateY(-100%); }
-}
+@keyframes curtainUp { 0% { transform: translateY(0%);} 100% { transform: translateY(-100%);} }
 .splash-curtain {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
+  position: fixed; inset: 0; z-index: 1;
   background: var(--splash-curtain-bg);
   animation: curtainUp var(--splash-curtain-duration) ease-in-out forwards;
   animation-delay: var(--splash-border-duration);
@@ -122,15 +113,12 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 }
 
 /* ===== ДОБАВЛЕНЫ ТОЛЬКО БЕЗОПАСНЫЕ МОБИЛЬНЫЕ ФИКСЫ ===== */
-
-/* iOS прокрутка: body высота 100% для корректной работы vh */
 html, body { height: 100%; }
 
 /* отключаем fixed-фон на маленьких экранах (iOS баг) */
 @media (max-width: 767px) {
   body { background-attachment: scroll !important; }
 
-  /* ваши мобильные трюки оставлены и слегка упорядочены */
   :root{
     --splash-box-pad-y: 14px;
     --splash-box-pad-x: 22px;
@@ -145,50 +133,53 @@ html, body { height: 100%; }
   .table-wrap { overflow-x: auto; }
   .table-xs { font-size: 12px; }
 }
+
 @layer components {
-  /* отдельная большая CTA-кнопка, не конфликтует с .btn */
   .gc-cta {
     @apply inline-flex items-center gap-2
            rounded-2xl shadow-soft
            bg-brand-600 text-white border border-brand-600 hover:bg-brand-700
            transition-colors;
   }
-  .gc-cta-lg {
-    @apply h-[60px] md:h-[64px] text-xl md:text-2xl px-8 md:px-10;
-  }
-  .gc-icon {
-    width: 20px; height: 20px;
-  }
+  .gc-cta-lg { @apply h-[60px] md:h-[64px] text-xl md:text-2xl px-8 md:px-10; }
+  .gc-icon { width: 20px; height: 20px; }
 }
-/* ----- iOS safe-area для модалки ----- */
+
+/* ----- iOS safe-area + скролл модалки (ОБНОВЛЕНО) ----- */
 .modal-wrap{
-  /* базовый паддинг уже задаётся в классе p-4, мы добавляем безопасные края */
-  padding-left: calc(env(safe-area-inset-left) + 1rem);
+  /* базовый паддинг уже задаётся классами p-4/p-6, добавляем безопасные края */
+  padding-left:  calc(env(safe-area-inset-left)  + 1rem);
   padding-right: calc(env(safe-area-inset-right) + 1rem);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+  -webkit-overflow-scrolling: touch;
+}
+/* Чтобы внутренний flex-ребёнок не «съедал» скролл на iOS */
+.modal-wrap > * { min-height: 0; }
+
+/* Карточка внутри модалки: корректное ограничение по высоте */
+.modal-card { max-height: calc(100svh - 2rem); }
+@supports not (height: 1svh){
+  .modal-card { max-height: calc(100vh - 2rem); } /* фолбэк */
 }
 
 /* ----- Карточка: фикс артефактов с backdrop-filter на iOS ----- */
 .card{
   position: relative;
-  overflow: hidden;                 /* чтобы границы не «уезжали» */
+  overflow: hidden;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
-  -webkit-mask-image: -webkit-radial-gradient(white, black); /* антиалиас скругления в Safari */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
-
-/* На старых Safari blur+radius дергается — слегка увеличим непрозрачность и отключим backdrop */
 @supports (-webkit-touch-callout: none){
   .card{
     -webkit-backdrop-filter: none !important;
             backdrop-filter: none !important;
-    /* чуть более плотный фон, чтобы компенсировать отсутствие blur */
-    background-color: rgba(2, 6, 23, 0.82); /* ~slate-950/82 */
+    background-color: rgba(2, 6, 23, 0.82);
   }
 }
 
-/* ----- svh → vh фолбэк, если svh не поддерживается ----- */
+/* ----- svh → vh фолбэк, если svh не поддерживается (оставил) ----- */
 .max-h-90svh{ max-height: 90svh; }
 @supports not (height: 1svh){
   .max-h-90svh{ max-height: 90vh; }
 }
-
