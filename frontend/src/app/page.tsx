@@ -89,9 +89,9 @@ export default function Page() {
       {open && (
         <div className="fixed inset-0 z-50">
           <div className="absolute inset-0 bg-black/20" onClick={() => setOpen(false)} aria-hidden />
-          <div className="absolute inset-0 flex items-start md:items-center justify-center p-4 md:p-6">
+          <div className="absolute inset-0 flex items-start md:items-center justify-center modal-wrap p-4 md:p-6">
             <div className="w-full md:max-w-[1200px]">
-              <div className="card p-4 md:p-5 max-h-[90svh] overflow-auto">
+              <div className="card p-4 md:p-5 max-h-90svh overflow-auto">
                 <div className="flex justify-between items-center mb-3">
                   <div className="text-lg md:text-xl font-semibold">ГеоКонвертер</div>
                   <button
