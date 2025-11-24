@@ -35,7 +35,7 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 .social-fab { @apply fixed left-4 bottom-4 flex flex-col gap-2 z-50; }
 .social-fab a { @apply w-11 h-11 rounded-full flex items-center justify-center border bg-white/80 dark:bg-slate-900/70 border-slate-200 dark:border-slate-700 shadow-soft hover:border-brand-500; }
 
-/* === SPLASH: большая рамка, непрозрачная штора, синхронное исчезновение надписи === */
+/* === SPLASH === */
 
 :root {
   --splash-curtain-bg: #0b1220;
@@ -51,74 +51,48 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
   --splash-curtain-duration: 0.9s;
 }
 
-/* Контейнер сплэша */
-.splash-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-}
+.splash-overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; pointer-events: none; }
 
-/* Бегущая линия */
 @keyframes borderRun {
-  0%   { background-size: 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%, 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
-  25%  { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 0%, 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
-  50%  { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%, 0% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
-  75%  { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%, 100% var(--splash-border-thickness), var(--splash-border-thickness) 0%; }
-  100% { background-size: 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%, 100% var(--splash-border-thickness), var(--splash-border-thickness) 100%; }
+  0%{background-size:0% var(--splash-border-thickness),var(--splash-border-thickness) 0%,0% var(--splash-border-thickness),var(--splash-border-thickness) 0%}
+  25%{background-size:100% var(--splash-border-thickness),var(--splash-border-thickness) 0%,0% var(--splash-border-thickness),var(--splash-border-thickness) 0%}
+  50%{background-size:100% var(--splash-border-thickness),var(--splash-border-thickness) 100%,0% var(--splash-border-thickness),var(--splash-border-thickness) 0%}
+  75%{background-size:100% var(--splash-border-thickness),var(--splash-border-thickness) 100%,100% var(--splash-border-thickness),var(--splash-border-thickness) 0%}
+  100%{background-size:100% var(--splash-border-thickness),var(--splash-border-thickness) 100%,100% var(--splash-border-thickness),var(--splash-border-thickness) 100%}
 }
+@keyframes splashFadeOut { 0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-12px)} }
 
-/* Плавное исчезновение */
-@keyframes splashFadeOut {
-  0%   { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-12px); }
-}
-
-.splash-box {
-  padding: var(--splash-box-pad-y) var(--splash-box-pad-x);
-  border-radius: var(--splash-box-radius);
-  font-size: var(--splash-box-font);
-  font-weight: 600;
-  letter-spacing: .02em;
+.splash-box{
+  padding:var(--splash-box-pad-y) var(--splash-box-pad-x);
+  border-radius:var(--splash-box-radius);
+  font-size:var(--splash-box-font); font-weight:600; letter-spacing:.02em;
   background:
     linear-gradient(var(--splash-border-color), var(--splash-border-color)) 0 0 / 0% var(--splash-border-thickness) no-repeat,
     linear-gradient(var(--splash-border-color), var(--splash-border-color)) 100% 0 / var(--splash-border-thickness) 0% no-repeat,
     linear-gradient(var(--splash-border-color), var(--splash-border-color)) 100% 100% / 0% var(--splash-border-thickness) no-repeat,
     linear-gradient(var(--splash-border-color), var(--splash-border-color)) 0 100% / var(--splash-border-thickness) 0% no-repeat;
-  color: var(--splash-text-color);
-  box-shadow: 0 0 var(--splash-border-glow) color-mix(in oklab, var(--splash-border-color) 70%, transparent),
-              inset 0 0 0 1px rgba(255,255,255,.12);
-  position: relative;
-  z-index: 2;
-  animation: borderRun var(--splash-border-duration) ease-in-out forwards;
+  color:var(--splash-text-color);
+  box-shadow:0 0 var(--splash-border-glow) color-mix(in oklab, var(--splash-border-color) 70%, transparent), inset 0 0 0 1px rgba(255,255,255,.12);
+  position:relative; z-index:2;
+  animation:borderRun var(--splash-border-duration) ease-in-out forwards;
 }
-
-/* Штора открывает страницу */
-@keyframes curtainUp { 0% { transform: translateY(0%);} 100% { transform: translateY(-100%);} }
-.splash-curtain {
-  position: fixed; inset: 0; z-index: 1;
-  background: var(--splash-curtain-bg);
-  animation: curtainUp var(--splash-curtain-duration) ease-in-out forwards;
-  animation-delay: var(--splash-border-duration);
-  will-change: transform;
+@keyframes curtainUp { 0%{transform:translateY(0%)} 100%{transform:translateY(-100%)} }
+.splash-curtain{
+  position:fixed; inset:0; z-index:1; background:var(--splash-curtain-bg);
+  animation:curtainUp var(--splash-curtain-duration) ease-in-out forwards;
+  animation-delay:var(--splash-border-duration); will-change:transform;
 }
-
-/* Синхронное исчезновение надписи */
-.splash-box.splash-fade-out {
+.splash-box.splash-fade-out{
   animation:
     borderRun var(--splash-border-duration) ease-in-out forwards,
     splashFadeOut var(--splash-curtain-duration) ease-in-out forwards var(--splash-border-duration);
 }
 
-/* ===== ДОБАВЛЕНЫ ТОЛЬКО БЕЗОПАСНЫЕ МОБИЛЬНЫЕ ФИКСЫ ===== */
+/* ===== Мобильные фиксы ===== */
 html, body { height: 100%; }
 
-/* отключаем fixed-фон на маленьких экранах (iOS баг) */
 @media (max-width: 767px) {
   body { background-attachment: scroll !important; }
-
   :root{
     --splash-box-pad-y: 14px;
     --splash-box-pad-x: 22px;
@@ -136,33 +110,34 @@ html, body { height: 100%; }
 
 @layer components {
   .gc-cta {
-    @apply inline-flex items-center gap-2
-           rounded-2xl shadow-soft
-           bg-brand-600 text-white border border-brand-600 hover:bg-brand-700
-           transition-colors;
+    @apply inline-flex items-center gap-2 rounded-2xl shadow-soft bg-brand-600 text-white border border-brand-600 hover:bg-brand-700 transition-colors;
   }
   .gc-cta-lg { @apply h-[60px] md:h-[64px] text-xl md:text-2xl px-8 md:px-10; }
   .gc-icon { width: 20px; height: 20px; }
 }
 
-/* ----- iOS safe-area + скролл модалки (ОБНОВЛЕНО) ----- */
+/* ----- iOS safe-area + модалка ----- */
 .modal-wrap{
-  /* базовый паддинг уже задаётся классами p-4/p-6, добавляем безопасные края */
   padding-left:  calc(env(safe-area-inset-left)  + 1rem);
   padding-right: calc(env(safe-area-inset-right) + 1rem);
   padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
-  -webkit-overflow-scrolling: touch;
+  /* ВАЖНО: не скроллим обёртку, скролл только у .modal-card */
+  overflow: hidden;
 }
-/* Чтобы внутренний flex-ребёнок не «съедал» скролл на iOS */
+/* Внутренний flex-ребёнок не должен «съедать» скролл */
 .modal-wrap > * { min-height: 0; }
 
-/* Карточка внутри модалки: корректное ограничение по высоте */
-.modal-card { max-height: calc(100svh - 2rem); }
+/* Скролл у карточки */
+.modal-card {
+  max-height: calc(100svh - 2rem);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
 @supports not (height: 1svh){
-  .modal-card { max-height: calc(100vh - 2rem); } /* фолбэк */
+  .modal-card { max-height: calc(100vh - 2rem); }
 }
 
-/* ----- Карточка: фикс артефактов с backdrop-filter на iOS ----- */
+/* ----- Фиксы границ карточки для iOS ----- */
 .card{
   position: relative;
   overflow: hidden;
@@ -178,7 +153,7 @@ html, body { height: 100%; }
   }
 }
 
-/* ----- svh → vh фолбэк, если svh не поддерживается (оставил) ----- */
+/* svh → vh фолбэк (оставлено для совместимости) */
 .max-h-90svh{ max-height: 90svh; }
 @supports not (height: 1svh){
   .max-h-90svh{ max-height: 90vh; }
