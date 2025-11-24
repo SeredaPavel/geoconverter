@@ -152,6 +152,12 @@ html, body { height: 100%; }
     background-color: rgba(2, 6, 23, 0.82);
   }
 }
+/* --- Модалка: вернуть скролл только для карточки модалки --- */
+.card.modal-card{
+  overflow: auto !important;               /* перебиваем .card { overflow:hidden } */
+  -webkit-overflow-scrolling: touch;       /* инерционный скролл на iOS */
+  overscroll-behavior: contain;            /* не «тянуть» фон под модалкой */
+}
 
 /* svh → vh фолбэк (оставлено для совместимости) */
 .max-h-90svh{ max-height: 90svh; }
