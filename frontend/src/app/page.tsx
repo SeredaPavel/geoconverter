@@ -1,6 +1,6 @@
 // /geoconverter/frontend/src/app/page.tsx
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ConverterPanel from "@/components/ConverterPanel";
 
 function IconPlay() {
@@ -21,6 +21,15 @@ function IconClose() {
 
 export default function Page() {
   const [open, setOpen] = useState(false);
+
+  // Блокируем скролл документа, пока открыта модалка
+  useEffect(() => {
+    if (!open) return;
+    const html = document.documentElement;
+    const prevOverflow = html.style.overflow;
+    html.style.overflow = "hidden";
+    return () => { html.style.overflow = prevOverflow; };
+  }, [open]);
 
   return (
     <>
@@ -44,7 +53,7 @@ export default function Page() {
           aria-label="Поделиться в WhatsApp"
           title="Поделиться в WhatsApp"
         >
-          <svg viewBox="0 0 24 24" className="w-5 h-5 opacity-80" fill="currentColor" aria-hidden>
+          <svg viewBox="0 0 24 24 24" className="w-5 h-5 opacity-80" fill="currentColor" aria-hidden>
             <path d="M20.52 3.48A11.92 11.92 0 0012.06 0 11.92 11.92 0 000 11.92a11.7 11.7 0 001.59 5.95L0 24l6.29-1.64a11.91 11.91 0 005.77 1.48h.01A11.92 11.92 0 0024 11.93a11.83 11.83 0 00-3.48-8.45zM12.07 21.5a9.56 9.56 0 01-4.88-1.33l-.35-.21-3.72.97 1-3.63-.23-.37a9.53 9.53 0 1118.05-4.99 9.54 9.54 0 01-9.87 9.56zm5.48-7.12c-.3-.15-1.77-.87-2.04-.97s-.47-.15-.67.15-.77.97-.94 1.17-.35.22-.64.07a7.77 7.77 0 01-2.28-1.41 8.59 8.59 0 01-1.58-1.96c-.17-.3 0-.46.13-.61.13-.15.3-.38.45-.58.15-.2.2-.35.3-.58s.05-.43-.02-.58c-.07-.15-.67-1.62-.92-2.22s-.5-.5-.67-.5h-.57a1.1 1.1 0 00-.8.38c-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09a9.83 9.83 0 003.6 3.35c.5.27.9.43 1.21.55.51.2.97.17 1.33.1.41-.06 1.28-.52 1.46-1.02.18-.5.18-.93.12-1.02-.06-.09-.24-.15-.54-.3z" />
           </svg>
         </a>
@@ -67,7 +76,7 @@ export default function Page() {
         </a>
       </div>
 
-      {/* FULL-BLEED hero: без градиента сверху, с безопасным отступом под фикс-хедер */}
+      {/* FULL-BLEED hero */}
       <section id="start" className="relative">
         <div
           className="
@@ -90,18 +99,19 @@ export default function Page() {
         <div className="fixed inset-0 z-50">
           <div
             className="absolute inset-0 bg-black/20"
-            aria-hidden="true"     // явно скрываем от скринридеров
-            role="presentation"    // декоративный слой
+            aria-hidden="true"
+            role="presentation"
             onClick={() => setOpen(false)}
           />
-          {/* ВАЖНО: даём контейнеру свой скролл, он учитывает safe-area и не мешает карточке */}
-          <div className="absolute inset-0 flex items-start md:items-center justify-center modal-wrap overflow-y-auto p-4 md:p-6">
-            {/* ВАЖНО: мин. высота ноль, иначе Safari «зажимает» внутренний скролл */}
+          {/* Обёртка модалки БЕЗ скролла — скролл только у карточки */}
+          <div className="absolute inset-0 flex items-start md:items-center justify-center modal-wrap overflow-hidden p-4 md:p-6">
             <div className="w-full md:max-w-[1200px] min-h-0">
-              <div className="card modal-card p-4 md:p-5 overflow-auto"
+              <div
+                className="card modal-card p-4 md:p-5 overflow-auto"
                 role="dialog"
                 aria-modal="true"
-                aria-label="ГеоКонвертер">
+                aria-label="ГеоКонвертер"
+              >
                 <div className="flex justify-between items-center mb-3">
                   <div className="text-lg md:text-xl font-semibold">ГеоКонвертер</div>
                   <button
@@ -121,7 +131,7 @@ export default function Page() {
         </div>
       )}
 
-      {/* Контент под героем — в контейнере */}
+      {/* Подвал-заметка */}
       <div className="max-w-[1200px] mx-auto px-4 my-10 text-sm opacity-70">
         Внимание: в этом MVP полностью работает WGS-84 → WGS-84 (демо). Остальные системы подключим после добавления гридов и реестра.
       </div>
