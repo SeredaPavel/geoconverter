@@ -1,6 +1,4 @@
-��������� ����� ���� OS
-�������� ����� ����: 9242-76EF
-C:.
+
 |   .gitattributes
 |   .gitignore
 |   Caddyfile
@@ -50,13 +48,14 @@ C:.
     |   tsconfig.json
     |   
 
+
     |                   
     +---public
     |   +---assets
     |   |       earth_hero.jpg
     |   |       
     |   +---images
-    |   |       earth_equirect.jpg
+    |   |       earth_equirect.jpeg
     |   |       
     |   \---templates
     |           template_latlon.xlsx
