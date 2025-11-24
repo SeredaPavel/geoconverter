@@ -29,27 +29,27 @@ const IconDownload = () => (
 );
 
 /* helpers */
+const placeholders = {
+  deg_dec:     { lat: "00.000000°", lon: "00.000000°" },
+  deg_min:     { lat: "гг°мм.мм′",   lon: "гг°мм.мм′"   },
+  deg_min_sec: { lat: "гг°мм′сс″",   lon: "гг°мм′сс″"   },
+} as const;
+
 const isRowEmpty = (r: Point) =>
   (r.lat === undefined || r.lat === null || Number.isNaN(r.lat as any)) &&
   (r.lon === undefined || r.lon === null || Number.isNaN(r.lon as any));
 
-const placeholders = {
-  deg_dec:     { lat: "00.000000°",  lon: "00.000000°" },
-  deg_min:     { lat: "00°00.000′",  lon: "00°00.000′" },
-  deg_min_sec: { lat: "00°00′00.0″", lon: "00°00′00.0″" },
-} as const;
-
 export default function ConverterPanel() {
   // CRS
   const [crsFrom, setCrsFrom] = useState("EPSG:4326");
-  const [crsTo, setCrsTo]     = useState("EPSG:4326");
+  const [crsTo,   setCrsTo]   = useState("EPSG:4326");
 
   // независимые форматы
-  const [formatIn, setFormatIn]     = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
-  const [formatOut, setFormatOut]   = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
+  const [formatIn,  setFormatIn]  = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
+  const [formatOut, setFormatOut] = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
 
   // данные
-  const [rowsIn, setRowsIn]   = useState<Point[]>([{ lat: 43.771447, lon: 44.59519 }]);
+  const [rowsIn,  setRowsIn]  = useState<Point[]>([{ lat: undefined, lon: undefined }]);
   const [rowsOut, setRowsOut] = useState<Point[]>([{ lat: undefined, lon: undefined }]);
 
   // опции
@@ -59,9 +59,8 @@ export default function ConverterPanel() {
 
   // UI
   const [preview, setPreview] = useState<any[]>([]);
-  const [toast, setToast]     = useState<string | null>(null);
-  const [ok, setOk]           = useState(false);
-  const [drag, setDrag]       = useState(false);
+  const [toast,   setToast]   = useState<string | null>(null);
+  const [ok,      setOk]      = useState(false);
 
   // выпадашки
   const [openImport, setOpenImport] = useState(false);
@@ -72,34 +71,22 @@ export default function ConverterPanel() {
   const exportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const crsOptions = useMemo(() => ([
-    { code: "EPSG:4326",     title: "WGS 84 (готово)" },
-    { code: "GSK2011_GEOG",  title: "ГСК-2011 (в разработке)" },
-    { code: "SK42_GEOG",     title: "СК-42 (в разработке)" },
-    { code: "SK95_GEOG",     title: "СК-95 (в разработке)" },
-    { code: "PZ90_GEOG",     title: "ПЗ-90 (в разработке)" },
-    { code: "MSK:DNR",       title: "МСК ДНР (в разработке)" },
-    { code: "MSK:LNR",       title: "МСК ЛНР (в разработке)" },
-    { code: "MSK:KHER",      title: "МСК Херсонская обл. (в разработке)" },
-    { code: "MSK:ZAPR",      title: "МСК Запорожская обл. (в разработке)" },
+    { code: "EPSG:4326",    title: "WGS 84 (готово)" },
+    { code: "GSK2011_GEOG", title: "ГСК-2011 (в разработке)" },
+    { code: "SK42_GEOG",    title: "СК-42 (в разработке)" },
+    { code: "SK95_GEOG",    title: "СК-95 (в разработке)" },
+    { code: "PZ90_GEOG",    title: "ПЗ-90 (в разработке)" },
+    { code: "MSK:DNR",      title: "МСК ДНР (в разработке)" },
+    { code: "MSK:LNR",      title: "МСК ЛНР (в разработке)" },
+    { code: "MSK:KHER",     title: "МСК Херсонская обл. (в разработке)" },
+    { code: "MSK:ZAPR",     title: "МСК Запорожская обл. (в разработке)" },
   ]), []);
 
-  const addRow = () => setRowsIn(r => [...r, {}]);
-  const reverse = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
+  const addRow    = () => setRowsIn(r => [...r, {}]);
+  const removeRow = () => setRowsIn(r => (r.length > 1 ? r.slice(0, -1) : [{ lat: undefined, lon: undefined }]));
+  const reverse   = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
 
-  // «Удалить точку» (симметрично «Добавить точку»)
-  const deleteRowSmart = () => {
-    if (rowsIn.length === 1) {
-      // если одна строка: очищаем её, если там что-то есть
-      if (!isRowEmpty(rowsIn[0])) {
-        setRowsIn([{ lat: undefined, lon: undefined }]);
-      }
-      return;
-    }
-    // иначе — удаляем последнюю строку
-    setRowsIn(r => r.slice(0, -1));
-  };
-
-  // клик-вне/ESC — закрыть меню
+  // клик-вне и ESC — закрыть меню
   useEffect(() => {
     const onDocDown = (e: PointerEvent | MouseEvent) => {
       const t = e.target as Node;
@@ -131,8 +118,8 @@ export default function ConverterPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           crs_from: crsFrom,
-          crs_to: crsTo,
-          format_in: formatIn,
+          crs_to:   crsTo,
+          format_in:  formatIn,
           format_out: formatOut,
           points: rowsIn,
           options: { auto_zone: autoZone, zone_mode: zoneMode }
@@ -167,7 +154,7 @@ export default function ConverterPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           crs_from: crsFrom, crs_to: crsTo,
-          format: formatOut, // не ломаем бэк
+          format: formatOut,
           format_in: formatIn, format_out: formatOut,
           rows_in: rowsIn, rows_out: rowsOut,
         }),
@@ -185,13 +172,9 @@ export default function ConverterPanel() {
     }
   };
 
-  // можно ли удалить сейчас (кнопку «Удалить точку» дизейблим,
-  // когда одна строка и она пуста)
-  const disableDelete = rowsIn.length === 1 && isRowEmpty(rowsIn[0]);
-
   return (
     <div className="grid gap-5 md:gap-6">
-      {/* 1) Верхняя горизонтальная */}
+      {/* 1) Верхняя полоска опций */}
       <section className="card p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
         {/* Авто-зона */}
         <div className="space-y-1 min-w-0">
@@ -214,13 +197,10 @@ export default function ConverterPanel() {
           </div>
         </div>
 
-        {/* Выгрузить координаты */}
-        <div
-          className="space-y-1 min-w-0"
-          ref={exportRef}
-          onMouseEnter={() => { if (exportTimer.current) { clearTimeout(exportTimer.current); exportTimer.current = null; } }}
-          onMouseLeave={() => { exportTimer.current = setTimeout(() => setOpenExport(false), 200); }}
-        >
+        {/* Выгрузка */}
+        <div className="space-y-1 min-w-0" ref={exportRef}
+             onMouseEnter={() => { if (exportTimer.current) { clearTimeout(exportTimer.current); exportTimer.current = null; } }}
+             onMouseLeave={() => { exportTimer.current = setTimeout(() => setOpenExport(false), 200); }}>
           <label className="text-xs opacity-70">Выгрузить координаты</label>
           <div className="relative">
             <button className="btn w-full h-10 justify-between" onClick={() => { setOpenExport(v => !v); setOpenImport(false); }}>
@@ -243,13 +223,10 @@ export default function ConverterPanel() {
           </div>
         </div>
 
-        {/* Загрузить координаты */}
-        <div
-          className="space-y-1 min-w-0"
-          ref={importRef}
-          onMouseEnter={() => { if (importTimer.current) { clearTimeout(importTimer.current); importTimer.current = null; } }}
-          onMouseLeave={() => { importTimer.current = setTimeout(() => setOpenImport(false), 200); }}
-        >
+        {/* Загрузка */}
+        <div className="space-y-1 min-w-0" ref={importRef}
+             onMouseEnter={() => { if (importTimer.current) { clearTimeout(importTimer.current); importTimer.current = null; } }}
+             onMouseLeave={() => { importTimer.current = setTimeout(() => setOpenImport(false), 200); }}>
           <label className="text-xs opacity-70">Загрузить координаты</label>
           <div className="relative">
             <button className="btn w-full h-10 justify-between" onClick={() => { setOpenImport(v => !v); setOpenExport(false); }}>
@@ -275,11 +252,10 @@ export default function ConverterPanel() {
                 <a className="btn w-full justify-start" href="/templates/template_latlon.xlsx"><IconFile /> Шаблон Lat/Lon</a>
                 <a className="btn w-full justify-start" href="/templates/template_xy.xlsx"><IconFile /> Шаблон X/Y</a>
                 <div
-                  className={`dropzone ${drag ? "drag" : ""}`}
-                  onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
-                  onDragLeave={() => setDrag(false)}
+                  className="dropzone"
+                  onDragOver={(e) => { e.preventDefault(); }}
                   onDrop={(e) => {
-                    e.preventDefault(); setDrag(false);
+                    e.preventDefault();
                     const f = e.dataTransfer.files?.[0]; if (f) onImport(f);
                     setOpenImport(false);
                   }}
@@ -298,7 +274,7 @@ export default function ConverterPanel() {
         </div>
       </section>
 
-      {/* 2 + 3) Средний ряд */}
+      {/* 2–3) Средние секции */}
       <div className="grid md:grid-cols-2 gap-5 md:gap-6">
         {/* Исходные данные */}
         <section className="card p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
@@ -316,7 +292,7 @@ export default function ConverterPanel() {
             </div>
             <div className="space-y-1">
               <label className="text-xs opacity-70">Формат</label>
-              <div className="segment mt-1 md:mt-0">
+              <div className="segment md:ml-0 ml-2">
                 {[
                   { k: "deg_dec", t: "гг.ггг°" },
                   { k: "deg_min", t: "гг°мм.мм′" },
@@ -330,53 +306,74 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица ввода */}
+          {/* Таблица ввода – table-fixed + colgroup, инпуты w-full */}
           <div className="table-wrap">
-            <table className="w-full table-fixed text-sm table-xs">
+            <table className="min-w-full table-fixed text-sm table-xs">
+              <colgroup>
+                <col className="w-10 md:w-12" />
+                <col className="w-[45%] md:w-48" />
+                <col className="w-[45%] md:w-48" />
+                <col className="w-0 md:w-0" />
+              </colgroup>
               <thead>
                 <tr className="text-left">
-                  <th className="p-1 sm:p-2 w-8">№</th>
-                  <th className="p-1 sm:p-2">Широта (lat)</th>
-                  <th className="p-1 sm:p-2">Долгота (lon)</th>
+                  <th className="p-2">№</th>
+                  <th className="p-2">Широта (lat)</th>
+                  <th className="p-2">Долгота (lon)</th>
+                  <th className="p-2"></th>
                 </tr>
               </thead>
               <tbody>
-                {rowsIn.map((r, i) => (
-                  <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
-                    <td className="p-1 sm:p-2">{i + 1}</td>
-                    <td className="p-1 sm:p-2">
-                      <input
-                        className="input h-10 text-sm w-[9.5rem] sm:w-36 md:w-40"
-                        type="number"
-                        placeholder={placeholders[formatIn].lat}
-                        value={r.lat ?? ""}
-                        onChange={e => {
-                          const v = e.target.value === "" ? undefined : Number(e.target.value);
-                          setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lat: v } : rr));
-                        }}
-                      />
-                    </td>
-                    <td className="p-1 sm:p-2">
-                      <input
-                        className="input h-10 text-sm w-[9.5rem] sm:w-36 md:w-40"
-                        type="number"
-                        placeholder={placeholders[formatIn].lon}
-                        value={r.lon ?? ""}
-                        onChange={e => {
-                          const v = e.target.value === "" ? undefined : Number(e.target.value);
-                          setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lon: v } : rr));
-                        }}
-                      />
-                    </td>
-                  </tr>
-                ))}
+                {rowsIn.map((r, i) => {
+                  const single = rowsIn.length === 1;
+                  const empty  = isRowEmpty(rowsIn[i]);
+                  return (
+                    <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
+                      <td className="p-2">{i + 1}</td>
+                      <td className="pr-1 md:p-2">
+                        <input
+                          className="input w-full"
+                          type="text"
+                          inputMode="decimal"
+                          placeholder={placeholders[formatIn].lat}
+                          value={r.lat ?? ""}
+                          onChange={e => {
+                            const v = e.target.value === "" ? undefined : Number(e.target.value.replace(",", "."));
+                            setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lat: v } : rr));
+                          }}
+                        />
+                      </td>
+                      <td className="pl-1 md:p-2">
+                        <input
+                          className="input w-full"
+                          type="text"
+                          inputMode="decimal"
+                          placeholder={placeholders[formatIn].lon}
+                          value={r.lon ?? ""}
+                          onChange={e => {
+                            const v = e.target.value === "" ? undefined : Number(e.target.value.replace(",", "."));
+                            setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lon: v } : rr));
+                          }}
+                        />
+                      </td>
+                      <td className="p-2">
+                        {/* пустая колонка для выравнивания (кнопку удаления перенесли вниз) */}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
 
           <div className="flex flex-wrap gap-2">
             <button className="btn h-10 px-4" onClick={addRow}>Добавить точку</button>
-            <button className="btn h-10 px-4" onClick={deleteRowSmart} disabled={disableDelete}>
+            <button
+              className="btn h-10 px-4"
+              onClick={removeRow}
+              disabled={rowsIn.length === 1 && isRowEmpty(rowsIn[0])}
+              title={rowsIn.length === 1 ? "Очистить строку" : "Удалить последнюю строку"}
+            >
               Удалить точку
             </button>
           </div>
@@ -398,7 +395,7 @@ export default function ConverterPanel() {
             </div>
             <div className="space-y-1">
               <label className="text-xs opacity-70">Формат</label>
-              <div className="segment mt-1 md:mt-0">
+              <div className="segment md:ml-0 ml-2">
                 {[
                   { k: "deg_dec", t: "гг.ггг°" },
                   { k: "deg_min", t: "гг°мм.мм′" },
@@ -412,33 +409,33 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица результата — readOnly инпуты для симметрии */}
+          {/* Таблица результата — те же ширины колонок */}
           <div className="table-wrap">
-            <table className="w-full table-fixed text-sm table-xs">
+            <table className="min-w-full table-fixed text-sm table-xs">
+              <colgroup>
+                <col className="w-10 md:w-12" />
+                <col className="w-[45%] md:w-48" />
+                <col className="w-[45%] md:w-48" />
+              </colgroup>
               <thead>
                 <tr className="text-left">
-                  <th className="p-1 sm:p-2 w-8">№</th>
-                  <th className="p-1 sm:p-2">Широта</th>
-                  <th className="p-1 sm:p-2">Долгота</th>
+                  <th className="p-2">№</th>
+                  <th className="p-2">Широта</th>
+                  <th className="p-2">Долгота</th>
                 </tr>
               </thead>
               <tbody>
                 {rowsOut.map((r, i) => (
                   <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
-                    <td className="p-1 sm:p-2">{i + 1}</td>
-                    <td className="p-1 sm:p-2">
-                      <input className="input h-10 text-sm w-[9.5rem] sm:w-36 md:w-40" value={(r.lat ?? r.y ?? "-") as any} readOnly />
-                    </td>
-                    <td className="p-1 sm:p-2">
-                      <input className="input h-10 text-sm w-[9.5rem] sm:w-36 md:w-40" value={(r.lon ?? r.x ?? "-") as any} readOnly />
-                    </td>
+                    <td className="p-2">{i + 1}</td>
+                    <td className="pr-1 md:p-2"><input className="input w-full text-center" value={(r.lat ?? r.y ?? "-") as any} readOnly /></td>
+                    <td className="pl-1 md:p-2"><input className="input w-full text-center" value={(r.lon ?? r.x ?? "-") as any} readOnly /></td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
 
-          {/* Кнопка + «Готово…» */}
           <div className="flex items-center gap-3">
             <button className="btn btn-primary h-10 px-4" onClick={recalc} disabled={loading}>
               {loading ? "Пересчитываю..." : "Пересчитать"}
@@ -456,7 +453,7 @@ export default function ConverterPanel() {
         </section>
       )}
 
-      {/* Ошибки — глобальный тост */}
+      {/* Ошибки — тост */}
       {toast && (
         <div className="fixed right-4 bottom-4 z-[1000] pointer-events-none">
           <div className="card px-4 py-3">{toast}</div>
