@@ -6,11 +6,6 @@ type Point = { lat?: number; lon?: number; x?: number; y?: number };
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "/api";
 
 /* Иконки */
-const IconTrash = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-    <path d="M3 6h18M8 6V4h8v2m-9 0l1 14h8l1-14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
 const IconUpload = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
     <path d="M12 16V4m0 0l-4 4m4-4l4 4M4 20h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -39,9 +34,9 @@ const isRowEmpty = (r: Point) =>
   (r.lon === undefined || r.lon === null || Number.isNaN(r.lon as any));
 
 const placeholders = {
-  deg_dec: { lat: "43.771447°", lon: "44.595190°" },
-  deg_min: { lat: "43°46.287′", lon: "44°35.711′" },
-  deg_min_sec: { lat: "43°46′17.3″", lon: "44°35′42.7″" },
+  deg_dec:     { lat: "00.000000°",  lon: "00.000000°" },
+  deg_min:     { lat: "00°00.000′",  lon: "00°00.000′" },
+  deg_min_sec: { lat: "00°00′00.0″", lon: "00°00′00.0″" },
 } as const;
 
 export default function ConverterPanel() {
@@ -50,8 +45,8 @@ export default function ConverterPanel() {
   const [crsTo, setCrsTo]     = useState("EPSG:4326");
 
   // независимые форматы
-  const [formatIn, setFormatIn]   = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
-  const [formatOut, setFormatOut] = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
+  const [formatIn, setFormatIn]     = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
+  const [formatOut, setFormatOut]   = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
 
   // данные
   const [rowsIn, setRowsIn]   = useState<Point[]>([{ lat: 43.771447, lon: 44.59519 }]);
@@ -77,22 +72,34 @@ export default function ConverterPanel() {
   const exportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const crsOptions = useMemo(() => ([
-    { code: "EPSG:4326",    title: "WGS 84 (готово)" },
-    { code: "GSK2011_GEOG", title: "ГСК-2011 (в разработке)" },
-    { code: "SK42_GEOG",    title: "СК-42 (в разработке)" },
-    { code: "SK95_GEOG",    title: "СК-95 (в разработке)" },
-    { code: "PZ90_GEOG",    title: "ПЗ-90 (в разработке)" },
-    { code: "MSK:DNR",      title: "МСК ДНР (в разработке)" },
-    { code: "MSK:LNR",      title: "МСК ЛНР (в разработке)" },
-    { code: "MSK:KHER",     title: "МСК Херсонская обл. (в разработке)" },
-    { code: "MSK:ZAPR",     title: "МСК Запорожская обл. (в разработке)" },
+    { code: "EPSG:4326",     title: "WGS 84 (готово)" },
+    { code: "GSK2011_GEOG",  title: "ГСК-2011 (в разработке)" },
+    { code: "SK42_GEOG",     title: "СК-42 (в разработке)" },
+    { code: "SK95_GEOG",     title: "СК-95 (в разработке)" },
+    { code: "PZ90_GEOG",     title: "ПЗ-90 (в разработке)" },
+    { code: "MSK:DNR",       title: "МСК ДНР (в разработке)" },
+    { code: "MSK:LNR",       title: "МСК ЛНР (в разработке)" },
+    { code: "MSK:KHER",      title: "МСК Херсонская обл. (в разработке)" },
+    { code: "MSK:ZAPR",      title: "МСК Запорожская обл. (в разработке)" },
   ]), []);
 
-  const addRow    = () => setRowsIn(r => [...r, {}]);
-  const removeRow = (idx: number) => setRowsIn(r => r.filter((_, i) => i !== idx));
-  const reverse   = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
+  const addRow = () => setRowsIn(r => [...r, {}]);
+  const reverse = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
 
-  // клик-вне и ESC — закрыть меню
+  // «Удалить точку» (симметрично «Добавить точку»)
+  const deleteRowSmart = () => {
+    if (rowsIn.length === 1) {
+      // если одна строка: очищаем её, если там что-то есть
+      if (!isRowEmpty(rowsIn[0])) {
+        setRowsIn([{ lat: undefined, lon: undefined }]);
+      }
+      return;
+    }
+    // иначе — удаляем последнюю строку
+    setRowsIn(r => r.slice(0, -1));
+  };
+
+  // клик-вне/ESC — закрыть меню
   useEffect(() => {
     const onDocDown = (e: PointerEvent | MouseEvent) => {
       const t = e.target as Node;
@@ -160,7 +167,7 @@ export default function ConverterPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           crs_from: crsFrom, crs_to: crsTo,
-          format: formatOut, // совместимость с бэком
+          format: formatOut, // не ломаем бэк
           format_in: formatIn, format_out: formatOut,
           rows_in: rowsIn, rows_out: rowsOut,
         }),
@@ -177,6 +184,10 @@ export default function ConverterPanel() {
       setToast(e.message || "Ошибка экспорта");
     }
   };
+
+  // можно ли удалить сейчас (кнопку «Удалить точку» дизейблим,
+  // когда одна строка и она пуста)
+  const disableDelete = rowsIn.length === 1 && isRowEmpty(rowsIn[0]);
 
   return (
     <div className="grid gap-5 md:gap-6">
@@ -305,8 +316,7 @@ export default function ConverterPanel() {
             </div>
             <div className="space-y-1">
               <label className="text-xs opacity-70">Формат</label>
-              {/* лёгкий сдвиг вправо на мобайле, без изменений на md+ */}
-              <div className="segment ml-1.5 md:ml-0">
+              <div className="segment mt-1 md:mt-0">
                 {[
                   { k: "deg_dec", t: "гг.ггг°" },
                   { k: "deg_min", t: "гг°мм.мм′" },
@@ -320,74 +330,55 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица ввода: делаем поля короче на мобиле */}
+          {/* Таблица ввода */}
           <div className="table-wrap">
-            <table className="min-w-full text-sm table-xs table-fixed">
+            <table className="w-full table-fixed text-sm table-xs">
               <thead>
                 <tr className="text-left">
-                  <th className="p-2 w-8">№</th>
-                  <th className="p-2">Широта (lat)</th>
-                  <th className="p-2">Долгота (lon)</th>
-                  <th className="p-2 w-12"></th>
+                  <th className="p-1 sm:p-2 w-8">№</th>
+                  <th className="p-1 sm:p-2">Широта (lat)</th>
+                  <th className="p-1 sm:p-2">Долгота (lon)</th>
                 </tr>
               </thead>
               <tbody>
-                {rowsIn.map((r, i) => {
-                  const single = rowsIn.length === 1;
-                  const empty  = isRowEmpty(rowsIn[i]);
-                  const disableTrash = single && empty;
-                  return (
-                    <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
-                      <td className="p-2">{i + 1}</td>
-                      <td className="p-2">
-                        <input
-                          className="input w-[9.5rem] md:w-40"
-                          type="number"
-                          placeholder={placeholders[formatIn].lat}
-                          value={r.lat ?? ""}
-                          onChange={e => {
-                            const v = e.target.value === "" ? undefined : Number(e.target.value);
-                            setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lat: v } : rr));
-                          }}
-                        />
-                      </td>
-                      <td className="p-2">
-                        <input
-                          className="input w-[9.5rem] md:w-40"
-                          type="number"
-                          placeholder={placeholders[formatIn].lon}
-                          value={r.lon ?? ""}
-                          onChange={e => {
-                            const v = e.target.value === "" ? undefined : Number(e.target.value);
-                            setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lon: v } : rr));
-                          }}
-                        />
-                      </td>
-                      <td className="p-2">
-                        <button
-                          className="btn"
-                          disabled={disableTrash}
-                          title={disableTrash ? "Нечего удалять" : (single ? "Очистить строку" : "Удалить строку")}
-                          onClick={() => {
-                            if (rowsIn.length === 1) {
-                              setRowsIn([{ lat: undefined, lon: undefined }]);
-                            } else {
-                              removeRow(i);
-                            }
-                          }}
-                        >
-                          <IconTrash />
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+                {rowsIn.map((r, i) => (
+                  <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
+                    <td className="p-1 sm:p-2">{i + 1}</td>
+                    <td className="p-1 sm:p-2">
+                      <input
+                        className="input h-10 text-sm w-[9.5rem] sm:w-36 md:w-40"
+                        type="number"
+                        placeholder={placeholders[formatIn].lat}
+                        value={r.lat ?? ""}
+                        onChange={e => {
+                          const v = e.target.value === "" ? undefined : Number(e.target.value);
+                          setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lat: v } : rr));
+                        }}
+                      />
+                    </td>
+                    <td className="p-1 sm:p-2">
+                      <input
+                        className="input h-10 text-sm w-[9.5rem] sm:w-36 md:w-40"
+                        type="number"
+                        placeholder={placeholders[formatIn].lon}
+                        value={r.lon ?? ""}
+                        onChange={e => {
+                          const v = e.target.value === "" ? undefined : Number(e.target.value);
+                          setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lon: v } : rr));
+                        }}
+                      />
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
 
           <div className="flex flex-wrap gap-2">
             <button className="btn h-10 px-4" onClick={addRow}>Добавить точку</button>
+            <button className="btn h-10 px-4" onClick={deleteRowSmart} disabled={disableDelete}>
+              Удалить точку
+            </button>
           </div>
         </section>
 
@@ -407,8 +398,7 @@ export default function ConverterPanel() {
             </div>
             <div className="space-y-1">
               <label className="text-xs opacity-70">Формат</label>
-              {/* такой же сдвиг, как слева */}
-              <div className="segment ml-1.5 md:ml-0">
+              <div className="segment mt-1 md:mt-0">
                 {[
                   { k: "deg_dec", t: "гг.ггг°" },
                   { k: "deg_min", t: "гг°мм.мм′" },
@@ -422,22 +412,26 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица результата — readOnly инпуты, те же мобильные ширины */}
+          {/* Таблица результата — readOnly инпуты для симметрии */}
           <div className="table-wrap">
-            <table className="min-w-full text-sm table-xs table-fixed">
+            <table className="w-full table-fixed text-sm table-xs">
               <thead>
                 <tr className="text-left">
-                  <th className="p-2 w-8">№</th>
-                  <th className="p-2">Широта</th>
-                  <th className="p-2">Долгота</th>
+                  <th className="p-1 sm:p-2 w-8">№</th>
+                  <th className="p-1 sm:p-2">Широта</th>
+                  <th className="p-1 sm:p-2">Долгота</th>
                 </tr>
               </thead>
               <tbody>
                 {rowsOut.map((r, i) => (
                   <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
-                    <td className="p-2">{i + 1}</td>
-                    <td className="p-2"><input className="input w-[9.5rem] md:w-40" value={(r.lat ?? r.y ?? "-") as any} readOnly /></td>
-                    <td className="p-2"><input className="input w-[9.5rem] md:w-40" value={(r.lon ?? r.x ?? "-") as any} readOnly /></td>
+                    <td className="p-1 sm:p-2">{i + 1}</td>
+                    <td className="p-1 sm:p-2">
+                      <input className="input h-10 text-sm w-[9.5rem] sm:w-36 md:w-40" value={(r.lat ?? r.y ?? "-") as any} readOnly />
+                    </td>
+                    <td className="p-1 sm:p-2">
+                      <input className="input h-10 text-sm w-[9.5rem] sm:w-36 md:w-40" value={(r.lon ?? r.x ?? "-") as any} readOnly />
+                    </td>
                   </tr>
                 ))}
               </tbody>
