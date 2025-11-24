@@ -31,8 +31,8 @@ const IconDownload = () => (
 /* helpers */
 const placeholders = {
   deg_dec:     { lat: "00.000000°", lon: "00.000000°" },
-  deg_min:     { lat: "гг°мм.мм′",   lon: "гг°мм.мм′"   },
-  deg_min_sec: { lat: "гг°мм′сс″",   lon: "гг°мм′сс″"   },
+  deg_min:     { lat: "00°00.00′",   lon: "00°00.00′"},
+  deg_min_sec: { lat: "00°00′00.00″",   lon: "00°00′00.00″"},
 } as const;
 
 const isRowEmpty = (r: Point) =>
