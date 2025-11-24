@@ -1,3 +1,4 @@
+// /geoconverter/frontend/src/components/ConverterPanel.tsx
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -46,26 +47,26 @@ const placeholders = {
 export default function ConverterPanel() {
   // CRS
   const [crsFrom, setCrsFrom] = useState("EPSG:4326");
-  const [crsTo, setCrsTo] = useState("EPSG:4326");
+  const [crsTo, setCrsTo]     = useState("EPSG:4326");
 
   // независимые форматы
   const [formatIn, setFormatIn]   = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
   const [formatOut, setFormatOut] = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
 
   // данные
-  const [rowsIn, setRowsIn] = useState<Point[]>([{ lat: 43.771447, lon: 44.59519 }]);
+  const [rowsIn, setRowsIn]   = useState<Point[]>([{ lat: 43.771447, lon: 44.59519 }]);
   const [rowsOut, setRowsOut] = useState<Point[]>([{ lat: undefined, lon: undefined }]);
 
   // опции
   const [zoneMode, setZoneMode] = useState<3 | 6>(6);
   const [autoZone, setAutoZone] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading]   = useState(false);
 
-  // UI/вспомогательное
+  // UI
   const [preview, setPreview] = useState<any[]>([]);
-  const [toast, setToast] = useState<string | null>(null);
-  const [ok, setOk] = useState(false);
-  const [drag, setDrag] = useState(false);
+  const [toast, setToast]     = useState<string | null>(null);
+  const [ok, setOk]           = useState(false);
+  const [drag, setDrag]       = useState(false);
 
   // выпадашки
   const [openImport, setOpenImport] = useState(false);
@@ -76,20 +77,20 @@ export default function ConverterPanel() {
   const exportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const crsOptions = useMemo(() => ([
-    { code: "EPSG:4326", title: "WGS 84 (готово)" },
+    { code: "EPSG:4326",    title: "WGS 84 (готово)" },
     { code: "GSK2011_GEOG", title: "ГСК-2011 (в разработке)" },
-    { code: "SK42_GEOG", title: "СК-42 (в разработке)" },
-    { code: "SK95_GEOG", title: "СК-95 (в разработке)" },
-    { code: "PZ90_GEOG", title: "ПЗ-90 (в разработке)" },
-    { code: "MSK:DNR", title: "МСК ДНР (в разработке)" },
-    { code: "MSK:LNR", title: "МСК ЛНР (в разработке)" },
-    { code: "MSK:KHER", title: "МСК Херсонская обл. (в разработке)" },
-    { code: "MSK:ZAPR", title: "МСК Запорожская обл. (в разработке)" },
+    { code: "SK42_GEOG",    title: "СК-42 (в разработке)" },
+    { code: "SK95_GEOG",    title: "СК-95 (в разработке)" },
+    { code: "PZ90_GEOG",    title: "ПЗ-90 (в разработке)" },
+    { code: "MSK:DNR",      title: "МСК ДНР (в разработке)" },
+    { code: "MSK:LNR",      title: "МСК ЛНР (в разработке)" },
+    { code: "MSK:KHER",     title: "МСК Херсонская обл. (в разработке)" },
+    { code: "MSK:ZAPR",     title: "МСК Запорожская обл. (в разработке)" },
   ]), []);
 
-  const addRow = () => setRowsIn(r => [...r, {}]);
+  const addRow    = () => setRowsIn(r => [...r, {}]);
   const removeRow = (idx: number) => setRowsIn(r => r.filter((_, i) => i !== idx));
-  const reverse = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
+  const reverse   = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
 
   // клик-вне и ESC — закрыть меню
   useEffect(() => {
@@ -159,7 +160,7 @@ export default function ConverterPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           crs_from: crsFrom, crs_to: crsTo,
-          format: formatOut, // не ломаем бэк
+          format: formatOut, // совместимость с бэком
           format_in: formatIn, format_out: formatOut,
           rows_in: rowsIn, rows_out: rowsOut,
         }),
@@ -203,9 +204,12 @@ export default function ConverterPanel() {
         </div>
 
         {/* Выгрузить координаты */}
-        <div className="space-y-1 min-w-0" ref={exportRef}
-             onMouseEnter={() => { if (exportTimer.current) { clearTimeout(exportTimer.current); exportTimer.current = null; } }}
-             onMouseLeave={() => { exportTimer.current = setTimeout(() => setOpenExport(false), 200); }}>
+        <div
+          className="space-y-1 min-w-0"
+          ref={exportRef}
+          onMouseEnter={() => { if (exportTimer.current) { clearTimeout(exportTimer.current); exportTimer.current = null; } }}
+          onMouseLeave={() => { exportTimer.current = setTimeout(() => setOpenExport(false), 200); }}
+        >
           <label className="text-xs opacity-70">Выгрузить координаты</label>
           <div className="relative">
             <button className="btn w-full h-10 justify-between" onClick={() => { setOpenExport(v => !v); setOpenImport(false); }}>
@@ -229,9 +233,12 @@ export default function ConverterPanel() {
         </div>
 
         {/* Загрузить координаты */}
-        <div className="space-y-1 min-w-0" ref={importRef}
-             onMouseEnter={() => { if (importTimer.current) { clearTimeout(importTimer.current); importTimer.current = null; } }}
-             onMouseLeave={() => { importTimer.current = setTimeout(() => setOpenImport(false), 200); }}>
+        <div
+          className="space-y-1 min-w-0"
+          ref={importRef}
+          onMouseEnter={() => { if (importTimer.current) { clearTimeout(importTimer.current); importTimer.current = null; } }}
+          onMouseLeave={() => { importTimer.current = setTimeout(() => setOpenImport(false), 200); }}
+        >
           <label className="text-xs opacity-70">Загрузить координаты</label>
           <div className="relative">
             <button className="btn w-full h-10 justify-between" onClick={() => { setOpenImport(v => !v); setOpenExport(false); }}>
@@ -298,7 +305,8 @@ export default function ConverterPanel() {
             </div>
             <div className="space-y-1">
               <label className="text-xs opacity-70">Формат</label>
-              <div className="segment">
+              {/* лёгкий сдвиг вправо на мобайле, без изменений на md+ */}
+              <div className="segment ml-1.5 md:ml-0">
                 {[
                   { k: "deg_dec", t: "гг.ггг°" },
                   { k: "deg_min", t: "гг°мм.мм′" },
@@ -312,28 +320,28 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица ввода */}
+          {/* Таблица ввода: делаем поля короче на мобиле */}
           <div className="table-wrap">
-            <table className="min-w-full text-sm table-xs">
+            <table className="min-w-full text-sm table-xs table-fixed">
               <thead>
                 <tr className="text-left">
-                  <th className="p-2">№</th>
+                  <th className="p-2 w-8">№</th>
                   <th className="p-2">Широта (lat)</th>
                   <th className="p-2">Долгота (lon)</th>
-                  <th className="p-2"></th>
+                  <th className="p-2 w-12"></th>
                 </tr>
               </thead>
               <tbody>
                 {rowsIn.map((r, i) => {
                   const single = rowsIn.length === 1;
-                  const empty = isRowEmpty(rowsIn[i]);
+                  const empty  = isRowEmpty(rowsIn[i]);
                   const disableTrash = single && empty;
                   return (
                     <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
                       <td className="p-2">{i + 1}</td>
                       <td className="p-2">
                         <input
-                          className="input w-40 border-brand-500"
+                          className="input w-[9.5rem] md:w-40"
                           type="number"
                           placeholder={placeholders[formatIn].lat}
                           value={r.lat ?? ""}
@@ -345,7 +353,7 @@ export default function ConverterPanel() {
                       </td>
                       <td className="p-2">
                         <input
-                          className="input w-40 border-brand-500"
+                          className="input w-[9.5rem] md:w-40"
                           type="number"
                           placeholder={placeholders[formatIn].lon}
                           value={r.lon ?? ""}
@@ -399,7 +407,8 @@ export default function ConverterPanel() {
             </div>
             <div className="space-y-1">
               <label className="text-xs opacity-70">Формат</label>
-              <div className="segment">
+              {/* такой же сдвиг, как слева */}
+              <div className="segment ml-1.5 md:ml-0">
                 {[
                   { k: "deg_dec", t: "гг.ггг°" },
                   { k: "deg_min", t: "гг°мм.мм′" },
@@ -413,12 +422,12 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица результата — readOnly инпуты для симметрии */}
+          {/* Таблица результата — readOnly инпуты, те же мобильные ширины */}
           <div className="table-wrap">
-            <table className="min-w-full text-sm table-xs">
+            <table className="min-w-full text-sm table-xs table-fixed">
               <thead>
                 <tr className="text-left">
-                  <th className="p-2">№</th>
+                  <th className="p-2 w-8">№</th>
                   <th className="p-2">Широта</th>
                   <th className="p-2">Долгота</th>
                 </tr>
@@ -427,8 +436,8 @@ export default function ConverterPanel() {
                 {rowsOut.map((r, i) => (
                   <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
                     <td className="p-2">{i + 1}</td>
-                    <td className="p-2"><input className="input w-40" value={(r.lat ?? r.y ?? "-") as any} readOnly /></td>
-                    <td className="p-2"><input className="input w-40" value={(r.lon ?? r.x ?? "-") as any} readOnly /></td>
+                    <td className="p-2"><input className="input w-[9.5rem] md:w-40" value={(r.lat ?? r.y ?? "-") as any} readOnly /></td>
+                    <td className="p-2"><input className="input w-[9.5rem] md:w-40" value={(r.lon ?? r.x ?? "-") as any} readOnly /></td>
                   </tr>
                 ))}
               </tbody>
