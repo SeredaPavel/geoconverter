@@ -232,8 +232,8 @@ export default function ConverterPanel() {
 
   return (
     <div className="grid gap-5 md:gap-6">
-      {/* 1) Верхняя полоска опций — поднимаем её над остальными карточками */}
-      <section className="card overflow-visible relative z-20 p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
+      {/* 1) Верхняя полоска опций — теперь явно разрешаем overflow */}
+      <section className="card card-overflow-visible relative z-20 p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
         {/* Авто-зона */}
         <div className="space-y-1 min-w-0">
           <label className="text-xs opacity-70">Авто-зона ГК</label>
