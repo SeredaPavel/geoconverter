@@ -31,8 +31,8 @@ const IconDownload = () => (
 /* helpers */
 const placeholders = {
   deg_dec:     { lat: "00.000000°", lon: "00.000000°" },
-  deg_min:     { lat: "00°00.00′",   lon: "00°00.00′"},
-  deg_min_sec: { lat: "00°00′00.00″",   lon: "00°00′00.00″"},
+  deg_min:     { lat: "00°00.00′",   lon: "00°00.00′"   },
+  deg_min_sec: { lat: "00°00′00.00″", lon: "00°00′00.00″" },
 } as const;
 
 const isRowEmpty = (r: Point) =>
@@ -70,23 +70,27 @@ export default function ConverterPanel() {
   const importTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const exportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const crsOptions = useMemo(() => ([
-    { code: "EPSG:4326",    title: "WGS 84 (готово)" },
-    { code: "GSK2011_GEOG", title: "ГСК-2011 (в разработке)" },
-    { code: "SK42_GEOG",    title: "СК-42 (в разработке)" },
-    { code: "SK95_GEOG",    title: "СК-95 (в разработке)" },
-    { code: "PZ90_GEOG",    title: "ПЗ-90 (в разработке)" },
-    { code: "MSK:DNR",      title: "МСК ДНР (в разработке)" },
-    { code: "MSK:LNR",      title: "МСК ЛНР (в разработке)" },
-    { code: "MSK:KHER",     title: "МСК Херсонская обл. (в разработке)" },
-    { code: "MSK:ZAPR",     title: "МСК Запорожская обл. (в разработке)" },
-  ]), []);
+  // адаптация панели под клавиатуру (iOS/Android)
+  const [kbPad, setKbPad] = useState(0);                      // нижний паддинг панели
+  const panelRef = useRef<HTMLDivElement>(null);              // обёртка панели
+  const focusedCount = useRef(0);
 
-  const addRow    = () => setRowsIn(r => [...r, {}]);
-  const removeRow = () => setRowsIn(r => (r.length > 1 ? r.slice(0, -1) : [{ lat: undefined, lon: undefined }]));
-  const reverse   = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
+  // слушатель визуального вьюпорта
+  useEffect(() => {
+    const vv = (window as any).visualViewport as VisualViewport | undefined;
+    if (!vv) return;
 
-  // клик-вне и ESC — закрыть меню
+    const onResize = () => {
+      // насколько «ужалась» видимая часть (примерная высота клавиатуры)
+      const keyboard = Math.max(0, window.innerHeight - vv.height);
+      // оставляем небольшой зазор
+      setKbPad(keyboard > 0 ? Math.ceil(keyboard) + 16 : 0);
+    };
+    vv.addEventListener("resize", onResize);
+    return () => vv.removeEventListener("resize", onResize);
+  }, []);
+
+  // клик вне дропдаунов — закрыть
   useEffect(() => {
     const onDocDown = (e: PointerEvent | MouseEvent) => {
       const t = e.target as Node;
@@ -110,6 +114,38 @@ export default function ConverterPanel() {
     return () => clearTimeout(t);
   }, [ok]);
 
+  const crsOptions = useMemo(() => ([
+    { code: "EPSG:4326",    title: "WGS 84 (готово)" },
+    { code: "GSK2011_GEOG", title: "ГСК-2011 (в разработке)" },
+    { code: "SK42_GEOG",    title: "СК-42 (в разработке)" },
+    { code: "SK95_GEOG",    title: "СК-95 (в разработке)" },
+    { code: "PZ90_GEOG",    title: "ПЗ-90 (в разработке)" },
+    { code: "MSK:DNR",      title: "МСК ДНР (в разработке)" },
+    { code: "MSK:LNR",      title: "МСК ЛНР (в разработке)" },
+    { code: "MSK:KHER",     title: "МСК Херсонская обл. (в разработке)" },
+    { code: "MSK:ZAPR",     title: "МСК Запорожская обл. (в разработке)" },
+  ]), []);
+
+  const addRow    = () => setRowsIn(r => [...r, {}]);
+  const removeRow = () =>
+    setRowsIn(r => (r.length > 1 ? r.slice(0, -1) : [{ lat: undefined, lon: undefined }]));
+  const reverse   = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
+
+  // подсобки для фокуса инпутов
+  const onFocusField = (e: React.FocusEvent<HTMLInputElement>) => {
+    focusedCount.current += 1;
+    // мягко прокрутить активное поле в центр панели (не двигая бекграунд)
+    e.currentTarget.scrollIntoView({ block: "center", behavior: "smooth" });
+  };
+  const onBlurField = () => {
+    focusedCount.current = Math.max(0, focusedCount.current - 1);
+    // если ни одно поле не в фокусе — возвращаем панель к обычному виду
+    if (focusedCount.current === 0) setKbPad(0);
+  };
+  const resetKbPad = () => {
+    if (focusedCount.current === 0) setKbPad(0);
+  };
+
   const recalc = async () => {
     setLoading(true);
     try {
@@ -129,6 +165,7 @@ export default function ConverterPanel() {
       if (!res.ok) throw new Error(data.detail || "Ошибка пересчёта");
       setRowsOut((data.points && data.points.length > 0) ? data.points : [{ lat: undefined, lon: undefined }]);
       setOk(true);
+      setKbPad(0); // при подтверждении возвращаем прежний вид
     } catch (e: any) {
       setToast(e.message);
     } finally {
@@ -173,7 +210,17 @@ export default function ConverterPanel() {
   };
 
   return (
-    <div className="grid gap-5 md:gap-6">
+    // обёртка панели: на мобильном добавляем нижний «паддинг клавиатуры»
+    <div
+      ref={panelRef}
+      style={{ paddingBottom: kbPad ? `${kbPad}px` : undefined }}
+      onClick={(e) => {
+        // клик по пустому месту панели — возвращаем обычный вид
+        const tag = (e.target as HTMLElement).tagName;
+        if (!["INPUT","SELECT","TEXTAREA","BUTTON","LABEL"].includes(tag)) resetKbPad();
+      }}
+      className="grid gap-5 md:gap-6"
+    >
       {/* 1) Верхняя полоска опций */}
       <section className="card p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
         {/* Авто-зона */}
@@ -306,7 +353,7 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица ввода – table-fixed + colgroup, инпуты w-full */}
+          {/* Таблица ввода – добавлены вертикальные отступы между строками */}
           <div className="table-wrap">
             <table className="min-w-full table-fixed text-sm table-xs">
               <colgroup>
@@ -325,17 +372,17 @@ export default function ConverterPanel() {
               </thead>
               <tbody>
                 {rowsIn.map((r, i) => {
-                  const single = rowsIn.length === 1;
-                  const empty  = isRowEmpty(rowsIn[i]);
                   return (
-                    <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
-                      <td className="p-2">{i + 1}</td>
-                      <td className="pr-1 md:p-2">
+                    <tr key={i} className="border-y border-slate-200/60 dark:border-slate-700/60">
+                      <td className="p-2 align-middle">{i + 1}</td>
+                      <td className="pr-1 md:p-2 align-middle">
                         <input
-                          className="input w-full"
+                          className="input w-full h-11 leading-[1.1]"
                           type="text"
                           inputMode="decimal"
                           placeholder={placeholders[formatIn].lat}
+                          onFocus={onFocusField}
+                          onBlur={onBlurField}
                           value={r.lat ?? ""}
                           onChange={e => {
                             const v = e.target.value === "" ? undefined : Number(e.target.value.replace(",", "."));
@@ -343,12 +390,14 @@ export default function ConverterPanel() {
                           }}
                         />
                       </td>
-                      <td className="pl-1 md:p-2">
+                      <td className="pl-1 md:p-2 align-middle">
                         <input
-                          className="input w-full"
+                          className="input w-full h-11 leading-[1.1]"
                           type="text"
                           inputMode="decimal"
                           placeholder={placeholders[formatIn].lon}
+                          onFocus={onFocusField}
+                          onBlur={onBlurField}
                           value={r.lon ?? ""}
                           onChange={e => {
                             const v = e.target.value === "" ? undefined : Number(e.target.value.replace(",", "."));
@@ -356,9 +405,7 @@ export default function ConverterPanel() {
                           }}
                         />
                       </td>
-                      <td className="p-2">
-                        {/* пустая колонка для выравнивания (кнопку удаления перенесли вниз) */}
-                      </td>
+                      <td className="p-2" />
                     </tr>
                   );
                 })}
@@ -409,7 +456,7 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица результата — те же ширины колонок */}
+          {/* Таблица результата — те же ширины + вертикальный зазор */}
           <div className="table-wrap">
             <table className="min-w-full table-fixed text-sm table-xs">
               <colgroup>
@@ -426,10 +473,14 @@ export default function ConverterPanel() {
               </thead>
               <tbody>
                 {rowsOut.map((r, i) => (
-                  <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
-                    <td className="p-2">{i + 1}</td>
-                    <td className="pr-1 md:p-2"><input className="input w-full text-center" value={(r.lat ?? r.y ?? "-") as any} readOnly /></td>
-                    <td className="pl-1 md:p-2"><input className="input w-full text-center" value={(r.lon ?? r.x ?? "-") as any} readOnly /></td>
+                  <tr key={i} className="border-y border-slate-200/60 dark:border-slate-700/60">
+                    <td className="p-2 align-middle">{i + 1}</td>
+                    <td className="pr-1 md:p-2 align-middle">
+                      <input className="input w-full h-11 text-center leading-[1.1]" value={(r.lat ?? r.y ?? "-") as any} readOnly />
+                    </td>
+                    <td className="pl-1 md:p-2 align-middle">
+                      <input className="input w-full h-11 text-center leading-[1.1]" value={(r.lon ?? r.x ?? "-") as any} readOnly />
+                    </td>
                   </tr>
                 ))}
               </tbody>
