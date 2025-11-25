@@ -137,6 +137,14 @@ html, body { height: 100%; }
   .modal-card { max-height: calc(100vh - 2rem); }
 }
 
+/* --- iOS: запрет системного зума при фокусе, т.к. font-size >= 16px --- */
+@supports (-webkit-touch-callout: none) {
+  .input,
+  .select {
+    font-size: 16px; /* iOS перестаёт увеличивать страницу */
+  }
+}
+
 /* ----- Фиксы границ карточки для iOS ----- */
 .card{
   position: relative;
