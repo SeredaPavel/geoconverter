@@ -172,3 +172,8 @@ html, body { height: 100%; }
 @supports not (height: 1svh){
   .max-h-90svh{ max-height: 90vh; }
 }
+
+/* --- Карточки, которым нужно пропускать выпадающие списки наружу --- */
+.card-overflow-visible{
+  overflow: visible !important;
+}
