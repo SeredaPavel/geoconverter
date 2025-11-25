@@ -8,31 +8,53 @@ const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "/api";
 /* Иконки */
 const IconUpload = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <path d="M12 16V4m0 0l-4 4m4-4l4 4M4 20h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path
+      d="M12 16V4m0 0l-4 4m4-4l4 4M4 20h16"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 const IconFile = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12V8l-4-6z" stroke="currentColor" strokeWidth="2"/>
-    <path d="M14 2v6h6" stroke="currentColor" strokeWidth="2"/>
+    <path
+      d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12V8l-4-6z"
+      stroke="currentColor"
+      strokeWidth="2"
+    />
+    <path d="M14 2v6h6" stroke="currentColor" strokeWidth="2" />
   </svg>
 );
 const IconChevronDown = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path
+      d="M6 9l6 6 6-6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 const IconDownload = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-    <path d="M12 20V10m0 0l-4 4m4-4l4 4M4 4h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path
+      d="M12 20V10m0 0l-4 4m4-4l4 4M4 4h16"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 /* helpers */
 const placeholders = {
-  deg_dec:     { lat: "00.000000°", lon: "00.000000°" },
-  deg_min:     { lat: "00°00.00′",   lon: "00°00.00′"},
-  deg_min_sec: { lat: "00°00′00.00″",   lon: "00°00′00.00″"},
+  deg_dec: { lat: "00.000000°", lon: "00.000000°" },
+  deg_min: { lat: "00°00.00′", lon: "00°00.00′" },
+  deg_min_sec: { lat: "00°00′00.00″", lon: "00°00′00.00″" },
 } as const;
 
 const isRowEmpty = (r: Point) =>
@@ -42,25 +64,31 @@ const isRowEmpty = (r: Point) =>
 export default function ConverterPanel() {
   // CRS
   const [crsFrom, setCrsFrom] = useState("EPSG:4326");
-  const [crsTo,   setCrsTo]   = useState("EPSG:4326");
+  const [crsTo, setCrsTo] = useState("EPSG:4326");
 
   // независимые форматы
-  const [formatIn,  setFormatIn]  = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
-  const [formatOut, setFormatOut] = useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
+  const [formatIn, setFormatIn] =
+    useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
+  const [formatOut, setFormatOut] =
+    useState<"deg_dec" | "deg_min" | "deg_min_sec">("deg_dec");
 
   // данные
-  const [rowsIn,  setRowsIn]  = useState<Point[]>([{ lat: undefined, lon: undefined }]);
-  const [rowsOut, setRowsOut] = useState<Point[]>([{ lat: undefined, lon: undefined }]);
+  const [rowsIn, setRowsIn] = useState<Point[]>([
+    { lat: undefined, lon: undefined },
+  ]);
+  const [rowsOut, setRowsOut] = useState<Point[]>([
+    { lat: undefined, lon: undefined },
+  ]);
 
   // опции
   const [zoneMode, setZoneMode] = useState<3 | 6>(6);
   const [autoZone, setAutoZone] = useState(true);
-  const [loading, setLoading]   = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // UI
   const [preview, setPreview] = useState<any[]>([]);
-  const [toast,   setToast]   = useState<string | null>(null);
-  const [ok,      setOk]      = useState(false);
+  const [toast, setToast] = useState<string | null>(null);
+  const [ok, setOk] = useState(false);
 
   // выпадашки
   const [openImport, setOpenImport] = useState(false);
@@ -70,31 +98,46 @@ export default function ConverterPanel() {
   const importTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const exportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const crsOptions = useMemo(() => ([
-    { code: "EPSG:4326",    title: "WGS 84 (готово)" },
-    { code: "GSK2011_GEOG", title: "ГСК-2011 (в разработке)" },
-    { code: "SK42_GEOG",    title: "СК-42 (в разработке)" },
-    { code: "SK95_GEOG",    title: "СК-95 (в разработке)" },
-    { code: "PZ90_GEOG",    title: "ПЗ-90 (в разработке)" },
-    { code: "MSK:DNR",      title: "МСК ДНР (в разработке)" },
-    { code: "MSK:LNR",      title: "МСК ЛНР (в разработке)" },
-    { code: "MSK:KHER",     title: "МСК Херсонская обл. (в разработке)" },
-    { code: "MSK:ZAPR",     title: "МСК Запорожская обл. (в разработке)" },
-  ]), []);
+  const crsOptions = useMemo(
+    () => [
+      { code: "EPSG:4326", title: "WGS 84 (готово)" },
+      { code: "GSK2011_GEOG", title: "ГСК-2011 (в разработке)" },
+      { code: "SK42_GEOG", title: "СК-42 (в разработке)" },
+      { code: "SK95_GEOG", title: "СК-95 (в разработке)" },
+      { code: "PZ90_GEOG", title: "ПЗ-90 (в разработке)" },
+      { code: "MSK:DNR", title: "МСК ДНР (в разработке)" },
+      { code: "MSK:LNR", title: "МСК ЛНР (в разработке)" },
+      { code: "MSK:KHER", title: "МСК Херсонская обл. (в разработке)" },
+      { code: "MSK:ZAPR", title: "МСК Запорожская обл. (в разработке)" },
+    ],
+    [],
+  );
 
-  const addRow    = () => setRowsIn(r => [...r, {}]);
-  const removeRow = () => setRowsIn(r => (r.length > 1 ? r.slice(0, -1) : [{ lat: undefined, lon: undefined }]));
-  const reverse   = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
+  const addRow = () => setRowsIn((r) => [...r, {}]);
+  const removeRow = () =>
+    setRowsIn((r) =>
+      r.length > 1 ? r.slice(0, -1) : [{ lat: undefined, lon: undefined }],
+    );
+  const reverse = () => {
+    setCrsFrom(crsTo);
+    setCrsTo(crsFrom);
+  };
 
   // клик-вне и ESC — закрыть меню
   useEffect(() => {
     const onDocDown = (e: PointerEvent | MouseEvent) => {
       const t = e.target as Node;
       if (!importRef.current?.contains(t) && !exportRef.current?.contains(t)) {
-        setOpenImport(false); setOpenExport(false);
+        setOpenImport(false);
+        setOpenExport(false);
       }
     };
-    const onEsc = (e: KeyboardEvent) => { if (e.key === "Escape") { setOpenImport(false); setOpenExport(false); } };
+    const onEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpenImport(false);
+        setOpenExport(false);
+      }
+    };
     document.addEventListener("pointerdown", onDocDown);
     document.addEventListener("keydown", onEsc);
     return () => {
@@ -118,16 +161,20 @@ export default function ConverterPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           crs_from: crsFrom,
-          crs_to:   crsTo,
-          format_in:  formatIn,
+          crs_to: crsTo,
+          format_in: formatIn,
           format_out: formatOut,
           points: rowsIn,
-          options: { auto_zone: autoZone, zone_mode: zoneMode }
-        })
+          options: { auto_zone: autoZone, zone_mode: zoneMode },
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail || "Ошибка пересчёта");
-      setRowsOut((data.points && data.points.length > 0) ? data.points : [{ lat: undefined, lon: undefined }]);
+      setRowsOut(
+        data.points && data.points.length > 0
+          ? data.points
+          : [{ lat: undefined, lon: undefined }],
+      );
       setOk(true);
     } catch (e: any) {
       setToast(e.message);
@@ -136,13 +183,21 @@ export default function ConverterPanel() {
     }
   };
 
-  const canUploadHint = "• Только Excel ≤ 1 МБ\n• Ровно ДВЕ колонки: Lat/Lon ИЛИ X/Y";
+  const canUploadHint =
+    "• Только Excel ≤ 1 МБ\n• Ровно ДВЕ колонки: Lat/Lon ИЛИ X/Y";
   const onImport = async (f: File) => {
-    if (f.size > 1_000_000) { setToast("Файл больше 1 МБ"); return; }
-    const fd = new FormData(); fd.append("file", f);
+    if (f.size > 1_000_000) {
+      setToast("Файл больше 1 МБ");
+      return;
+    }
+    const fd = new FormData();
+    fd.append("file", f);
     const res = await fetch(`${API_BASE}/import`, { method: "POST", body: fd });
     const data = await res.json();
-    if (!res.ok) { setToast(data.detail || "Ошибка импорта"); return; }
+    if (!res.ok) {
+      setToast(data.detail || "Ошибка импорта");
+      return;
+    }
     setPreview(data.rows_preview || []);
     setToast(`Прочитано строк: ${data.rows_total}. Предпросмотр внизу.`);
   };
@@ -153,10 +208,13 @@ export default function ConverterPanel() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          crs_from: crsFrom, crs_to: crsTo,
+          crs_from: crsFrom,
+          crs_to: crsTo,
           format: formatOut,
-          format_in: formatIn, format_out: formatOut,
-          rows_in: rowsIn, rows_out: rowsOut,
+          format_in: formatIn,
+          format_out: formatOut,
+          rows_in: rowsIn,
+          rows_out: rowsOut,
         }),
       });
       if (!res.ok) throw new Error("Экспорт недоступен");
@@ -174,14 +232,21 @@ export default function ConverterPanel() {
 
   return (
     <div className="grid gap-5 md:gap-6">
-      {/* 1) Верхняя полоска опций — overflow видимый, чтобы дропдауны не обрезались */}
-      <section className="card overflow-visible p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
+      {/* 1) Верхняя полоска опций — поднимаем её над остальными карточками */}
+      <section className="card overflow-visible relative z-20 p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
         {/* Авто-зона */}
         <div className="space-y-1 min-w-0">
           <label className="text-xs opacity-70">Авто-зона ГК</label>
           <div className="flex items-center gap-2 h-10">
-            <input id="autoZone" type="checkbox" checked={autoZone} onChange={e => setAutoZone(e.target.checked)} />
-            <label htmlFor="autoZone" className="text-sm">вкл.</label>
+            <input
+              id="autoZone"
+              type="checkbox"
+              checked={autoZone}
+              onChange={(e) => setAutoZone(e.target.checked)}
+            />
+            <label htmlFor="autoZone" className="text-sm">
+              вкл.
+            </label>
           </div>
         </div>
 
@@ -189,11 +254,19 @@ export default function ConverterPanel() {
         <div className="space-y-1 min-w-0">
           <label className="text-xs opacity-70">Ширина зоны</label>
           <div className="relative">
-            <select className="select w-full h-10 pr-8 appearance-none" value={zoneMode} onChange={e => setZoneMode(Number(e.target.value) as any)}>
+            <select
+              className="select w-full h-10 pr-8 appearance-none"
+              value={zoneMode}
+              onChange={(e) =>
+                setZoneMode(Number(e.target.value) as 3 | 6)
+              }
+            >
               <option value={6}>6°</option>
               <option value={3}>3°</option>
             </select>
-            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70"><IconChevronDown /></span>
+            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70">
+              <IconChevronDown />
+            </span>
           </div>
         </div>
 
@@ -201,32 +274,56 @@ export default function ConverterPanel() {
         <div
           className="space-y-1 min-w-0"
           ref={exportRef}
-          onMouseEnter={() => { if (exportTimer.current) { clearTimeout(exportTimer.current); exportTimer.current = null; } }}
-          onMouseLeave={() => { exportTimer.current = setTimeout(() => setOpenExport(false), 200); }}
+          onMouseEnter={() => {
+            if (exportTimer.current) {
+              clearTimeout(exportTimer.current);
+              exportTimer.current = null;
+            }
+          }}
+          onMouseLeave={() => {
+            exportTimer.current = setTimeout(() => setOpenExport(false), 200);
+          }}
         >
           <label className="text-xs opacity-70">Выгрузить координаты</label>
           <div className="relative">
             <button
               className="btn w-full h-10 justify-between md:text-base text-sm md:px-4 px-3"
-              onClick={() => { setOpenExport(v => !v); setOpenImport(false); }}
+              onClick={() => {
+                setOpenExport((v) => !v);
+                setOpenImport(false);
+              }}
             >
               <span className="inline-flex items-center gap-2 min-w-0 flex-1">
-                <span className="shrink-0"><IconDownload /></span>
-                {/* Текст кнопки ужимается и не вылезает за рамку */}
+                <span className="shrink-0">
+                  <IconDownload />
+                </span>
                 <span className="truncate">Выбрать формат</span>
               </span>
-              <span className="shrink-0"><IconChevronDown /></span>
+              <span className="shrink-0">
+                <IconChevronDown />
+              </span>
             </button>
 
             {openExport && (
               <div
                 className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
-                onMouseLeave={() => setOpenExport(false)}
               >
-                <button className="btn w-full justify-start text-sm md:text-base" onClick={() => { exportFile("statement"); setOpenExport(false); }}>
+                <button
+                  className="btn w-full justify-start text-sm md:text-base"
+                  onClick={() => {
+                    exportFile("statement");
+                    setOpenExport(false);
+                  }}
+                >
                   <IconDownload /> Ведомость
                 </button>
-                <button className="btn w-full justify-start text-sm md:text-base" onClick={() => { exportFile("catalog"); setOpenExport(false); }}>
+                <button
+                  className="btn w-full justify-start text-sm md:text-base"
+                  onClick={() => {
+                    exportFile("catalog");
+                    setOpenExport(false);
+                  }}
+                >
                   <IconDownload /> Каталог
                 </button>
               </div>
@@ -238,50 +335,81 @@ export default function ConverterPanel() {
         <div
           className="space-y-1 min-w-0"
           ref={importRef}
-          onMouseEnter={() => { if (importTimer.current) { clearTimeout(importTimer.current); importTimer.current = null; } }}
-          onMouseLeave={() => { importTimer.current = setTimeout(() => setOpenImport(false), 200); }}
+          onMouseEnter={() => {
+            if (importTimer.current) {
+              clearTimeout(importTimer.current);
+              importTimer.current = null;
+            }
+          }}
+          onMouseLeave={() => {
+            importTimer.current = setTimeout(() => setOpenImport(false), 200);
+          }}
         >
           <label className="text-xs opacity-70">Загрузить координаты</label>
           <div className="relative">
             <button
               className="btn w-full h-10 justify-between md:text-base text-sm md:px-4 px-3"
-              onClick={() => { setOpenImport(v => !v); setOpenExport(false); }}
+              onClick={() => {
+                setOpenImport((v) => !v);
+                setOpenExport(false);
+              }}
             >
               <span className="inline-flex items-center gap-2 min-w-0 flex-1">
-                <span className="shrink-0"><IconUpload /></span>
+                <span className="shrink-0">
+                  <IconUpload />
+                </span>
                 <span className="truncate">Выбрать формат</span>
               </span>
-              <span className="shrink-0"><IconChevronDown /></span>
+              <span className="shrink-0">
+                <IconChevronDown />
+              </span>
             </button>
 
             {openImport && (
               <div
                 className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
-                onMouseLeave={() => setOpenImport(false)}
               >
                 <label className="btn w-full justify-start text-sm md:text-base">
                   <input
-                    hidden type="file" accept=".xlsx"
+                    hidden
+                    type="file"
+                    accept=".xlsx"
                     onChange={(e) => {
-                      const f = e.target.files?.[0]; if (f) onImport(f);
+                      const f = e.target.files?.[0];
+                      if (f) onImport(f);
                       e.currentTarget.value = "";
                       setOpenImport(false);
                     }}
                   />
                   <IconUpload /> Загрузить Excel
                 </label>
-                <a className="btn w-full justify-start text-sm md:text-base" href="/templates/template_latlon.xlsx"><IconFile /> Шаблон Lat/Lon</a>
-                <a className="btn w-full justify-start text-sm md:text-base" href="/templates/template_xy.xlsx"><IconFile /> Шаблон X/Y</a>
+                <a
+                  className="btn w-full justify-start text-sm md:text-base"
+                  href="/templates/template_latlon.xlsx"
+                >
+                  <IconFile /> Шаблон Lat/Lon
+                </a>
+                <a
+                  className="btn w-full justify-start text-sm md:text-base"
+                  href="/templates/template_xy.xlsx"
+                >
+                  <IconFile /> Шаблон X/Y
+                </a>
                 <div
                   className="dropzone"
-                  onDragOver={(e) => { e.preventDefault(); }}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                  }}
                   onDrop={(e) => {
                     e.preventDefault();
-                    const f = e.dataTransfer.files?.[0]; if (f) onImport(f);
+                    const f = e.dataTransfer.files?.[0];
+                    if (f) onImport(f);
                     setOpenImport(false);
                   }}
                 >
-                  Перетащите Excel сюда<br/>{canUploadHint}
+                  Перетащите Excel сюда
+                  <br />
+                  {canUploadHint}
                 </div>
               </div>
             )}
@@ -291,7 +419,9 @@ export default function ConverterPanel() {
         {/* Реверс */}
         <div className="space-y-1 min-w-0">
           <label className="text-xs opacity-0 select-none">Реверс</label>
-          <button className="btn w-full h-10" onClick={reverse}>Реверс</button>
+          <button className="btn w-full h-10" onClick={reverse}>
+            Реверс
+          </button>
         </div>
       </section>
 
@@ -305,10 +435,20 @@ export default function ConverterPanel() {
             <div className="space-y-1">
               <label className="text-xs opacity-70">Исходная СК</label>
               <div className="relative">
-                <select className="select w-full h-10 pr-8 appearance-none" value={crsFrom} onChange={e => setCrsFrom(e.target.value)}>
-                  {crsOptions.map(o => <option key={o.code} value={o.code}>{o.title}</option>)}
+                <select
+                  className="select w-full h-10 pr-8 appearance-none"
+                  value={crsFrom}
+                  onChange={(e) => setCrsFrom(e.target.value)}
+                >
+                  {crsOptions.map((o) => (
+                    <option key={o.code} value={o.code}>
+                      {o.title}
+                    </option>
+                  ))}
                 </select>
-                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70"><IconChevronDown /></span>
+                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70">
+                  <IconChevronDown />
+                </span>
               </div>
             </div>
             <div className="space-y-1">
@@ -318,8 +458,12 @@ export default function ConverterPanel() {
                   { k: "deg_dec", t: "гг.ггг°" },
                   { k: "deg_min", t: "гг°мм.мм′" },
                   { k: "deg_min_sec", t: "гг°мм′сс″" },
-                ].map(s => (
-                  <button key={s.k} onClick={() => setFormatIn(s.k as any)} className={s.k === formatIn ? "active" : ""}>
+                ].map((s) => (
+                  <button
+                    key={s.k}
+                    onClick={() => setFormatIn(s.k as any)}
+                    className={s.k === formatIn ? "active" : ""}
+                  >
                     {s.t}
                   </button>
                 ))}
@@ -327,7 +471,7 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица ввода – table-fixed + colgroup, инпуты w-full */}
+          {/* Таблица ввода */}
           <div className="table-wrap">
             <table className="min-w-full table-fixed text-sm table-xs">
               <colgroup>
@@ -347,7 +491,10 @@ export default function ConverterPanel() {
               <tbody>
                 {rowsIn.map((r, i) => {
                   return (
-                    <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
+                    <tr
+                      key={i}
+                      className="border-t border-slate-200/60 dark:border-slate-700/60"
+                    >
                       <td className="p-2">{i + 1}</td>
                       <td className="pr-1 md:p-2">
                         <input
@@ -356,9 +503,18 @@ export default function ConverterPanel() {
                           inputMode="decimal"
                           placeholder={placeholders[formatIn].lat}
                           value={r.lat ?? ""}
-                          onChange={e => {
-                            const v = e.target.value === "" ? undefined : Number(e.target.value.replace(",", "."));
-                            setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lat: v } : rr));
+                          onChange={(e) => {
+                            const v =
+                              e.target.value === ""
+                                ? undefined
+                                : Number(
+                                    e.target.value.replace(",", "."),
+                                  );
+                            setRowsIn(
+                              rowsIn.map((rr, idx) =>
+                                idx === i ? { ...rr, lat: v } : rr,
+                              ),
+                            );
                           }}
                         />
                       </td>
@@ -369,13 +525,22 @@ export default function ConverterPanel() {
                           inputMode="decimal"
                           placeholder={placeholders[formatIn].lon}
                           value={r.lon ?? ""}
-                          onChange={e => {
-                            const v = e.target.value === "" ? undefined : Number(e.target.value.replace(",", "."));
-                            setRowsIn(rowsIn.map((rr, idx) => idx === i ? { ...rr, lon: v } : rr));
+                          onChange={(e) => {
+                            const v =
+                              e.target.value === ""
+                                ? undefined
+                                : Number(
+                                    e.target.value.replace(",", "."),
+                                  );
+                            setRowsIn(
+                              rowsIn.map((rr, idx) =>
+                                idx === i ? { ...rr, lon: v } : rr,
+                              ),
+                            );
                           }}
                         />
                       </td>
-                      <td className="p-2">{/* пустая колонка для выравнивания */}</td>
+                      <td className="p-2">{/* пустая колонка */}</td>
                     </tr>
                   );
                 })}
@@ -384,12 +549,18 @@ export default function ConverterPanel() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <button className="btn h-10 px-4" onClick={addRow}>Добавить точку</button>
+            <button className="btn h-10 px-4" onClick={addRow}>
+              Добавить точку
+            </button>
             <button
               className="btn h-10 px-4"
               onClick={removeRow}
               disabled={rowsIn.length === 1 && isRowEmpty(rowsIn[0])}
-              title={rowsIn.length === 1 ? "Очистить строку" : "Удалить последнюю строку"}
+              title={
+                rowsIn.length === 1
+                  ? "Очистить строку"
+                  : "Удалить последнюю строку"
+              }
             >
               Удалить точку
             </button>
@@ -404,10 +575,20 @@ export default function ConverterPanel() {
             <div className="space-y-1">
               <label className="text-xs opacity-70">Целевая СК</label>
               <div className="relative">
-                <select className="select w-full h-10 pr-8 appearance-none" value={crsTo} onChange={e => setCrsTo(e.target.value)}>
-                  {crsOptions.map(o => <option key={o.code} value={o.code}>{o.title}</option>)}
+                <select
+                  className="select w-full h-10 pr-8 appearance-none"
+                  value={crsTo}
+                  onChange={(e) => setCrsTo(e.target.value)}
+                >
+                  {crsOptions.map((o) => (
+                    <option key={o.code} value={o.code}>
+                      {o.title}
+                    </option>
+                  ))}
                 </select>
-                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70"><IconChevronDown /></span>
+                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70">
+                  <IconChevronDown />
+                </span>
               </div>
             </div>
             <div className="space-y-1">
@@ -417,8 +598,12 @@ export default function ConverterPanel() {
                   { k: "deg_dec", t: "гг.ггг°" },
                   { k: "deg_min", t: "гг°мм.мм′" },
                   { k: "deg_min_sec", t: "гг°мм′сс″" },
-                ].map(s => (
-                  <button key={s.k} onClick={() => setFormatOut(s.k as any)} className={s.k === formatOut ? "active" : ""}>
+                ].map((s) => (
+                  <button
+                    key={s.k}
+                    onClick={() => setFormatOut(s.k as any)}
+                    className={s.k === formatOut ? "active" : ""}
+                  >
                     {s.t}
                   </button>
                 ))}
@@ -426,7 +611,7 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица результата — те же ширины колонок */}
+          {/* Таблица результата */}
           <div className="table-wrap">
             <table className="min-w-full table-fixed text-sm table-xs">
               <colgroup>
@@ -443,10 +628,25 @@ export default function ConverterPanel() {
               </thead>
               <tbody>
                 {rowsOut.map((r, i) => (
-                  <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
+                  <tr
+                    key={i}
+                    className="border-t border-slate-200/60 dark:border-slate-700/60"
+                  >
                     <td className="p-2">{i + 1}</td>
-                    <td className="pr-1 md:p-2"><input className="input w-full text-center" value={(r.lat ?? r.y ?? "-") as any} readOnly /></td>
-                    <td className="pl-1 md:p-2"><input className="input w-full text-center" value={(r.lon ?? r.x ?? "-") as any} readOnly /></td>
+                    <td className="pr-1 md:p-2">
+                      <input
+                        className="input w-full text-center"
+                        value={(r.lat ?? r.y ?? "-") as any}
+                        readOnly
+                      />
+                    </td>
+                    <td className="pl-1 md:p-2">
+                      <input
+                        className="input w-full text-center"
+                        value={(r.lon ?? r.x ?? "-") as any}
+                        readOnly
+                      />
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -454,10 +654,18 @@ export default function ConverterPanel() {
           </div>
 
           <div className="flex items-center gap-3">
-            <button className="btn btn-primary h-10 px-4" onClick={recalc} disabled={loading}>
+            <button
+              className="btn btn-primary h-10 px-4"
+              onClick={recalc}
+              disabled={loading}
+            >
               {loading ? "Пересчитываю..." : "Пересчитать"}
             </button>
-            {ok && <div className="card px-3 py-2 text-sm">Готово: координаты пересчитаны</div>}
+            {ok && (
+              <div className="card px-3 py-2 text-sm">
+                Готово: координаты пересчитаны
+              </div>
+            )}
           </div>
         </section>
       </div>
@@ -465,8 +673,12 @@ export default function ConverterPanel() {
       {/* Предпросмотр Excel */}
       {preview.length > 0 && (
         <section className="card p-3">
-          <div className="font-medium mb-2">Предпросмотр Excel (первые строки):</div>
-          <pre className="text-xs overflow-auto max-h-48">{JSON.stringify(preview, null, 2)}</pre>
+          <div className="font-medium mb-2">
+            Предпросмотр Excel (первые строки):
+          </div>
+          <pre className="text-xs overflow-auto max-h-48">
+            {JSON.stringify(preview, null, 2)}
+          </pre>
         </section>
       )}
 
