@@ -31,8 +31,8 @@ const IconDownload = () => (
 /* helpers */
 const placeholders = {
   deg_dec:     { lat: "00.000000°", lon: "00.000000°" },
-  deg_min:     { lat: "00°00.00′",   lon: "00°00.00′"   },
-  deg_min_sec: { lat: "00°00′00.00″", lon: "00°00′00.00″" },
+  deg_min:     { lat: "00°00.00′",   lon: "00°00.00′"},
+  deg_min_sec: { lat: "00°00′00.00″",   lon: "00°00′00.00″"},
 } as const;
 
 const isRowEmpty = (r: Point) =>
@@ -70,27 +70,23 @@ export default function ConverterPanel() {
   const importTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const exportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // адаптация панели под клавиатуру (iOS/Android)
-  const [kbPad, setKbPad] = useState(0);                      // нижний паддинг панели
-  const panelRef = useRef<HTMLDivElement>(null);              // обёртка панели
-  const focusedCount = useRef(0);
+  const crsOptions = useMemo(() => ([
+    { code: "EPSG:4326",    title: "WGS 84 (готово)" },
+    { code: "GSK2011_GEOG", title: "ГСК-2011 (в разработке)" },
+    { code: "SK42_GEOG",    title: "СК-42 (в разработке)" },
+    { code: "SK95_GEOG",    title: "СК-95 (в разработке)" },
+    { code: "PZ90_GEOG",    title: "ПЗ-90 (в разработке)" },
+    { code: "MSK:DNR",      title: "МСК ДНР (в разработке)" },
+    { code: "MSK:LNR",      title: "МСК ЛНР (в разработке)" },
+    { code: "MSK:KHER",     title: "МСК Херсонская обл. (в разработке)" },
+    { code: "MSK:ZAPR",     title: "МСК Запорожская обл. (в разработке)" },
+  ]), []);
 
-  // слушатель визуального вьюпорта
-  useEffect(() => {
-    const vv = (window as any).visualViewport as VisualViewport | undefined;
-    if (!vv) return;
+  const addRow    = () => setRowsIn(r => [...r, {}]);
+  const removeRow = () => setRowsIn(r => (r.length > 1 ? r.slice(0, -1) : [{ lat: undefined, lon: undefined }]));
+  const reverse   = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
 
-    const onResize = () => {
-      // насколько «ужалась» видимая часть (примерная высота клавиатуры)
-      const keyboard = Math.max(0, window.innerHeight - vv.height);
-      // оставляем небольшой зазор
-      setKbPad(keyboard > 0 ? Math.ceil(keyboard) + 16 : 0);
-    };
-    vv.addEventListener("resize", onResize);
-    return () => vv.removeEventListener("resize", onResize);
-  }, []);
-
-  // клик вне дропдаунов — закрыть
+  // клик-вне и ESC — закрыть меню
   useEffect(() => {
     const onDocDown = (e: PointerEvent | MouseEvent) => {
       const t = e.target as Node;
@@ -114,38 +110,6 @@ export default function ConverterPanel() {
     return () => clearTimeout(t);
   }, [ok]);
 
-  const crsOptions = useMemo(() => ([
-    { code: "EPSG:4326",    title: "WGS 84 (готово)" },
-    { code: "GSK2011_GEOG", title: "ГСК-2011 (в разработке)" },
-    { code: "SK42_GEOG",    title: "СК-42 (в разработке)" },
-    { code: "SK95_GEOG",    title: "СК-95 (в разработке)" },
-    { code: "PZ90_GEOG",    title: "ПЗ-90 (в разработке)" },
-    { code: "MSK:DNR",      title: "МСК ДНР (в разработке)" },
-    { code: "MSK:LNR",      title: "МСК ЛНР (в разработке)" },
-    { code: "MSK:KHER",     title: "МСК Херсонская обл. (в разработке)" },
-    { code: "MSK:ZAPR",     title: "МСК Запорожская обл. (в разработке)" },
-  ]), []);
-
-  const addRow    = () => setRowsIn(r => [...r, {}]);
-  const removeRow = () =>
-    setRowsIn(r => (r.length > 1 ? r.slice(0, -1) : [{ lat: undefined, lon: undefined }]));
-  const reverse   = () => { setCrsFrom(crsTo); setCrsTo(crsFrom); };
-
-  // подсобки для фокуса инпутов
-  const onFocusField = (e: React.FocusEvent<HTMLInputElement>) => {
-    focusedCount.current += 1;
-    // мягко прокрутить активное поле в центр панели (не двигая бекграунд)
-    e.currentTarget.scrollIntoView({ block: "center", behavior: "smooth" });
-  };
-  const onBlurField = () => {
-    focusedCount.current = Math.max(0, focusedCount.current - 1);
-    // если ни одно поле не в фокусе — возвращаем панель к обычному виду
-    if (focusedCount.current === 0) setKbPad(0);
-  };
-  const resetKbPad = () => {
-    if (focusedCount.current === 0) setKbPad(0);
-  };
-
   const recalc = async () => {
     setLoading(true);
     try {
@@ -165,7 +129,6 @@ export default function ConverterPanel() {
       if (!res.ok) throw new Error(data.detail || "Ошибка пересчёта");
       setRowsOut((data.points && data.points.length > 0) ? data.points : [{ lat: undefined, lon: undefined }]);
       setOk(true);
-      setKbPad(0); // при подтверждении возвращаем прежний вид
     } catch (e: any) {
       setToast(e.message);
     } finally {
@@ -210,19 +173,9 @@ export default function ConverterPanel() {
   };
 
   return (
-    // обёртка панели: на мобильном добавляем нижний «паддинг клавиатуры»
-    <div
-      ref={panelRef}
-      style={{ paddingBottom: kbPad ? `${kbPad}px` : undefined }}
-      onClick={(e) => {
-        // клик по пустому месту панели — возвращаем обычный вид
-        const tag = (e.target as HTMLElement).tagName;
-        if (!["INPUT","SELECT","TEXTAREA","BUTTON","LABEL"].includes(tag)) resetKbPad();
-      }}
-      className="grid gap-5 md:gap-6"
-    >
-      {/* 1) Верхняя полоска опций */}
-      <section className="card p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
+    <div className="grid gap-5 md:gap-6">
+      {/* 1) Верхняя полоска опций — overflow видимый, чтобы дропдауны не обрезались */}
+      <section className="card overflow-visible p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
         {/* Авто-зона */}
         <div className="space-y-1 min-w-0">
           <label className="text-xs opacity-70">Авто-зона ГК</label>
@@ -245,24 +198,35 @@ export default function ConverterPanel() {
         </div>
 
         {/* Выгрузка */}
-        <div className="space-y-1 min-w-0" ref={exportRef}
-             onMouseEnter={() => { if (exportTimer.current) { clearTimeout(exportTimer.current); exportTimer.current = null; } }}
-             onMouseLeave={() => { exportTimer.current = setTimeout(() => setOpenExport(false), 200); }}>
+        <div
+          className="space-y-1 min-w-0"
+          ref={exportRef}
+          onMouseEnter={() => { if (exportTimer.current) { clearTimeout(exportTimer.current); exportTimer.current = null; } }}
+          onMouseLeave={() => { exportTimer.current = setTimeout(() => setOpenExport(false), 200); }}
+        >
           <label className="text-xs opacity-70">Выгрузить координаты</label>
           <div className="relative">
-            <button className="btn w-full h-10 justify-between" onClick={() => { setOpenExport(v => !v); setOpenImport(false); }}>
-              <span className="inline-flex items-center gap-2"><IconDownload /> Выбрать формат</span>
-              <IconChevronDown />
+            <button
+              className="btn w-full h-10 justify-between md:text-base text-sm md:px-4 px-3"
+              onClick={() => { setOpenExport(v => !v); setOpenImport(false); }}
+            >
+              <span className="inline-flex items-center gap-2 min-w-0 flex-1">
+                <span className="shrink-0"><IconDownload /></span>
+                {/* Текст кнопки ужимается и не вылезает за рамку */}
+                <span className="truncate">Выбрать формат</span>
+              </span>
+              <span className="shrink-0"><IconChevronDown /></span>
             </button>
+
             {openExport && (
               <div
-                className="absolute top-full right-0 mt-2 z-[999] min-w-56 flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
+                className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
                 onMouseLeave={() => setOpenExport(false)}
               >
-                <button className="btn w-full justify-start" onClick={() => { exportFile("statement"); setOpenExport(false); }}>
+                <button className="btn w-full justify-start text-sm md:text-base" onClick={() => { exportFile("statement"); setOpenExport(false); }}>
                   <IconDownload /> Ведомость
                 </button>
-                <button className="btn w-full justify-start" onClick={() => { exportFile("catalog"); setOpenExport(false); }}>
+                <button className="btn w-full justify-start text-sm md:text-base" onClick={() => { exportFile("catalog"); setOpenExport(false); }}>
                   <IconDownload /> Каталог
                 </button>
               </div>
@@ -271,21 +235,31 @@ export default function ConverterPanel() {
         </div>
 
         {/* Загрузка */}
-        <div className="space-y-1 min-w-0" ref={importRef}
-             onMouseEnter={() => { if (importTimer.current) { clearTimeout(importTimer.current); importTimer.current = null; } }}
-             onMouseLeave={() => { importTimer.current = setTimeout(() => setOpenImport(false), 200); }}>
+        <div
+          className="space-y-1 min-w-0"
+          ref={importRef}
+          onMouseEnter={() => { if (importTimer.current) { clearTimeout(importTimer.current); importTimer.current = null; } }}
+          onMouseLeave={() => { importTimer.current = setTimeout(() => setOpenImport(false), 200); }}
+        >
           <label className="text-xs opacity-70">Загрузить координаты</label>
           <div className="relative">
-            <button className="btn w-full h-10 justify-between" onClick={() => { setOpenImport(v => !v); setOpenExport(false); }}>
-              <span className="inline-flex items-center gap-2"><IconUpload /> Выбрать формат</span>
-              <IconChevronDown />
+            <button
+              className="btn w-full h-10 justify-between md:text-base text-sm md:px-4 px-3"
+              onClick={() => { setOpenImport(v => !v); setOpenExport(false); }}
+            >
+              <span className="inline-flex items-center gap-2 min-w-0 flex-1">
+                <span className="shrink-0"><IconUpload /></span>
+                <span className="truncate">Выбрать формат</span>
+              </span>
+              <span className="shrink-0"><IconChevronDown /></span>
             </button>
+
             {openImport && (
               <div
-                className="absolute top-full right-0 mt-2 z-[999] min-w-56 flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
+                className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
                 onMouseLeave={() => setOpenImport(false)}
               >
-                <label className="btn w-full justify-start">
+                <label className="btn w-full justify-start text-sm md:text-base">
                   <input
                     hidden type="file" accept=".xlsx"
                     onChange={(e) => {
@@ -296,8 +270,8 @@ export default function ConverterPanel() {
                   />
                   <IconUpload /> Загрузить Excel
                 </label>
-                <a className="btn w-full justify-start" href="/templates/template_latlon.xlsx"><IconFile /> Шаблон Lat/Lon</a>
-                <a className="btn w-full justify-start" href="/templates/template_xy.xlsx"><IconFile /> Шаблон X/Y</a>
+                <a className="btn w-full justify-start text-sm md:text-base" href="/templates/template_latlon.xlsx"><IconFile /> Шаблон Lat/Lon</a>
+                <a className="btn w-full justify-start text-sm md:text-base" href="/templates/template_xy.xlsx"><IconFile /> Шаблон X/Y</a>
                 <div
                   className="dropzone"
                   onDragOver={(e) => { e.preventDefault(); }}
@@ -353,7 +327,7 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица ввода – добавлены вертикальные отступы между строками */}
+          {/* Таблица ввода – table-fixed + colgroup, инпуты w-full */}
           <div className="table-wrap">
             <table className="min-w-full table-fixed text-sm table-xs">
               <colgroup>
@@ -373,16 +347,14 @@ export default function ConverterPanel() {
               <tbody>
                 {rowsIn.map((r, i) => {
                   return (
-                    <tr key={i} className="border-y border-slate-200/60 dark:border-slate-700/60">
-                      <td className="p-2 align-middle">{i + 1}</td>
-                      <td className="pr-1 md:p-2 align-middle">
+                    <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
+                      <td className="p-2">{i + 1}</td>
+                      <td className="pr-1 md:p-2">
                         <input
-                          className="input w-full h-11 leading-[1.1]"
+                          className="input w-full"
                           type="text"
                           inputMode="decimal"
                           placeholder={placeholders[formatIn].lat}
-                          onFocus={onFocusField}
-                          onBlur={onBlurField}
                           value={r.lat ?? ""}
                           onChange={e => {
                             const v = e.target.value === "" ? undefined : Number(e.target.value.replace(",", "."));
@@ -390,14 +362,12 @@ export default function ConverterPanel() {
                           }}
                         />
                       </td>
-                      <td className="pl-1 md:p-2 align-middle">
+                      <td className="pl-1 md:p-2">
                         <input
-                          className="input w-full h-11 leading-[1.1]"
+                          className="input w-full"
                           type="text"
                           inputMode="decimal"
                           placeholder={placeholders[formatIn].lon}
-                          onFocus={onFocusField}
-                          onBlur={onBlurField}
                           value={r.lon ?? ""}
                           onChange={e => {
                             const v = e.target.value === "" ? undefined : Number(e.target.value.replace(",", "."));
@@ -405,7 +375,7 @@ export default function ConverterPanel() {
                           }}
                         />
                       </td>
-                      <td className="p-2" />
+                      <td className="p-2">{/* пустая колонка для выравнивания */}</td>
                     </tr>
                   );
                 })}
@@ -456,7 +426,7 @@ export default function ConverterPanel() {
             </div>
           </div>
 
-          {/* Таблица результата — те же ширины + вертикальный зазор */}
+          {/* Таблица результата — те же ширины колонок */}
           <div className="table-wrap">
             <table className="min-w-full table-fixed text-sm table-xs">
               <colgroup>
@@ -473,14 +443,10 @@ export default function ConverterPanel() {
               </thead>
               <tbody>
                 {rowsOut.map((r, i) => (
-                  <tr key={i} className="border-y border-slate-200/60 dark:border-slate-700/60">
-                    <td className="p-2 align-middle">{i + 1}</td>
-                    <td className="pr-1 md:p-2 align-middle">
-                      <input className="input w-full h-11 text-center leading-[1.1]" value={(r.lat ?? r.y ?? "-") as any} readOnly />
-                    </td>
-                    <td className="pl-1 md:p-2 align-middle">
-                      <input className="input w-full h-11 text-center leading-[1.1]" value={(r.lon ?? r.x ?? "-") as any} readOnly />
-                    </td>
+                  <tr key={i} className="border-t border-slate-200/60 dark:border-slate-700/60">
+                    <td className="p-2">{i + 1}</td>
+                    <td className="pr-1 md:p-2"><input className="input w-full text-center" value={(r.lat ?? r.y ?? "-") as any} readOnly /></td>
+                    <td className="pl-1 md:p-2"><input className="input w-full text-center" value={(r.lon ?? r.x ?? "-") as any} readOnly /></td>
                   </tr>
                 ))}
               </tbody>
