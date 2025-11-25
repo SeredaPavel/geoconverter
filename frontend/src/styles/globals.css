@@ -176,4 +176,9 @@ html, body { height: 100%; }
 /* --- Карточки, которым нужно пропускать выпадающие списки наружу --- */
 .card-overflow-visible{
   overflow: visible !important;
+
+
+/* отключаем iOS-маску, которая обрезает всё по краю карточки */
+  -webkit-mask-image: none;
+          mask-image: none;
 }
