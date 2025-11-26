@@ -438,6 +438,13 @@ export default function ConverterPanel() {
   const getCrsTitle = (code: string) =>
     crsOptions.find((o) => o.code === code)?.title || code;
 
+  // Короткая подпись в закрытом селекте (для мобилок)
+  const getCrsLabel = (code: string, maxLen = 30) => {
+    const full = getCrsTitle(code);
+    if (full.length <= maxLen) return full;
+    return full.slice(0, maxLen) + "…";
+  };
+
   const renderCrsMenu = (
     which: "from" | "to",
     current: string,
@@ -701,7 +708,9 @@ export default function ConverterPanel() {
                     setCrsSearch("");
                   }}
                 >
-                  <span className="truncate">{getCrsTitle(crsFrom)}</span>
+                  <span className="truncate">
+                    {getCrsLabel(crsFrom, 30)}
+                  </span>
                   <span className="ml-2 shrink-0 pointer-events-none opacity-70">
                     <IconChevronDown />
                   </span>
@@ -848,7 +857,9 @@ export default function ConverterPanel() {
                     setCrsSearch("");
                   }}
                 >
-                  <span className="truncate">{getCrsTitle(crsTo)}</span>
+                  <span className="truncate">
+                    {getCrsLabel(crsTo, 30)}
+                  </span>
                   <span className="ml-2 shrink-0 pointer-events-none opacity-70">
                     <IconChevronDown />
                   </span>
