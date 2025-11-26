@@ -49,6 +49,24 @@ const IconDownload = () => (
     />
   </svg>
 );
+const IconSearch = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <circle
+      cx="11"
+      cy="11"
+      r="6"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <path
+      d="M16 16l3.5 3.5"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
 /* helpers */
 const placeholders = {
@@ -90,13 +108,20 @@ export default function ConverterPanel() {
   const [toast, setToast] = useState<string | null>(null);
   const [ok, setOk] = useState(false);
 
-  // выпадашки
+  // выпадашки (импорт/экспорт)
   const [openImport, setOpenImport] = useState(false);
   const [openExport, setOpenExport] = useState(false);
-  const importRef = useRef<HTMLDivElement>(null);
-  const exportRef = useRef<HTMLDivElement>(null);
-  const importTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const exportTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const importRef = useRef<HTMLDivElement | null>(null);
+  const exportRef = useRef<HTMLDivElement | null>(null);
+
+  // кастомные выпадашки CRS
+  const [openCrsFromMenu, setOpenCrsFromMenu] = useState(false);
+  const [openCrsToMenu, setOpenCrsToMenu] = useState(false);
+  const crsFromRef = useRef<HTMLDivElement | null>(null);
+  const crsToRef = useRef<HTMLDivElement | null>(null);
+
+  // поиск по СК
+  const [crsSearch, setCrsSearch] = useState("");
 
   const crsOptions = useMemo(
     () => [
@@ -113,6 +138,15 @@ export default function ConverterPanel() {
     [],
   );
 
+  const filteredCrs = useMemo(() => {
+    const q = crsSearch.trim().toLowerCase();
+    if (!q) return crsOptions;
+    return crsOptions.filter(
+      (o) =>
+        o.title.toLowerCase().includes(q) || o.code.toLowerCase().includes(q),
+    );
+  }, [crsOptions, crsSearch]);
+
   const addRow = () => setRowsIn((r) => [...r, {}]);
   const removeRow = () =>
     setRowsIn((r) =>
@@ -127,15 +161,24 @@ export default function ConverterPanel() {
   useEffect(() => {
     const onDocDown = (e: PointerEvent | MouseEvent) => {
       const t = e.target as Node;
-      if (!importRef.current?.contains(t) && !exportRef.current?.contains(t)) {
+      if (
+        !importRef.current?.contains(t) &&
+        !exportRef.current?.contains(t) &&
+        !crsFromRef.current?.contains(t) &&
+        !crsToRef.current?.contains(t)
+      ) {
         setOpenImport(false);
         setOpenExport(false);
+        setOpenCrsFromMenu(false);
+        setOpenCrsToMenu(false);
       }
     };
     const onEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpenImport(false);
         setOpenExport(false);
+        setOpenCrsFromMenu(false);
+        setOpenCrsToMenu(false);
       }
     };
     document.addEventListener("pointerdown", onDocDown);
@@ -230,11 +273,68 @@ export default function ConverterPanel() {
     }
   };
 
+  const getCrsTitle = (code: string) =>
+    crsOptions.find((o) => o.code === code)?.title || code;
+
+  const renderCrsMenu = (
+    which: "from" | "to",
+    current: string,
+    onSelect: (code: string) => void,
+  ) => (
+    <div className="absolute top-full left-0 mt-2 z-[1001] w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 shadow-soft">
+      {/* Поиск */}
+      <div className="px-2 pt-2 pb-1 border-b border-slate-200/70 dark:border-slate-700/70">
+        <div className="text-[10px] uppercase tracking-wide opacity-60 mb-1">
+          Поиск
+        </div>
+        <div className="relative">
+          <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70">
+            <IconSearch />
+          </span>
+          <input
+            type="text"
+            className="input h-8 w-full pl-3 pr-7 text-xs"
+            placeholder="Название или код СК"
+            value={crsSearch}
+            onChange={(e) => setCrsSearch(e.target.value)}
+            autoComplete="off"
+          />
+        </div>
+      </div>
+
+      {/* Список СК — высота на ~3 строки */}
+      <div className="max-h-28 overflow-y-auto py-1">
+        {filteredCrs.length === 0 && (
+          <div className="px-3 py-2 text-xs opacity-60">
+            Ничего не найдено
+          </div>
+        )}
+        {filteredCrs.map((o) => (
+          <button
+            key={o.code}
+            type="button"
+            className={
+              "w-full text-left px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 " +
+              (o.code === current ? "bg-slate-100 dark:bg-slate-800" : "")
+            }
+            onClick={() => {
+              onSelect(o.code);
+              setOpenCrsFromMenu(false);
+              setOpenCrsToMenu(false);
+            }}
+          >
+            {o.title}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <div className="grid gap-5 md:gap-6">
-      {/* 1) Верхняя полоска опций — теперь явно разрешаем overflow */}
+      {/* 1) Верхняя полоска опций */}
       <section className="card card-overflow-visible relative z-20 p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
-        {/* Авто-зона */}
+        {/* Авто-зона ГК */}
         <div className="space-y-1 min-w-0">
           <label className="text-xs opacity-70">Авто-зона ГК</label>
           <div className="flex items-center gap-2 h-10">
@@ -257,9 +357,7 @@ export default function ConverterPanel() {
             <select
               className="select w-full h-10 pr-8 appearance-none"
               value={zoneMode}
-              onChange={(e) =>
-                setZoneMode(Number(e.target.value) as 3 | 6)
-              }
+              onChange={(e) => setZoneMode(Number(e.target.value) as 3 | 6)}
             >
               <option value={6}>6°</option>
               <option value={3}>3°</option>
@@ -271,19 +369,7 @@ export default function ConverterPanel() {
         </div>
 
         {/* Выгрузка */}
-        <div
-          className="space-y-1 min-w-0"
-          ref={exportRef}
-          onMouseEnter={() => {
-            if (exportTimer.current) {
-              clearTimeout(exportTimer.current);
-              exportTimer.current = null;
-            }
-          }}
-          onMouseLeave={() => {
-            exportTimer.current = setTimeout(() => setOpenExport(false), 200);
-          }}
-        >
+        <div className="space-y-1 min-w-0" ref={exportRef}>
           <label className="text-xs opacity-70">Выгрузить координаты</label>
           <div className="relative">
             <button
@@ -292,6 +378,7 @@ export default function ConverterPanel() {
                 setOpenExport((v) => !v);
                 setOpenImport(false);
               }}
+              type="button"
             >
               <span className="inline-flex items-center gap-2 min-w-0 flex-1">
                 <span className="shrink-0">
@@ -305,15 +392,14 @@ export default function ConverterPanel() {
             </button>
 
             {openExport && (
-              <div
-                className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
-              >
+              <div className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2">
                 <button
                   className="btn w-full justify-start text-sm md:text-base"
                   onClick={() => {
                     exportFile("statement");
                     setOpenExport(false);
                   }}
+                  type="button"
                 >
                   <IconDownload /> Ведомость
                 </button>
@@ -323,6 +409,7 @@ export default function ConverterPanel() {
                     exportFile("catalog");
                     setOpenExport(false);
                   }}
+                  type="button"
                 >
                   <IconDownload /> Каталог
                 </button>
@@ -332,19 +419,7 @@ export default function ConverterPanel() {
         </div>
 
         {/* Загрузка */}
-        <div
-          className="space-y-1 min-w-0"
-          ref={importRef}
-          onMouseEnter={() => {
-            if (importTimer.current) {
-              clearTimeout(importTimer.current);
-              importTimer.current = null;
-            }
-          }}
-          onMouseLeave={() => {
-            importTimer.current = setTimeout(() => setOpenImport(false), 200);
-          }}
-        >
+        <div className="space-y-1 min-w-0" ref={importRef}>
           <label className="text-xs opacity-70">Загрузить координаты</label>
           <div className="relative">
             <button
@@ -353,6 +428,7 @@ export default function ConverterPanel() {
                 setOpenImport((v) => !v);
                 setOpenExport(false);
               }}
+              type="button"
             >
               <span className="inline-flex items-center gap-2 min-w-0 flex-1">
                 <span className="shrink-0">
@@ -366,9 +442,7 @@ export default function ConverterPanel() {
             </button>
 
             {openImport && (
-              <div
-                className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2"
-              >
+              <div className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2">
                 <label className="btn w-full justify-start text-sm md:text-base">
                   <input
                     hidden
@@ -419,7 +493,7 @@ export default function ConverterPanel() {
         {/* Реверс */}
         <div className="space-y-1 min-w-0">
           <label className="text-xs opacity-0 select-none">Реверс</label>
-          <button className="btn w-full h-10" onClick={reverse}>
+          <button className="btn w-full h-10" onClick={reverse} type="button">
             Реверс
           </button>
         </div>
@@ -428,29 +502,34 @@ export default function ConverterPanel() {
       {/* 2–3) Средние секции */}
       <div className="grid md:grid-cols-2 gap-5 md:gap-6">
         {/* Исходные данные */}
-        <section className="card p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
+        <section className="card card-overflow-visible p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
           <div className="text-lg font-semibold">Исходные данные</div>
 
           <div className="grid md:grid-cols-2 gap-3">
             <div className="space-y-1">
               <label className="text-xs opacity-70">Исходная СК</label>
-              <div className="relative">
-                <select
-                  className="select w-full h-10 pr-8 appearance-none"
-                  value={crsFrom}
-                  onChange={(e) => setCrsFrom(e.target.value)}
+
+              <div className="relative" ref={crsFromRef}>
+                <button
+                  type="button"
+                  className="select w-full h-10 pr-8 flex items-center justify-between text-left"
+                  onClick={() => {
+                    setOpenCrsFromMenu((v) => !v);
+                    setOpenCrsToMenu(false);
+                    setCrsSearch("");
+                  }}
                 >
-                  {crsOptions.map((o) => (
-                    <option key={o.code} value={o.code}>
-                      {o.title}
-                    </option>
-                  ))}
-                </select>
-                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70">
-                  <IconChevronDown />
-                </span>
+                  <span className="truncate">{getCrsTitle(crsFrom)}</span>
+                  <span className="ml-2 shrink-0 pointer-events-none opacity-70">
+                    <IconChevronDown />
+                  </span>
+                </button>
+
+                {openCrsFromMenu &&
+                  renderCrsMenu("from", crsFrom, (code) => setCrsFrom(code))}
               </div>
             </div>
+
             <div className="space-y-1">
               <label className="text-xs opacity-70">Формат</label>
               <div className="segment md:ml-0 ml-2">
@@ -463,6 +542,7 @@ export default function ConverterPanel() {
                     key={s.k}
                     onClick={() => setFormatIn(s.k as any)}
                     className={s.k === formatIn ? "active" : ""}
+                    type="button"
                   >
                     {s.t}
                   </button>
@@ -549,7 +629,7 @@ export default function ConverterPanel() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <button className="btn h-10 px-4" onClick={addRow}>
+            <button className="btn h-10 px-4" onClick={addRow} type="button">
               Добавить точку
             </button>
             <button
@@ -561,6 +641,7 @@ export default function ConverterPanel() {
                   ? "Очистить строку"
                   : "Удалить последнюю строку"
               }
+              type="button"
             >
               Удалить точку
             </button>
@@ -568,29 +649,34 @@ export default function ConverterPanel() {
         </section>
 
         {/* Результат */}
-        <section className="card p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
+        <section className="card card-overflow-visible p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
           <div className="text-lg font-semibold">Результат</div>
 
           <div className="grid md:grid-cols-2 gap-3">
             <div className="space-y-1">
               <label className="text-xs opacity-70">Целевая СК</label>
-              <div className="relative">
-                <select
-                  className="select w-full h-10 pr-8 appearance-none"
-                  value={crsTo}
-                  onChange={(e) => setCrsTo(e.target.value)}
+
+              <div className="relative" ref={crsToRef}>
+                <button
+                  type="button"
+                  className="select w-full h-10 pr-8 flex items-center justify-between text-left"
+                  onClick={() => {
+                    setOpenCrsToMenu((v) => !v);
+                    setOpenCrsFromMenu(false);
+                    setCrsSearch("");
+                  }}
                 >
-                  {crsOptions.map((o) => (
-                    <option key={o.code} value={o.code}>
-                      {o.title}
-                    </option>
-                  ))}
-                </select>
-                <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70">
-                  <IconChevronDown />
-                </span>
+                  <span className="truncate">{getCrsTitle(crsTo)}</span>
+                  <span className="ml-2 shrink-0 pointer-events-none opacity-70">
+                    <IconChevronDown />
+                  </span>
+                </button>
+
+                {openCrsToMenu &&
+                  renderCrsMenu("to", crsTo, (code) => setCrsTo(code))}
               </div>
             </div>
+
             <div className="space-y-1">
               <label className="text-xs opacity-70">Формат</label>
               <div className="segment md:ml-0 ml-2">
@@ -603,6 +689,7 @@ export default function ConverterPanel() {
                     key={s.k}
                     onClick={() => setFormatOut(s.k as any)}
                     className={s.k === formatOut ? "active" : ""}
+                    type="button"
                   >
                     {s.t}
                   </button>
@@ -658,6 +745,7 @@ export default function ConverterPanel() {
               className="btn btn-primary h-10 px-4"
               onClick={recalc}
               disabled={loading}
+              type="button"
             >
               {loading ? "Пересчитываю..." : "Пересчитать"}
             </button>
