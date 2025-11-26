@@ -9,22 +9,42 @@ import GlobeLogo from "./GlobeLogo";
 function IconBurger(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" {...props} aria-hidden>
-      <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
+      <path
+        d="M4 6h16M4 12h16M4 18h16"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 function IconClose(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" {...props} aria-hidden>
-      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"/>
+      <path
+        d="M18 6L6 18M6 6l12 12"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 
-const menuLinks = [
-  { label: "Возможности", href: "#features" },
-  { label: "FAQ",          href: "#faq" },
-  { label: "Запуск",       href: "#start" },
+type PanelType = "converter" | "features" | "faq";
+
+type NavItem = {
+  id: "start" | "features" | "faq" | "donate";
+  label: string;
+  panel: PanelType;
+  focusDonate?: boolean;
+};
+
+const navItems: NavItem[] = [
+  { id: "start", label: "Запуск", panel: "converter" },
+  { id: "features", label: "Возможности", panel: "features" },
+  { id: "faq", label: "FAQ", panel: "faq" },
+  { id: "donate", label: "Донат", panel: "features", focusDonate: true },
 ];
 
 export default function Header() {
@@ -41,8 +61,24 @@ export default function Header() {
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = mobileOpen ? "hidden" : prev || "";
-    return () => { document.body.style.overflow = prev; };
+    return () => {
+      document.body.style.overflow = prev;
+    };
   }, [mobileOpen]);
+
+  const handleNavClick = (item: NavItem) => {
+    if (typeof window === "undefined") return;
+    const detail: { panel: PanelType; focusDonate?: boolean } = {
+      panel: item.panel,
+    };
+    if (item.focusDonate) detail.focusDonate = true;
+
+    window.dispatchEvent(
+      new CustomEvent("gc-open-panel", {
+        detail,
+      })
+    );
+  };
 
   return (
     <header
@@ -76,14 +112,19 @@ export default function Header() {
 
         {/* Десктоп-меню */}
         <nav className="ml-auto hidden sm:flex items-center gap-3">
-          {menuLinks.slice(0, 2).map((l) => (
-            <a key={l.href} className="btn btn-ghost h-11 text-base font-medium" href={l.href}>
-              {l.label}
-            </a>
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={
+                "btn btn-ghost h-11 text-base " +
+                (item.id === "start" ? "font-semibold" : "font-medium")
+              }
+              onClick={() => handleNavClick(item)}
+            >
+              {item.label}
+            </button>
           ))}
-          <a className="btn btn-ghost h-11 text-base font-semibold" href="#start">
-            Запуск
-          </a>
         </nav>
 
         {/* Мобайл: только бургер (крупный + подпись «Меню») */}
@@ -94,10 +135,11 @@ export default function Header() {
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
           >
-            {mobileOpen
-              ? <IconClose className="w-5 h-5"/>
-              : <IconBurger className="w-6 h-6"/>
-            }
+            {mobileOpen ? (
+              <IconClose className="w-5 h-5" />
+            ) : (
+              <IconBurger className="w-6 h-6" />
+            )}
             <span>Меню</span>
           </button>
         </nav>
@@ -112,19 +154,24 @@ export default function Header() {
             onClick={() => setMobileOpen(false)}
             aria-hidden
           />
-          {/* панель-меню: уже, ниже шапки, полупрозрачная */}
+          {/* панель-меню */}
           <div className="fixed right-4 top-[72px] z-50 w-56 sm:hidden">
-            <div className="rounded-2xl border border-slate-200/50 dark:border-slate-700/50
-                            bg-white/40 dark:bg-slate-900/10 backdrop-blur p-2 shadow-soft">
-              {menuLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
+            <div
+              className="rounded-2xl border border-slate-200/50 dark:border-slate-700/50
+                            bg-white/40 dark:bg-slate-900/10 backdrop-blur p-2 shadow-soft"
+            >
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
                   className="btn btn-ghost h-10 w-full justify-start text-base"
-                  onClick={() => setMobileOpen(false)}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    handleNavClick(item);
+                  }}
                 >
-                  {l.label}
-                </a>
+                  {item.label}
+                </button>
               ))}
             </div>
           </div>
