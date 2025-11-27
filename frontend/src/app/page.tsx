@@ -172,7 +172,6 @@ export default function Page() {
             role="presentation"
             onClick={closePanel}
           />
-          {/* Обёртка модалки БЕЗ скролла — скролл только у карточки */}
           <div className="absolute inset-0 flex items-start md:items-center justify-center modal-wrap overflow-hidden p-4 md:p-6">
             <div className="w-full md:max-w-[1200px] min-h-0">
               <div
@@ -211,7 +210,10 @@ export default function Page() {
                 {activePanel === "converter" && <ConverterPanel />}
 
                 {activePanel === "features" && (
-                  <FeaturesPanel donateInputRef={donateInputRef} />
+                  <FeaturesPanel
+                    donateInputRef={donateInputRef}
+                    forceActive={donateFocus}
+                  />
                 )}
 
                 {activePanel === "faq" && <FAQPanel />}
