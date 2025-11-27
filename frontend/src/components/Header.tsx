@@ -58,6 +58,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // блокируем скролл страницы, когда открыто мобильное меню
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = mobileOpen ? "hidden" : prev || "";
@@ -84,7 +85,11 @@ export default function Header() {
     <header
       className={[
         "fixed inset-x-0 top-0 z-40 transition-all",
-        scrolled ? "backdrop-blur bg-black/40" : "bg-transparent",
+        mobileOpen
+          ? "bg-black/40" // при открытом меню убираем backdrop-blur, чтобы overlay нормально ловил тапы
+          : scrolled
+          ? "backdrop-blur bg-black/40"
+          : "bg-transparent",
       ].join(" ")}
     >
       <div className="max-w-[1200px] mx-auto px-4 py-2 flex items-center gap-3">
@@ -127,7 +132,7 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Мобайл: только бургер (крупный + подпись «Меню») */}
+        {/* Мобайл: бургер + подпись «Меню» */}
         <nav className="ml-auto sm:hidden flex items-center">
           <button
             className="btn btn-ghost h-11 px-3 text-sm gap-2"
