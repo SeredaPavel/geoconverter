@@ -21,8 +21,8 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 .btn-lg { @apply h-12 md:h-14 text-lg md:text-xl px-7 md:px-9; }
 
 /* Сегмент-переключатель */
-.segment { @apply inline-flex flex-wrap rounded-xl p-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700; }
-.segment button { @apply px-3 h-9 rounded-lg text-xs text-slate-600 dark:text-slate-300; }
+.segment { @apply flex w-full flex-wrap rounded-xl p-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700; }
+.segment button { @apply flex-1 px-2 h-9 rounded-lg text-xs text-slate-600 dark:text-slate-300; }
 .segment .active { @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-soft; }
 
 /* Дропдаун и дропзона */
