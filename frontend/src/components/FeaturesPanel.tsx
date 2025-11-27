@@ -91,7 +91,7 @@ export default function FeaturesPanel({
               type="number"
               min={0}
               step={100}
-              placeholder="Например, 500 ₽"
+              placeholder="Например 500 ₽"
             />
           </div>
         </div>

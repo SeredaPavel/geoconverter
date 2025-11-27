@@ -120,6 +120,10 @@ export default function ConverterPanel() {
   const importRef = useRef<HTMLDivElement | null>(null);
   const exportRef = useRef<HTMLDivElement | null>(null);
 
+  // кастомная выпадашка ширины зоны
+  const [openZoneMenu, setOpenZoneMenu] = useState(false);
+  const zoneRef = useRef<HTMLDivElement | null>(null);
+
   // кастомные выпадашки CRS
   const [openCrsFromMenu, setOpenCrsFromMenu] = useState(false);
   const [openCrsToMenu, setOpenCrsToMenu] = useState(false);
@@ -191,26 +195,66 @@ export default function ConverterPanel() {
         code: "MSK-01",
         title: "МСК-01  Республика Адыгея (в разработке)",
       },
-      { group: "МСК", code: "MSK-02", title: "МСК-02  Республика Башкортостан (в разработке)" },
-      { group: "МСК", code: "MSK-03", title: "МСК-03  Республика Бурятия (в разработке)" },
-      { group: "МСК", code: "MSK-04", title: "МСК-04  Республика Алтай (в разработке)" },
-      { group: "МСК", code: "MSK-05", title: "МСК-05  Республика Дагестан (в разработке)" },
-      { group: "МСК", code: "MSK-06", title: "МСК-06  Республика Ингушетия (в разработке)" },
+      {
+        group: "МСК",
+        code: "MSK-02",
+        title: "МСК-02  Республика Башкортостан (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-03",
+        title: "МСК-03  Республика Бурятия (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-04",
+        title: "МСК-04  Республика Алтай (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-05",
+        title: "МСК-05  Республика Дагестан (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-06",
+        title: "МСК-06  Республика Ингушетия (в разработке)",
+      },
       {
         group: "МСК",
         code: "MSK-07",
         title: "МСК-07  Кабардино-Балкарская Республика (в разработке)",
       },
-      { group: "МСК", code: "MSK-08", title: "МСК-08  Республика Калмыкия (в разработке)" },
+      {
+        group: "МСК",
+        code: "MSK-08",
+        title: "МСК-08  Республика Калмыкия (в разработке)",
+      },
       {
         group: "МСК",
         code: "MSK-09",
         title: "МСК-09  Республика Карачаево-Черкесия (в разработке)",
       },
-      { group: "МСК", code: "MSK-10", title: "МСК-10  Республика Карелия (в разработке)" },
-      { group: "МСК", code: "MSK-11", title: "МСК-11  Республика Коми (в разработке)" },
-      { group: "МСК", code: "MSK-12", title: "МСК-12  Республика Марий Эл (в разработке)" },
-      { group: "МСК", code: "MSK-13", title: "МСК-13  Республика Мордовия (в разработке)" },
+      {
+        group: "МСК",
+        code: "MSK-10",
+        title: "МСК-10  Республика Карелия (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-11",
+        title: "МСК-11  Республика Коми (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-12",
+        title: "МСК-12  Республика Марий Эл (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-13",
+        title: "МСК-13  Республика Мордовия (в разработке)",
+      },
       {
         group: "МСК",
         code: "MSK-14",
@@ -221,64 +265,296 @@ export default function ConverterPanel() {
         code: "MSK-15",
         title: "МСК-15  Северная Осетия - Алания (в разработке)",
       },
-      { group: "МСК", code: "MSK-16", title: "МСК-16  Республика Татарстан (в разработке)" },
-      { group: "МСК", code: "MSK-18", title: "МСК-18  Удмуртская Республика (в разработке)" },
-      { group: "МСК", code: "MSK-20", title: "МСК-20  Чеченская Республика (в разработке)" },
-      { group: "МСК", code: "MSK-21", title: "МСК-21  Чувашская Республика (в разработке)" },
-      { group: "МСК", code: "MSK-22", title: "МСК-22  Алтайский край (в разработке)" },
-      { group: "МСК", code: "MSK-23", title: "МСК-23  Краснодарский край (в разработке)" },
-      { group: "МСК", code: "MSK-24", title: "МСК-24  Красноярский край (в разработке)" },
-      { group: "МСК", code: "MSK-25", title: "МСК-25  Приморский край (в разработке)" },
-      { group: "МСК", code: "MSK-26", title: "МСК-26  Ставропольский край (в разработке)" },
-      { group: "МСК", code: "MSK-27", title: "МСК-27  Хабаровский край (в разработке)" },
-      { group: "МСК", code: "MSK-28", title: "МСК-28  Амурская область (в разработке)" },
-      { group: "МСК", code: "MSK-29", title: "МСК-29  Архангельская область (в разработке)" },
-      { group: "МСК", code: "MSK-30", title: "МСК-30  Астраханская область (в разработке)" },
-      { group: "МСК", code: "MSK-31", title: "МСК-31  Белгородская область (в разработке)" },
-      { group: "МСК", code: "MSK-32", title: "МСК-32  Брянская область (в разработке)" },
-      { group: "МСК", code: "MSK-33", title: "МСК-33  Владимирская область (в разработке)" },
-      { group: "МСК", code: "MSK-34", title: "МСК-34  Волгоградская область (в разработке)" },
-      { group: "МСК", code: "MSK-35", title: "МСК-35  Вологодская область (в разработке)" },
-      { group: "МСК", code: "MSK-36", title: "МСК-36  Воронежская область (в разработке)" },
-      { group: "МСК", code: "MSK-37", title: "МСК-37  Ивановская область (в разработке)" },
-      { group: "МСК", code: "MSK-38", title: "МСК-38  Иркутская область (в разработке)" },
-      { group: "МСК", code: "MSK-39", title: "МСК-39  Калининградская область (в разработке)" },
-      { group: "МСК", code: "MSK-40", title: "МСК-40  Калужская область (в разработке)" },
-      { group: "МСК", code: "MSK-41", title: "МСК-41  Камчатский край (в разработке)" },
-      { group: "МСК", code: "MSK-42", title: "МСК-42  Кемеровская область (в разработке)" },
-      { group: "МСК", code: "MSK-43", title: "МСК-43  Кировская область (в разработке)" },
-      { group: "МСК", code: "MSK-44", title: "МСК-44  Костромская область (в разработке)" },
-      { group: "МСК", code: "MSK-45", title: "МСК-45  Курганская область (в разработке)" },
-      { group: "МСК", code: "MSK-46", title: "МСК-46  Курская область (в разработке)" },
-      { group: "МСК", code: "MSK-47", title: "МСК-47  Ленинградская область (в разработке)" },
-      { group: "МСК", code: "MSK-48", title: "МСК-48  Липецкая область (в разработке)" },
-      { group: "МСК", code: "MSK-49", title: "МСК-49  Магаданская область (в разработке)" },
-      { group: "МСК", code: "MSK-50", title: "МСК-50  Московская область (в разработке)" },
-      { group: "МСК", code: "MSK-51", title: "МСК-51  Мурманская область (в разработке)" },
-      { group: "МСК", code: "MSK-52", title: "МСК-52  Нижегородская область (в разработке)" },
-      { group: "МСК", code: "MSK-53", title: "МСК-53  Новгородская область (в разработке)" },
-      { group: "МСК", code: "MSK-54", title: "МСК-54  Новосибирская область (в разработке)" },
-      { group: "МСК", code: "MSK-55", title: "МСК-55  Омская область (в разработке)" },
-      { group: "МСК", code: "MSK-56", title: "МСК-56  Оренбургская область (в разработке)" },
-      { group: "МСК", code: "MSK-58", title: "МСК-58  Пензенская область (в разработке)" },
-      { group: "МСК", code: "MSK-59", title: "МСК-59  Пермский край (в разработке)" },
-      { group: "МСК", code: "MSK-60", title: "МСК-60  Псковская область (в разработке)" },
-      { group: "МСК", code: "MSK-61", title: "МСК-61  Ростовская область (в разработке)" },
-      { group: "МСК", code: "MSK-62", title: "МСК-62  Рязанская область (в разработке)" },
-      { group: "МСК", code: "MSK-63", title: "МСК-63  Самарская область (в разработке)" },
-      { group: "МСК", code: "MSK-64", title: "МСК-64  Саратовская область (в разработке)" },
-      { group: "МСК", code: "MSK-65", title: "МСК-65  Сахалинская область (в разработке)" },
-      { group: "МСК", code: "MSK-66", title: "МСК-66  Свердловская область (в разработке)" },
-      { group: "МСК", code: "MSK-67", title: "МСК-67  Смоленская область (в разработке)" },
-      { group: "МСК", code: "MSK-68", title: "МСК-68  Тамбовская область (в разработке)" },
-      { group: "МСК", code: "MSK-69", title: "МСК-69  Тверская область (в разработке)" },
-      { group: "МСК", code: "MSK-70", title: "МСК-70  Томская область (в разработке)" },
-      { group: "МСК", code: "MSK-71", title: "МСК-71  Тульская область (в разработке)" },
-      { group: "МСК", code: "MSK-72", title: "МСК-72  Тюменская область (в разработке)" },
-      { group: "МСК", code: "MSK-73", title: "МСК-73  Ульяновская область (в разработке)" },
-      { group: "МСК", code: "MSK-74", title: "МСК-74  Челябинская область (в разработке)" },
-      { group: "МСК", code: "MSK-75", title: "МСК-75  Забайкальский край (в разработке)" },
-      { group: "МСК", code: "MSK-76", title: "МСК-76  Ярославская область (в разработке)" },
+      {
+        group: "МСК",
+        code: "MSK-16",
+        title: "МСК-16  Республика Татарстан (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-18",
+        title: "МСК-18  Удмуртская Республика (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-20",
+        title: "МСК-20  Чеченская Республика (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-21",
+        title: "МСК-21  Чувашская Республика (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-22",
+        title: "МСК-22  Алтайский край (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-23",
+        title: "МСК-23  Краснодарский край (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-24",
+        title: "МСК-24  Красноярский край (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-25",
+        title: "МСК-25  Приморский край (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-26",
+        title: "МСК-26  Ставропольский край (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-27",
+        title: "МСК-27  Хабаровский край (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-28",
+        title: "МСК-28  Амурская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-29",
+        title: "МСК-29  Архангельская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-30",
+        title: "МСК-30  Астраханская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-31",
+        title: "МСК-31  Белгородская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-32",
+        title: "МСК-32  Брянская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-33",
+        title: "МСК-33  Владимирская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-34",
+        title: "МСК-34  Волгоградская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-35",
+        title: "МСК-35  Вологодская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-36",
+        title: "МСК-36  Воронежская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-37",
+        title: "МСК-37  Ивановская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-38",
+        title: "МСК-38  Иркутская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-39",
+        title: "МСК-39  Калининградская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-40",
+        title: "МСК-40  Калужская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-41",
+        title: "МСК-41  Камчатский край (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-42",
+        title: "МСК-42  Кемеровская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-43",
+        title: "МСК-43  Кировская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-44",
+        title: "МСК-44  Костромская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-45",
+        title: "МСК-45  Курганская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-46",
+        title: "МСК-46  Курская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-47",
+        title: "МСК-47  Ленинградская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-48",
+        title: "МСК-48  Липецкая область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-49",
+        title: "МСК-49  Магаданская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-50",
+        title: "МСК-50  Московская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-51",
+        title: "МСК-51  Мурманская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-52",
+        title: "МСК-52  Нижегородская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-53",
+        title: "МСК-53  Новгородская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-54",
+        title: "МСК-54  Новосибирская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-55",
+        title: "МСК-55  Омская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-56",
+        title: "МСК-56  Оренбургская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-58",
+        title: "МСК-58  Пензенская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-59",
+        title: "МСК-59  Пермский край (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-60",
+        title: "МСК-60  Псковская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-61",
+        title: "МСК-61  Ростовская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-62",
+        title: "МСК-62  Рязанская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-63",
+        title: "МСК-63  Самарская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-64",
+        title: "МСК-64  Саратовская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-65",
+        title: "МСК-65  Сахалинская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-66",
+        title: "МСК-66  Свердловская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-67",
+        title: "МСК-67  Смоленская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-68",
+        title: "МСК-68  Тамбовская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-69",
+        title: "МСК-69  Тверская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-70",
+        title: "МСК-70  Томская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-71",
+        title: "МСК-71  Тульская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-72",
+        title: "МСК-72  Тюменская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-73",
+        title: "МСК-73  Ульяновская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-74",
+        title: "МСК-74  Челябинская область (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-75",
+        title: "МСК-75  Забайкальский край (в разработке)",
+      },
+      {
+        group: "МСК",
+        code: "MSK-76",
+        title: "МСК-76  Ярославская область (в разработке)",
+      },
       {
         group: "МСК",
         code: "MSK-83",
@@ -287,7 +563,8 @@ export default function ConverterPanel() {
       {
         group: "МСК",
         code: "MSK-86",
-        title: "МСК-86  Ханты-Мансийский автономный округ — Югра (в разработке)",
+        title:
+          "МСК-86  Ханты-Мансийский автономный округ — Югра (в разработке)",
       },
       {
         group: "МСК",
@@ -327,12 +604,14 @@ export default function ConverterPanel() {
         !importRef.current?.contains(t) &&
         !exportRef.current?.contains(t) &&
         !crsFromRef.current?.contains(t) &&
-        !crsToRef.current?.contains(t)
+        !crsToRef.current?.contains(t) &&
+        !zoneRef.current?.contains(t)
       ) {
         setOpenImport(false);
         setOpenExport(false);
         setOpenCrsFromMenu(false);
         setOpenCrsToMenu(false);
+        setOpenZoneMenu(false);
       }
     };
     const onEsc = (e: KeyboardEvent) => {
@@ -341,6 +620,7 @@ export default function ConverterPanel() {
         setOpenExport(false);
         setOpenCrsFromMenu(false);
         setOpenCrsToMenu(false);
+        setOpenZoneMenu(false);
       }
     };
     document.addEventListener("pointerdown", onDocDown);
@@ -542,18 +822,37 @@ export default function ConverterPanel() {
         {/* Ширина зоны */}
         <div className="space-y-1 min-w-0">
           <label className="text-xs opacity-70">Ширина зоны</label>
-          <div className="relative">
-            <select
-              className="select w-full h-10 pr-8 appearance-none"
-              value={zoneMode}
-              onChange={(e) => setZoneMode(Number(e.target.value) as 3 | 6)}
+          <div className="relative" ref={zoneRef}>
+            <button
+              type="button"
+              className="select w-full h-10 pr-8 flex items-center justify-between text-left"
+              onClick={() => setOpenZoneMenu((v) => !v)}
             >
-              <option value={6}>6°</option>
-              <option value={3}>3°</option>
-            </select>
-            <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 opacity-70">
-              <IconChevronDown />
-            </span>
+              <span className="truncate">
+                {zoneMode === 6 ? "6°" : "3°"}
+              </span>
+              <span className="ml-2 shrink-0 pointer-events-none opacity-70">
+                <IconChevronDown />
+              </span>
+            </button>
+
+            {openZoneMenu && (
+              <div className="absolute top-full left-0 mt-2 z-[1002] min-w-[120px] rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft py-1">
+                {[6, 3].map((v) => (
+                  <button
+                    key={v}
+                    type="button"
+                    className="w-full text-left px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
+                    onClick={() => {
+                      setZoneMode(v as 3 | 6);
+                      setOpenZoneMenu(false);
+                    }}
+                  >
+                    {v}°
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -566,6 +865,7 @@ export default function ConverterPanel() {
               onClick={() => {
                 setOpenExport((v) => !v);
                 setOpenImport(false);
+                setOpenZoneMenu(false);
               }}
               type="button"
             >
@@ -616,6 +916,7 @@ export default function ConverterPanel() {
               onClick={() => {
                 setOpenImport((v) => !v);
                 setOpenExport(false);
+                setOpenZoneMenu(false);
               }}
               type="button"
             >
