@@ -1,16 +1,201 @@
 // /geoconverter/frontend/src/components/FAQPanel.tsx
 "use client";
 
-export default function FAQPanel() {
+import React, { useState } from "react";
+
+type FaqItem = {
+  question: string;
+  answer: React.ReactNode;
+};
+
+const faqs: FaqItem[] = [
+  {
+    question: "Какие форматы координат поддерживает GeoConverter?",
+    answer: (
+      <>
+        GeoConverter поддерживает популярные системы: WGS84, SK-42, SK-95,
+        ПЗ-90, МСК, а также различные форматы записи координат
+        (градусы, градусы-минуты-секунды, десятичные значения). Поддержка
+        форматов и систем координат постоянно расширяется.
+      </>
+    ),
+  },
+  {
+    question: "Можно ли конвертировать координаты в несколько систем сразу?",
+    answer: (
+      <>
+        Одновременная конвертация в несколько систем пока недоступна. Но вы
+        можете использовать «цепочку»:
+        <br />
+        <br />
+        1) конвертировать координаты в первую целевую систему;
+        <br />
+        2) затем взять полученный результат как исходные данные и пересчитать
+        в другую систему, используя функцию реверса и смену целевой СК.
+      </>
+    ),
+  },
+  {
+    question: "Нужно ли устанавливать программу?",
+    answer: (
+      <>
+        Нет. GeoConverter работает полностью онлайн в браузере. Никаких
+        установок, обновлений и регистрации не требуется — достаточно
+        открыть сайт.
+      </>
+    ),
+  },
+  {
+    question: "Насколько точны вычисления?",
+    answer: (
+      <>
+        Расчёты выполняются с использованием проверенных формул трансформации
+        и актуальных параметров систем координат. По мере развития сервиса
+        будут добавляться уточнённые модели и дополнительные проверки для
+        повышения точности.
+      </>
+    ),
+  },
+  {
+    question: "Какой формат ввода координат поддерживается?",
+    answer: (
+      <>
+        Вы можете вводить координаты в виде:
+        <ul className="mt-2 list-disc pl-5 space-y-1">
+          <li>десятичных градусов;</li>
+          <li>градусов-минут-секунд;</li>
+          <li>градусов-минут.</li>
+        </ul>
+        Поддержка дополнительных вариантов записи будет постепенно
+        расширяться.
+      </>
+    ),
+  },
+  {
+    question: "Можно ли использовать сервис бесплатно?",
+    answer: (
+      <>
+        Да, сервис полностью бесплатный для пользователей. Если GeoConverter
+        оказался полезен и сэкономил вам время, вы можете поддержать автора
+        донатом — это помогает развивать проект и оплачивать технические
+        ресурсы.
+      </>
+    ),
+  },
+  {
+    question: "Работает ли GeoConverter на телефоне?",
+    answer: (
+      <>
+        Да. Интерфейс адаптирован под смартфоны и планшеты — сервис можно
+        использовать в пути, на объекте или в полевых условиях прямо из
+        мобильного браузера.
+      </>
+    ),
+  },
+  {
+    question: "Что делать, если мои координаты не распознаются?",
+    answer: (
+      <>
+        В первую очередь проверьте формат записи:
+        <br />
+        <br />
+        • корректность разделителей (точка или запятая);<br />
+        • порядок значений (сначала широта, затем долгота);<br />
+        • отсутствие лишних символов и пробелов.
+        <br />
+        <br />
+        Если проблема сохраняется, можно отправить пример координат
+        автору сервиса — это поможет улучшить обработку.
+      </>
+    ),
+  },
+  {
+    question: "Можно ли конвертировать большие объёмы данных?",
+    answer: (
+      <>
+        Текущая версия сервиса ориентирована на точечные и небольшие
+        наборы координат. Поддержка массовых конверсий (пакетная
+        обработка, загрузка больших файлов) планируется в будущих
+        обновлениях. Если для вашей работы это критично — вы можете
+        оставить запрос и описать свой сценарий.
+      </>
+    ),
+  },
+];
+
+function IconChevron({ open }: { open: boolean }) {
   return (
-    <section className="card p-4 md:p-5 space-y-3">
-      <div className="text-base md:text-lg font-semibold">
-        Часто задаваемые вопросы
-      </div>
+    <svg
+      className={
+        "w-4 h-4 transition-transform duration-200 " +
+        (open ? "rotate-180" : "rotate-0")
+      }
+      viewBox="0 0 24 24"
+      aria-hidden
+    >
+      <path
+        d="M6 9l6 6 6-6"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+export default function FAQPanel() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const toggleIndex = (idx: number) => {
+    setOpenIndex((current) => (current === idx ? null : idx));
+  };
+
+  return (
+    <section className="card p-4 md:p-5 space-y-4">
       <p className="text-sm md:text-base opacity-80">
-        Здесь позже появятся ответы на типовые вопросы по использованию сервиса
-        и формату координат.
+        Здесь собраны ответы на самые частые вопросы о GeoConverter — формате
+        координат, точности расчётов, работе на мобильных устройствах и
+        возможностях сервиса.
       </p>
+
+      <div className="space-y-2 md:space-y-3">
+        {faqs.map((item, idx) => {
+          const isOpen = openIndex === idx;
+
+          return (
+            <div
+              key={item.question}
+              className="rounded-2xl border border-slate-200/80 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-900/60"
+            >
+              <button
+                type="button"
+                className="w-full flex items-center justify-between gap-3 px-3 md:px-4 py-2.5 md:py-3 text-left"
+                onClick={() => toggleIndex(idx)}
+              >
+                <span className="text-sm md:text-base font-medium">
+                  {item.question}
+                </span>
+                <span className="shrink-0 text-slate-500 dark:text-slate-400">
+                  <IconChevron open={isOpen} />
+                </span>
+              </button>
+
+              {/* Анимированное раскрытие блока ответа */}
+              <div
+                className={
+                  "px-3 md:px-4 overflow-hidden border-t border-slate-200/70 dark:border-slate-700/70 transition-[max-height] duration-200 ease-out " +
+                  (isOpen ? "max-h-96" : "max-h-0")
+                }
+              >
+                <div className="pt-1 md:pt-2 pb-3 md:pb-4 text-sm md:text-[15px] leading-relaxed opacity-80">
+                  {item.answer}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 }
