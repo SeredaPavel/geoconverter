@@ -280,21 +280,93 @@ export default function ConverterPanel() {
     "• Только Excel ≤ 1 МБ\n• Ровно ДВЕ колонки: Lat/Lon ИЛИ X/Y";
 
   const onImport = async (f: File) => {
-    if (f.size > 1_000_000) {
-      setToast("Файл больше 1 МБ");
-      return;
-    }
-    const fd = new FormData();
-    fd.append("file", f);
-    const res = await fetch(`${API_BASE}/import`, { method: "POST", body: fd });
+  if (f.size > 1_000_000) {
+    setToast("Файл больше 1 МБ");
+    return;
+  }
+
+  const fd = new FormData();
+  fd.append("file", f);
+
+  try {
+    const res = await fetch(`${API_BASE}/import`, {
+      method: "POST",
+      body: fd,
+    });
     const data = await res.json();
+
     if (!res.ok) {
       setToast(data.detail || "Ошибка импорта");
       return;
     }
-    setPreview(data.rows_preview || []);
-    setToast(`Прочитано строк: ${data.rows_total}. Предпросмотр внизу.`);
-  };
+
+    // 1. Превью как и раньше
+    const previewRows = Array.isArray(data.rows_preview)
+      ? data.rows_preview
+      : [];
+    setPreview(previewRows);
+
+    if (previewRows.length === 0) {
+      setToast("Файл прочитан, но данных не найдено");
+      return;
+    }
+
+    // 2. Проверяем число колонок
+    const first = previewRows[0] || {};
+    const keys = Object.keys(first);
+    if (keys.length !== 2) {
+      setToast("В Excel должно быть ровно 2 колонки");
+      return;
+    }
+
+    // 3. Определяем, геодезическая ли исходная СК
+    const src = crsOptions.find((c) => c.code === crsFrom);
+    const sourceIsGeodetic = src?.group === "Геодезические СК";
+
+    const toNum = (v: any): number | undefined => {
+      if (v === null || v === undefined || v === "") return undefined;
+      if (typeof v === "number") return Number.isFinite(v) ? v : undefined;
+      const n = Number(String(v).replace(",", "."));
+      return Number.isFinite(n) ? n : undefined;
+    };
+
+    // 4. Excel → массив Point[]
+    const newRows: Point[] = previewRows.map((row: any) => {
+      const a = row[keys[0]];
+      const b = row[keys[1]];
+
+      if (sourceIsGeodetic) {
+        // Геодезические СК: lat / lon
+        return {
+          lat: toNum(a),
+          lon: toNum(b),
+        };
+      }
+
+      // Плоские СК (ГК, МСК и т.п.): Y / X
+      return {
+        y: toNum(a),
+        x: toNum(b),
+      };
+    });
+
+    if (newRows.length === 0) {
+      setToast("Не удалось получить корректные координаты из файла");
+      return;
+    }
+
+    // 5. Вариант А: Excel полностью заменяет таблицу
+    setRowsIn(newRows);
+    // Сбрасываем результат
+    setRowsOut([{ lat: undefined, lon: undefined }]);
+
+    setToast(`Загружено строк: ${newRows.length}. Предпросмотр внизу.`);
+  } catch (e: any) {
+    console.error(e);
+    setToast(e?.message || "Ошибка импорта");
+  }
+};
+
 
   const exportFile = async (kind: "catalog" | "statement") => {
     try {
