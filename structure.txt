@@ -10,9 +10,6 @@ C:.
 |   reset-vps.sh
 |   structure.txt
 |   
-+---.devcontainer
-|       devcontainer.json
-|       
 +---.github
 |   \---workflows
 |           deploy.yml
@@ -25,6 +22,7 @@ C:.
 |   |   requirements.txt
 |   |   
 |   +---app
+|   |   |   export_utils.py
 |   |   |   main.py
 |   |   |   schemas.py
 |   |   |   utils.py
@@ -33,16 +31,13 @@ C:.
 |   |   |       msk_registry.yml
 |   |   |       
 |   |   \---__pycache__
+|   |           export_utils.cpython-311.pyc
 |   |           main.cpython-311.pyc
 |   |           schemas.cpython-311.pyc
 |   |           utils.cpython-311.pyc
 |   |           
 |   +---data
-|   |   +---grids
-|   |   \---templates
-|   |           ��������� ��������.docx
-|   |           ������� �����������.docx
-|   |           
+|   |   \---grids
 |   \---uploads
 \---frontend
     |   .dockerignore
@@ -57,7 +52,6 @@ C:.
     |   tsconfig.json
     |   
 
-    
     |                   
     +---public
     |   +---assets
