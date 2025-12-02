@@ -483,7 +483,7 @@ class ExportRequest(BaseModel):
 
 
 # ----------------------------------------------------------------------
-# Эндпоинты API
+# Эндпоинты API (основные)
 # ----------------------------------------------------------------------
 
 
@@ -693,3 +693,33 @@ def export(kind: str, req: ExportRequest):
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
     )
+
+
+# ----------------------------------------------------------------------
+# Алиасы с префиксом /api для работы через прокси (Caddy, прод)
+# ----------------------------------------------------------------------
+
+
+@app.get("/api/health")
+def api_health():
+    return health()
+
+
+@app.get("/api/crs", response_model=List[CRSItem])
+def api_list_crs():
+    return list_crs()
+
+
+@app.post("/api/convert", response_model=ConvertResponse)
+def api_convert(req: ConvertRequest):
+    return convert(req)
+
+
+@app.post("/api/import")
+async def api_import(file: UploadFile = File(...)):
+    return await import_excel(file)
+
+
+@app.post("/api/export/{kind}")
+def api_export(kind: str, req: ExportRequest):
+    return export(kind, req)
