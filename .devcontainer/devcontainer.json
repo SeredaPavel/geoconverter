@@ -1,0 +1,35 @@
+// /geoconverter/.devcontainer/devcontainer.json
+{
+  "name": "Geoconverter Backend",
+
+  // Используем и базовый compose, и override
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "../docker-compose.override.yml"
+  ],
+
+  // Имя сервиса из compose-файлов
+  "service": "backend",
+
+  // Рабочая папка с кодом ВНУТРИ контейнера
+  // У тебя ./backend/app смонтирован в /app/app
+  "workspaceFolder": "/app/app",
+
+  "settings": {
+    // Интерпретатор Python внутри контейнера
+    "python.defaultInterpreterPath": "/usr/local/bin/python",
+
+    // Можно ослабить или выключить "missing imports"
+    "python.analysis.diagnosticSeverityOverrides": {
+      "reportMissingImports": "none",
+      "reportMissingModuleSource": "none"
+    }
+  },
+
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance"
+  ],
+
+  "remoteUser": "root"
+}

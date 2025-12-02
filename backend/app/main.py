@@ -1,8 +1,11 @@
 # /geoconverter/backend/app/main.py
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse  # ← ДОБАВЛЕНО
 from typing import List
 from functools import lru_cache
+
+from pydantic import BaseModel  # ← ДОБАВЛЕНО
 
 from .schemas import (
     ConvertRequest,
@@ -10,8 +13,14 @@ from .schemas import (
     Point,
     CRSItem,
     ConvertOptions,
+    Format,            # ← ДОБАВЛЕНО
 )
 from .utils import auto_zone_6, auto_zone_3  # пока не используем, но оставляем импорт
+from .export_utils import (                  # ← ДОБАВЛЕНО
+    build_catalog_xlsx,
+    build_statement_xlsx,
+)
+
 from pyproj import CRS, Transformer
 import pandas as pd
 import io
@@ -459,6 +468,21 @@ def _convert_geodetic(req: ConvertRequest) -> List[Point]:
 
 
 # ----------------------------------------------------------------------
+# Модель запроса для экспорта
+# ----------------------------------------------------------------------
+
+
+class ExportRequest(BaseModel):
+    crs_from: str
+    crs_to: str
+    format: Format | None = "deg_dec"
+    format_in: Format | None = "deg_dec"
+    format_out: Format | None = "deg_dec"
+    rows_in: List[Point]
+    rows_out: List[Point]
+
+
+# ----------------------------------------------------------------------
 # Эндпоинты API
 # ----------------------------------------------------------------------
 
@@ -631,3 +655,41 @@ async def import_excel(file: UploadFile = File(...)):
         "file_id": fid,
         "kept_seconds": RETENTION,
     }
+
+
+@app.post("/export/{kind}")
+def export(kind: str, req: ExportRequest):
+    """
+    Выгрузка результатов в XLSX.
+
+    kind:
+      - 'catalog'   → каталог координат
+      - 'statement' → ведомость пересчёта
+    """
+    if kind not in {"catalog", "statement"}:
+        raise HTTPException(status_code=400, detail="Неизвестный тип выгрузки")
+
+    if not req.rows_out:
+        raise HTTPException(status_code=400, detail="Нет данных для выгрузки")
+
+    if kind == "catalog":
+        data = build_catalog_xlsx(
+            rows=req.rows_out,
+            crs_from=req.crs_from,
+            crs_to=req.crs_to,
+        )
+        filename = "catalog.xlsx"
+    else:
+        data = build_statement_xlsx(
+            rows_in=req.rows_in,
+            rows_out=req.rows_out,
+            crs_from=req.crs_from,
+            crs_to=req.crs_to,
+        )
+        filename = "statement.xlsx"
+
+    return StreamingResponse(
+        io.BytesIO(data),
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
