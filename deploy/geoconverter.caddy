@@ -1,0 +1,28 @@
+# Replace only the GeoConverter entries in the shared Caddyfile after
+# both application containers are healthy. Keep other domains intact.
+www.geoconverter.ru {
+    redir https://geoconverter.ru{uri} permanent
+}
+
+geoconverter.ru {
+    encode zstd gzip
+
+    handle /healthz {
+        respond "OK" 200
+    }
+
+    @api path /api /api/*
+    handle @api {
+        reverse_proxy geoconverter-backend:8000
+    }
+
+    handle {
+        reverse_proxy geoconverter-frontend:3000
+    }
+
+    header {
+        X-Frame-Options "DENY"
+        X-Content-Type-Options "nosniff"
+        Referrer-Policy "strict-origin-when-cross-origin"
+    }
+}

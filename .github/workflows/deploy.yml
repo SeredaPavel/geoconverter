@@ -1,121 +1,100 @@
-# /.github/workflows/deploy.yml
-name: deploy
+name: Build GeoConverter images
 
 on:
   push:
-    branches: ["main"]
-  # по желанию: ручной запуск из вкладки Actions
-  workflow_dispatch: {}
+    branches: [main, dev, infra/ghcr-hosting]
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
 
 concurrency:
-  group: geoconverter-deploy
+  group: geoconverter-build-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [backend, frontend]
     env:
-      VPS_HOST:    ${{ secrets.VPS_HOST }}
-      VPS_USER:    ${{ secrets.VPS_USER }}
-      VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
-      VPS_PATH:    ${{ secrets.VPS_PATH || '/opt/geoconverter' }}
-      VPS_PORT:    ${{ secrets.VPS_PORT || '22' }}
-
+      SERVICE: ${{ matrix.service }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v6
 
-      - name: Show workspace tree
+      - name: Image name
+        id: image
+        shell: bash
         run: |
-          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
-          ls -la
-          echo "Top-level:"
-          find . -maxdepth 2 -print
+          set -euo pipefail
+          image="ghcr.io/${GITHUB_REPOSITORY,,}-${SERVICE}:sha-${GITHUB_SHA}"
+          echo "name=$image" >> "$GITHUB_OUTPUT"
 
-      - name: Add server to known_hosts
+      - name: Build image on GitHub runner
+        env:
+          IMAGE: ${{ steps.image.outputs.name }}
         run: |
-          mkdir -p ~/.ssh
-          echo "Adding $VPS_HOST:$VPS_PORT to known_hosts"
-          if [ -n "$VPS_PORT" ] && [ "$VPS_PORT" != "22" ]; then
-            ssh-keyscan -H -p "$VPS_PORT" "$VPS_HOST" >> ~/.ssh/known_hosts
+          set -euo pipefail
+          docker build --pull \
+            --label "org.opencontainers.image.source=https://github.com/${GITHUB_REPOSITORY}" \
+            --label "org.opencontainers.image.revision=${GITHUB_SHA}" \
+            --tag "$IMAGE" "$SERVICE"
+
+      - name: Check image starts and responds
+        env:
+          IMAGE: ${{ steps.image.outputs.name }}
+        run: |
+          set -euo pipefail
+          if [ "$SERVICE" = backend ]; then
+            port=8000
+            endpoint=/api/health
           else
-            ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+            port=3000
+            endpoint=/
+          fi
+          docker run -d --name smoke -p "127.0.0.1:18080:${port}" "$IMAGE"
+          ready=false
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --max-time 5 "http://127.0.0.1:18080${endpoint}" > /dev/null; then
+              ready=true
+              break
+            fi
+            sleep 2
+          done
+          if [ "$ready" != true ]; then
+            docker logs smoke
+            exit 1
+          fi
+          if [ "$SERVICE" = backend ]; then
+            curl --fail --silent --show-error --max-time 10 \
+              http://127.0.0.1:18080/api/crs > /dev/null
+          else
+            curl --fail --silent --show-error --max-time 10 \
+              http://127.0.0.1:18080/templates/template_latlon.xlsx > /dev/null
           fi
 
-      - name: Prepare directory on VPS
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host:     ${{ env.VPS_HOST }}
-          username: ${{ env.VPS_USER }}
-          key:      ${{ env.VPS_SSH_KEY }}
-          port:     ${{ env.VPS_PORT }}
-          envs: VPS_PATH,VPS_USER
-          script: |
-            set -e
-            sudo mkdir -p "$VPS_PATH"
-            OWNER="${USER:-$VPS_USER}"
-            sudo chown "$OWNER:$OWNER" "$VPS_PATH"
-            # docker + compose, если вдруг не стоят
-            if ! command -v docker >/dev/null; then
-              curl -fsSL https://get.docker.com | sh
-            fi
-            if ! docker compose version >/dev/null 2>&1; then
-              DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
-              mkdir -p "$DOCKER_CONFIG/cli-plugins"
-              curl -SL "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m)" \
-                -o "$DOCKER_CONFIG/cli-plugins/docker-compose"
-              chmod +x "$DOCKER_CONFIG/cli-plugins/docker-compose"
-            fi
+      - name: Publish checked image to GHCR
+        if: github.event_name != 'pull_request'
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE: ${{ steps.image.outputs.name }}
+        run: |
+          set -euo pipefail
+          printf '%s' "$GHCR_TOKEN" | docker login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
+          docker push "$IMAGE"
+          echo "$IMAGE" >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Sync files to VPS (SCP)
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host:     ${{ env.VPS_HOST }}
-          username: ${{ env.VPS_USER }}
-          key:      ${{ env.VPS_SSH_KEY }}
-          port:     ${{ env.VPS_PORT }}
-          overwrite: true
-          rm: true
-          debug: true
-          # важно: одна строка, элементы через запятую
-          source: "docker-compose.yml,Caddyfile,backend/**,frontend/**"
-          target: "${{ env.VPS_PATH }}"
-          strip_components: 0
-
-      - name: Compose up (build on server, no downtime)
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host:     ${{ env.VPS_HOST }}
-          username: ${{ env.VPS_USER }}
-          key:      ${{ env.VPS_SSH_KEY }}
-          port:     ${{ env.VPS_PORT }}
-          envs: VPS_PATH
-          script: |
-            set -e
-            cd "$VPS_PATH"
-
-            # обновляем только нужные сервисы, без остановки caddy
-            docker compose up -d --build --no-deps backend
-            docker compose up -d --build --no-deps frontend
-
-            # если менялся Caddyfile — "горячо" перечитаем конфиг (без рестарта контейнера)
-            docker exec geoconverter-caddy caddy reload --config /etc/caddy/Caddyfile || true
-
-            echo "------ compose ps ------"
-            docker compose ps
-
-            echo "------ Backend health ------"
-            curl -sS http://localhost:8000/docs | head -c 200 || true
-
-            echo "------ Frontend via Caddy ------"
-            curl -sS http://localhost/ | head -c 200 || true
-
-            echo "------ prune old images/cache ------"
-            docker image prune -af || true
-            docker builder prune -af || true
+      - name: Cleanup test container and credentials
+        if: always()
+        run: |
+          docker rm -f smoke 2>/dev/null || true
+          docker logout ghcr.io || true

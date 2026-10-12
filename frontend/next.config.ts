@@ -3,10 +3,8 @@ import path from "path";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // (опционально) если используешь app router и typedRoutes оставь, но это не принципиально
-  experimental: {
-    typedRoutes: true,
-  },
+  output: "standalone",
+  typedRoutes: true,
   webpack: (config) => {
     // ЯВНО добавляем алиас '@' -> 'src' для webpack
     config.resolve.alias = {
