@@ -1,4 +1,4 @@
-name: Build GeoConverter images
+name: Build and deploy GeoConverter
 
 on:
   push:
@@ -6,10 +6,15 @@ on:
   pull_request:
     branches: [main, dev]
   workflow_dispatch:
+    inputs:
+      deploy:
+        description: "Deploy the main branch to the VPS after both builds pass"
+        type: boolean
+        default: false
 
 concurrency:
   group: geoconverter-build-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -98,3 +103,41 @@ jobs:
         run: |
           docker rm -f smoke 2>/dev/null || true
           docker logout ghcr.io || true
+
+  deploy:
+    needs: build
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' ||
+       (github.event_name == 'workflow_dispatch' && inputs.deploy))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    concurrency:
+      group: geoconverter-production
+      cancel-in-progress: false
+    env:
+      DEPLOY_HOST: ${{ secrets.GEOCONVERTER_VPS_HOST }}
+      DEPLOY_KEY: ${{ secrets.GEOCONVERTER_VPS_SSH_KEY }}
+      DEPLOY_KNOWN_HOSTS: ${{ secrets.GEOCONVERTER_VPS_KNOWN_HOSTS }}
+    steps:
+      - name: Deploy through the restricted SSH key
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_HOST"
+          test -n "$DEPLOY_KEY"
+          test -n "$DEPLOY_KNOWN_HOSTS"
+          [[ "$DEPLOY_HOST" =~ ^[a-zA-Z0-9.-]+$ ]]
+          task_ssh_dir=$(mktemp -d)
+          trap 'rm -rf -- "$task_ssh_dir"' EXIT
+          printf '%s\n' "$DEPLOY_KEY" > "$task_ssh_dir/key"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$task_ssh_dir/known_hosts"
+          chmod 600 "$task_ssh_dir/key" "$task_ssh_dir/known_hosts"
+          ssh -i "$task_ssh_dir/key" \
+            -o IdentitiesOnly=yes \
+            -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile="$task_ssh_dir/known_hosts" \
+            -o ConnectTimeout=15 \
+            -o ServerAliveInterval=30 \
+            -o ServerAliveCountMax=6 \
+            "root@$DEPLOY_HOST" "deploy $GITHUB_SHA"
