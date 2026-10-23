@@ -35,7 +35,8 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
     async def test_registry_ready_and_dev_statuses(self):
         msk = [item for item in self.api.list_crs() if item.category == 'msk']
         self.assertEqual(len(msk), 259)
-        self.assertTrue(all(item.status == 'dev' for item in msk))
+        self.assertEqual(sum(item.status == 'ready' for item in msk), 1)
+        self.assertEqual(sum(item.status == 'dev' for item in msk), 258)
         choices = [item for item in self.api.list_crs() if item.category == 'sk63']
         self.assertEqual(len({item.code for item in choices}), len(choices))
         self.assertEqual(sum(item.status == 'ready' for item in choices), 17)

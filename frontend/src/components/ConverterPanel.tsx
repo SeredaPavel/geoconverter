@@ -1,9 +1,13 @@
 // /geoconverter/frontend/src/components/ConverterPanel.tsx
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Point, AngleFormat, formatAngle, numericPoints, reformatPoints, excelPoints } from "@/lib/coordinates";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "/api";
+const TOAST_DURATION_MS = 7000;
+
+type Toast = { message: string; tone: "error" | "info" };
 
 /* Иконки */
 const IconUpload = () => (
@@ -107,6 +111,10 @@ export default function ConverterPanel() {
   const [rowsOut, setRowsOut] = useState<Point[]>([
     { lat: undefined, lon: undefined },
   ]);
+  const [rowsExpanded, setRowsExpanded] = useState(false);
+  const visibleRowsIn = rowsExpanded ? rowsIn : rowsIn.slice(0, 5);
+  const visibleRowsOut = rowsExpanded ? rowsOut : rowsOut.slice(0, 5);
+  const canExpandRows = rowsIn.length > 5 || rowsOut.length > 5;
 
   // опции
   const [zoneMode, setZoneMode] = useState<3 | 6>(6);
@@ -117,7 +125,9 @@ export default function ConverterPanel() {
   // UI
   const [preview, setPreview] = useState<any[]>([]);
   const [importSummary, setImportSummary] = useState("");
-  const [toast, setToast] = useState<string | null>(null);
+  const [toast, setToast] = useState<Toast | null>(null);
+  const showToast = (message: string, tone: Toast["tone"] = "error") =>
+    setToast({ message, tone });
   const [ok, setOk] = useState(false);
 
   // CRS-опции
@@ -183,7 +193,7 @@ export default function ConverterPanel() {
 
         setCrsOptions(mapped);
       } catch (e: any) {
-        setToast(e.message || "Ошибка загрузки списка СК");
+        showToast(e.message || "Ошибка загрузки списка СК");
       }
     };
 
@@ -219,7 +229,7 @@ export default function ConverterPanel() {
       setFormatIn(formatOut);
       setFormatOut(formatIn);
     } catch (error) {
-      setToast((error as Error).message);
+      showToast((error as Error).message);
     }
   };
 
@@ -229,7 +239,7 @@ export default function ConverterPanel() {
       setRowsIn(reformatPoints(rowsIn, format));
       setFormatIn(format);
     } catch (error) {
-      setToast((error as Error).message);
+      showToast((error as Error).message);
     }
   };
 
@@ -274,6 +284,12 @@ export default function ConverterPanel() {
     return () => clearTimeout(t);
   }, [ok]);
 
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(null), TOAST_DURATION_MS);
+    return () => clearTimeout(timer);
+  }, [toast]);
+
   const recalc = async () => {
     setLoading(true);
     setToast(null);
@@ -305,7 +321,7 @@ export default function ConverterPanel() {
       );
       setOk(true);
     } catch (e: any) {
-      setToast(e.message);
+      showToast(e.message);
     } finally {
       setLoading(false);
     }
@@ -316,7 +332,7 @@ export default function ConverterPanel() {
 
   const onImport = async (f: File) => {
   if (f.size > 1_000_000) {
-    setToast("Файл больше 1 МБ");
+    showToast("Файл больше 1 МБ");
     return;
   }
 
@@ -331,7 +347,7 @@ export default function ConverterPanel() {
     const data = await res.json();
 
     if (!res.ok) {
-      setToast(data.detail || "Ошибка импорта");
+      showToast(data.detail || "Ошибка импорта");
       return;
     }
 
@@ -341,7 +357,7 @@ export default function ConverterPanel() {
       : [];
 
     if (previewRows.length === 0) {
-      setToast("Файл прочитан, но данных не найдено");
+      showToast("Файл прочитан, но данных не найдено");
       return;
     }
 
@@ -349,7 +365,7 @@ export default function ConverterPanel() {
     const first = previewRows[0] || {};
     const keys = Array.isArray(data.columns) ? data.columns : Object.keys(first);
     if (keys.length !== 2) {
-      setToast("В Excel должно быть ровно 2 колонки");
+      showToast("В Excel должно быть ровно 2 колонки");
       return;
     }
 
@@ -361,12 +377,13 @@ export default function ConverterPanel() {
     const newRows = excelPoints(previewRows, keys, !sourceIsGeodetic, formatIn);
 
     if (newRows.length === 0) {
-      setToast("Не удалось получить корректные координаты из файла");
+      showToast("Не удалось получить корректные координаты из файла");
       return;
     }
 
     // 5. Вариант А: Excel полностью заменяет таблицу
     setRowsIn(newRows);
+    setRowsExpanded(false);
     // Сбрасываем результат
     setRowsOut([{ lat: undefined, lon: undefined }]);
 
@@ -375,10 +392,10 @@ export default function ConverterPanel() {
       : `Загружено строк: ${newRows.length}.`;
     setPreview(previewRows);
     setImportSummary(summary);
-    setToast(summary);
+    showToast(summary, "info");
   } catch (e: any) {
     console.error(e);
-    setToast(e?.message || "Ошибка импорта");
+    showToast(e?.message || "Ошибка импорта");
   }
 };
 
@@ -408,7 +425,7 @@ export default function ConverterPanel() {
       a.click();
       URL.revokeObjectURL(url);
     } catch (e: any) {
-      setToast(e.message || "Ошибка экспорта");
+      showToast(e.message || "Ошибка экспорта");
     }
   };
 
@@ -448,7 +465,7 @@ export default function ConverterPanel() {
       </div>
 
       {/* Список СК */}
-      <div className="max-h-28 overflow-y-auto py-1">
+      <div className="max-h-72 overflow-y-auto py-1">
         {filteredCrs.length === 0 && (
           <div className="px-3 py-2 text-xs opacity-60">
             Ничего не найдено
@@ -465,7 +482,7 @@ export default function ConverterPanel() {
                 return (
                   <div key={o.code}>
                     {showGroupHeader && (
-                      <div className="px-3 pt-2 pb-1 text-[10px] uppercase tracking-wide opacity-60">
+                      <div className="h-6 flex items-center px-3 text-[10px] uppercase tracking-wide opacity-60">
                         {o.group}
                       </div>
                     )}
@@ -474,7 +491,7 @@ export default function ConverterPanel() {
                       disabled={o.status === "dev"}
                       title={o.description}
                       className={
-                        "w-full text-left px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed " +
+                        "w-full h-16 flex items-center text-left px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed " +
                         (o.code === current
                           ? "bg-slate-100 dark:bg-slate-800"
                           : "")
@@ -485,7 +502,7 @@ export default function ConverterPanel() {
                         setOpenCrsToMenu(false);
                       }}
                     >
-                      {o.title}
+                      <span className="line-clamp-2">{o.title}</span>
                     </button>
                   </div>
                 );
@@ -717,9 +734,9 @@ export default function ConverterPanel() {
       {/* 2–3) Блоки */}
       <div className="grid md:grid-cols-2 gap-5 md:gap-6">
         {/* Исходные данные */}
-        <section className="card card-overflow-visible p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
+        <section className="coordinate-card card card-overflow-visible p-4 md:p-5 flex flex-col gap-4 min-w-0 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
           <div className="text-lg font-semibold">Исходные данные</div>
-          {crsOptions.find(o => o.code === crsFrom)?.category === "sk63" && (
+          {["sk63", "msk"].includes(crsOptions.find(o => o.code === crsFrom)?.category || "") && (
             <p className="text-xs opacity-80">{crsOptions.find(o => o.code === crsFrom)?.description}</p>
           )}
 
@@ -774,7 +791,7 @@ export default function ConverterPanel() {
 
           {/* Таблица ввода */}
           <div className="table-wrap">
-            <table className="min-w-full table-fixed text-sm table-xs">
+            <table id="input-coordinate-table" className="min-w-full table-fixed text-sm table-xs">
               <colgroup>
                 <col className="w-10 md:w-12" />
                 <col className="w-[45%] md:w-48" />
@@ -794,7 +811,7 @@ export default function ConverterPanel() {
                 </tr>
               </thead>
               <tbody>
-                {rowsIn.map((r, i) => {
+                {visibleRowsIn.map((r, i) => {
                   const val1 = isSourceProjected ? r.x ?? "" : r.lat ?? "";
                   const val2 = isSourceProjected ? r.y ?? "" : r.lon ?? "";
                   const ph1 = isSourceProjected
@@ -860,12 +877,16 @@ export default function ConverterPanel() {
             </table>
           </div>
 
-          <div className="flex flex-wrap gap-2">
-            <button className="btn h-10 px-4" onClick={addRow} type="button">
+          <div className="mt-auto space-y-3">
+            <p className="coordinate-row-summary text-xs opacity-70">
+              {rowsIn.length > 5 && <>Показано {visibleRowsIn.length} из {rowsIn.length} строк. В пересчёт передаются все строки.</>}
+            </p>
+          <div className="coordinate-actions coordinate-actions--source">
+            <button className="btn h-10 px-2 justify-center text-sm leading-4 min-w-0" onClick={addRow} type="button">
               Добавить точку
             </button>
             <button
-              className="btn h-10 px-4"
+              className="btn h-10 px-2 justify-center text-sm leading-4 min-w-0"
               onClick={removeRow}
               disabled={rowsIn.length === 1 && isRowEmpty(rowsIn[0])}
               title={
@@ -877,13 +898,28 @@ export default function ConverterPanel() {
             >
               Удалить точку
             </button>
+            {canExpandRows && (
+              <button
+                className="coordinate-expand btn h-10 px-2 justify-center text-sm min-w-0"
+                type="button"
+                aria-expanded={rowsExpanded}
+                aria-controls="input-coordinate-table result-coordinate-table"
+                onClick={() => setRowsExpanded(expanded => !expanded)}
+              >
+                {rowsExpanded ? "Свернуть" : "Развернуть"}
+                <span className={"transition-transform " + (rowsExpanded ? "rotate-180" : "")}>
+                  <IconChevronDown />
+                </span>
+              </button>
+            )}
+          </div>
           </div>
         </section>
 
         {/* Результат */}
-        <section className="card card-overflow-visible p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
+        <section className="coordinate-card card card-overflow-visible p-4 md:p-5 flex flex-col gap-4 min-w-0 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
           <div className="text-lg font-semibold">Результат</div>
-          {crsOptions.find(o => o.code === crsTo)?.category === "sk63" && (
+          {["sk63", "msk"].includes(crsOptions.find(o => o.code === crsTo)?.category || "") && (
             <p className="text-xs opacity-80">{crsOptions.find(o => o.code === crsTo)?.description}</p>
           )}
 
@@ -938,7 +974,7 @@ export default function ConverterPanel() {
 
           {/* Таблица результата */}
           <div className="table-wrap">
-            <table className="min-w-full table-fixed text-sm table-xs">
+            <table id="result-coordinate-table" className="min-w-full table-fixed text-sm table-xs">
               <colgroup>
                 <col className="w-10 md:w-12" />
                 <col className="w-[45%] md:w-48" />
@@ -956,7 +992,7 @@ export default function ConverterPanel() {
                 </tr>
               </thead>
               <tbody>
-                {rowsOut.map((r, i) => {
+                {visibleRowsOut.map((r, i) => {
                   const val1 = isResultProjected ? r.x ?? "-" : formatAngle(r.lat, formatOut);
                   const val2 = isResultProjected ? r.y ?? "-" : formatAngle(r.lon, formatOut);
                   return (
@@ -986,20 +1022,23 @@ export default function ConverterPanel() {
             </table>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="mt-auto space-y-3">
+            <p className="coordinate-row-summary text-xs opacity-70">
+              {rowsOut.length > 5 && <>Показано {visibleRowsOut.length} из {rowsOut.length} строк. В выгрузку включаются все строки.</>}
+            </p>
+          <div className="coordinate-actions coordinate-actions--result" data-expandable={canExpandRows}>
             <button
-              className="btn btn-primary h-10 px-4"
+              className="coordinate-calculate btn btn-primary h-10 px-2 justify-center text-sm min-w-0"
               onClick={recalc}
               disabled={loading}
               type="button"
             >
               {loading ? "Пересчитываю..." : "Пересчитать"}
             </button>
-            {ok && (
-              <div className="card px-3 py-2 text-sm">
-                Готово: координаты пересчитаны
-              </div>
-            )}
+            <div className="coordinate-status flex items-center text-xs leading-4" role="status">
+              {ok && "Готово: координаты пересчитаны"}
+            </div>
+          </div>
           </div>
         </section>
       </div>
@@ -1017,11 +1056,42 @@ export default function ConverterPanel() {
         </section>
       )}
 
-      {/* Тост */}
-      {toast && (
-        <div className="fixed right-4 bottom-4 z-[1000] pointer-events-none">
-          <div className="card px-4 py-3">{toast}</div>
-        </div>
+      {/* Portal keeps the toast outside the scrolling, blurred modal card. */}
+      {toast && createPortal(
+        <div className="fixed inset-x-4 top-[calc(env(safe-area-inset-top)+1rem)] z-[1100] flex justify-center pointer-events-none">
+          <div
+            role={toast.tone === "error" ? "alert" : "status"}
+            aria-atomic="true"
+            className={`flex w-full max-w-xl items-center gap-3 rounded-2xl border bg-white/95 dark:bg-slate-900/95 px-4 py-2 shadow-lg backdrop-blur pointer-events-auto ${
+              toast.tone === "error"
+                ? "border-amber-500/50"
+                : "border-brand-500/50"
+            }`}
+          >
+            <span
+              aria-hidden="true"
+              className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${
+                toast.tone === "error"
+                  ? "border-amber-500 text-amber-700 dark:text-amber-300"
+                  : "border-brand-500 text-brand-600 dark:text-brand-400"
+              }`}
+            >
+              {toast.tone === "error" ? "!" : "i"}
+            </span>
+            <p className="min-w-0 flex-1 break-words text-sm leading-5">{toast.message}</p>
+            <button
+              type="button"
+              aria-label="Закрыть уведомление"
+              onClick={() => setToast(null)}
+              className="btn btn-ghost h-10 w-10 shrink-0 justify-center !px-0"
+            >
+              <svg className="shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+        </div>,
+        document.body,
       )}
     </div>
   );

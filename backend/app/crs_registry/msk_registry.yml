@@ -1,2 +1,3 @@
 # /geoconverter/backend/app/crs_registry/msk_registry.yml
-# Заготовка: заполнится параметрами МСК/СК-63 в следующем релизе.
+# Устаревшая заготовка, движком не читается.
+# Рабочие определения МСК: msk_definitions.json и ../msk_registry.py, описание MSK.md.

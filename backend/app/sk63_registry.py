@@ -49,8 +49,3 @@ for district in CATALOG['sk63_district_inventory']:
 
 ITEMS_BY_CODE = {item.code: item for item in SK63_ITEMS}
 assert len(READY_CRS) == len(APPROVED_EPSG)
-
-MSK_ITEMS = [CRSItem(code=f"MSK:GEOPROJ:{system['source_id']}:{zone['source_value']}",
-    title=f"{system['title']} — зона {zone['label']}", category='msk', status='dev',
-    region=system['region_label'], description='Параметры преобразования МСК пока не подтверждены.')
-    for system in CATALOG['msk'] for zone in system['zones']]

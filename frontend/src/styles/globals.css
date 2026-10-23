@@ -14,6 +14,41 @@ body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 .btn-ghost { @apply border-transparent hover:border-slate-300/80; }
 .input{ @apply border border-slate-300 dark:border-slate-600 rounded-lg px-3 h-10 bg-white/70 dark:bg-slate-900/60 outline-none focus:border-brand-500; }
 .select{ @apply input pr-8; }
+
+/* Footer layout follows the actual card width, including split-screen windows. */
+.coordinate-card { container-type: inline-size; }
+.coordinate-row-summary { min-height: 2rem; }
+.coordinate-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.coordinate-expand { grid-column: 1 / -1; }
+.coordinate-actions--result[data-expandable="true"] {
+  grid-template-rows: repeat(2, 2.5rem);
+}
+.coordinate-actions--result[data-expandable="true"] .coordinate-calculate {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.coordinate-actions--result[data-expandable="true"] .coordinate-status {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+@container (min-width: 460px) {
+  .coordinate-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .coordinate-expand { grid-column: auto; }
+  .coordinate-actions--result[data-expandable="true"] { grid-template-rows: 2.5rem; }
+  .coordinate-actions--result[data-expandable="true"] .coordinate-calculate {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .coordinate-actions--result .coordinate-status,
+  .coordinate-actions--result[data-expandable="true"] .coordinate-status {
+    grid-column: 2 / -1;
+    grid-row: 1;
+  }
+}
 .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.06) }
 
 /* Размеры кнопок */

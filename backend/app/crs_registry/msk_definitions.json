@@ -1,0 +1,25 @@
+{
+  "definitions": [
+    {
+      "code": "MSK:GEOPROJ:47:2",
+      "name": "Pulkovo 1942 / MSK47 zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.1,
+      "longitude_natural_origin": 30.95,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 2250000,
+      "false_northing": -6200000,
+      "bbox": [58.41, 28.67, 61.19, 33.74],
+      "definition_source": "https://gis-lab.info/qa/msk-wkt2.html",
+      "definition_author": "Игорь Белов",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-23",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {"lat": 59.95, "lon": 30.3, "easting": 2213801.125, "northing": 437740.882},
+        {"lat": 59.5, "lon": 31, "easting": 2252957.347, "northing": 387429.914},
+        {"lat": 60.5, "lon": 32, "easting": 2307827.894, "northing": 499301.369}
+      ]
+    }
+  ]
+}

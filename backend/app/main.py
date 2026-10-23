@@ -23,7 +23,8 @@ from .export_utils import (                  # ← ДОБАВЛЕНО
 
 from pyproj import CRS, Transformer
 from pyproj.exceptions import ProjError
-from .sk63_registry import READY_CRS, SK63_ITEMS, MSK_ITEMS, ITEMS_BY_CODE
+from .sk63_registry import READY_CRS, SK63_ITEMS, ITEMS_BY_CODE
+from .msk_registry import READY_MSK_CRS, MSK_ITEMS
 import pandas as pd
 import io
 import os
@@ -138,7 +139,7 @@ CRS_REGISTRY: List[CRSItem] = [
         status="ready",
     ),
 
-    # МСК — полный список зон, пока без движка (status="dev")
+    # Старые записи МСК ниже заменяются зональным реестром MSK_ITEMS.
     CRSItem(code="MSK-01", title="МСК-01  Республика Адыгея", category="msk", status="dev"),
     CRSItem(code="MSK-02", title="МСК-02  Республика Башкортостан", category="msk", status="dev"),
     CRSItem(code="MSK-03", title="МСК-03  Республика Бурятия", category="msk", status="dev"),
@@ -529,8 +530,8 @@ def convert(req: ConvertRequest):
 
 
 def _convert_numeric(req: ConvertRequest):
-    if req.crs_from.startswith('SK63:') or req.crs_to.startswith('SK63:'):
-        return _convert_with_sk63(req)
+    if any(code.startswith(('SK63:', 'MSK:', 'MSK-')) for code in (req.crs_from, req.crs_to)):
+        return _convert_with_regional_crs(req)
     # 1) Спец-случаи: WGS-84 ⇄ ГК-* (6° зоны)
 
     # WGS-84 ⇄ ГК-СК-42
@@ -636,7 +637,6 @@ def _convert_numeric(req: ConvertRequest):
     meta = {
         "auto_zone": req.options.auto_zone,
         "zone_mode": req.options.zone_mode,
-        "note": "МСК и СК-63 пока без движка, только в реестре.",
     }
 
     return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=out_points, meta=meta)
@@ -647,15 +647,17 @@ def _strict_transformer(source: str, target: str):
     return Transformer.from_crs(source, target, always_xy=True, allow_ballpark=False)
 
 
-def _convert_with_sk63(req: ConvertRequest):
+def _convert_with_regional_crs(req: ConvertRequest):
     factories = {'GK_SK42': _crs_gk_sk42_6, 'GK_SK95': _crs_gk_sk95_6, 'GK_GSK2011': _crs_gk_gsk2011_6}
+    ready = {**READY_CRS, **READY_MSK_CRS}
+    items = {**ITEMS_BY_CODE, **{item.code: item for item in MSK_ITEMS}}
 
     def resolve(code, point, source):
-        if code.startswith('SK63:'):
-            if code not in READY_CRS:
-                label = ITEMS_BY_CODE[code].title if code in ITEMS_BY_CODE else code
+        if code.startswith(('SK63:', 'MSK:', 'MSK-')):
+            if code not in ready:
+                label = items[code].title if code in items else code
                 raise HTTPException(status_code=400, detail=f'{label}: система в разработке или код неизвестен.')
-            return READY_CRS[code]
+            return ready[code]
         if code in GEODETIC_EPSG:
             return CRS.from_epsg(GEODETIC_EPSG[code])
         if code in factories:
@@ -670,7 +672,7 @@ def _convert_with_sk63(req: ConvertRequest):
 
     # Validate even an empty request, so a dev code can never succeed silently.
     for code in (req.crs_from, req.crs_to):
-        if code.startswith('SK63:') and code not in READY_CRS:
+        if code.startswith(('SK63:', 'MSK:', 'MSK-')) and code not in ready:
             raise HTTPException(status_code=400, detail=f'{code}: система в разработке или код неизвестен.')
     out, operations = [], {}
     try:
@@ -697,9 +699,14 @@ def _convert_with_sk63(req: ConvertRequest):
                 'description': used.description, 'accuracy_metres': used.accuracy if used.accuracy >= 0 else None}
     except ProjError as error:
         raise HTTPException(status_code=400, detail=f'Не удалось выполнить переход. Проверьте выбранные системы, область применения и доступность параметров/сеток PROJ: {error}')
+    definitions = [
+        {'code': item.code, 'description': item.description}
+        for item in MSK_ITEMS if item.code in {req.crs_from, req.crs_to}
+    ]
     return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=out,
-        meta={'engine': 'pyproj SK-63 EPSG', 'axis_order': 'x=easting, y=northing',
-              'allow_ballpark': False, 'operations': list(operations.values())})
+        meta={'engine': 'pyproj regional CRS', 'axis_order': 'x=easting, y=northing',
+              'allow_ballpark': False, 'operations': list(operations.values()),
+              'regional_definitions': definitions})
 
 
 @app.post("/import")
