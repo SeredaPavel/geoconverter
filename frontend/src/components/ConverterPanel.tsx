@@ -113,6 +113,7 @@ export default function ConverterPanel() {
 
   // UI
   const [preview, setPreview] = useState<any[]>([]);
+  const [importSummary, setImportSummary] = useState("");
   const [toast, setToast] = useState<string | null>(null);
   const [ok, setOk] = useState(false);
 
@@ -277,7 +278,7 @@ export default function ConverterPanel() {
   };
 
   const canUploadHint =
-    "• Только Excel ≤ 1 МБ\n• Ровно ДВЕ колонки: Lat/Lon ИЛИ X/Y";
+    "• Только Excel ≤ 1 МБ\n• Импортируются первые 100 строк данных\n• Ровно ДВЕ колонки: Lat/Lon ИЛИ X/Y";
 
   const onImport = async (f: File) => {
   if (f.size > 1_000_000) {
@@ -300,11 +301,10 @@ export default function ConverterPanel() {
       return;
     }
 
-    // 1. Превью как и раньше
+    // 1. Backend возвращает до 100 строк для таблицы и пересчёта.
     const previewRows = Array.isArray(data.rows_preview)
       ? data.rows_preview
       : [];
-    setPreview(previewRows);
 
     if (previewRows.length === 0) {
       setToast("Файл прочитан, но данных не найдено");
@@ -360,7 +360,12 @@ export default function ConverterPanel() {
     // Сбрасываем результат
     setRowsOut([{ lat: undefined, lon: undefined }]);
 
-    setToast(`Загружено строк: ${newRows.length}. Предпросмотр внизу.`);
+    const summary = data.rows_total > newRows.length
+      ? `Загружено ${newRows.length} из ${data.rows_total} строк. Лимит импорта — ${data.rows_limit} строк. Остальные строки не загружены; разделите файл на части.`
+      : `Загружено строк: ${newRows.length}.`;
+    setPreview(previewRows);
+    setImportSummary(summary);
+    setToast(summary);
   } catch (e: any) {
     console.error(e);
     setToast(e?.message || "Ошибка импорта");
@@ -981,8 +986,9 @@ export default function ConverterPanel() {
       {preview.length > 0 && (
         <section className="card p-3">
           <div className="font-medium mb-2">
-            Предпросмотр Excel (первые строки):
+            Импорт Excel
           </div>
+          <p className="text-sm mb-2" role="status">{importSummary}</p>
           <pre className="text-xs overflow-auto max-h-48">
             {JSON.stringify(preview, null, 2)}
           </pre>

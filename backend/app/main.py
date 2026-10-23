@@ -41,6 +41,7 @@ app.add_middleware(
 
 UPLOAD_DIR = Path(os.getenv("UPLOAD_DIR", "/app/uploads"))
 RETENTION = int(os.getenv("UPLOAD_RETENTION_SEC", "3600"))
+IMPORT_ROW_LIMIT = 100
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 
@@ -648,10 +649,11 @@ async def import_excel(file: UploadFile = File(...)):
             detail="В файле должно быть ровно 2 колонки (Lat/Lon или X/Y).",
         )
 
-    head = df.head(10).to_dict(orient="records")
+    head = df.head(IMPORT_ROW_LIMIT).to_dict(orient="records")
     return {
         "rows_preview": head,
         "rows_total": int(df.shape[0]),
+        "rows_limit": IMPORT_ROW_LIMIT,
         "file_id": fid,
         "kept_seconds": RETENTION,
     }
