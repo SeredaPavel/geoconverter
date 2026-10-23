@@ -31,7 +31,8 @@ Frontend использует Next.js standalone со статическими �
 в Compose заданы `PROJ_NETWORK=ON`, `UPLOAD_DIR=/app/uploads` и
 `UPLOAD_RETENTION_SEC=3600`. Каталог гридов с хоста поверх PROJ не монтируется.
 Сетевые ресурсы PROJ зависят от доступа контейнера к внешним источникам;
-преобразования МСК/СК-63 пока не реализованы.
+для СК-63 подключены 17 определений EPSG районов A, K, C и X.
+МСК и неподтверждённые варианты СК-63 остаются в разработке.
 
 Оба сервиса имеют `restart: unless-stopped` и healthchecks. Frontend ожидает healthy
 backend. Проверка backend обращается к `/api/health` и запускает очистку загрузок

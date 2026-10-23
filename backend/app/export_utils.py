@@ -5,13 +5,14 @@ from io import BytesIO
 from openpyxl import Workbook
 
 from .schemas import Point
+from .angles import format_angle
 
 
 def _safe(v):
     return v if v is not None else ""
 
 
-def build_catalog_xlsx(rows: List[Point], crs_from: str, crs_to: str) -> bytes:
+def build_catalog_xlsx(rows: List[Point], crs_from: str, crs_to: str, format_out="deg_dec") -> bytes:
     """
     Каталог координат по результатам пересчёта.
 
@@ -58,9 +59,9 @@ def build_catalog_xlsx(rows: List[Point], crs_from: str, crs_to: str) -> bytes:
     for idx, p in enumerate(rows, start=1):
         row = [idx]
         if has_lat:
-            row.append(_safe(p.lat))
+            row.append(format_angle(p.lat, format_out))
         if has_lon:
-            row.append(_safe(p.lon))
+            row.append(format_angle(p.lon, format_out))
         if has_x:
             row.append(_safe(p.x))
         if has_y:
@@ -77,6 +78,8 @@ def build_statement_xlsx(
     rows_out: List[Point],
     crs_from: str,
     crs_to: str,
+    format_in="deg_dec",
+    format_out="deg_dec",
 ) -> bytes:
     """
     Ведомость расчёта: исходные и полученные координаты в одной таблице.
@@ -157,9 +160,9 @@ def build_statement_xlsx(
 
         # Исходные
         if has_lat_in:
-            row.append(_safe(p_in.lat))
+            row.append(format_angle(p_in.lat, format_in))
         if has_lon_in:
-            row.append(_safe(p_in.lon))
+            row.append(format_angle(p_in.lon, format_in))
         if has_x_in:
             row.append(_safe(p_in.x))
         if has_y_in:
@@ -167,9 +170,9 @@ def build_statement_xlsx(
 
         # Результирующие
         if has_lat_out:
-            row.append(_safe(p_out.lat))
+            row.append(format_angle(p_out.lat, format_out))
         if has_lon_out:
-            row.append(_safe(p_out.lon))
+            row.append(format_angle(p_out.lon, format_out))
         if has_x_out:
             row.append(_safe(p_out.x))
         if has_y_out:

@@ -1,8 +1,8 @@
 // /geoconverter/frontend/src/components/ConverterPanel.tsx
 "use client";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Point, AngleFormat, formatAngle, numericPoints, reformatPoints, excelPoints } from "@/lib/coordinates";
 
-type Point = { lat?: number; lon?: number; x?: number; y?: number };
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "/api";
 
 /* Иконки */
@@ -85,6 +85,8 @@ type CrsOption = {
   title: string;
   group: string;
   category: string; // 'geographic' | 'projected' | 'msk' | ...
+  status: string;
+  description?: string;
 };
 
 export default function ConverterPanel() {
@@ -109,6 +111,7 @@ export default function ConverterPanel() {
   // опции
   const [zoneMode, setZoneMode] = useState<3 | 6>(6);
   const [autoZone, setAutoZone] = useState(true);
+  const [manualZone, setManualZone] = useState("7");
   const [loading, setLoading] = useState(false);
 
   // UI
@@ -152,6 +155,8 @@ export default function ConverterPanel() {
               return "Проекция Гаусса-Крюгера";
             case "msk":
               return "МСК";
+            case "sk63":
+              return "СК-63";
             default:
               return "Прочие";
           }
@@ -171,6 +176,8 @@ export default function ConverterPanel() {
             group: mapCategoryToGroup(item.category as string),
             title: baseTitle + suffix,
             category: (item.category as string) || "other",
+            status: status || "ready",
+            description: item.description || undefined,
           };
         });
 
@@ -201,9 +208,29 @@ export default function ConverterPanel() {
     );
 
   const reverse = () => {
-    setCrsFrom(crsTo);
-    setCrsTo(crsFrom);
-    // данные сознательно не трогаем, пользователь сам решит, что вводить
+    try {
+      setToast(null);
+      const source = numericPoints(rowsIn);
+      const result = numericPoints(rowsOut);
+      setCrsFrom(crsTo);
+      setCrsTo(crsFrom);
+      setRowsIn(reformatPoints(result, formatOut));
+      setRowsOut(source);
+      setFormatIn(formatOut);
+      setFormatOut(formatIn);
+    } catch (error) {
+      setToast((error as Error).message);
+    }
+  };
+
+  const changeInputFormat = (format: AngleFormat) => {
+    try {
+      setToast(null);
+      setRowsIn(reformatPoints(rowsIn, format));
+      setFormatIn(format);
+    } catch (error) {
+      setToast((error as Error).message);
+    }
   };
 
   // клик-вне и ESC
@@ -249,7 +276,12 @@ export default function ConverterPanel() {
 
   const recalc = async () => {
     setLoading(true);
+    setToast(null);
     try {
+      const zone = !autoZone && usesGk ? Number(manualZone) : null;
+      if (zone !== null && (!Number.isInteger(zone) || zone < 2 || zone > 33)) {
+        throw new Error("Укажите целый номер зоны от 2 до 33.");
+      }
       const res = await fetch(`${API_BASE}/convert`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -258,12 +290,14 @@ export default function ConverterPanel() {
           crs_to: crsTo,
           format_in: formatIn,
           format_out: formatOut,
-          points: rowsIn,
-          options: { auto_zone: autoZone, zone_mode: zoneMode },
+          points: numericPoints(rowsIn),
+          options: { auto_zone: autoZone, zone_mode: zoneMode, zone },
         }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || "Ошибка пересчёта");
+      if (!res.ok) throw new Error(Array.isArray(data.detail)
+        ? data.detail.map((item: { msg: string }) => item.msg).join("; ")
+        : data.detail || "Ошибка пересчёта");
       setRowsOut(
         data.points && data.points.length > 0
           ? data.points
@@ -313,7 +347,7 @@ export default function ConverterPanel() {
 
     // 2. Проверяем число колонок
     const first = previewRows[0] || {};
-    const keys = Object.keys(first);
+    const keys = Array.isArray(data.columns) ? data.columns : Object.keys(first);
     if (keys.length !== 2) {
       setToast("В Excel должно быть ровно 2 колонки");
       return;
@@ -323,32 +357,8 @@ export default function ConverterPanel() {
     const src = crsOptions.find((c) => c.code === crsFrom);
     const sourceIsGeodetic = src?.group === "Геодезические СК";
 
-    const toNum = (v: any): number | undefined => {
-      if (v === null || v === undefined || v === "") return undefined;
-      if (typeof v === "number") return Number.isFinite(v) ? v : undefined;
-      const n = Number(String(v).replace(",", "."));
-      return Number.isFinite(n) ? n : undefined;
-    };
-
-    // 4. Excel → массив Point[]
-    const newRows: Point[] = previewRows.map((row: any) => {
-      const a = row[keys[0]];
-      const b = row[keys[1]];
-
-      if (sourceIsGeodetic) {
-        // Геодезические СК: lat / lon
-        return {
-          lat: toNum(a),
-          lon: toNum(b),
-        };
-      }
-
-      // Плоские СК (ГК, МСК и т.п.): Y / X
-      return {
-        y: toNum(a),
-        x: toNum(b),
-      };
-    });
+    // 4. Подписанные колонки уже упорядочены backend: lat/lon или X/Y.
+    const newRows = excelPoints(previewRows, keys, !sourceIsGeodetic, formatIn);
 
     if (newRows.length === 0) {
       setToast("Не удалось получить корректные координаты из файла");
@@ -375,6 +385,7 @@ export default function ConverterPanel() {
 
   const exportFile = async (kind: "catalog" | "statement") => {
     try {
+      setToast(null);
       const res = await fetch(`${API_BASE}/export/${kind}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -384,8 +395,8 @@ export default function ConverterPanel() {
           format: formatOut,
           format_in: formatIn,
           format_out: formatOut,
-          rows_in: rowsIn,
-          rows_out: rowsOut,
+          rows_in: numericPoints(rowsIn),
+          rows_out: numericPoints(rowsOut),
         }),
       });
       if (!res.ok) throw new Error("Экспорт недоступен");
@@ -460,8 +471,10 @@ export default function ConverterPanel() {
                     )}
                     <button
                       type="button"
+                      disabled={o.status === "dev"}
+                      title={o.description}
                       className={
-                        "w-full text-left px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 " +
+                        "w-full text-left px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed " +
                         (o.code === current
                           ? "bg-slate-100 dark:bg-slate-800"
                           : "")
@@ -498,6 +511,8 @@ export default function ConverterPanel() {
     return item.category !== "geographic";
   }, [crsOptions, crsFrom]);
 
+  const usesGk = crsFrom.startsWith("GK_") || crsTo.startsWith("GK_");
+
   return (
     <div className="grid gap-5 md:gap-6">
       {/* 1) Верхняя полоска */}
@@ -510,12 +525,21 @@ export default function ConverterPanel() {
               id="autoZone"
               type="checkbox"
               checked={autoZone}
+              disabled={!usesGk}
               onChange={(e) => setAutoZone(e.target.checked)}
             />
             <label htmlFor="autoZone" className="text-sm">
               вкл.
             </label>
           </div>
+          {usesGk && !autoZone && (
+            <label className="block text-xs">
+              Номер зоны (2–33)
+              <input className="input w-full mt-1" type="number" min={2} max={33}
+                value={manualZone} onChange={e => setManualZone(e.target.value)} />
+              <span>Зона применяется ко всем точкам, включая обратный расчёт.</span>
+            </label>
+          )}
         </div>
 
         {/* Ширина зоны */}
@@ -525,6 +549,7 @@ export default function ConverterPanel() {
             <button
               type="button"
               className="select w-full h-10 pr-8 flex items-center justify-between text-left"
+              disabled={!usesGk}
               onClick={() => setOpenZoneMenu((v) => !v)}
             >
               <span className="truncate">
@@ -541,13 +566,14 @@ export default function ConverterPanel() {
                   <button
                     key={v}
                     type="button"
+                    disabled={v === 3}
                     className="w-full text-left px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
                     onClick={() => {
                       setZoneMode(v as 3 | 6);
                       setOpenZoneMenu(false);
                     }}
                   >
-                    {v}°
+                    {v}°{v === 3 ? " — пока недоступно" : ""}
                   </button>
                 ))}
               </div>
@@ -693,6 +719,9 @@ export default function ConverterPanel() {
         {/* Исходные данные */}
         <section className="card card-overflow-visible p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
           <div className="text-lg font-semibold">Исходные данные</div>
+          {crsOptions.find(o => o.code === crsFrom)?.category === "sk63" && (
+            <p className="text-xs opacity-80">{crsOptions.find(o => o.code === crsFrom)?.description}</p>
+          )}
 
           <div className="grid md:grid-cols-2 gap-3">
             <div className="space-y-1">
@@ -731,7 +760,7 @@ export default function ConverterPanel() {
                 ].map((s) => (
                   <button
                     key={s.k}
-                    onClick={() => setFormatIn(s.k as any)}
+                    onClick={() => changeInputFormat(s.k as AngleFormat)}
                     className={s.k === formatIn ? "active" : ""}
                     type="button"
                     disabled={isSourceProjected} // для плоских СК формат углов не критичен
@@ -756,23 +785,23 @@ export default function ConverterPanel() {
                 <tr className="text-left">
                   <th className="p-2">№</th>
                   <th className="p-2">
-                    {isSourceProjected ? "Y (м)" : "Широта (lat)"}
+                    {isSourceProjected ? "X — восток (м)" : "Широта (lat)"}
                   </th>
                   <th className="p-2">
-                    {isSourceProjected ? "X (м)" : "Долгота (lon)"}
+                    {isSourceProjected ? "Y — север (м)" : "Долгота (lon)"}
                   </th>
                   <th className="p-2"></th>
                 </tr>
               </thead>
               <tbody>
                 {rowsIn.map((r, i) => {
-                  const val1 = isSourceProjected ? r.y ?? "" : r.lat ?? "";
-                  const val2 = isSourceProjected ? r.x ?? "" : r.lon ?? "";
+                  const val1 = isSourceProjected ? r.x ?? "" : r.lat ?? "";
+                  const val2 = isSourceProjected ? r.y ?? "" : r.lon ?? "";
                   const ph1 = isSourceProjected
-                    ? "Y, м"
+                    ? "X, м"
                     : placeholders[formatIn].lat;
                   const ph2 = isSourceProjected
-                    ? "X, м"
+                    ? "Y, м"
                     : placeholders[formatIn].lon;
 
                   return (
@@ -785,21 +814,16 @@ export default function ConverterPanel() {
                         <input
                           className="input w-full"
                           type="text"
-                          inputMode="decimal"
+                          inputMode={isSourceProjected || formatIn === "deg_dec" ? "decimal" : "text"}
                           placeholder={ph1}
                           value={val1}
                           onChange={(e) => {
-                            const v =
-                              e.target.value === ""
-                                ? undefined
-                                : Number(
-                                    e.target.value.replace(",", "."),
-                                  );
+                            const v = e.target.value === "" ? undefined : e.target.value;
                             setRowsIn(
                               rowsIn.map((rr, idx) =>
                                 idx === i
                                   ? isSourceProjected
-                                    ? { ...rr, y: v }
+                                    ? { ...rr, x: v }
                                     : { ...rr, lat: v }
                                   : rr,
                               ),
@@ -811,21 +835,16 @@ export default function ConverterPanel() {
                         <input
                           className="input w-full"
                           type="text"
-                          inputMode="decimal"
+                          inputMode={isSourceProjected || formatIn === "deg_dec" ? "decimal" : "text"}
                           placeholder={ph2}
                           value={val2}
                           onChange={(e) => {
-                            const v =
-                              e.target.value === ""
-                                ? undefined
-                                : Number(
-                                    e.target.value.replace(",", "."),
-                                  );
+                            const v = e.target.value === "" ? undefined : e.target.value;
                             setRowsIn(
                               rowsIn.map((rr, idx) =>
                                 idx === i
                                   ? isSourceProjected
-                                    ? { ...rr, x: v }
+                                    ? { ...rr, y: v }
                                     : { ...rr, lon: v }
                                   : rr,
                               ),
@@ -864,6 +883,9 @@ export default function ConverterPanel() {
         {/* Результат */}
         <section className="card card-overflow-visible p-4 md:p-5 space-y-4 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
           <div className="text-lg font-semibold">Результат</div>
+          {crsOptions.find(o => o.code === crsTo)?.category === "sk63" && (
+            <p className="text-xs opacity-80">{crsOptions.find(o => o.code === crsTo)?.description}</p>
+          )}
 
           <div className="grid md:grid-cols-2 gap-3">
             <div className="space-y-1">
@@ -926,17 +948,17 @@ export default function ConverterPanel() {
                 <tr className="text-left">
                   <th className="p-2">№</th>
                   <th className="p-2">
-                    {isResultProjected ? "Y (м)" : "Широта"}
+                    {isResultProjected ? "X — восток (м)" : "Широта"}
                   </th>
                   <th className="p-2">
-                    {isResultProjected ? "X (м)" : "Долгота"}
+                    {isResultProjected ? "Y — север (м)" : "Долгота"}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {rowsOut.map((r, i) => {
-                  const val1 = isResultProjected ? r.y ?? "-" : r.lat ?? "-";
-                  const val2 = isResultProjected ? r.x ?? "-" : r.lon ?? "-";
+                  const val1 = isResultProjected ? r.x ?? "-" : formatAngle(r.lat, formatOut);
+                  const val2 = isResultProjected ? r.y ?? "-" : formatAngle(r.lon, formatOut);
                   return (
                     <tr
                       key={i}

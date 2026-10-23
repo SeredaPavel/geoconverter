@@ -22,11 +22,16 @@ from .export_utils import (                  # ← ДОБАВЛЕНО
 )
 
 from pyproj import CRS, Transformer
+from pyproj.exceptions import ProjError
+from .sk63_registry import READY_CRS, SK63_ITEMS, MSK_ITEMS, ITEMS_BY_CODE
 import pandas as pd
 import io
 import os
 import time
 import uuid
+import math
+import re
+from .angles import format_angle
 from pathlib import Path
 
 app = FastAPI(title="ГеоКонвертер API", version="0.4.0")
@@ -229,6 +234,7 @@ CRS_REGISTRY: List[CRSItem] = [
 # ----------------------------------------------------------------------
 
 WGS84_CRS = CRS.from_epsg(4326)
+CRS_REGISTRY = [item for item in CRS_REGISTRY if item.category not in {'sk63', 'msk'}] + MSK_ITEMS + SK63_ITEMS
 
 
 @lru_cache(maxsize=32)
@@ -305,6 +311,10 @@ def _detect_zone_from_lon(lon: float, opts: ConvertOptions) -> int:
             detail="Для проекций Гаусса-Крюгера сейчас реализованы только 6° зоны. Выберите ширину зоны 6°.",
         )
 
+    if not opts.auto_zone:
+        if opts.zone is None:
+            raise HTTPException(status_code=400, detail="Укажите номер зоны ГК от 2 до 33.")
+        return opts.zone
     lon_norm = ((lon + 180.0) % 360.0) - 180.0
     zone = int(lon_norm // 6.0) + 1
 
@@ -322,10 +332,17 @@ def _detect_zone_from_x(x: float, opts: ConvertOptions) -> int:
     Для 6° ГК: X ≈ ZONE * 1_000_000 + 500_000.
     Берём целую часть от деления на 1_000_000 как номер зоны.
     """
-    if x <= 0:
+    if opts.zone_mode != 6:
+        raise HTTPException(status_code=400, detail="Поддерживаются только 6° зоны ГК.")
+    if not math.isfinite(x) or x <= 0:
         raise HTTPException(status_code=400, detail="Некорректное значение X (easting) для проекции Гаусса-Крюгера.")
 
     zone = int(x // 1_000_000)
+
+    if not opts.auto_zone:
+        if opts.zone is None:
+            raise HTTPException(status_code=400, detail="Укажите номер зоны ГК от 2 до 33.")
+        return opts.zone
 
     if zone < 1 or zone > 60:
         raise HTTPException(
@@ -478,7 +495,7 @@ class ExportRequest(BaseModel):
     crs_to: str
     format: Format | None = "deg_dec"
     format_in: Format | None = "deg_dec"
-    format_out: Format | None = "deg_dec"
+    format_out: Format | None = None
     rows_in: List[Point]
     rows_out: List[Point]
 
@@ -501,6 +518,19 @@ def list_crs():
 
 @app.post("/convert", response_model=ConvertResponse)
 def convert(req: ConvertRequest):
+    result = _convert_numeric(req)
+    result.meta["format_out"] = req.format_out
+    result.meta["formatted_points"] = [
+        {"lat": format_angle(p.lat, req.format_out), "lon": format_angle(p.lon, req.format_out)}
+        if p.lat is not None else {"x": p.x, "y": p.y}
+        for p in result.points
+    ]
+    return result
+
+
+def _convert_numeric(req: ConvertRequest):
+    if req.crs_from.startswith('SK63:') or req.crs_to.startswith('SK63:'):
+        return _convert_with_sk63(req)
     # 1) Спец-случаи: WGS-84 ⇄ ГК-* (6° зоны)
 
     # WGS-84 ⇄ ГК-СК-42
@@ -593,15 +623,15 @@ def convert(req: ConvertRequest):
     for p in req.points:
         if p.lat is not None and p.lon is not None:
             x, y = tr.transform(p.lon, p.lat)
-            out_points.append(Point(lat=y, lon=x, name=p.name))
         elif p.x is not None and p.y is not None:
             x, y = tr.transform(p.x, p.y)
-            out_points.append(Point(x=x, y=y, name=p.name))
         else:
             raise HTTPException(
                 status_code=400,
                 detail="Точка должна содержать пару lat/lon или x/y.",
             )
+        out_points.append(Point(lat=y, lon=x, name=p.name) if dst.is_geographic
+                          else Point(x=x, y=y, name=p.name))
 
     meta = {
         "auto_zone": req.options.auto_zone,
@@ -610,6 +640,66 @@ def convert(req: ConvertRequest):
     }
 
     return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=out_points, meta=meta)
+
+
+@lru_cache(maxsize=256)
+def _strict_transformer(source: str, target: str):
+    return Transformer.from_crs(source, target, always_xy=True, allow_ballpark=False)
+
+
+def _convert_with_sk63(req: ConvertRequest):
+    factories = {'GK_SK42': _crs_gk_sk42_6, 'GK_SK95': _crs_gk_sk95_6, 'GK_GSK2011': _crs_gk_gsk2011_6}
+
+    def resolve(code, point, source):
+        if code.startswith('SK63:'):
+            if code not in READY_CRS:
+                label = ITEMS_BY_CODE[code].title if code in ITEMS_BY_CODE else code
+                raise HTTPException(status_code=400, detail=f'{label}: система в разработке или код неизвестен.')
+            return READY_CRS[code]
+        if code in GEODETIC_EPSG:
+            return CRS.from_epsg(GEODETIC_EPSG[code])
+        if code in factories:
+            if source:
+                if point.x is None:
+                    raise HTTPException(status_code=400, detail='Для исходной проекции заполните X и Y.')
+                return factories[code](_detect_zone_from_x(point.x, req.options))
+            return factories[code](_detect_zone_from_lon(point.lon, req.options))
+        if code.startswith('EPSG:'):
+            return CRS.from_user_input(code)
+        raise HTTPException(status_code=400, detail=f"CRS '{code}' пока не сконфигурирован (в разработке).")
+
+    # Validate even an empty request, so a dev code can never succeed silently.
+    for code in (req.crs_from, req.crs_to):
+        if code.startswith('SK63:') and code not in READY_CRS:
+            raise HTTPException(status_code=400, detail=f'{code}: система в разработке или код неизвестен.')
+    out, operations = [], {}
+    try:
+        for index, point in enumerate(req.points, start=1):
+            src = resolve(req.crs_from, point, True)
+            first, second = (point.lon, point.lat) if src.is_geographic else (point.x, point.y)
+            if first is None or second is None:
+                raise HTTPException(status_code=400, detail=f'Строка {index}: заполните пару lat/lon или X/Y согласно исходной СК.')
+            if req.crs_to in factories:
+                lon, lat = _strict_transformer(src.srs, WGS84_CRS.srs).transform(first, second, errcheck=True)
+                dst = resolve(req.crs_to, Point(lat=lat, lon=lon), False)
+            else:
+                dst = resolve(req.crs_to, point, False)
+            transformer = _strict_transformer(src.srs, dst.srs)
+            x, y = transformer.transform(first, second, errcheck=True)
+            if not math.isfinite(x) or not math.isfinite(y):
+                raise HTTPException(status_code=400, detail=f'Строка {index}: преобразование не дало конечных координат.')
+            out.append(Point(lat=y, lon=x, name=point.name) if dst.is_geographic else Point(x=x, y=y, name=point.name))
+            try:
+                used = transformer.get_last_used_operation()
+            except ProjError:
+                used = transformer
+            operations[(src.srs, dst.srs)] = {'source': src.srs, 'target': dst.srs,
+                'description': used.description, 'accuracy_metres': used.accuracy if used.accuracy >= 0 else None}
+    except ProjError as error:
+        raise HTTPException(status_code=400, detail=f'Не удалось выполнить переход. Проверьте выбранные системы, область применения и доступность параметров/сеток PROJ: {error}')
+    return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=out,
+        meta={'engine': 'pyproj SK-63 EPSG', 'axis_order': 'x=easting, y=northing',
+              'allow_ballpark': False, 'operations': list(operations.values())})
 
 
 @app.post("/import")
@@ -649,9 +739,20 @@ async def import_excel(file: UploadFile = File(...)):
             detail="В файле должно быть ровно 2 колонки (Lat/Lon или X/Y).",
         )
 
+    # Prefer labelled axes, including files whose columns are in reverse order.
+    labels = {re.sub(r"\s*\(.*\)\s*$", "", str(c)).strip().lower(): c for c in df.columns}
+    for first_names, second_names in ((["x", "х"], ["y", "у"]),
+                                       (["lat", "широта"], ["lon", "долгота"])):
+        first = next((labels[n] for n in first_names if n in labels), None)
+        second = next((labels[n] for n in second_names if n in labels), None)
+        if first is not None and second is not None:
+            df = df[[first, second]]
+            break
+    df.columns = [str(c) for c in df.columns]
     head = df.head(IMPORT_ROW_LIMIT).to_dict(orient="records")
     return {
         "rows_preview": head,
+        "columns": list(df.columns),
         "rows_total": int(df.shape[0]),
         "rows_limit": IMPORT_ROW_LIMIT,
         "file_id": fid,
@@ -679,6 +780,7 @@ def export(kind: str, req: ExportRequest):
             rows=req.rows_out,
             crs_from=req.crs_from,
             crs_to=req.crs_to,
+            format_out=req.format_out or req.format,
         )
         filename = "catalog.xlsx"
     else:
@@ -687,6 +789,8 @@ def export(kind: str, req: ExportRequest):
             rows_out=req.rows_out,
             crs_from=req.crs_from,
             crs_to=req.crs_to,
+            format_in=req.format_in,
+            format_out=req.format_out or req.format,
         )
         filename = "statement.xlsx"
 

@@ -1,0 +1,5900 @@
+{
+  "source_url": "https://geoproj.ru/",
+  "retrieved_on": "2026-10-23",
+  "extraction": "Visible source-system, region/district and zone dropdowns; names and identifiers retained from the source.",
+  "status": "reference_only",
+  "notes": [
+    "This is the catalogue exposed by geoproj.ru, not a complete official national registry.",
+    "The source groups MSK and SK-63 under BETA.",
+    "SK-63 research adds authority definitions and separately labelled published candidates. No entries are enabled for conversion or independently accuracy-validated.",
+    "Observed geoproj variant widths are preserved; standard-width classifications from GIS-Lab are recorded separately with attribution.",
+    "SK-63 districts are lettered areas in the source; administrative region mappings were not provided by these dropdowns."
+  ],
+  "msk": [
+    {
+      "source_id": "mos",
+      "title": "МСК г.Москва ☆",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "г.Москва",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "1964",
+      "title": "МСК-1964 Санкт Петербург ☆",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Санкт Петербург",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "01",
+      "title": "МСК-01 респ. Адыгея",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "респ. Адыгея",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "02",
+      "title": "МСК-02 респ. Башкортостан",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "респ. Башкортостан",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "03",
+      "title": "МСК-03 респ. Бурятия",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        },
+        {
+          "label": "7",
+          "source_value": "7"
+        }
+      ],
+      "region_label": "респ. Бурятия",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "04",
+      "title": "МСК-04 респ. Алтай",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "респ. Алтай",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "05",
+      "title": "МСК-05 респ. Дагестан",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "респ. Дагестан",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "06",
+      "title": "МСК-06 респ. Ингушетия",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "респ. Ингушетия",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "07",
+      "title": "МСК-07 респ. Кабардино-Балкария",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "респ. Кабардино-Балкария",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "08",
+      "title": "МСК-08 респ. Калмыкия",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "респ. Калмыкия",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "09",
+      "title": "МСК-09 респ. Карачаево-Черкесия",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "респ. Карачаево-Черкесия",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "10",
+      "title": "МСК-10 (6°) респ. Карелия",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "респ. Карелия",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "11",
+      "title": "МСК-11 респ. Коми",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        },
+        {
+          "label": "7",
+          "source_value": "7"
+        },
+        {
+          "label": "8",
+          "source_value": "8"
+        },
+        {
+          "label": "9",
+          "source_value": "9"
+        }
+      ],
+      "region_label": "респ. Коми",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "12",
+      "title": "МСК-12 респ. Марий Эл",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "респ. Марий Эл",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "13",
+      "title": "МСК-13 респ. Мордовия",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "респ. Мордовия",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "14",
+      "title": "МСК-14 (6°) респ. Саха (Якутия)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        },
+        {
+          "label": "7",
+          "source_value": "7"
+        },
+        {
+          "label": "8",
+          "source_value": "8"
+        },
+        {
+          "label": "9",
+          "source_value": "9"
+        }
+      ],
+      "region_label": "респ. Саха (Якутия)",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "15",
+      "title": "МСК-15 Сев.Осетия - Алания",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Сев.Осетия - Алания",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "16",
+      "title": "МСК-16 респ. Татарстан",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "респ. Татарстан",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "18",
+      "title": "МСК-18 респ. Удмуртия",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "респ. Удмуртия",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "20",
+      "title": "МСК-20 респ. Чечня",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "респ. Чечня",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "21",
+      "title": "МСК-21 респ. Чувашия",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "респ. Чувашия",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "22",
+      "title": "МСК-22 Алтайский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Алтайский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "23",
+      "title": "МСК-23 Краснодарский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Краснодарский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "krasn",
+      "title": "МСК г.Красноярск ☆",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "г.Красноярск",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "24",
+      "title": "МСК-24 (6°) Красноярский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        }
+      ],
+      "region_label": "Красноярский край",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "163",
+      "title": "МСК-163 Красноярский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Красноярский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "164",
+      "title": "МСК-164 Красноярский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Красноярский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "165",
+      "title": "МСК-165 Красноярский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Красноярский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "166",
+      "title": "МСК-166 Красноярский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Красноярский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "167",
+      "title": "МСК-167 Красноярский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Красноярский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "168",
+      "title": "МСК-168 Красноярский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Красноярский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "169",
+      "title": "МСК-169 Красноярский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Красноярский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "170",
+      "title": "МСК-170 Красноярский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Красноярский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "25",
+      "title": "МСК-25 Приморский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        }
+      ],
+      "region_label": "Приморский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "26",
+      "title": "МСК-26 Ставропольский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Ставропольский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "27",
+      "title": "МСК-27 Хабаровский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        }
+      ],
+      "region_label": "Хабаровский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "28",
+      "title": "МСК-28 Амурская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        }
+      ],
+      "region_label": "Амурская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "29",
+      "title": "МСК-29 (6°) Архангельская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        }
+      ],
+      "region_label": "Архангельская область",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "30",
+      "title": "МСК-30 Астраханская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Астраханская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "31",
+      "title": "МСК-31 Белгородская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Белгородская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "32",
+      "title": "МСК-32 Брянская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Брянская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "33",
+      "title": "МСК-33 Владимирская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Владимирская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "34",
+      "title": "МСК-34 Волгоградская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Волгоградская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "35",
+      "title": "МСК-35 Вологодская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        }
+      ],
+      "region_label": "Вологодская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "37",
+      "title": "МСК-37 Ивановская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Ивановская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "38",
+      "title": "МСК-38 Иркутская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        },
+        {
+          "label": "7",
+          "source_value": "7"
+        },
+        {
+          "label": "8",
+          "source_value": "8"
+        }
+      ],
+      "region_label": "Иркутская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "39",
+      "title": "МСК-39 Калининградская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Калининградская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "40",
+      "title": "МСК-40 Калужская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Калужская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "41",
+      "title": "МСК-41 (6°) Камчатский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Камчатский край",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "42",
+      "title": "МСК-42 Кемеровская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Кемеровская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "43",
+      "title": "МСК-43 Кировская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Кировская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "44",
+      "title": "МСК-44 Костромская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Костромская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "45",
+      "title": "МСК-45 Курганская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Курганская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "46",
+      "title": "МСК-46 Курская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Курская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "47",
+      "title": "МСК-47 Ленинградская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Ленинградская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "48",
+      "title": "МСК-48 Липецкая область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Липецкая область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "49",
+      "title": "МСК-49 (6°) Магаданская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        }
+      ],
+      "region_label": "Магаданская область",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "50",
+      "title": "МСК-50 Москва и Московская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Москва и Московская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "51",
+      "title": "МСК-51 (6°) Мурманская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Мурманская область",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "52",
+      "title": "МСК-52 Нижегородская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Нижегородская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "53",
+      "title": "МСК-53 Новгородская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Новгородская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "54",
+      "title": "МСК-54 Новосибирская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        }
+      ],
+      "region_label": "Новосибирская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "55",
+      "title": "МСК-55 Омская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Омская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "56",
+      "title": "МСК-56 Оренбургская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        }
+      ],
+      "region_label": "Оренбургская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "57",
+      "title": "МСК-57 Орловская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Орловская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "58",
+      "title": "МСК-58 Пензенская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Пензенская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "59",
+      "title": "МСК-59 Пермский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Пермский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "60",
+      "title": "МСК-60 Псковская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Псковская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "61",
+      "title": "МСК-61 Ростовская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Ростовская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "62",
+      "title": "МСК-62 Рязанская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Рязанская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "63",
+      "title": "МСК-63 Самарская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Самарская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "64",
+      "title": "МСК-64 Саратовская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Саратовская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "65",
+      "title": "МСК-65 Сахалинская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        }
+      ],
+      "region_label": "Сахалинская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "66_3",
+      "title": "МСК-66 (3°) Свердловская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Свердловская область",
+      "zone_width_degrees": 3
+    },
+    {
+      "source_id": "66_6",
+      "title": "МСК-66 (6°) Свердловская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Свердловская область",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "67",
+      "title": "МСК-67 Смоленская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Смоленская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "68",
+      "title": "МСК-68 Тамбовская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Тамбовская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "69",
+      "title": "МСК-69 Тверская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Тверская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "70",
+      "title": "МСК-70 Томская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        }
+      ],
+      "region_label": "Томская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "71",
+      "title": "МСК-71 Тульская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Тульская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "72_1",
+      "title": "МСК-72 (1,5°) Тюменская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        }
+      ],
+      "region_label": "Тюменская область",
+      "zone_width_degrees": 1.5
+    },
+    {
+      "source_id": "72_3",
+      "title": "МСК-72 (3°) Тюменская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        }
+      ],
+      "region_label": "Тюменская область",
+      "zone_width_degrees": 3
+    },
+    {
+      "source_id": "72_6",
+      "title": "МСК-72 (6°) Тюменская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Тюменская область",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "73",
+      "title": "МСК-73 Ульяновская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Ульяновская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "74",
+      "title": "МСК-74 Челябинская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        }
+      ],
+      "region_label": "Челябинская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "75",
+      "title": "МСК-75 Забайкальский край",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        }
+      ],
+      "region_label": "Забайкальский край",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "76",
+      "title": "МСК-76 Ярославская область",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        }
+      ],
+      "region_label": "Ярославская область",
+      "zone_width_degrees": null
+    },
+    {
+      "source_id": "83",
+      "title": "МСК-83 (6°) Ненецкий АО",
+      "zones": [
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        },
+        {
+          "label": "7",
+          "source_value": "7"
+        }
+      ],
+      "region_label": "Ненецкий АО",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "86",
+      "title": "МСК-86 (6°) ЮГРА Ханты-Мансийский АО",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1"
+        },
+        {
+          "label": "2",
+          "source_value": "2"
+        },
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        }
+      ],
+      "region_label": "ЮГРА Ханты-Мансийский АО",
+      "zone_width_degrees": 6
+    },
+    {
+      "source_id": "87",
+      "title": "МСК-87 (6°) Чукотский АО",
+      "zones": [
+        {
+          "label": "3",
+          "source_value": "3"
+        },
+        {
+          "label": "4",
+          "source_value": "4"
+        },
+        {
+          "label": "5",
+          "source_value": "5"
+        },
+        {
+          "label": "6",
+          "source_value": "6"
+        },
+        {
+          "label": "7",
+          "source_value": "7"
+        },
+        {
+          "label": "8",
+          "source_value": "8"
+        }
+      ],
+      "region_label": "Чукотский АО",
+      "zone_width_degrees": 6
+    }
+  ],
+  "sk63": [
+    {
+      "source_id": "C",
+      "title": "СК-63 район C (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [
+            "EPSG:3351"
+          ],
+          "published_candidate_ids": [
+            "paper2021:C1"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [
+            "EPSG:3352"
+          ],
+          "published_candidate_ids": [
+            "paper2021:C2"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:C3"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:C4"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "6",
+          "source_value": "6",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "C",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [
+        "EPSG:3350",
+        "EPSG:3351",
+        "EPSG:3352"
+      ],
+      "research_status": "partial_definitions_found",
+      "issue_ids": [
+        "C_numbering_and_false_easting",
+        "offset_representation",
+        "standard_vs_alternate_width"
+      ],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": null,
+        "status": "not_resolved_per_district_by_article",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "D",
+      "title": "СК-63 район D (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "6",
+          "source_value": "6",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "7",
+          "source_value": "7",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "8",
+          "source_value": "8",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "D",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [
+        "standard_vs_alternate_width"
+      ],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": null,
+        "status": "not_resolved_per_district_by_article",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "E",
+      "title": "СК-63 район E (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "E",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "F",
+      "title": "СК-63 район F (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "F",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "G",
+      "title": "СК-63 район G (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "6",
+          "source_value": "6",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "7",
+          "source_value": "7",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "8",
+          "source_value": "8",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "9",
+          "source_value": "9",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "G",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "I",
+      "title": "СК-63 район I (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "I",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "J",
+      "title": "СК-63 район J (6°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "J",
+      "zone_width_degrees": 6,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [
+        "standard_vs_alternate_width"
+      ],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": null,
+        "status": "not_resolved_per_district_by_article",
+        "catalogue_variant_width_degrees": 6
+      }
+    },
+    {
+      "source_id": "L",
+      "title": "СК-63 район L (6°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "6",
+          "source_value": "6",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "L",
+      "zone_width_degrees": 6,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [
+        "standard_vs_alternate_width"
+      ],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": null,
+        "status": "not_resolved_per_district_by_article",
+        "catalogue_variant_width_degrees": 6
+      }
+    },
+    {
+      "source_id": "M",
+      "title": "СК-63 район M (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "M",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "P",
+      "title": "СК-63 район P (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:P1"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:P2"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:P3"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:P4"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        }
+      ],
+      "district": "P",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "partial_definitions_found",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "Q",
+      "title": "СК-63 район Q (6°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "Q",
+      "zone_width_degrees": 6,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 6,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 6
+      }
+    },
+    {
+      "source_id": "R",
+      "title": "СК-63 район R (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "R",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "S",
+      "title": "СК-63 район S (6°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "6",
+          "source_value": "6",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "7",
+          "source_value": "7",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "8",
+          "source_value": "8",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "9",
+          "source_value": "9",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "10",
+          "source_value": "10",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "11",
+          "source_value": "11",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "12",
+          "source_value": "12",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "13",
+          "source_value": "13",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "S",
+      "zone_width_degrees": 6,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [
+        "standard_vs_alternate_width"
+      ],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": null,
+        "status": "not_resolved_per_district_by_article",
+        "catalogue_variant_width_degrees": 6
+      }
+    },
+    {
+      "source_id": "T",
+      "title": "СК-63 район T (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:T1"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:T2"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:T3"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [
+            "paper2021:T4"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        }
+      ],
+      "district": "T",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "partial_definitions_found",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "V",
+      "title": "СК-63 район V (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "6",
+          "source_value": "6",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "V",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "W3",
+      "title": "СК-63 район W (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "6",
+          "source_value": "6",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "7",
+          "source_value": "7",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "8",
+          "source_value": "8",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "W",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [
+        "standard_vs_alternate_width"
+      ],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": null,
+        "status": "not_resolved_per_district_by_article",
+        "catalogue_variant_width_degrees": 3
+      }
+    },
+    {
+      "source_id": "W6",
+      "title": "СК-63 район W (6°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [],
+          "published_candidate_ids": [],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "parameters_not_found_in_reviewed_sources"
+        }
+      ],
+      "district": "W",
+      "zone_width_degrees": 6,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [],
+      "research_status": "parameters_not_found_in_reviewed_sources",
+      "issue_ids": [
+        "standard_vs_alternate_width"
+      ],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": null,
+        "status": "not_resolved_per_district_by_article",
+        "catalogue_variant_width_degrees": 6
+      }
+    },
+    {
+      "source_id": "X",
+      "title": "СК-63 район X (3°)",
+      "zones": [
+        {
+          "label": "1",
+          "source_value": "1",
+          "authority_candidate_ids": [
+            "EPSG:7825"
+          ],
+          "published_candidate_ids": [
+            "paper2021:X1"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "2",
+          "source_value": "2",
+          "authority_candidate_ids": [
+            "EPSG:7826"
+          ],
+          "published_candidate_ids": [
+            "paper2021:X2"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "3",
+          "source_value": "3",
+          "authority_candidate_ids": [
+            "EPSG:7827"
+          ],
+          "published_candidate_ids": [
+            "paper2021:X3"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "4",
+          "source_value": "4",
+          "authority_candidate_ids": [
+            "EPSG:7828"
+          ],
+          "published_candidate_ids": [
+            "paper2021:X4"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "5",
+          "source_value": "5",
+          "authority_candidate_ids": [
+            "EPSG:7829"
+          ],
+          "published_candidate_ids": [
+            "paper2021:X5"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        },
+        {
+          "label": "6",
+          "source_value": "6",
+          "authority_candidate_ids": [
+            "EPSG:7830"
+          ],
+          "published_candidate_ids": [
+            "paper2021:X6"
+          ],
+          "geoproj_equivalence_status": "not_verified",
+          "runtime_enabled": false,
+          "definition_status": "candidate_requires_verification"
+        }
+      ],
+      "district": "X",
+      "zone_width_degrees": 3,
+      "source_ids": [
+        "geoproj_ui"
+      ],
+      "runtime_enabled": false,
+      "administrative_region_mapping": {
+        "status": "not_verified",
+        "regions": [],
+        "note": "A lettered SK-63 district is not an administrative region; partial EPSG areas below are not full district boundaries."
+      },
+      "authority_definition_ids": [
+        "EPSG:7825",
+        "EPSG:7826",
+        "EPSG:7827",
+        "EPSG:7828",
+        "EPSG:7829",
+        "EPSG:7830",
+        "EPSG:7831"
+      ],
+      "research_status": "partial_definitions_found",
+      "issue_ids": [
+        "X7_missing_from_geoproj",
+        "offset_representation"
+      ],
+      "standard_width_assessment": {
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "standard_zone_width_degrees": 3,
+        "status": "stated",
+        "catalogue_variant_width_degrees": 3
+      }
+    }
+  ],
+  "schema_version": 2,
+  "sources": [
+    {
+      "id": "geoproj_ui",
+      "url": "https://geoproj.ru/",
+      "kind": "observed_ui_catalogue",
+      "accessed_on": "2026-10-23"
+    },
+    {
+      "id": "proj_epsg_snapshot",
+      "url": "https://proj.org/en/stable/resource_files.html#proj-db",
+      "kind": "local_authority_database",
+      "authority": "EPSG",
+      "epsg_version": "v10.094",
+      "epsg_date": "2023-08-08",
+      "pyproj_version": "3.6.1",
+      "proj_version": "9.3.0",
+      "extraction": "pyproj.database.query_crs_info(): EPSG names containing 'CS63'; CRS.from_epsg(code).to_json_dict()",
+      "accessed_on": "2026-10-23",
+      "note": "Installed database snapshot; not a claim about the latest EPSG release."
+    },
+    {
+      "id": "burkovskyi_2021",
+      "url": "https://journal-hnups.com.ua/index.php/zhups/article/view/761",
+      "doi": "10.30748/zhups.2021.70.08",
+      "kind": "primary_research_article",
+      "published_on": "2021-11-25",
+      "title": "Впровадження системи координат СК-63 у спеціальне програмне забезпечення “Віраж”",
+      "authors": [
+        "С.І. Бурковський",
+        "І.В. Московченко",
+        "Д.Ю. Свистунов",
+        "А.В. Сінчук",
+        "Л.В. Польшина"
+      ],
+      "full_text_read_at": "https://www.researchgate.net/publication/356764566_Vprovadzenna_sistemi_koordinat_SK-63_u_specialne_programne_zabezpecenna_Viraz",
+      "locator": "Table 2, printed pages 56–57; projection discussion pp. 55–58",
+      "accessed_on": "2026-10-23",
+      "limitation": "Publisher PDF returned HTTP 502; public full-text transcription of the same article was inspected. Table values are research candidates, not executable definitions."
+    },
+    {
+      "id": "precisely_ks1963",
+      "url": "https://docs.precisely.com/docs/sftw/stratus/mapinfo_stratus_uploader_guide/en/supported%20projections.pdf",
+      "kind": "vendor_projection_catalogue",
+      "locator": "Appendix C, PDF page 44, KS-1963 zones 0–2",
+      "accessed_on": "2026-10-23",
+      "limitation": "Lithuanian Pulkovo 1942 datum variant; not automatically interchangeable with generic EPSG:4284."
+    },
+    {
+      "id": "gislab_andrey1_sk63",
+      "url": "https://gis-lab.info/qa/sk-63.html",
+      "kind": "original_author_technical_article",
+      "author": "Andrey1",
+      "title": "Система координат 1963 года (СК63) и номенклатура основанных на ней топографических карт",
+      "published_on": "2008-07-27",
+      "last_updated_on": "2021-09-09",
+      "accessed_on": "2026-10-23",
+      "attribution": "GIS-Lab, Andrey1; factual classifications paraphrased with source attribution.",
+      "scope": "District identifiers, standard width classes, projection principles and sheet indexing; no district-specific numeric parameter tables."
+    }
+  ],
+  "sk63_authority_definitions": [
+    {
+      "id": "EPSG:2935",
+      "name": "Pulkovo 1942 / CS63 zone A1",
+      "district": "A",
+      "zone_number": 1,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.116666666666667,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 41.5333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 1300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Armenia and Georgia onshore west of 43°02'E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          39.99,
+          41.37,
+          43.04,
+          43.59
+        ]
+      }
+    },
+    {
+      "id": "EPSG:2936",
+      "name": "Pulkovo 1942 / CS63 zone A2",
+      "district": "A",
+      "zone_number": 2,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.116666666666667,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 44.5333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 2300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Armenia and Georgia between 43°02'E and 46°02'E; Azerbaijan west of 46°02'E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          43.03,
+          38.87,
+          46.04,
+          43.05
+        ]
+      }
+    },
+    {
+      "id": "EPSG:2937",
+      "name": "Pulkovo 1942 / CS63 zone A3",
+      "district": "A",
+      "zone_number": 3,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.116666666666667,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 47.5333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 3300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Armenia and Georgia east of 46°02'E; Azerbaijan between 46°02' and 49°02'E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          46.03,
+          38.38,
+          49.04,
+          42.1
+        ]
+      }
+    },
+    {
+      "id": "EPSG:2938",
+      "name": "Pulkovo 1942 / CS63 zone A4",
+      "district": "A",
+      "zone_number": 4,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.116666666666667,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 50.5333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 4300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Azerbaijan east of 49°02'E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          49.03,
+          37.89,
+          51.73,
+          42.59
+        ]
+      }
+    },
+    {
+      "id": "EPSG:3350",
+      "name": "Pulkovo 1942 / CS63 zone C0",
+      "district": "C",
+      "zone_number": 0,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.1,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 21.95,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 250000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Estonia, Latvia and Lithuania - onshore west of 23°27'E. Russia - Kaliningrad onshore.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          19.57,
+          54.17,
+          23.45,
+          59.27
+        ]
+      }
+    },
+    {
+      "id": "EPSG:3351",
+      "name": "Pulkovo 1942 / CS63 zone C1",
+      "district": "C",
+      "zone_number": 1,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.1,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 24.95,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 1250000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Estonia, Latvia and Lithuania - onshore between 23°27'E and 26°27'E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          23.45,
+          53.89,
+          26.45,
+          59.72
+        ]
+      }
+    },
+    {
+      "id": "EPSG:3352",
+      "name": "Pulkovo 1942 / CS63 zone C2",
+      "district": "C",
+      "zone_number": 2,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.1,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 27.95,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 2250000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Estonia, Latvia and Lithuania - onshore east of 26°27'E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          26.45,
+          55.15,
+          28.24,
+          59.61
+        ]
+      }
+    },
+    {
+      "id": "EPSG:2939",
+      "name": "Pulkovo 1942 / CS63 zone K2",
+      "district": "K",
+      "zone_number": 2,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.133333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 50.7666666666667,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 2300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Kazakhstan between 49°16'E and 52°16'E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          49.26,
+          41.15,
+          52.27,
+          51.77
+        ]
+      }
+    },
+    {
+      "id": "EPSG:2940",
+      "name": "Pulkovo 1942 / CS63 zone K3",
+      "district": "K",
+      "zone_number": 3,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.133333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 53.7666666666667,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 3300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Kazakhstan between 52°16'E and 55°16'E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          52.26,
+          41.46,
+          55.27,
+          51.79
+        ]
+      }
+    },
+    {
+      "id": "EPSG:2941",
+      "name": "Pulkovo 1942 / CS63 zone K4",
+      "district": "K",
+      "zone_number": 4,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.133333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 56.7666666666667,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 4300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Kazakhstan between 55°16'E and 58°16'E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          55.26,
+          41.26,
+          58.27,
+          51.14
+        ]
+      }
+    },
+    {
+      "id": "EPSG:7825",
+      "name": "Pulkovo 1942 / CS63 zone X1",
+      "district": "X",
+      "zone_number": 1,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.0833333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 23.5,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 1300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Ukraine - west of 25°E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          22.15,
+          47.71,
+          25.01,
+          51.92
+        ]
+      }
+    },
+    {
+      "id": "EPSG:7826",
+      "name": "Pulkovo 1942 / CS63 zone X2",
+      "district": "X",
+      "zone_number": 2,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.0833333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 26.5,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 2300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Ukraine - between 25°E and 28°E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          25.0,
+          47.72,
+          28.01,
+          51.96
+        ]
+      }
+    },
+    {
+      "id": "EPSG:7827",
+      "name": "Pulkovo 1942 / CS63 zone X3",
+      "district": "X",
+      "zone_number": 3,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.0833333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 29.5,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 3300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Ukraine - between 28°E and 31°E, onshore.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          28.0,
+          45.18,
+          31.01,
+          52.09
+        ]
+      }
+    },
+    {
+      "id": "EPSG:7828",
+      "name": "Pulkovo 1942 / CS63 zone X4",
+      "district": "X",
+      "zone_number": 4,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.0833333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 32.5,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 4300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Ukraine - between 31°E and 34°E, onshore.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          31.0,
+          44.32,
+          34.01,
+          52.38
+        ]
+      }
+    },
+    {
+      "id": "EPSG:7829",
+      "name": "Pulkovo 1942 / CS63 zone X5",
+      "district": "X",
+      "zone_number": 5,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.0833333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 35.5,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 5300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Ukraine - between 34°E and 37°E, onshore.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          34.0,
+          44.33,
+          37.01,
+          52.25
+        ]
+      }
+    },
+    {
+      "id": "EPSG:7830",
+      "name": "Pulkovo 1942 / CS63 zone X6",
+      "district": "X",
+      "zone_number": 6,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.0833333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 38.5,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 6300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Ukraine - between 37°E and 40°E, onshore.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          37.0,
+          46.8,
+          40.01,
+          50.44
+        ]
+      }
+    },
+    {
+      "id": "EPSG:7831",
+      "name": "Pulkovo 1942 / CS63 zone X7",
+      "district": "X",
+      "zone_number": 7,
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ],
+      "definition_status": "authority_definition_available",
+      "runtime_enabled": false,
+      "independent_control_points_verified": false,
+      "base_crs": {
+        "authority": "EPSG",
+        "code": 4284
+      },
+      "method": {
+        "name": "Transverse Mercator",
+        "id": {
+          "authority": "EPSG",
+          "code": 9807
+        }
+      },
+      "parameters": [
+        {
+          "name": "Latitude of natural origin",
+          "value": 0.0833333333333333,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8801
+          }
+        },
+        {
+          "name": "Longitude of natural origin",
+          "value": 41.5,
+          "unit": "degree",
+          "id": {
+            "authority": "EPSG",
+            "code": 8802
+          }
+        },
+        {
+          "name": "Scale factor at natural origin",
+          "value": 1,
+          "unit": "unity",
+          "id": {
+            "authority": "EPSG",
+            "code": 8805
+          }
+        },
+        {
+          "name": "False easting",
+          "value": 7300000,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8806
+          }
+        },
+        {
+          "name": "False northing",
+          "value": 0,
+          "unit": "metre",
+          "id": {
+            "authority": "EPSG",
+            "code": 8807
+          }
+        }
+      ],
+      "axes": [
+        {
+          "name": "Northing",
+          "abbreviation": "X",
+          "direction": "north",
+          "unit": "metre"
+        },
+        {
+          "name": "Easting",
+          "abbreviation": "Y",
+          "direction": "east",
+          "unit": "metre"
+        }
+      ],
+      "area_of_use": {
+        "description": "Ukraine - east of 40°E.",
+        "bounds_order": [
+          "west",
+          "south",
+          "east",
+          "north"
+        ],
+        "bounds_degrees": [
+          40.0,
+          48.8,
+          40.18,
+          49.62
+        ]
+      }
+    }
+  ],
+  "sk63_published_candidates": [
+    {
+      "id": "paper2021:X1",
+      "district": "X",
+      "zone_number": 1,
+      "central_meridian_degrees_reported": 23.5,
+      "east_shift_metres_reported": 1300000,
+      "north_shift_metres_reported": 9214.688,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:X2",
+      "district": "X",
+      "zone_number": 2,
+      "central_meridian_degrees_reported": 26.5,
+      "east_shift_metres_reported": 2300000,
+      "north_shift_metres_reported": 9214.688,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:X3",
+      "district": "X",
+      "zone_number": 3,
+      "central_meridian_degrees_reported": 29.5,
+      "east_shift_metres_reported": 3300000,
+      "north_shift_metres_reported": 9214.688,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:X4",
+      "district": "X",
+      "zone_number": 4,
+      "central_meridian_degrees_reported": 32.5,
+      "east_shift_metres_reported": 4300000,
+      "north_shift_metres_reported": 9214.688,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:X5",
+      "district": "X",
+      "zone_number": 5,
+      "central_meridian_degrees_reported": 35.5,
+      "east_shift_metres_reported": 5300000,
+      "north_shift_metres_reported": 9214.688,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:X6",
+      "district": "X",
+      "zone_number": 6,
+      "central_meridian_degrees_reported": 38.5,
+      "east_shift_metres_reported": 6300000,
+      "north_shift_metres_reported": 9214.688,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:C1",
+      "district": "C",
+      "zone_number": 1,
+      "central_meridian_degrees_reported": 21.95,
+      "east_shift_metres_reported": 1250000,
+      "north_shift_metres_reported": 11057.626,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:C2",
+      "district": "C",
+      "zone_number": 2,
+      "central_meridian_degrees_reported": 24.95,
+      "east_shift_metres_reported": 2250000,
+      "north_shift_metres_reported": 11057.626,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:C3",
+      "district": "C",
+      "zone_number": 3,
+      "central_meridian_degrees_reported": 27.95,
+      "east_shift_metres_reported": 3250000,
+      "north_shift_metres_reported": 11057.626,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:C4",
+      "district": "C",
+      "zone_number": 4,
+      "central_meridian_degrees_reported": 30.95,
+      "east_shift_metres_reported": 4250000,
+      "north_shift_metres_reported": 11057.626,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:P1",
+      "district": "P",
+      "zone_number": 1,
+      "central_meridian_degrees_reported": 32.483333333333334,
+      "east_shift_metres_reported": 1250000,
+      "north_shift_metres_reported": 12900.563,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:P2",
+      "district": "P",
+      "zone_number": 2,
+      "central_meridian_degrees_reported": 35.483333333333334,
+      "east_shift_metres_reported": 2250000,
+      "north_shift_metres_reported": 12900.563,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:P3",
+      "district": "P",
+      "zone_number": 3,
+      "central_meridian_degrees_reported": 38.483333333333334,
+      "east_shift_metres_reported": 3250000,
+      "north_shift_metres_reported": 12900.563,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:P4",
+      "district": "P",
+      "zone_number": 4,
+      "central_meridian_degrees_reported": 41.483333333333334,
+      "east_shift_metres_reported": 4250000,
+      "north_shift_metres_reported": 12900.563,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:T1",
+      "district": "T",
+      "zone_number": 1,
+      "central_meridian_degrees_reported": 32.983333333333334,
+      "east_shift_metres_reported": 1300000,
+      "north_shift_metres_reported": 11057.626,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:T2",
+      "district": "T",
+      "zone_number": 2,
+      "central_meridian_degrees_reported": 35.983333333333334,
+      "east_shift_metres_reported": 2300000,
+      "north_shift_metres_reported": 11057.626,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:T3",
+      "district": "T",
+      "zone_number": 3,
+      "central_meridian_degrees_reported": 38.983333333333334,
+      "east_shift_metres_reported": 3300000,
+      "north_shift_metres_reported": 11057.626,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    },
+    {
+      "id": "paper2021:T4",
+      "district": "T",
+      "zone_number": 4,
+      "central_meridian_degrees_reported": 41.983333333333334,
+      "east_shift_metres_reported": 4300000,
+      "north_shift_metres_reported": 11057.626,
+      "source_ids": [
+        "burkovskyi_2021"
+      ],
+      "status": "published_measurement_candidate",
+      "runtime_enabled": false,
+      "interpretation": "Reported table quantities, not a PROJ parameter set. Resolve origin/sign and numbering conventions before use."
+    }
+  ],
+  "sk63_research": {
+    "updated_on": "2026-10-23",
+    "status": "reference_only",
+    "base_crs_for_authority_definitions": {
+      "id": "EPSG:4284",
+      "name": "Pulkovo 1942",
+      "ellipsoid": {
+        "name": "Krassowsky 1940",
+        "semi_major_axis_metres": 6378245,
+        "inverse_flattening": 298.3
+      },
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ]
+    },
+    "projection_method": {
+      "id": "EPSG:9807",
+      "name": "Transverse Mercator"
+    },
+    "axis_contract": {
+      "authority_axes": {
+        "X": "northing",
+        "Y": "easting"
+      },
+      "project_api_fields": {
+        "x": "easting",
+        "y": "northing"
+      },
+      "transformer_convention": "always_xy=True: easting, northing; map by direction, never by letter alone.",
+      "units": "metre",
+      "source_ids": [
+        "proj_epsg_snapshot"
+      ]
+    },
+    "selection_contract": "Require district, zone, width and verified definition identity. Never infer an SK-63 zone solely from a million-digit prefix or administrative region.",
+    "required_before_runtime_enablement": [
+      "Resolve geoproj label-to-definition equivalence",
+      "Confirm complete projection parameters and area of use",
+      "Map authority axis directions to project API fields",
+      "Choose a separate area-appropriate datum operation for WGS84/GSK2011, with required grids and accuracy metadata",
+      "Verify independent control points and both Excel axis orders"
+    ],
+    "issues": [
+      {
+        "id": "C_numbering_and_false_easting",
+        "source_ids": [
+          "proj_epsg_snapshot",
+          "burkovskyi_2021"
+        ],
+        "status": "unresolved",
+        "details": "Paper C1: longitude 21.95, east shift 1250000. EPSG C0: longitude 21.95, false easting 250000. EPSG C1: longitude 24.95, false easting 1250000. Same district/zone label is insufficient to identify the projection."
+      },
+      {
+        "id": "offset_representation",
+        "source_ids": [
+          "proj_epsg_snapshot",
+          "precisely_ks1963",
+          "burkovskyi_2021"
+        ],
+        "status": "requires_convention_check",
+        "details": "EPSG C uses latitude of origin 0.1 degrees and false northing 0; EPSG X uses latitude of origin 5/60 degrees and false northing 0. Precisely lists C-like KS-1963 with latitude origin 0 and false northing -11057.63, with a Lithuanian datum variant. Published positive north shifts must not be copied directly into PROJ y_0. Do not combine parameters from different representations."
+      },
+      {
+        "id": "X7_missing_from_geoproj",
+        "source_ids": [
+          "proj_epsg_snapshot",
+          "geoproj_ui"
+        ],
+        "status": "catalogue_difference",
+        "details": "EPSG:7831 defines X7; the observed geoproj list contains X1–X6. The original source list is preserved."
+      },
+      {
+        "id": "incomplete_national_coverage",
+        "source_ids": [
+          "proj_epsg_snapshot",
+          "geoproj_ui"
+        ],
+        "status": "catalogue_difference",
+        "details": "Authority definitions also include A1–A4, K2–K4 and C0, absent from the observed geoproj catalogue. The 18 geoproj variants are not a complete SK-63 registry."
+      },
+      {
+        "id": "standard_vs_alternate_width",
+        "source_ids": [
+          "gislab_andrey1_sk63",
+          "burkovskyi_2021",
+          "geoproj_ui"
+        ],
+        "status": "requires_variant_specific_definition",
+        "details": "GIS-Lab describes a fixed standard width per district and alternate-width use; the 2021 paper describes mixed widths for the 60N-crossing group. Geoproj exposes W3 and W6. Preserve both variants; neither label establishes the standard width or projection parameters."
+      },
+      {
+        "id": "gislab_grid_link_unusable",
+        "source_ids": [
+          "gislab_andrey1_sk63"
+        ],
+        "status": "source_link_changed",
+        "details": "The linked giscraft grid page now serves unrelated content. No grid or parameter data were obtained from it."
+      }
+    ],
+    "authority_definitions_outside_geoproj_catalogue": [
+      "EPSG:2935",
+      "EPSG:2936",
+      "EPSG:2937",
+      "EPSG:2938",
+      "EPSG:3350",
+      "EPSG:2939",
+      "EPSG:2940",
+      "EPSG:2941",
+      "EPSG:7831"
+    ],
+    "validation": {
+      "authority_definitions_loaded": 17,
+      "projection_roundtrips_checked": 17,
+      "maximum_roundtrip_error_degrees": 1.4210854715202004e-14,
+      "method": "Centre of each EPSG area bounding box, EPSG:4284 to projected CRS and back, always_xy=True, no datum transformation.",
+      "independent_accuracy_verified": false,
+      "note": "Self-consistency check only; not evidence of geoproj equivalence or absolute accuracy."
+    },
+    "gis_lab_findings": {
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "missing_numeric_parameter_rows_added": 0,
+      "districts_absent_from_geoproj_catalogue": [
+        "A",
+        "B",
+        "H",
+        "K",
+        "U",
+        "Y"
+      ],
+      "districts_without_authority_definitions_in_reviewed_snapshot": [
+        "B",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "L",
+        "M",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "Y"
+      ],
+      "standard_width_groups": {
+        "3_degrees": [
+          "A",
+          "B",
+          "E",
+          "F",
+          "G",
+          "H",
+          "I",
+          "K",
+          "M",
+          "P",
+          "R",
+          "T",
+          "U",
+          "V",
+          "X",
+          "Y"
+        ],
+        "6_degrees": [
+          "Q"
+        ],
+        "3_or_6_degrees_not_individually_specified": [
+          "C",
+          "D",
+          "J",
+          "L",
+          "S",
+          "W"
+        ]
+      },
+      "central_meridian_step_degrees": {
+        "standard_3_degree_zones": 3,
+        "standard_6_degree_zones": 6
+      },
+      "alternate_width_rule": "Alternate-width meridians retain the standard alignment and become denser or sparser. The article supplies no anchor longitude or alternate numbering formula.",
+      "parameter_table_availability": {
+        "central_meridian_longitudes": false,
+        "false_eastings": false,
+        "false_northings": false,
+        "map_frame_latitude_offsets": false,
+        "complete_zone_number_ranges": false,
+        "administrative_region_crosswalk": false
+      },
+      "coverage_geometry": {
+        "status": "not_available_as_verified_boundaries",
+        "schematic_url": "https://gis-lab.info/images/sk-63-01.gif",
+        "used_for_numeric_boundaries": false
+      },
+      "linked_grid_resource": {
+        "url": "https://giscraft.ru/maps/navigat.shtml",
+        "checked_on": "2026-10-23",
+        "status": "unrelated_content_at_current_destination",
+        "used_as_geodetic_source": false
+      }
+    },
+    "projection_principles": {
+      "source_ids": [
+        "gislab_andrey1_sk63",
+        "proj_epsg_snapshot"
+      ],
+      "method_id": "EPSG:9807",
+      "scale_factor_at_central_meridian": 1,
+      "sk42_sk63_path": [
+        "Inverse source projection to Pulkovo 1942 geodetic coordinates",
+        "Forward target projection with its own verified parameters"
+      ],
+      "sk42_to_sk63_datum_shift_in_this_model": false,
+      "wgs84_or_gsk2011_path": "A separately selected datum operation is still required; sharing an ellipsoid alone does not establish datum equivalence.",
+      "districts_can_overlap": true,
+      "explicit_district_zone_width_required": true,
+      "map_frame_latitude_offset_is_not_automatically_proj_lat_0": true
+    },
+    "vertical_context": {
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "height_type_reported": "normal",
+      "height_system_reported": "Baltic",
+      "vertical_transform_supported_by_project": false,
+      "note": "Historical context only; does not define a modern vertical CRS realization or a geoid transformation."
+    },
+    "map_sheet_context": {
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "base_scale_denominator": 100000,
+      "single_sheet_size_arcminutes": {
+        "latitude": 20,
+        "longitude": 30
+      },
+      "double_sheet_size_arcminutes": {
+        "latitude": 20,
+        "longitude": 60
+      },
+      "single_sheet_example": "P-44-81",
+      "double_sheet_example": "Q-44-53,54",
+      "index_directions": {
+        "first_number": "south_to_north",
+        "second_number": "west_to_east"
+      },
+      "district_index_origins_available": false
+    }
+  },
+  "sk63_district_inventory": [
+    {
+      "district": "A",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [],
+      "authority_definition_ids": [
+        "EPSG:2935",
+        "EPSG:2936",
+        "EPSG:2937",
+        "EPSG:2938"
+      ],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "B",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "C",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "crosses_60N",
+      "standard_zone_width_degrees": null,
+      "standard_width_status": "not_resolved_per_district_by_article",
+      "geoproj_variant_ids": [
+        "C"
+      ],
+      "authority_definition_ids": [
+        "EPSG:3350",
+        "EPSG:3351",
+        "EPSG:3352"
+      ],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "D",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "crosses_60N",
+      "standard_zone_width_degrees": null,
+      "standard_width_status": "not_resolved_per_district_by_article",
+      "geoproj_variant_ids": [
+        "D"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "E",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "E"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "F",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "F"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "G",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "G"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "H",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "I",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "I"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "J",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "crosses_60N",
+      "standard_zone_width_degrees": null,
+      "standard_width_status": "not_resolved_per_district_by_article",
+      "geoproj_variant_ids": [
+        "J"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "K",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [],
+      "authority_definition_ids": [
+        "EPSG:2939",
+        "EPSG:2940",
+        "EPSG:2941"
+      ],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "L",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "crosses_60N",
+      "standard_zone_width_degrees": null,
+      "standard_width_status": "not_resolved_per_district_by_article",
+      "geoproj_variant_ids": [
+        "L"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "M",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "M"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "P",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "P"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "Q",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "north_of_60N",
+      "standard_zone_width_degrees": 6,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "Q"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "R",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "R"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "S",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "crosses_60N",
+      "standard_zone_width_degrees": null,
+      "standard_width_status": "not_resolved_per_district_by_article",
+      "geoproj_variant_ids": [
+        "S"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "T",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "T"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "U",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "V",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "V"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "W",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "crosses_60N",
+      "standard_zone_width_degrees": null,
+      "standard_width_status": "not_resolved_per_district_by_article",
+      "geoproj_variant_ids": [
+        "W3",
+        "W6"
+      ],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "X",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [
+        "X"
+      ],
+      "authority_definition_ids": [
+        "EPSG:7825",
+        "EPSG:7826",
+        "EPSG:7827",
+        "EPSG:7828",
+        "EPSG:7829",
+        "EPSG:7830",
+        "EPSG:7831"
+      ],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    },
+    {
+      "district": "Y",
+      "source_ids": [
+        "gislab_andrey1_sk63"
+      ],
+      "latitude_class": "south_of_60N",
+      "standard_zone_width_degrees": 3,
+      "standard_width_status": "stated",
+      "geoproj_variant_ids": [],
+      "authority_definition_ids": [],
+      "zone_numbers_complete": false,
+      "runtime_enabled": false
+    }
+  ]
+}

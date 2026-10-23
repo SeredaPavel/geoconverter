@@ -104,9 +104,9 @@ class ExcelImportTests(unittest.IsolatedAsyncioTestCase):
         projected = self.api.api_convert(ConvertRequest(
             crs_from="EPSG:4326", crs_to="GK_SK42", points=original
         )).points
-        # Match the current UI import order: northing (y), then easting (x).
-        imported = await self.import_rows([(p.y, p.x) for p in projected])
-        points = [Point(y=a, x=b) for a, b in
+        # Match the UI, templates and API: easting (x), then northing (y).
+        imported = await self.import_rows([(p.x, p.y) for p in projected])
+        points = [Point(x=a, y=b) for a, b in
                   (row.values() for row in imported["rows_preview"])]
         result = self.api.api_convert(ConvertRequest(
             crs_from="GK_SK42", crs_to="EPSG:4326", points=points
