@@ -21,7 +21,10 @@ docker-compose.override.yml
 Thumbs.db
 
 #readme
+AGENTS.MD
+VPS_DEPLOYMENT.MD
 README.MD
+!deploy/README.md
 structure.txt
 
 # sh to VPS
