@@ -6,13 +6,13 @@
 
 :root {
   color-scheme: light dark;
-  --card-background: rgba(255, 255, 255, 0.64);
-  --modal-background: rgba(248, 250, 252, 0.56);
+  --card-background: rgba(255, 255, 255, 0.5);
+  --modal-background: rgba(248, 250, 252, 0.4);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --card-background: rgba(15, 23, 42, 0.8);
-    --modal-background: rgba(15, 23, 42, 0.8);
+    --card-background: rgba(15, 23, 42, 0.58);
+    --modal-background: rgba(15, 23, 42, 0.42);
   }
 }
 body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
@@ -158,7 +158,44 @@ html, body { height: 100%; }
 
 @layer components {
   .gc-cta {
-    @apply inline-flex items-center gap-2 rounded-2xl shadow-soft bg-brand-600 text-white border border-brand-600 hover:bg-brand-700 transition-colors;
+    @apply inline-flex items-center gap-2 rounded-2xl text-white border;
+    border-color: rgba(166, 220, 255, 0.65);
+    background: linear-gradient(160deg, rgba(30, 165, 240, 0.76), rgba(14, 90, 133, 0.6));
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    backdrop-filter: blur(10px) saturate(1.2);
+    box-shadow:
+      0 5px 0 rgba(2, 44, 74, 0.5),
+      0 16px 32px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      inset 0 -2px 0 rgba(2, 44, 74, 0.35);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .gc-cta:hover {
+      transform: translateY(-2px);
+      border-color: rgba(213, 239, 255, 0.9);
+      box-shadow:
+        0 7px 0 rgba(2, 44, 74, 0.5),
+        0 20px 36px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        inset 0 -2px 0 rgba(2, 44, 74, 0.35);
+    }
+  }
+  .gc-cta:active {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 rgba(2, 44, 74, 0.5),
+      0 6px 16px rgba(0, 0, 0, 0.3),
+      inset 0 1px 3px rgba(2, 44, 74, 0.3);
+  }
+  .gc-cta:focus-visible {
+    outline: 2px solid #a6dcff;
+    outline-offset: 5px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gc-cta { transition: none; }
+    .gc-cta:hover, .gc-cta:active { transform: none; }
   }
   .gc-cta-lg { @apply h-[60px] md:h-[64px] text-xl md:text-2xl px-8 md:px-10; }
   .gc-icon { width: 20px; height: 20px; }
@@ -203,13 +240,13 @@ html, body { height: 100%; }
 }
 @supports (-webkit-touch-callout: none){
   :root {
-    --card-background: rgba(255, 255, 255, 0.8);
-    --modal-background: rgba(248, 250, 252, 0.68);
+    --card-background: rgba(255, 255, 255, 0.68);
+    --modal-background: rgba(248, 250, 252, 0.52);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --card-background: rgba(2, 6, 23, 0.82);
-      --modal-background: rgba(2, 6, 23, 0.82);
+      --card-background: rgba(2, 6, 23, 0.66);
+      --modal-background: rgba(2, 6, 23, 0.5);
     }
   }
   .card{
