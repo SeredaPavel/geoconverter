@@ -4,11 +4,24 @@
 @tailwind components;
 @tailwind utilities;
 
-:root { color-scheme: light dark; }
+:root {
+  color-scheme: light dark;
+  --card-background: rgba(255, 255, 255, 0.64);
+  --modal-background: rgba(248, 250, 252, 0.56);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card-background: rgba(15, 23, 42, 0.8);
+    --modal-background: rgba(15, 23, 42, 0.8);
+  }
+}
 body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
 
 /* Карточки/кнопки */
-.card { @apply rounded-2xl border border-slate-200/70 dark:border-slate-700/60 bg-white/80 dark:bg-slate-900/80 backdrop-blur shadow-soft; }
+.card {
+  @apply rounded-2xl border border-slate-200/70 dark:border-slate-700/60 backdrop-blur shadow-soft;
+  background-color: var(--card-background);
+}
 .btn  { @apply inline-flex items-center gap-2 px-4 rounded-xl border border-slate-300/80 dark:border-slate-600 hover:border-brand-500/80 transition-colors; }
 .btn-primary { @apply bg-brand-600 text-white border-brand-600 hover:bg-brand-700; }
 .btn-ghost { @apply border-transparent hover:border-slate-300/80; }
@@ -189,14 +202,24 @@ html, body { height: 100%; }
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 @supports (-webkit-touch-callout: none){
+  :root {
+    --card-background: rgba(255, 255, 255, 0.8);
+    --modal-background: rgba(248, 250, 252, 0.68);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --card-background: rgba(2, 6, 23, 0.82);
+      --modal-background: rgba(2, 6, 23, 0.82);
+    }
+  }
   .card{
     -webkit-backdrop-filter: none !important;
             backdrop-filter: none !important;
-    background-color: rgba(2, 6, 23, 0.82);
   }
 }
 /* --- Модалка: вернуть скролл только для карточки модалки --- */
 .card.modal-card{
+  background-color: var(--modal-background);
   overflow: auto !important;               /* перебиваем .card { overflow:hidden } */
   -webkit-overflow-scrolling: touch;       /* инерционный скролл на iOS */
   overscroll-behavior: contain;            /* не «тянуть» фон под модалкой */

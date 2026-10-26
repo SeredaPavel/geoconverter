@@ -84,7 +84,7 @@ export default function Header() {
   return (
     <header
       className={[
-        "fixed inset-x-0 top-0 z-40 transition-all",
+        "fixed inset-x-0 top-0 z-40 transition-all text-slate-100",
         mobileOpen
           ? "bg-black/40" // при открытом меню убираем backdrop-blur, чтобы overlay нормально ловил тапы
           : scrolled
@@ -163,7 +163,7 @@ export default function Header() {
           <div className="fixed right-4 top-[72px] z-50 w-56 sm:hidden">
             <div
               className="rounded-2xl border border-slate-200/50 dark:border-slate-700/50
-                            bg-white/40 dark:bg-slate-900/10 backdrop-blur p-2 shadow-soft"
+                            bg-white/90 dark:bg-slate-900/10 text-slate-900 dark:text-slate-100 backdrop-blur p-2 shadow-soft"
             >
               {navItems.map((item) => (
                 <button

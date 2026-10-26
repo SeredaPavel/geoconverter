@@ -224,7 +224,7 @@ export default function Page() {
       )}
 
       {/* Подвал-заметка */}
-      <div className="max-w-[1200px] ml-auto px-4 my-10 text-sm opacity-70">
+      <div className="max-w-[1200px] ml-auto px-4 my-10 text-sm text-slate-100 opacity-70">
         Проекции Гаусса–Крюгера: зоны 6°, номера 2–33.
         СК-63: доступны зоны с определениями EPSG. МСК: доступна МСК-47, зона 2.
         Остальные зоны СК-63 и МСК — в разработке.
