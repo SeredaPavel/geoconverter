@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import GlobeLogo from "./GlobeLogo";
+import type { PanelType } from "@/lib/panels";
 
 /* Иконки c поддержкой className для размера */
 function IconBurger(props: React.SVGProps<SVGSVGElement>) {
@@ -31,20 +32,17 @@ function IconClose(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-type PanelType = "converter" | "features" | "faq";
-
 type NavItem = {
-  id: "start" | "features" | "faq" | "donate";
+  id: "start" | "features" | "faq" | "support";
   label: string;
   panel: PanelType;
-  focusDonate?: boolean;
 };
 
 const navItems: NavItem[] = [
   { id: "start", label: "Запуск", panel: "converter" },
   { id: "features", label: "Возможности", panel: "features" },
   { id: "faq", label: "FAQ", panel: "faq" },
-  { id: "donate", label: "Донат", panel: "features", focusDonate: true },
+  { id: "support", label: "Поддержать проект", panel: "support" },
 ];
 
 export default function Header() {
@@ -69,10 +67,9 @@ export default function Header() {
 
   const handleNavClick = (item: NavItem) => {
     if (typeof window === "undefined") return;
-    const detail: { panel: PanelType; focusDonate?: boolean } = {
+    const detail: { panel: PanelType } = {
       panel: item.panel,
     };
-    if (item.focusDonate) detail.focusDonate = true;
 
     window.dispatchEvent(
       new CustomEvent("gc-open-panel", {
@@ -116,7 +113,7 @@ export default function Header() {
         </Link>
 
         {/* Десктоп-меню */}
-        <nav className="ml-auto hidden sm:flex items-center gap-3">
+        <nav className="ml-auto hidden lg:flex items-center gap-3">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -133,7 +130,7 @@ export default function Header() {
         </nav>
 
         {/* Мобайл: бургер + подпись «Меню» */}
-        <nav className="ml-auto sm:hidden flex items-center">
+        <nav className="ml-auto lg:hidden flex items-center">
           <button
             className="btn btn-ghost h-11 px-3 text-sm gap-2"
             aria-label={mobileOpen ? "Закрыть меню" : "Открыть меню"}
@@ -155,14 +152,14 @@ export default function Header() {
         <>
           {/* затемнение */}
           <div
-            className="fixed inset-0 z-40 bg-black/40 sm:hidden"
+            className="fixed inset-0 z-40 bg-black/40 lg:hidden"
             onClick={() => setMobileOpen(false)}
             aria-hidden
           />
           {/* панель-меню */}
-          <div className="fixed right-4 top-[72px] z-50 w-56 sm:hidden">
+          <div className="fixed right-4 top-[72px] z-50 w-56 lg:hidden">
             <div
-              className="rounded-2xl border border-slate-200/50 dark:border-slate-700/50
+              className="theme-menu rounded-2xl border border-slate-200/50 dark:border-slate-700/50
                             bg-white/90 dark:bg-slate-900/10 text-slate-900 dark:text-slate-100 backdrop-blur p-2 shadow-soft"
             >
               {navItems.map((item) => (

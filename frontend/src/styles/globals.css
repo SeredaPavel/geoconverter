@@ -340,6 +340,12 @@ html, body { height: 100%; }
     border-color: #94a3b8;
     box-shadow: 0 12px 28px rgba(15, 23, 42, 0.22);
   }
+  .theme-menu button:focus-visible, .theme-menu button:active:not(:disabled) {
+    background-color: #d5efff;
+    border-color: #0f6ea4;
+    color: #0c4a6e;
+    box-shadow: inset 3px 0 0 #0f6ea4;
+  }
   .theme-menu button[aria-pressed="true"], .faq-item button[aria-expanded="true"] {
     background-color: #d5efff;
     color: #0c4a6e;

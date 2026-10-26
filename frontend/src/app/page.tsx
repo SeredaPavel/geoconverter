@@ -1,10 +1,12 @@
 // /geoconverter/frontend/src/app/page.tsx
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ConverterPanel from "@/components/ConverterPanel";
 import FeaturesPanel from "@/components/FeaturesPanel";
 import FAQPanel from "@/components/FAQPanel";
+import SupportPanel from "@/components/SupportPanel";
+import type { PanelType } from "@/lib/panels";
 
 function IconPlay() {
   return (
@@ -14,14 +16,8 @@ function IconPlay() {
   );
 }
 
-type PanelType = "converter" | "features" | "faq";
-
 export default function Page() {
   const [activePanel, setActivePanel] = useState<PanelType | null>(null);
-  const [donateFocus, setDonateFocus] = useState(false);
-
-  // ref без null в generic, чтобы совпадал с RefObject<HTMLInputElement> в FeaturesPanel
-  const donateInputRef = useRef<HTMLInputElement>(null!);
 
   // Блокируем скролл документа, пока открыта любая панель
   useEffect(() => {
@@ -39,13 +35,9 @@ export default function Page() {
     const handler = (event: Event) => {
       const custom = event as CustomEvent<{
         panel: PanelType;
-        focusDonate?: boolean;
       }>;
       if (!custom.detail) return;
       setActivePanel(custom.detail.panel);
-      setDonateFocus(
-        !!custom.detail.focusDonate && custom.detail.panel === "features"
-      );
     };
 
     if (typeof window === "undefined") return;
@@ -54,22 +46,15 @@ export default function Page() {
       window.removeEventListener("gc-open-panel", handler as EventListener);
   }, []);
 
-  // Фокус в поле суммы при переходе сразу в Donate
-  useEffect(() => {
-    if (activePanel === "features" && donateFocus && donateInputRef.current) {
-      donateInputRef.current.focus();
-    }
-  }, [activePanel, donateFocus]);
-
   const closePanel = () => {
     setActivePanel(null);
-    setDonateFocus(false);
   };
 
   const titleMap: Record<PanelType, string> = {
     converter: "ГеоКонвертер",
     features: "Возможности",
     faq: "Часто задаваемые вопросы",
+    support: "Поддержать проект",
   };
 
   return (
@@ -209,14 +194,10 @@ export default function Page() {
                 {/* Содержимое панелей */}
                 {activePanel === "converter" && <ConverterPanel />}
 
-                {activePanel === "features" && (
-                  <FeaturesPanel
-                    donateInputRef={donateInputRef}
-                    forceActive={donateFocus}
-                  />
-                )}
+                {activePanel === "features" && <FeaturesPanel />}
 
                 {activePanel === "faq" && <FAQPanel />}
+                {activePanel === "support" && <SupportPanel />}
               </div>
             </div>
           </div>
