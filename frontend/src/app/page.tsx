@@ -167,7 +167,7 @@ export default function Page() {
       {activePanel && (
         <div className="fixed inset-0 z-50">
           <div
-            className="absolute inset-0 bg-black/20"
+            className="modal-backdrop absolute inset-0 bg-black/20"
             aria-hidden="true"
             role="presentation"
             onClick={closePanel}

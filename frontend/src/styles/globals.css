@@ -240,19 +240,20 @@ html, body { height: 100%; }
 }
 @supports (-webkit-touch-callout: none){
   :root {
-    --card-background: rgba(255, 255, 255, 0.68);
-    --modal-background: rgba(248, 250, 252, 0.52);
+    --card-background: rgba(241, 245, 249, 0.96);
+    --modal-background: rgba(226, 232, 240, 0.98);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --card-background: rgba(2, 6, 23, 0.66);
-      --modal-background: rgba(2, 6, 23, 0.5);
+      --card-background: rgba(15, 23, 42, 0.96);
+      --modal-background: rgba(2, 6, 23, 0.98);
     }
   }
   .card{
     -webkit-backdrop-filter: none !important;
             backdrop-filter: none !important;
   }
+  .modal-backdrop { background-color: rgba(2, 6, 23, 0.7); }
 }
 /* --- Модалка: вернуть скролл только для карточки модалки --- */
 .card.modal-card{
@@ -277,3 +278,95 @@ html, body { height: 100%; }
   -webkit-mask-image: none;
           mask-image: none;
 }
+
+/* Light surfaces need visible boundaries as well as a distinct active state. */
+@media (prefers-color-scheme: light) {
+  .card:not(.modal-card), .faq-item {
+    border-color: rgba(100, 116, 139, 0.7);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+  .card:not(.modal-card):focus-within, .faq-item:focus-within {
+    border-color: #0f6ea4;
+    box-shadow: 0 0 0 2px rgba(18, 137, 204, 0.3), 0 12px 28px rgba(15, 23, 42, 0.16);
+  }
+  .btn:not(.btn-primary):not(.btn-ghost) {
+    border-color: #64748b;
+    background-color: rgba(248, 250, 252, 0.94);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  .input, .select {
+    border-color: #64748b;
+    background-color: rgba(255, 255, 255, 0.94);
+  }
+  .input::placeholder { color: #64748b; opacity: 1; }
+  .input:focus, .select:focus {
+    border-color: #0f6ea4;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(18, 137, 204, 0.22);
+  }
+  .card .btn:focus-visible, .segment button:focus-visible,
+  .theme-menu button:focus-visible, .faq-item button:focus-visible {
+    outline: 2px solid #0f6ea4;
+    outline-offset: 2px;
+  }
+  .btn-primary {
+    background-color: #0f6ea4;
+    border-color: #0e5a85;
+    box-shadow: 0 2px 4px rgba(14, 90, 133, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  .btn:not(.btn-primary):not(.btn-ghost):active:not(:disabled) {
+    background-color: #d5efff;
+    border-color: #0f6ea4;
+  }
+  .select:disabled, .segment button:disabled { opacity: 0.6; }
+  .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  .segment {
+    border-color: #94a3b8;
+    background-color: rgba(226, 232, 240, 0.94);
+  }
+  .segment button {
+    color: #334155;
+    border: 1px solid transparent;
+  }
+  .segment .active {
+    background-color: #d5efff;
+    border-color: #0f6ea4;
+    color: #0c4a6e;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(14, 90, 133, 0.2);
+  }
+  .theme-menu, .dropdown-menu {
+    border-color: #94a3b8;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.22);
+  }
+  .theme-menu button[aria-pressed="true"], .faq-item button[aria-expanded="true"] {
+    background-color: #d5efff;
+    color: #0c4a6e;
+    box-shadow: inset 3px 0 0 #0f6ea4;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .card:not(.modal-card):hover:not(:focus-within), .faq-item:hover:not(:focus-within) { border-color: #64748b; }
+    .btn:not(.btn-primary):not(.btn-ghost):hover:not(:disabled),
+    .theme-menu button:hover:not(:disabled), .faq-item button:hover {
+      background-color: #d5efff;
+      border-color: #0f6ea4;
+      color: #0c4a6e;
+    }
+    .input:hover:not(:focus), .select:hover:not(:disabled):not(:focus) { border-color: #0f6ea4; }
+    .btn-primary:hover:not(:disabled) { background-color: #0e5a85; }
+    .segment button:hover:not(.active):not(:disabled) { background-color: #eaf7ff; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card:not(.modal-card), .faq-item { transition: none; }
+  }
+}
+
+/* Keep FAQ hover/selected fills inside the same contour in every theme. */
+.faq-item { overflow: hidden; }
+.faq-item > button { border-radius: inherit; }
+.faq-item > button[aria-expanded="true"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.faq-item > button:focus-visible { outline-offset: -3px; }

@@ -169,10 +169,11 @@ export default function FAQPanel() {
           return (
             <div
               key={item.question}
-              className="rounded-2xl border border-slate-200/80 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-900/60"
+              className="faq-item rounded-2xl border border-slate-200/80 dark:border-slate-700/80 bg-slate-50/60 dark:bg-slate-900/60"
             >
               <button
                 type="button"
+                aria-expanded={isOpen}
                 className="w-full flex items-center justify-between gap-3 px-3 md:px-4 py-2.5 md:py-3 text-left"
                 onClick={() => toggleIndex(idx)}
               >

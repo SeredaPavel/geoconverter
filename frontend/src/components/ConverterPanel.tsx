@@ -443,7 +443,7 @@ export default function ConverterPanel() {
     current: string,
     onSelect: (code: string) => void,
   ) => (
-    <div className="absolute top-full left-0 mt-2 z-[1001] w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 shadow-soft">
+    <div className="theme-menu absolute top-full left-0 mt-2 z-[1001] w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 shadow-soft">
       {/* Поиск */}
       <div className="px-2 pt-2 pb-1 border-b border-slate-200/70 dark:border-slate-700/70">
         <div className="text-[10px] uppercase tracking-wide opacity-60 mb-1">
@@ -489,6 +489,7 @@ export default function ConverterPanel() {
                     <button
                       type="button"
                       disabled={o.status === "dev"}
+                      aria-pressed={o.code === current}
                       title={o.description}
                       className={
                         "w-full h-16 flex items-center text-left px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed " +
@@ -578,7 +579,7 @@ export default function ConverterPanel() {
             </button>
 
             {openZoneMenu && (
-              <div className="absolute top-full left-0 mt-2 z-[1002] min-w-[120px] rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft py-1">
+              <div className="theme-menu absolute top-full left-0 mt-2 z-[1002] min-w-[120px] rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft py-1">
                 {[6, 3].map((v) => (
                   <button
                     key={v}
@@ -623,7 +624,7 @@ export default function ConverterPanel() {
             </button>
 
             {openExport && (
-              <div className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2">
+              <div className="theme-menu absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2">
                 <button
                   className="btn w-full justify-start text-sm md:text-base"
                   onClick={() => {
@@ -674,7 +675,7 @@ export default function ConverterPanel() {
             </button>
 
             {openImport && (
-              <div className="absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2">
+              <div className="theme-menu absolute top-full right-0 mt-2 z-[1002] min-w-56 max-w-[min(260px,calc(100vw-2rem))] flex flex-col rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2">
                 <label className="btn w-full justify-start text-sm md:text-base">
                   <input
                     hidden
