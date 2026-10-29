@@ -8,6 +8,7 @@
     "msk_definitions_file": "msk_definitions.json",
     "sk63_definitions_file": "sk63_definitions.json",
     "report_file": "PARAMETER_VERIFICATION.md",
+    "additional_report_file": "GEOBRIDGE_VERIFICATION.md",
     "note": "Historical candidate flags below remain reference-only. Explicit verified runtime definitions and EPSG aliases are maintained separately; they do not establish geodetic accuracy over an entire zone."
   },
   "notes": [

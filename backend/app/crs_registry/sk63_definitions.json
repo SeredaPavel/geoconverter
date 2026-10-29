@@ -400,6 +400,396 @@
       "definition_author": "EPSG:7830 (база PROJ)",
       "observed_max_error_metres": 0.0019451126728245467,
       "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    },
+    {
+      "code": "SK63:GEOPROJ:V:1",
+      "name": "СК-1963 район V зона 1",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 49.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.000377269538711709,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 49.03333333333,
+          "easting": 1300102.398,
+          "northing": 5976584.125
+        },
+        {
+          "lat": 53.7,
+          "lon": 48.63333333333,
+          "easting": 1273683.828,
+          "northing": 5943267.93
+        },
+        {
+          "lat": 54.3,
+          "lon": 49.43333333333,
+          "easting": 1326143.778,
+          "northing": 6010050.139
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 49.03333333333,
+          "easting": 1300102.3980774814,
+          "northing": 5976584.125178554
+        },
+        {
+          "lat": 53.7,
+          "lon": 48.63333333333,
+          "easting": 1273683.828135289,
+          "northing": 5943267.9302584715
+        },
+        {
+          "lat": 54.3,
+          "lon": 49.43333333333,
+          "easting": 1326143.7781634033,
+          "northing": 6010050.139793292
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=49.03333333333 +k=1 +x_0=1300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V01",
+      "source_catalog_record_id": "1903",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:2",
+      "name": "СК-1963 район V зона 2",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 52.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004904188166087659,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 52.03333333333,
+          "easting": 2300097.776,
+          "northing": 5976579.123
+        },
+        {
+          "lat": 53.7,
+          "lon": 51.63333333333,
+          "easting": 2273679.218,
+          "northing": 5943262.946
+        },
+        {
+          "lat": 54.3,
+          "lon": 52.43333333333,
+          "easting": 2326139.143,
+          "northing": 6010045.119
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 52.03333333333,
+          "easting": 2300097.775662469,
+          "northing": 5976579.123373042
+        },
+        {
+          "lat": 53.7,
+          "lon": 51.63333333333,
+          "easting": 2273679.218413777,
+          "northing": 5943262.946680735
+        },
+        {
+          "lat": 54.3,
+          "lon": 52.43333333333,
+          "easting": 2326139.143448831,
+          "northing": 6010045.119756324
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=52.03333333333 +k=1 +x_0=2300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V02",
+      "source_catalog_record_id": "1904",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:3",
+      "name": "СК-1963 район V зона 3",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 55.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00040847777435799334,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 55.03333333333,
+          "easting": 3300092.846,
+          "northing": 5976574.317
+        },
+        {
+          "lat": 53.7,
+          "lon": 54.63333333333,
+          "easting": 3273674.301,
+          "northing": 5943258.158
+        },
+        {
+          "lat": 54.3,
+          "lon": 55.43333333333,
+          "easting": 3326134.202,
+          "northing": 6010040.296
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 55.03333333333,
+          "easting": 3300092.845815805,
+          "northing": 5976574.317614106
+        },
+        {
+          "lat": 53.7,
+          "lon": 54.63333333333,
+          "easting": 3273674.3006843543,
+          "northing": 5943258.158277618
+        },
+        {
+          "lat": 54.3,
+          "lon": 55.43333333333,
+          "easting": 3326134.201860311,
+          "northing": 6010040.296637613
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=55.03333333333 +k=1 +x_0=3300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V03",
+      "source_catalog_record_id": "1905",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:4",
+      "name": "СК-1963 район V зона 4",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 58.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005603611625368824,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 58.03333333333,
+          "easting": 4300087.622,
+          "northing": 5976569.721
+        },
+        {
+          "lat": 53.7,
+          "lon": 57.63333333333,
+          "easting": 4273669.088,
+          "northing": 5943253.578
+        },
+        {
+          "lat": 54.3,
+          "lon": 58.43333333333,
+          "easting": 4326128.967,
+          "northing": 6010035.683
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 58.03333333333,
+          "easting": 4300087.6220499305,
+          "northing": 5976569.721073338
+        },
+        {
+          "lat": 53.7,
+          "lon": 57.63333333333,
+          "easting": 4273669.088426252,
+          "northing": 5943253.57817314
+        },
+        {
+          "lat": 54.3,
+          "lon": 58.43333333333,
+          "easting": 4326128.966942468,
+          "northing": 6010035.68365633
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=58.03333333333 +k=1 +x_0=4300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V04",
+      "source_catalog_record_id": "1906",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:5",
+      "name": "СК-1963 район V зона 5",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 61.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00039058255801569197,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 61.03333333333,
+          "easting": 5300082.119,
+          "northing": 5976565.346
+        },
+        {
+          "lat": 53.7,
+          "lon": 60.63333333333,
+          "easting": 5273663.596,
+          "northing": 5943249.218
+        },
+        {
+          "lat": 54.3,
+          "lon": 61.43333333333,
+          "easting": 5326123.453,
+          "northing": 6010031.293
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 61.03333333333,
+          "easting": 5300082.118682817,
+          "northing": 5976565.346348868
+        },
+        {
+          "lat": 53.7,
+          "lon": 60.63333333333,
+          "easting": 5273663.595925899,
+          "northing": 5943249.218920376
+        },
+        {
+          "lat": 54.3,
+          "lon": 61.43333333333,
+          "easting": 5326123.453043834,
+          "northing": 6010031.2934556715
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=61.03333333333 +k=1 +x_0=5300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V05",
+      "source_catalog_record_id": "1907",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:6",
+      "name": "СК-1963 район V зона 6",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 64.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 6300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005635459892428055,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 64.03333333333,
+          "easting": 6300076.351,
+          "northing": 5976561.205
+        },
+        {
+          "lat": 53.7,
+          "lon": 63.63333333333001,
+          "easting": 6273657.838,
+          "northing": 5943245.092
+        },
+        {
+          "lat": 54.3,
+          "lon": 64.43333333333001,
+          "easting": 6326117.675,
+          "northing": 6010027.138
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 64.03333333333,
+          "easting": 6300076.350798713,
+          "northing": 5976561.205430843
+        },
+        {
+          "lat": 53.7,
+          "lon": 63.63333333333001,
+          "easting": 6273657.838237766,
+          "northing": 5943245.09246707
+        },
+        {
+          "lat": 54.3,
+          "lon": 64.43333333333001,
+          "easting": 6326117.675277527,
+          "northing": 6010027.138068208
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=64.03333333333 +k=1 +x_0=6300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V06",
+      "source_catalog_record_id": "1908",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
     }
   ],
   "rejected_candidates": [

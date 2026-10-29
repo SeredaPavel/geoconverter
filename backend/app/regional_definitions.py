@@ -23,6 +23,13 @@ def load_definitions(filename):
 
 
 def build_projection(definition):
+    if 'bound_proj4' in definition:
+        crs = CRS.from_proj4(definition['bound_proj4'])
+        if not crs.is_bound or not crs.is_projected or crs.target_crs.to_epsg() != 4326:
+            raise ValueError('Expected a projected CRS with an explicit WGS84 datum transformation')
+        data = crs.to_json_dict()
+        data['source_crs']['name'] = definition['name']
+        return CRS.from_json_dict(data)
     # An ellipsoid-only PROJ string has no datum transformation. Keep the named
     # base CRS, so PROJ can select an actual operation (ballpark stays disabled).
     crs = ProjectedCRS(
@@ -53,4 +60,6 @@ def verification_description(definition):
     if 'bbox' in definition:
         south, west, north, east = definition['bbox']
         description += f' Область определения: {south}–{north}° с. ш., {west}–{east}° в. д.'
+    if definition.get('usage_note'):
+        description += ' ' + definition['usage_note']
     return description

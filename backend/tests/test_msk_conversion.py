@@ -19,7 +19,7 @@ EXPECTED_MSK = {
     for region, zones in [('02', 2), ('16', 3), ('47', 3), ('50', 2),
                           ('52', 3), ('63', 2), ('1964', 1)]
     for zone in range(1, zones + 1)
-}
+} | {'MSK:GEOPROJ:mos:1'}
 
 
 class MskTests(unittest.IsolatedAsyncioTestCase):
@@ -42,8 +42,8 @@ class MskTests(unittest.IsolatedAsyncioTestCase):
         return self.api.api_convert(ConvertRequest(crs_from=source, crs_to=target, points=points))
 
     async def test_registry_matches_executable_definitions(self):
-        self.assertEqual(len(MSK_ITEMS), 259)
-        self.assertEqual(len({item.code for item in MSK_ITEMS}), 259)
+        self.assertEqual(len(MSK_ITEMS), 260)
+        self.assertEqual(len({item.code for item in MSK_ITEMS}), 260)
         self.assertEqual(set(READY_MSK_CRS), EXPECTED_MSK)
         for item in MSK_ITEMS:
             self.assertEqual(item.status == 'ready', item.code in READY_MSK_CRS)
@@ -72,11 +72,20 @@ class MskTests(unittest.IsolatedAsyncioTestCase):
         for definition in DEFINITIONS:
             code = definition['code']
             with self.subTest(code=code):
-                result = self.convert('SK42_GEOG', code, [Point(
-                    lat=definition['latitude_natural_origin'],
-                    lon=definition['longitude_natural_origin'])]).points[0]
-                self.assertAlmostEqual(result.x, definition['false_easting'], places=6)
-                self.assertAlmostEqual(result.y, definition['false_northing'], places=6)
+                if 'bound_proj4' in definition:
+                    # A Bessel projection's origin is defined in its own datum,
+                    # not in Pulkovo 1942 or WGS84.
+                    source = READY_MSK_CRS[code].source_crs
+                    origin = Transformer.from_crs(source.geodetic_crs, source, always_xy=True)
+                    x, y = origin.transform(definition['longitude_natural_origin'],
+                                            definition['latitude_natural_origin'], errcheck=True)
+                else:
+                    result = self.convert('SK42_GEOG', code, [Point(
+                        lat=definition['latitude_natural_origin'],
+                        lon=definition['longitude_natural_origin'])]).points[0]
+                    x, y = result.x, result.y
+                self.assertAlmostEqual(x, definition['false_easting'], places=6)
+                self.assertAlmostEqual(y, definition['false_northing'], places=6)
                 # Source explicitly supplies a datum shift. Verify that naming
                 # Pulkovo 1942 has preserved the published WGS84 behaviour.
                 published = CRS.from_proj4(definition['published_proj4'])
@@ -87,6 +96,33 @@ class MskTests(unittest.IsolatedAsyncioTestCase):
                         [Point(lat=point['lat'], lon=point['lon'])]).points[0]
                     self.assertAlmostEqual(expected.x, x, delta=.01)
                     self.assertAlmostEqual(expected.y, y, delta=.01)
+
+    async def test_moscow_retains_bessel_datum_and_explicit_transformation(self):
+        code = 'MSK:GEOPROJ:mos:1'
+        crs = READY_MSK_CRS[code]
+        self.assertTrue(crs.is_bound)
+        self.assertTrue(crs.is_projected)
+        self.assertEqual(crs.target_crs.to_epsg(), 4326)
+        self.assertEqual(crs.source_crs.geodetic_crs.ellipsoid.name, 'Bessel 1841')
+        result = self.convert('EPSG:4326', code, [Point(lat=55.75, lon=37.6)])
+        self.assertIsNotNone(result.points[0].x)
+        self.assertIsNone(result.points[0].lat)
+        self.assertIn('приближённый', result.meta['regional_definitions'][0]['description'])
+        for target in ('MSK:GEOPROJ:50:2', 'SK42_GEOG', 'SK63:GEOPROJ:V:2', 'GK_SK42'):
+            with self.subTest(target=target):
+                other = self.convert(code, target, result.points)
+                restored = self.convert(target, code, other.points).points[0]
+                self.assertAlmostEqual(restored.x, result.points[0].x, delta=.02)
+                self.assertAlmostEqual(restored.y, result.points[0].y, delta=.02)
+
+    async def test_msk78_corrections_are_not_an_alias_for_sk1964(self):
+        code = 'MSK:GEOBRIDGE:78:1'
+        item = next(item for item in MSK_ITEMS if item.code == code)
+        self.assertEqual(item.status, 'dev')
+        self.assertNotIn(code, READY_MSK_CRS)
+        for source, target in ((code, 'MSK:GEOPROJ:1964:1'), ('MSK:GEOPROJ:1964:1', code)):
+            with self.assertRaises(HTTPException):
+                self.convert(source, target, [])
 
     async def test_msk50_cross_zone_and_new_sk63_paths(self):
         start = self.convert('EPSG:4326', 'MSK:GEOPROJ:50:1', [Point(lat=55.75, lon=37.6)])
@@ -122,9 +158,16 @@ class MskTests(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(error.exception.status_code, 400)
 
     async def test_100_points_import_convert_and_export(self):
-        code = 'MSK:GEOPROJ:50:2'
-        original = [Point(lat=55.75 + i / 10000, lon=37.6 + i / 10000) for i in range(100)]
+        await self.check_import_convert_export('MSK:GEOPROJ:50:2', 55.75, 37.6)
+
+    async def test_100_moscow_points_with_negative_easting(self):
+        await self.check_import_convert_export('MSK:GEOPROJ:mos:1', 55.5, 37.3)
+
+    async def check_import_convert_export(self, code, lat, lon):
+        original = [Point(lat=lat + i / 10000, lon=lon + i / 10000) for i in range(100)]
         projected = self.convert('EPSG:4326', code, original).points
+        if code == 'MSK:GEOPROJ:mos:1':
+            self.assertTrue(all(point.x < 0 for point in projected))
         workbook = Workbook()
         workbook.active.append(['X (м)', 'Y (м)'])
         for point in projected:

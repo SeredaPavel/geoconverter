@@ -34,13 +34,13 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
 
     async def test_registry_ready_and_dev_statuses(self):
         msk = [item for item in self.api.list_crs() if item.category == 'msk']
-        self.assertEqual(len(msk), 259)
-        self.assertEqual(sum(item.status == 'ready' for item in msk), 16)
+        self.assertEqual(len(msk), 260)
+        self.assertEqual(sum(item.status == 'ready' for item in msk), 17)
         self.assertEqual(sum(item.status == 'dev' for item in msk), 243)
         choices = [item for item in self.api.list_crs() if item.category == 'sk63']
         self.assertEqual(len({item.code for item in choices}), len(choices))
-        self.assertEqual(sum(item.status == 'ready' for item in choices), 29)
-        self.assertEqual(sum(item.status == 'dev' for item in choices), 95)
+        self.assertEqual(sum(item.status == 'ready' for item in choices), 35)
+        self.assertEqual(sum(item.status == 'dev' for item in choices), 89)
         for item in choices:
             self.assertTrue(item.region)
             self.assertTrue(item.description)
@@ -68,11 +68,11 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
 
     async def test_independent_catalogue_reference_points(self):
         expected = {f'SK63:GEOPROJ:{district}:{zone}'
-                    for district, count in [('C', 2), ('P', 4), ('X', 6)]
+                    for district, count in [('C', 2), ('P', 4), ('V', 6), ('X', 6)]
                     for zone in range(1, count + 1)}
         self.assertEqual(set(VERIFIED_DEFINITIONS), expected)
         for code, definition in VERIFIED_DEFINITIONS.items():
-            for point in definition['control_points']:
+            for point in definition['control_points'] + definition.get('additional_control_points', []):
                 with self.subTest(code=code, lat=point['lat']):
                     if 'epsg' in definition:
                         area = READY_CRS[code].area_of_use
@@ -87,6 +87,20 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
                     restored = self.convert(code, 'EPSG:4326', result.points).points[0]
                     self.assertAlmostEqual(restored.lat, point['lat'], places=6)
                     self.assertAlmostEqual(restored.lon, point['lon'], places=6)
+
+    async def test_v_zone_is_not_a_samara_or_tatarstan_local_system(self):
+        source = self.convert('EPSG:4326', 'SK63:GEOPROJ:V:1', [Point(lat=53.2, lon=50.1)])
+        samara = self.convert('SK63:GEOPROJ:V:1', 'MSK:GEOPROJ:63:1', source.points)
+        tatarstan = self.convert('SK63:GEOPROJ:V:1', 'MSK:GEOPROJ:16:1', source.points)
+        self.assertAlmostEqual(source.points[0].x, samara.points[0].x, delta=.001)
+        self.assertAlmostEqual(source.points[0].y - samara.points[0].y, 5500000, delta=.001)
+        self.assertAlmostEqual(source.points[0].y - tatarstan.points[0].y, 5700000, delta=.001)
+        for target in ('SK63:GEOPROJ:V:2', 'MSK:GEOPROJ:63:2', 'MSK:GEOPROJ:mos:1'):
+            with self.subTest(target=target):
+                other = self.convert('SK63:GEOPROJ:V:1', target, source.points)
+                restored = self.convert(target, 'SK63:GEOPROJ:V:1', other.points).points[0]
+                self.assertAlmostEqual(restored.x, source.points[0].x, delta=.02)
+                self.assertAlmostEqual(restored.y, source.points[0].y, delta=.02)
 
     async def test_c_numbering_and_unconfirmed_t_are_not_inferred(self):
         # geoproj C1 is EPSG C1 (24.95 degrees); paper C1 is 21.95 degrees.

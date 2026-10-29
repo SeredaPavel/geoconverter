@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "definitions": [
     {
       "code": "MSK:GEOPROJ:02:1",
@@ -649,6 +649,95 @@
       ],
       "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=30 +k=1 +x_0=95942.17 +y_0=-6552810.0 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
       "source_sha256": "950a89f86ec6afb1dd6c1eae84ac96fbbd56d6c8aac9dc6d2209c0f255808d2b"
+    },
+    {
+      "code": "MSK:GEOPROJ:mos:1",
+      "name": "Московская СК (МГГТ)",
+      "latitude_natural_origin": 55.66666666667,
+      "longitude_natural_origin": 37.5,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 16.098,
+      "false_northing": 14.512,
+      "definition_source": "https://terraingis.ru/msk-77.html",
+      "definition_author": "Александр Фадеев; совпадающее определение GeoBridge",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00045524858636329587,
+      "control_points": [
+        {
+          "lat": 55.75,
+          "lon": 37.6,
+          "easting": 6394.414,
+          "northing": 9244.764
+        },
+        {
+          "lat": 55.6,
+          "lon": 37.3,
+          "easting": -12492.256,
+          "northing": -7441.695
+        },
+        {
+          "lat": 55.9,
+          "lon": 37.9,
+          "easting": 25136.42,
+          "northing": 26013.055
+        },
+        {
+          "lat": 55.4,
+          "lon": 37,
+          "easting": -31563.066,
+          "northing": -29612.281
+        },
+        {
+          "lat": 56,
+          "lon": 38,
+          "easting": 31311.302,
+          "northing": 37187.538
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 55.75,
+          "lon": 37.6,
+          "easting": 6394.414008379624,
+          "northing": 9244.764208474468
+        },
+        {
+          "lat": 55.6,
+          "lon": 37.3,
+          "easting": -12492.256211158045,
+          "northing": -7441.69540572596
+        },
+        {
+          "lat": 55.9,
+          "lon": 37.9,
+          "easting": 25136.420263047807,
+          "northing": 26013.055038776154
+        },
+        {
+          "lat": 55.4,
+          "lon": 37,
+          "easting": -31563.06621763469,
+          "northing": -29612.280929749966
+        },
+        {
+          "lat": 56,
+          "lon": 38,
+          "easting": 31311.301674278257,
+          "northing": 37187.53822699004
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=55.66666666667 +lon_0=37.5 +k=1 +x_0=16.098 +y_0=14.512 +ellps=bessel +towgs84=316.151,78.924,589.650,-1.57273,2.69209,2.34693,8.4507 +units=m +no_defs",
+      "source_catalog_key": "EPSG:6335000",
+      "source_catalog_record_id": "1717",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "bound_proj4": "+proj=tmerc +lat_0=55.66666666667 +lon_0=37.5 +k=1 +x_0=16.098 +y_0=14.512 +ellps=bessel +towgs84=316.151,78.924,589.650,-1.57273,2.69209,2.34693,8.4507 +units=m +no_defs",
+      "display_title": "МСК г. Москва (МГГТ / МСК-77, приближённо)",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "usage_note": "Опубликованный приближённый вариант МГГТ на эллипсоиде Бесселя. Не является официальной локализацией для геодезических или кадастровых работ. Варианты с другими смещениями и ключами могут давать иной результат."
     }
   ]
 }

@@ -18,10 +18,20 @@ for system in CATALOG['msk']:
             READY_MSK_CRS[code] = build_projection(definition)
             description = verification_description(definition)
         MSK_ITEMS.append(CRSItem(
-            code=code, title=f"{system['title']} — зона {zone['label']}", category='msk',
+            code=code, title=(definition.get('display_title') if definition else None)
+                or f"{system['title']} — зона {zone['label']}", category='msk',
             status='ready' if definition else 'dev', region=system['region_label'],
             description=description,
         ))
+
+# GeoBridge distinguishes its tile corrections from the SK-1964 projection.
+# No verified reversible definition is available here: never alias the two.
+MSK_ITEMS.append(CRSItem(
+    code='MSK:GEOBRIDGE:78:1', title='МСК-78 Санкт-Петербург (поправки GeoBridge)',
+    category='msk', status='dev', region='Санкт-Петербург',
+    description='Отдельный вариант GeoBridge с поправками по планшетам к МСК-1964. '
+                'Переходы и границы применения поправок ещё не проверены; это не синоним МСК-1964.',
+))
 
 if set(READY_MSK_CRS) != set(DEFINITIONS_BY_CODE):
     raise ValueError('MSK definition is absent from the catalogue')
