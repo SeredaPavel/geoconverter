@@ -701,7 +701,7 @@ def _convert_with_regional_crs(req: ConvertRequest):
         raise HTTPException(status_code=400, detail=f'Не удалось выполнить переход. Проверьте выбранные системы, область применения и доступность параметров/сеток PROJ: {error}')
     definitions = [
         {'code': item.code, 'description': item.description}
-        for item in MSK_ITEMS if item.code in {req.crs_from, req.crs_to}
+        for item in [*MSK_ITEMS, *ITEMS_BY_CODE.values()] if item.code in {req.crs_from, req.crs_to}
     ]
     return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=out,
         meta={'engine': 'pyproj regional CRS', 'axis_order': 'x=easting, y=northing',

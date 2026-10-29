@@ -1,5 +1,240 @@
 {
+  "schema_version": 2,
   "definitions": [
+    {
+      "code": "MSK:GEOPROJ:02:1",
+      "name": "Pulkovo 1942 / MSK02 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 55.03333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 1300000.0,
+      "false_northing": -5409414.7,
+      "definition_source": "https://terraingis.ru/msk-02.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006259362813240544,
+      "control_points": [
+        {
+          "lat": 54.5,
+          "lon": 55.03333333333,
+          "easting": 1300093.064,
+          "northing": 632229.016
+        },
+        {
+          "lat": 54.2,
+          "lon": 54.63333333333,
+          "easting": 1273988.642,
+          "northing": 598909.646
+        },
+        {
+          "lat": 54.8,
+          "lon": 55.43333333333,
+          "easting": 1325817.889,
+          "northing": 665697.338
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=55.03333333333 +k=1 +x_0=1300000 +y_0=-5409414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "3789f26bd4827180b72b9475ddb699adc4bc0639e318da08329ebfd8b3a5036f"
+    },
+    {
+      "code": "MSK:GEOPROJ:02:2",
+      "name": "Pulkovo 1942 / MSK02 zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 58.03333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 2300000.0,
+      "false_northing": -5409414.7,
+      "definition_source": "https://terraingis.ru/msk-02.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005135778216171817,
+      "control_points": [
+        {
+          "lat": 54.5,
+          "lon": 58.03333333333,
+          "easting": 2300087.842,
+          "northing": 632224.394
+        },
+        {
+          "lat": 54.2,
+          "lon": 57.63333333333,
+          "easting": 2273983.431,
+          "northing": 598905.04
+        },
+        {
+          "lat": 54.8,
+          "lon": 58.43333333333,
+          "easting": 2325812.656,
+          "northing": 665692.699
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=58.03333333333 +k=1 +x_0=2300000 +y_0=-5409414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "3789f26bd4827180b72b9475ddb699adc4bc0639e318da08329ebfd8b3a5036f"
+    },
+    {
+      "code": "MSK:GEOPROJ:16:1",
+      "name": "Pulkovo 1942 / MSK16 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 49.03333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 1300000.0,
+      "false_northing": -5709414.7,
+      "definition_source": "https://terraingis.ru/msk-16.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004385137850943664,
+      "control_points": [
+        {
+          "lat": 55.5,
+          "lon": 49.03333333333,
+          "easting": 1300103.044,
+          "northing": 443562.265
+        },
+        {
+          "lat": 55.2,
+          "lon": 48.63333333333,
+          "easting": 1274632.849,
+          "northing": 410236.422
+        },
+        {
+          "lat": 55.8,
+          "lon": 49.43333333333,
+          "easting": 1325188.909,
+          "northing": 477035.188
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=49.03333333333 +k=1 +x_0=1300000 +y_0=-5709414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "6eadade0c6421b6ae909e8bd571a4f63dcdcca6a717221efdb497bd54f9d089d"
+    },
+    {
+      "code": "MSK:GEOPROJ:16:2",
+      "name": "Pulkovo 1942 / MSK16 zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 52.03333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 2300000.0,
+      "false_northing": -5709414.7,
+      "definition_source": "https://terraingis.ru/msk-16.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00047543676239726926,
+      "control_points": [
+        {
+          "lat": 55.5,
+          "lon": 52.03333333333,
+          "easting": 2300098.427,
+          "northing": 443557.178
+        },
+        {
+          "lat": 55.2,
+          "lon": 51.63333333333,
+          "easting": 2274628.244,
+          "northing": 410231.352
+        },
+        {
+          "lat": 55.8,
+          "lon": 52.43333333333,
+          "easting": 2325184.281,
+          "northing": 477030.084
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=52.03333333333 +k=1 +x_0=2300000 +y_0=-5709414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "6eadade0c6421b6ae909e8bd571a4f63dcdcca6a717221efdb497bd54f9d089d"
+    },
+    {
+      "code": "MSK:GEOPROJ:16:3",
+      "name": "Pulkovo 1942 / MSK16 zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 55.03333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 3300000.0,
+      "false_northing": -5709414.7,
+      "definition_source": "https://terraingis.ru/msk-16.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00045073599492871533,
+      "control_points": [
+        {
+          "lat": 55.5,
+          "lon": 55.03333333333,
+          "easting": 3300093.502,
+          "northing": 443552.291
+        },
+        {
+          "lat": 55.2,
+          "lon": 54.63333333333,
+          "easting": 3274623.33,
+          "northing": 410226.482
+        },
+        {
+          "lat": 55.8,
+          "lon": 55.43333333333,
+          "easting": 3325179.345,
+          "northing": 477025.18
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=55.03333333333 +k=1 +x_0=3300000 +y_0=-5709414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "6eadade0c6421b6ae909e8bd571a4f63dcdcca6a717221efdb497bd54f9d089d"
+    },
+    {
+      "code": "MSK:GEOPROJ:47:1",
+      "name": "Pulkovo 1942 / MSK47 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 27.95,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 1250000.0,
+      "false_northing": -6211057.628,
+      "definition_source": "https://terraingis.ru/msk-47.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005479250919690926,
+      "control_points": [
+        {
+          "lat": 60,
+          "lon": 27.95,
+          "easting": 1250127.686,
+          "northing": 443139.368
+        },
+        {
+          "lat": 59.7,
+          "lon": 27.55,
+          "easting": 1227605.819,
+          "northing": 409784.313
+        },
+        {
+          "lat": 60.3,
+          "lon": 28.349999999999998,
+          "easting": 1272245.395,
+          "northing": 476630.894
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=27.95 +k=1 +x_0=1250000 +y_0=-6211057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "96fa62fa4bdc6bdcc3ba605c12641a5355e72f2d625bce8f9f89f122581a04c9"
+    },
     {
       "code": "MSK:GEOPROJ:47:2",
       "name": "Pulkovo 1942 / MSK47 zone 2",
@@ -9,17 +244,411 @@
       "scale_factor_natural_origin": 1,
       "false_easting": 2250000,
       "false_northing": -6200000,
-      "bbox": [58.41, 28.67, 61.19, 33.74],
+      "bbox": [
+        58.41,
+        28.67,
+        61.19,
+        33.74
+      ],
       "definition_source": "https://gis-lab.info/qa/msk-wkt2.html",
       "definition_author": "Игорь Белов",
       "verification_source": "https://geoproj.ru/",
       "verified_on": "2026-10-23",
       "verification_tolerance_metres": 0.01,
       "control_points": [
-        {"lat": 59.95, "lon": 30.3, "easting": 2213801.125, "northing": 437740.882},
-        {"lat": 59.5, "lon": 31, "easting": 2252957.347, "northing": 387429.914},
-        {"lat": 60.5, "lon": 32, "easting": 2307827.894, "northing": 499301.369}
-      ]
+        {
+          "lat": 59.95,
+          "lon": 30.3,
+          "easting": 2213801.125,
+          "northing": 437740.882
+        },
+        {
+          "lat": 59.5,
+          "lon": 31,
+          "easting": 2252957.347,
+          "northing": 387429.914
+        },
+        {
+          "lat": 60.5,
+          "lon": 32,
+          "easting": 2307827.894,
+          "northing": 499301.369
+        }
+      ],
+      "additional_definition_source": "https://terraingis.ru/msk-47.html",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=30.95 +k=1 +x_0=2250000 +y_0=-6211057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "additional_control_points": [
+        {
+          "lat": 60,
+          "lon": 30.95,
+          "easting": 2250125.558,
+          "northing": 443133.0
+        },
+        {
+          "lat": 59.7,
+          "lon": 30.55,
+          "easting": 2227603.702,
+          "northing": 409777.964
+        },
+        {
+          "lat": 60.3,
+          "lon": 31.349999999999998,
+          "easting": 2272243.256,
+          "northing": 476624.507
+        }
+      ],
+      "additional_verified_on": "2026-10-29"
+    },
+    {
+      "code": "MSK:GEOPROJ:47:3",
+      "name": "Pulkovo 1942 / MSK47 zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 33.95,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 3250000.0,
+      "false_northing": -6211057.628,
+      "definition_source": "https://terraingis.ru/msk-47.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004539141393143144,
+      "control_points": [
+        {
+          "lat": 60,
+          "lon": 33.95,
+          "easting": 3250123.052,
+          "northing": 443126.731
+        },
+        {
+          "lat": 59.7,
+          "lon": 33.550000000000004,
+          "easting": 3227601.207,
+          "northing": 409771.714
+        },
+        {
+          "lat": 60.3,
+          "lon": 34.35,
+          "easting": 3272240.739,
+          "northing": 476618.219
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=33.95 +k=1 +x_0=3250000 +y_0=-6211057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "96fa62fa4bdc6bdcc3ba605c12641a5355e72f2d625bce8f9f89f122581a04c9"
+    },
+    {
+      "code": "MSK:GEOPROJ:50:1",
+      "name": "Pulkovo 1942 / MSK50 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 35.48333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 1250000.0,
+      "false_northing": -5712900.566,
+      "definition_source": "https://terraingis.ru/msk-50.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005233070463539248,
+      "control_points": [
+        {
+          "lat": 55.5,
+          "lon": 35.48333333333,
+          "easting": 1250119.741,
+          "northing": 440101.479
+        },
+        {
+          "lat": 55.2,
+          "lon": 35.08333333333,
+          "easting": 1224649.488,
+          "northing": 406775.547
+        },
+        {
+          "lat": 55.8,
+          "lon": 35.88333333333,
+          "easting": 1275205.664,
+          "northing": 473574.49
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=35.48333333333 +k=1 +x_0=1250000 +y_0=-5712900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "aa342f73b3c3f2af45881e342836a9e5392384f52c2300c4d809896ef3cb576b"
+    },
+    {
+      "code": "MSK:GEOPROJ:50:2",
+      "name": "Pulkovo 1942 / MSK50 zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 38.48333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 2250000.0,
+      "false_northing": -5712900.566,
+      "definition_source": "https://terraingis.ru/msk-50.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00039466507482233126,
+      "control_points": [
+        {
+          "lat": 55.5,
+          "lon": 38.48333333333,
+          "easting": 2250116.659,
+          "northing": 440095.669
+        },
+        {
+          "lat": 55.2,
+          "lon": 38.08333333333,
+          "easting": 2224646.419,
+          "northing": 406769.758
+        },
+        {
+          "lat": 55.8,
+          "lon": 38.88333333333,
+          "easting": 2275202.568,
+          "northing": 473568.66
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=38.48333333333 +k=1 +x_0=2250000 +y_0=-5712900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "aa342f73b3c3f2af45881e342836a9e5392384f52c2300c4d809896ef3cb576b"
+    },
+    {
+      "code": "MSK:GEOPROJ:52:1",
+      "name": "Pulkovo 1942 / MSK52 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 41.55,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 1250000.0,
+      "false_northing": -5714743.504,
+      "definition_source": "https://terraingis.ru/msk-52.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00046745875602300036,
+      "control_points": [
+        {
+          "lat": 56,
+          "lon": 41.55,
+          "easting": 1250113.35,
+          "northing": 493915.577
+        },
+        {
+          "lat": 55.7,
+          "lon": 41.15,
+          "easting": 1224963.205,
+          "northing": 460586.461
+        },
+        {
+          "lat": 56.3,
+          "lon": 41.949999999999996,
+          "easting": 1274876.843,
+          "northing": 527390.77
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=41.55 +k=1 +x_0=1250000 +y_0=-5714743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "66475722153cd3a4ea34b277efd15a0758d29973b61208a040972b4a3a2f9492"
+    },
+    {
+      "code": "MSK:GEOPROJ:52:2",
+      "name": "Pulkovo 1942 / MSK52 zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 44.55,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 2250000.0,
+      "false_northing": -5714743.504,
+      "definition_source": "https://terraingis.ru/msk-52.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005378344914036175,
+      "control_points": [
+        {
+          "lat": 56,
+          "lon": 44.55,
+          "easting": 2250109.556,
+          "northing": 493910.023
+        },
+        {
+          "lat": 55.7,
+          "lon": 44.15,
+          "easting": 2224959.424,
+          "northing": 460580.925
+        },
+        {
+          "lat": 56.3,
+          "lon": 44.949999999999996,
+          "easting": 2274873.037,
+          "northing": 527385.196
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=44.55 +k=1 +x_0=2250000 +y_0=-5714743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "66475722153cd3a4ea34b277efd15a0758d29973b61208a040972b4a3a2f9492"
+    },
+    {
+      "code": "MSK:GEOPROJ:52:3",
+      "name": "Pulkovo 1942 / MSK52 zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 47.55,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 3250000.0,
+      "false_northing": -5714743.504,
+      "definition_source": "https://terraingis.ru/msk-52.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005151571832480328,
+      "control_points": [
+        {
+          "lat": 56,
+          "lon": 47.55,
+          "easting": 3250105.424,
+          "northing": 493904.633
+        },
+        {
+          "lat": 55.7,
+          "lon": 47.15,
+          "easting": 3224955.304,
+          "northing": 460575.554
+        },
+        {
+          "lat": 56.3,
+          "lon": 47.949999999999996,
+          "easting": 3274868.893,
+          "northing": 527379.788
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=47.55 +k=1 +x_0=3250000 +y_0=-5714743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "66475722153cd3a4ea34b277efd15a0758d29973b61208a040972b4a3a2f9492"
+    },
+    {
+      "code": "MSK:GEOPROJ:63:1",
+      "name": "Pulkovo 1942 / MSK63 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 49.03333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 1300000.0,
+      "false_northing": -5509414.7,
+      "definition_source": "https://terraingis.ru/msk-63.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005258008751237491,
+      "control_points": [
+        {
+          "lat": 53,
+          "lon": 49.03333333333,
+          "easting": 1300101.971,
+          "northing": 365288.621
+        },
+        {
+          "lat": 52.7,
+          "lon": 48.63333333333,
+          "easting": 1273061.277,
+          "northing": 331978.822
+        },
+        {
+          "lat": 53.3,
+          "lon": 49.43333333333,
+          "easting": 1326770.377,
+          "northing": 398749.838
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=49.03333333333 +k=1 +x_0=1300000 +y_0=-5509414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "ec3c467447125ab6f046f12bf0fa41c937a18cc5ea66afc29f78ca49bd2b5812"
+    },
+    {
+      "code": "MSK:GEOPROJ:63:2",
+      "name": "Pulkovo 1942 / MSK63 zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 52.03333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 2300000.0,
+      "false_northing": -5509414.7,
+      "definition_source": "https://terraingis.ru/msk-63.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004937385351534673,
+      "control_points": [
+        {
+          "lat": 53,
+          "lon": 52.03333333333,
+          "easting": 2300097.344,
+          "northing": 365283.678
+        },
+        {
+          "lat": 52.7,
+          "lon": 51.63333333333,
+          "easting": 2273056.664,
+          "northing": 331973.898
+        },
+        {
+          "lat": 53.3,
+          "lon": 52.43333333333,
+          "easting": 2326765.738,
+          "northing": 398744.876
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=52.03333333333 +k=1 +x_0=2300000 +y_0=-5509414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "ec3c467447125ab6f046f12bf0fa41c937a18cc5ea66afc29f78ca49bd2b5812"
+    },
+    {
+      "code": "MSK:GEOPROJ:1964:1",
+      "name": "Pulkovo 1942 / MSK1964 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 30.0,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 95942.17,
+      "false_northing": -6552810.0,
+      "definition_source": "https://terraingis.ru/msk-1964.html",
+      "definition_author": "Александр Фадеев (Территория ГИС)",
+      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006311349181165257,
+      "control_points": [
+        {
+          "lat": 59.9,
+          "lon": 30.0,
+          "easting": 96068.402,
+          "northing": 90241.464
+        },
+        {
+          "lat": 59.6,
+          "lon": 29.6,
+          "easting": 73479.424,
+          "northing": 56887.066
+        },
+        {
+          "lat": 60.199999999999996,
+          "lon": 30.4,
+          "easting": 118253.634,
+          "northing": 123732.605
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=30 +k=1 +x_0=95942.17 +y_0=-6552810.0 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_sha256": "950a89f86ec6afb1dd6c1eae84ac96fbbd56d6c8aac9dc6d2209c0f255808d2b"
     }
   ]
 }

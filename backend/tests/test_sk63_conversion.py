@@ -10,7 +10,7 @@ from fastapi import HTTPException, UploadFile
 from openpyxl import Workbook, load_workbook
 
 from app.schemas import ConvertRequest, Point
-from app.sk63_registry import READY_CRS, SK63_ITEMS
+from app.sk63_registry import READY_CRS, SK63_ITEMS, VERIFIED_DEFINITIONS
 
 
 class Sk63Tests(unittest.IsolatedAsyncioTestCase):
@@ -35,12 +35,12 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
     async def test_registry_ready_and_dev_statuses(self):
         msk = [item for item in self.api.list_crs() if item.category == 'msk']
         self.assertEqual(len(msk), 259)
-        self.assertEqual(sum(item.status == 'ready' for item in msk), 1)
-        self.assertEqual(sum(item.status == 'dev' for item in msk), 258)
+        self.assertEqual(sum(item.status == 'ready' for item in msk), 16)
+        self.assertEqual(sum(item.status == 'dev' for item in msk), 243)
         choices = [item for item in self.api.list_crs() if item.category == 'sk63']
         self.assertEqual(len({item.code for item in choices}), len(choices))
-        self.assertEqual(sum(item.status == 'ready' for item in choices), 17)
-        self.assertEqual(sum(item.status == 'dev' for item in choices), 107)
+        self.assertEqual(sum(item.status == 'ready' for item in choices), 29)
+        self.assertEqual(sum(item.status == 'dev' for item in choices), 95)
         for item in choices:
             self.assertTrue(item.region)
             self.assertTrue(item.description)
@@ -56,13 +56,48 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
                 self.assertAlmostEqual(projected.x, params['8806'], places=6)
                 self.assertAlmostEqual(projected.y, params['8807'], places=6)
                 area = crs.area_of_use
-                original = Point(lat=(area.south + area.north) / 2, lon=(area.west + area.east) / 2)
+                original = (Point(lat=(area.south + area.north) / 2, lon=(area.west + area.east) / 2)
+                            if area else Point(**{key: VERIFIED_DEFINITIONS[code]['control_points'][0][key]
+                                                  for key in ('lat', 'lon')}))
                 result = self.convert('EPSG:4326', code, [original])
                 restored = self.convert(code, 'EPSG:4326', result.points).points[0]
                 self.assertAlmostEqual(restored.lat, original.lat, places=5)
                 self.assertAlmostEqual(restored.lon, original.lon, places=5)
                 self.assertFalse(result.meta['allow_ballpark'])
                 self.assertTrue(result.meta['operations'])
+
+    async def test_independent_catalogue_reference_points(self):
+        expected = {f'SK63:GEOPROJ:{district}:{zone}'
+                    for district, count in [('C', 2), ('P', 4), ('X', 6)]
+                    for zone in range(1, count + 1)}
+        self.assertEqual(set(VERIFIED_DEFINITIONS), expected)
+        for code, definition in VERIFIED_DEFINITIONS.items():
+            for point in definition['control_points']:
+                with self.subTest(code=code, lat=point['lat']):
+                    if 'epsg' in definition:
+                        area = READY_CRS[code].area_of_use
+                        self.assertLessEqual(area.west, point['lon'])
+                        self.assertLessEqual(point['lon'], area.east)
+                        self.assertLessEqual(area.south, point['lat'])
+                        self.assertLessEqual(point['lat'], area.north)
+                    result = self.convert('EPSG:4326', code, [Point(lat=point['lat'], lon=point['lon'])])
+                    self.assertAlmostEqual(result.points[0].x, point['easting'], delta=.01)
+                    self.assertAlmostEqual(result.points[0].y, point['northing'], delta=.01)
+                    self.assertTrue(result.meta['regional_definitions'])
+                    restored = self.convert(code, 'EPSG:4326', result.points).points[0]
+                    self.assertAlmostEqual(restored.lat, point['lat'], places=6)
+                    self.assertAlmostEqual(restored.lon, point['lon'], places=6)
+
+    async def test_c_numbering_and_unconfirmed_t_are_not_inferred(self):
+        # geoproj C1 is EPSG C1 (24.95 degrees); paper C1 is 21.95 degrees.
+        crs = READY_CRS['SK63:GEOPROJ:C:1']
+        parameters = {p.code: p.value for p in crs.coordinate_operation.params}
+        self.assertAlmostEqual(parameters['8802'], 24.95)
+        for zone in range(1, 5):
+            code = f'SK63:GEOPROJ:T:{zone}'
+            self.assertNotIn(code, READY_CRS)
+            with self.assertRaises(HTTPException):
+                self.convert('EPSG:4326', code, [Point(lat=48, lon=38)])
 
     async def test_dev_unknown_missing_fields_and_invalid_coordinates(self):
         for item in SK63_ITEMS:
@@ -89,7 +124,8 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
 
     async def test_100_sk63_points_import_convert_and_both_exports(self):
         original = [Point(lat=48 + i / 10000, lon=32 + i / 10000) for i in range(100)]
-        projected = self.convert('EPSG:4326', 'SK63:EPSG:7828', original).points
+        code = 'SK63:GEOPROJ:P:2'
+        projected = self.convert('EPSG:4326', code, original).points
         workbook = Workbook()
         workbook.active.append(['X (м)', 'Y (м)'])
         for point in projected:
@@ -103,11 +139,11 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
         finally:
             await upload.close()
         points = [Point(x=row['X (м)'], y=row['Y (м)']) for row in imported['rows_preview']]
-        result = self.convert('SK63:EPSG:7828', 'EPSG:4326', points)
+        result = self.convert(code, 'EPSG:4326', points)
         self.assertEqual(len(result.points), 100)
         self.assertAlmostEqual(result.points[-1].lat, original[-1].lat, places=5)
         for kind in ('catalog', 'statement'):
-            response = self.api.api_export(kind, self.api.ExportRequest(crs_from='SK63:EPSG:7828',
+            response = self.api.api_export(kind, self.api.ExportRequest(crs_from=code,
                 crs_to='EPSG:4326', rows_in=points, rows_out=result.points, format_out='deg_min_sec'))
             data = b''.join([chunk async for chunk in response.body_iterator])
             book = load_workbook(io.BytesIO(data), read_only=True)

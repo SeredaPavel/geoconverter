@@ -3,10 +3,17 @@
   "retrieved_on": "2026-10-23",
   "extraction": "Visible source-system, region/district and zone dropdowns; names and identifiers retained from the source.",
   "status": "reference_only",
+  "runtime_verification": {
+    "updated_on": "2026-10-29",
+    "msk_definitions_file": "msk_definitions.json",
+    "sk63_definitions_file": "sk63_definitions.json",
+    "report_file": "PARAMETER_VERIFICATION.md",
+    "note": "Historical candidate flags below remain reference-only. Explicit verified runtime definitions and EPSG aliases are maintained separately; they do not establish geodetic accuracy over an entire zone."
+  },
   "notes": [
     "This is the catalogue exposed by geoproj.ru, not a complete official national registry.",
     "The source groups MSK and SK-63 under BETA.",
-    "SK-63 research adds authority definitions and separately labelled published candidates. No entries are enabled for conversion or independently accuracy-validated.",
+    "SK-63 research adds authority definitions and separately labelled published candidates. These research entries are not enabled directly; see runtime_verification for separately checked runtime definitions. Geodetic accuracy is not independently validated over entire zones.",
     "Observed geoproj variant widths are preserved; standard-width classifications from GIS-Lab are recorded separately with attribution.",
     "SK-63 districts are lettered areas in the source; administrative region mappings were not provided by these dropdowns."
   ],

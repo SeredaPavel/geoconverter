@@ -1,0 +1,599 @@
+{
+  "schema_version": 1,
+  "definitions": [
+    {
+      "code": "SK63:GEOPROJ:C:1",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 56.8,
+          "lon": 24.95,
+          "easting": 1250128.135,
+          "northing": 6286714.038
+        },
+        {
+          "lat": 56.5,
+          "lon": 24.75,
+          "easting": 1237811.011,
+          "northing": 6253325.816
+        },
+        {
+          "lat": 57.099999999999994,
+          "lon": 25.15,
+          "easting": 1262250.105,
+          "northing": 6320139.568
+        }
+      ],
+      "epsg": 3351,
+      "definition_source": "https://epsg.org/crs_3351/",
+      "definition_author": "EPSG:3351 (база PROJ)",
+      "observed_max_error_metres": 0.002732140521744617,
+      "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    },
+    {
+      "code": "SK63:GEOPROJ:C:2",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 57,
+          "lon": 27.2,
+          "easting": 2204547.716,
+          "northing": 6309229.836
+        },
+        {
+          "lat": 56.7,
+          "lon": 27.0,
+          "easting": 2191929.893,
+          "northing": 6275975.703
+        },
+        {
+          "lat": 57.3,
+          "lon": 27.4,
+          "easting": 2216971.412,
+          "northing": 6342522.377
+        }
+      ],
+      "epsg": 3352,
+      "definition_source": "https://epsg.org/crs_3352/",
+      "definition_author": "EPSG:3352 (база PROJ)",
+      "observed_max_error_metres": 0.0028056254795581345,
+      "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    },
+    {
+      "code": "SK63:GEOPROJ:P:1",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 32.483333333333334,
+          "easting": 1250121.847,
+          "northing": 5973128.734
+        },
+        {
+          "lat": 53.7,
+          "lon": 32.083333333333336,
+          "easting": 1223703.199,
+          "northing": 5939812.426
+        },
+        {
+          "lat": 54.3,
+          "lon": 32.88333333333333,
+          "easting": 1276163.304,
+          "northing": 6006594.863
+        }
+      ],
+      "name": "Pulkovo 1942 / CS63 district P zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 32.483333333333334,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 1250000,
+      "false_northing": -12900.563,
+      "definition_source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "definition_author": "С. І. Бурковський и соавторы (2021), таблица 2",
+      "observed_max_error_metres": 0.003484777906928509,
+      "interpretation": "The published positive meridional offset is subtracted from northing (lat_0=0). Sign, east shift and zone identity verified against geoproj. Printed 0.001 m precision retained; no adjustment to fit samples.",
+      "source_parameter_reference": "paper2021:P1"
+    },
+    {
+      "code": "SK63:GEOPROJ:P:2",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 35.483333333333334,
+          "easting": 2250119.124,
+          "northing": 5973122.91
+        },
+        {
+          "lat": 53.7,
+          "lon": 35.083333333333336,
+          "easting": 2223700.491,
+          "northing": 5939806.623
+        },
+        {
+          "lat": 54.3,
+          "lon": 35.88333333333333,
+          "easting": 2276160.566,
+          "northing": 6006589.017
+        }
+      ],
+      "name": "Pulkovo 1942 / CS63 district P zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 35.483333333333334,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 2250000,
+      "false_northing": -12900.563,
+      "definition_source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "definition_author": "С. І. Бурковський и соавторы (2021), таблица 2",
+      "observed_max_error_metres": 0.003450899646502127,
+      "interpretation": "The published positive meridional offset is subtracted from northing (lat_0=0). Sign, east shift and zone identity verified against geoproj. Printed 0.001 m precision retained; no adjustment to fit samples.",
+      "source_parameter_reference": "paper2021:P2"
+    },
+    {
+      "code": "SK63:GEOPROJ:P:3",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 38.483333333333334,
+          "easting": 3250116.035,
+          "northing": 5973117.201
+        },
+        {
+          "lat": 53.7,
+          "lon": 38.083333333333336,
+          "easting": 3223697.416,
+          "northing": 5939800.935
+        },
+        {
+          "lat": 54.3,
+          "lon": 38.88333333333333,
+          "easting": 3276157.462,
+          "northing": 6006583.285
+        }
+      ],
+      "name": "Pulkovo 1942 / CS63 district P zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 38.483333333333334,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 3250000,
+      "false_northing": -12900.563,
+      "definition_source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "definition_author": "С. І. Бурковський и соавторы (2021), таблица 2",
+      "observed_max_error_metres": 0.003499042490754785,
+      "interpretation": "The published positive meridional offset is subtracted from northing (lat_0=0). Sign, east shift and zone identity verified against geoproj. Printed 0.001 m precision retained; no adjustment to fit samples.",
+      "source_parameter_reference": "paper2021:P3"
+    },
+    {
+      "code": "SK63:GEOPROJ:P:4",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 41.483333333333334,
+          "easting": 4250112.589,
+          "northing": 5973111.621
+        },
+        {
+          "lat": 53.7,
+          "lon": 41.083333333333336,
+          "easting": 4223693.984,
+          "northing": 5939795.377
+        },
+        {
+          "lat": 54.3,
+          "lon": 41.88333333333333,
+          "easting": 4276154.002,
+          "northing": 6006577.685
+        }
+      ],
+      "name": "Pulkovo 1942 / CS63 district P zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 41.483333333333334,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 4250000,
+      "false_northing": -12900.563,
+      "definition_source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "definition_author": "С. І. Бурковський и соавторы (2021), таблица 2",
+      "observed_max_error_metres": 0.0034861159244709166,
+      "interpretation": "The published positive meridional offset is subtracted from northing (lat_0=0). Sign, east shift and zone identity verified against geoproj. Printed 0.001 m precision retained; no adjustment to fit samples.",
+      "source_parameter_reference": "paper2021:P4"
+    },
+    {
+      "code": "SK63:GEOPROJ:X:1",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 49,
+          "lon": 23.5,
+          "easting": 1300125.843,
+          "northing": 5420541.941
+        },
+        {
+          "lat": 48.7,
+          "lon": 23.1,
+          "easting": 1270681.543,
+          "northing": 5387257.066
+        },
+        {
+          "lat": 49.3,
+          "lon": 23.9,
+          "easting": 1329218.569,
+          "northing": 5453982.767
+        }
+      ],
+      "epsg": 7825,
+      "definition_source": "https://epsg.org/crs_7825/",
+      "definition_author": "EPSG:7825 (база PROJ)",
+      "observed_max_error_metres": 0.0023950887668072406,
+      "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    },
+    {
+      "code": "SK63:GEOPROJ:X:2",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 49,
+          "lon": 26.5,
+          "easting": 2300124.228,
+          "northing": 5420536.261
+        },
+        {
+          "lat": 48.7,
+          "lon": 26.1,
+          "easting": 2270679.948,
+          "northing": 5387251.412
+        },
+        {
+          "lat": 49.3,
+          "lon": 26.9,
+          "easting": 2329216.934,
+          "northing": 5453977.061
+        }
+      ],
+      "epsg": 7826,
+      "definition_source": "https://epsg.org/crs_7826/",
+      "definition_author": "EPSG:7826 (база PROJ)",
+      "observed_max_error_metres": 0.0023409053724387347,
+      "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    },
+    {
+      "code": "SK63:GEOPROJ:X:3",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 49,
+          "lon": 29.5,
+          "easting": 3300122.229,
+          "northing": 5420530.641
+        },
+        {
+          "lat": 48.7,
+          "lon": 29.1,
+          "easting": 3270677.969,
+          "northing": 5387245.818
+        },
+        {
+          "lat": 49.3,
+          "lon": 29.9,
+          "easting": 3329214.916,
+          "northing": 5453971.415
+        }
+      ],
+      "epsg": 7827,
+      "definition_source": "https://epsg.org/crs_7827/",
+      "definition_author": "EPSG:7827 (база PROJ)",
+      "observed_max_error_metres": 0.0022631555033220175,
+      "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    },
+    {
+      "code": "SK63:GEOPROJ:X:4",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 49,
+          "lon": 32.5,
+          "easting": 4300119.851,
+          "northing": 5420525.097
+        },
+        {
+          "lat": 48.7,
+          "lon": 32.1,
+          "easting": 4270675.61,
+          "northing": 5387240.299
+        },
+        {
+          "lat": 49.3,
+          "lon": 32.9,
+          "easting": 4329212.518,
+          "northing": 5453965.845
+        }
+      ],
+      "epsg": 7828,
+      "definition_source": "https://epsg.org/crs_7828/",
+      "definition_author": "EPSG:7828 (база PROJ)",
+      "observed_max_error_metres": 0.0017172359932407458,
+      "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    },
+    {
+      "code": "SK63:GEOPROJ:X:5",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 49,
+          "lon": 35.5,
+          "easting": 5300117.1,
+          "northing": 5420519.642
+        },
+        {
+          "lat": 48.7,
+          "lon": 35.1,
+          "easting": 5270672.878,
+          "northing": 5387234.869
+        },
+        {
+          "lat": 49.3,
+          "lon": 35.9,
+          "easting": 5329209.749,
+          "northing": 5453960.366
+        }
+      ],
+      "epsg": 7829,
+      "definition_source": "https://epsg.org/crs_7829/",
+      "definition_author": "EPSG:7829 (база PROJ)",
+      "observed_max_error_metres": 0.0024527040694488794,
+      "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    },
+    {
+      "code": "SK63:GEOPROJ:X:6",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 49,
+          "lon": 38.5,
+          "easting": 6300113.984,
+          "northing": 5420514.294
+        },
+        {
+          "lat": 48.7,
+          "lon": 38.1,
+          "easting": 6270669.781,
+          "northing": 5387229.545
+        },
+        {
+          "lat": 49.3,
+          "lon": 38.9,
+          "easting": 6329206.615,
+          "northing": 5453954.993
+        }
+      ],
+      "epsg": 7830,
+      "definition_source": "https://epsg.org/crs_7830/",
+      "definition_author": "EPSG:7830 (база PROJ)",
+      "observed_max_error_metres": 0.0019451126728245467,
+      "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "code": "SK63:GEOPROJ:C:3",
+      "source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "candidate": {
+        "lat_0": 0.1,
+        "lon_0": 27.95,
+        "x_0": 3250000,
+        "y_0": 0,
+        "max_error_metres": 193442.8024557189
+      },
+      "control_points": [
+        {
+          "lat": 55,
+          "lon": 27.95,
+          "easting": 3058170.664,
+          "northing": 6090407.985
+        },
+        {
+          "lat": 54.7,
+          "lon": 27.55,
+          "easting": 3030965.172,
+          "northing": 6058203.303
+        },
+        {
+          "lat": 55.3,
+          "lon": 28.349999999999998,
+          "easting": 3085002.173,
+          "northing": 6122768.816
+        }
+      ],
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+    },
+    {
+      "code": "SK63:GEOPROJ:C:4",
+      "source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "candidate": {
+        "lat_0": 0.1,
+        "lon_0": 30.95,
+        "x_0": 4250000,
+        "y_0": 0,
+        "max_error_metres": 193443.0614636885
+      },
+      "control_points": [
+        {
+          "lat": 55,
+          "lon": 30.95,
+          "easting": 4058168.254,
+          "northing": 6090402.041
+        },
+        {
+          "lat": 54.7,
+          "lon": 30.55,
+          "easting": 4030962.779,
+          "northing": 6058197.38
+        },
+        {
+          "lat": 55.3,
+          "lon": 31.349999999999998,
+          "easting": 4084999.748,
+          "northing": 6122762.852
+        }
+      ],
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+    },
+    {
+      "code": "SK63:GEOPROJ:T:1",
+      "source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "candidate": {
+        "lat_0": 0.1,
+        "lon_0": 32.983333333333334,
+        "x_0": 1300000,
+        "y_0": 0,
+        "max_error_metres": 375496.81284444744
+      },
+      "control_points": [
+        {
+          "lat": 48,
+          "lon": 32.983333333333334,
+          "easting": 927036.582,
+          "northing": 5319585.462
+        },
+        {
+          "lat": 47.7,
+          "lon": 32.583333333333336,
+          "easting": 894862.608,
+          "northing": 5288262.153
+        },
+        {
+          "lat": 48.3,
+          "lon": 33.38333333333333,
+          "easting": 958874.391,
+          "northing": 5351069.413
+        }
+      ],
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+    },
+    {
+      "code": "SK63:GEOPROJ:T:2",
+      "source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "candidate": {
+        "lat_0": 0.1,
+        "lon_0": 35.983333333333334,
+        "x_0": 2300000,
+        "y_0": 0,
+        "max_error_metres": 375497.1647206407
+      },
+      "control_points": [
+        {
+          "lat": 48,
+          "lon": 35.983333333333334,
+          "easting": 1927033.42,
+          "northing": 5319580.287
+        },
+        {
+          "lat": 47.7,
+          "lon": 35.583333333333336,
+          "easting": 1894859.467,
+          "northing": 5288256.999
+        },
+        {
+          "lat": 48.3,
+          "lon": 36.38333333333333,
+          "easting": 1958871.207,
+          "northing": 5351064.217
+        }
+      ],
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+    },
+    {
+      "code": "SK63:GEOPROJ:T:3",
+      "source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "candidate": {
+        "lat_0": 0.1,
+        "lon_0": 38.983333333333334,
+        "x_0": 3300000,
+        "y_0": 0,
+        "max_error_metres": 375497.5095802522
+      },
+      "control_points": [
+        {
+          "lat": 48,
+          "lon": 38.983333333333334,
+          "easting": 2927029.901,
+          "northing": 5319575.242
+        },
+        {
+          "lat": 47.7,
+          "lon": 38.583333333333336,
+          "easting": 2894855.97,
+          "northing": 5288251.975
+        },
+        {
+          "lat": 48.3,
+          "lon": 39.38333333333333,
+          "easting": 2958867.667,
+          "northing": 5351059.151
+        }
+      ],
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+    },
+    {
+      "code": "SK63:GEOPROJ:T:4",
+      "source": "https://doi.org/10.30748/zhups.2021.70.08",
+      "candidate": {
+        "lat_0": 0.1,
+        "lon_0": 41.983333333333334,
+        "x_0": 4300000,
+        "y_0": 0,
+        "max_error_metres": 375497.84899559914
+      },
+      "control_points": [
+        {
+          "lat": 48,
+          "lon": 41.983333333333334,
+          "easting": 3927026.035,
+          "northing": 5319570.34
+        },
+        {
+          "lat": 47.7,
+          "lon": 41.583333333333336,
+          "easting": 3894852.124,
+          "northing": 5288247.093
+        },
+        {
+          "lat": 48.3,
+          "lon": 42.38333333333333,
+          "easting": 3958863.781,
+          "northing": 5351054.229
+        }
+      ],
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+    }
+  ]
+}
