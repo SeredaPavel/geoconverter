@@ -9,7 +9,9 @@
     "sk63_definitions_file": "sk63_definitions.json",
     "report_file": "PARAMETER_VERIFICATION.md",
     "additional_report_file": "GEOBRIDGE_VERIFICATION.md",
-    "note": "Historical candidate flags below remain reference-only. Explicit verified runtime definitions and EPSG aliases are maintained separately; they do not establish geodetic accuracy over an entire zone."
+    "note": "Historical candidate flags below remain reference-only. Explicit verified runtime definitions and EPSG aliases are maintained separately; they do not establish geodetic accuracy over an entire zone.",
+    "published_batch_report_file": "PUBLISHED_BATCH_2026_10_29.md",
+    "published_batch_review_file": "published_batch_2026_10_29.json"
   },
   "notes": [
     "This is the catalogue exposed by geoproj.ru, not a complete official national registry.",

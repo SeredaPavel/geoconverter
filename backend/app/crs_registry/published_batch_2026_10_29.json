@@ -1,0 +1,889 @@
+{
+  "verified_on": "2026-10-29",
+  "report": "PUBLISHED_BATCH_2026_10_29.md",
+  "new_verified_msk": 239,
+  "new_verified_sk63": 85,
+  "new_verified_codes": [
+    "MSK:GEOPROJ:01:1",
+    "MSK:GEOPROJ:01:2",
+    "MSK:GEOPROJ:03:1",
+    "MSK:GEOPROJ:03:2",
+    "MSK:GEOPROJ:03:3",
+    "MSK:GEOPROJ:03:4",
+    "MSK:GEOPROJ:03:5",
+    "MSK:GEOPROJ:03:6",
+    "MSK:GEOPROJ:03:7",
+    "MSK:GEOPROJ:04:1",
+    "MSK:GEOPROJ:04:2",
+    "MSK:GEOPROJ:05:1",
+    "MSK:GEOPROJ:06:1",
+    "MSK:GEOPROJ:07:1",
+    "MSK:GEOPROJ:08:1",
+    "MSK:GEOPROJ:08:2",
+    "MSK:GEOPROJ:08:3",
+    "MSK:GEOPROJ:09:1",
+    "MSK:GEOPROJ:10:1",
+    "MSK:GEOPROJ:10:2",
+    "MSK:GEOPROJ:11:1",
+    "MSK:GEOPROJ:11:2",
+    "MSK:GEOPROJ:11:3",
+    "MSK:GEOPROJ:11:4",
+    "MSK:GEOPROJ:11:5",
+    "MSK:GEOPROJ:11:6",
+    "MSK:GEOPROJ:11:7",
+    "MSK:GEOPROJ:11:8",
+    "MSK:GEOPROJ:11:9",
+    "MSK:GEOPROJ:12:1",
+    "MSK:GEOPROJ:12:2",
+    "MSK:GEOPROJ:13:1",
+    "MSK:GEOPROJ:13:2",
+    "MSK:GEOPROJ:14:1",
+    "MSK:GEOPROJ:14:2",
+    "MSK:GEOPROJ:14:3",
+    "MSK:GEOPROJ:14:4",
+    "MSK:GEOPROJ:14:5",
+    "MSK:GEOPROJ:14:6",
+    "MSK:GEOPROJ:14:7",
+    "MSK:GEOPROJ:14:8",
+    "MSK:GEOPROJ:14:9",
+    "MSK:GEOPROJ:15:1",
+    "MSK:GEOPROJ:163:1",
+    "MSK:GEOPROJ:164:1",
+    "MSK:GEOPROJ:165:1",
+    "MSK:GEOPROJ:166:1",
+    "MSK:GEOPROJ:167:1",
+    "MSK:GEOPROJ:168:1",
+    "MSK:GEOPROJ:169:1",
+    "MSK:GEOPROJ:170:1",
+    "MSK:GEOPROJ:18:1",
+    "MSK:GEOPROJ:18:2",
+    "MSK:GEOPROJ:20:1",
+    "MSK:GEOPROJ:20:2",
+    "MSK:GEOPROJ:21:1",
+    "MSK:GEOPROJ:21:2",
+    "MSK:GEOPROJ:22:1",
+    "MSK:GEOPROJ:22:2",
+    "MSK:GEOPROJ:22:3",
+    "MSK:GEOPROJ:23:1",
+    "MSK:GEOPROJ:23:2",
+    "MSK:GEOPROJ:24:1",
+    "MSK:GEOPROJ:24:2",
+    "MSK:GEOPROJ:24:3",
+    "MSK:GEOPROJ:24:4",
+    "MSK:GEOPROJ:24:5",
+    "MSK:GEOPROJ:24:6",
+    "MSK:GEOPROJ:25:1",
+    "MSK:GEOPROJ:25:2",
+    "MSK:GEOPROJ:25:3",
+    "MSK:GEOPROJ:25:4",
+    "MSK:GEOPROJ:26:1",
+    "MSK:GEOPROJ:26:2",
+    "MSK:GEOPROJ:27:1",
+    "MSK:GEOPROJ:27:2",
+    "MSK:GEOPROJ:27:3",
+    "MSK:GEOPROJ:27:4",
+    "MSK:GEOPROJ:27:5",
+    "MSK:GEOPROJ:27:6",
+    "MSK:GEOPROJ:28:1",
+    "MSK:GEOPROJ:28:2",
+    "MSK:GEOPROJ:28:3",
+    "MSK:GEOPROJ:28:4",
+    "MSK:GEOPROJ:28:5",
+    "MSK:GEOPROJ:29:1",
+    "MSK:GEOPROJ:29:2",
+    "MSK:GEOPROJ:29:3",
+    "MSK:GEOPROJ:29:4",
+    "MSK:GEOPROJ:29:5",
+    "MSK:GEOPROJ:30:1",
+    "MSK:GEOPROJ:31:1",
+    "MSK:GEOPROJ:31:2",
+    "MSK:GEOPROJ:32:1",
+    "MSK:GEOPROJ:32:2",
+    "MSK:GEOPROJ:33:1",
+    "MSK:GEOPROJ:33:2",
+    "MSK:GEOPROJ:33:3",
+    "MSK:GEOPROJ:34:1",
+    "MSK:GEOPROJ:34:2",
+    "MSK:GEOPROJ:35:1",
+    "MSK:GEOPROJ:35:2",
+    "MSK:GEOPROJ:35:3",
+    "MSK:GEOPROJ:35:4",
+    "MSK:GEOPROJ:37:1",
+    "MSK:GEOPROJ:37:2",
+    "MSK:GEOPROJ:38:1",
+    "MSK:GEOPROJ:38:2",
+    "MSK:GEOPROJ:38:3",
+    "MSK:GEOPROJ:38:4",
+    "MSK:GEOPROJ:38:5",
+    "MSK:GEOPROJ:38:6",
+    "MSK:GEOPROJ:38:7",
+    "MSK:GEOPROJ:38:8",
+    "MSK:GEOPROJ:39:1",
+    "MSK:GEOPROJ:40:1",
+    "MSK:GEOPROJ:41:1",
+    "MSK:GEOPROJ:41:2",
+    "MSK:GEOPROJ:41:3",
+    "MSK:GEOPROJ:42:1",
+    "MSK:GEOPROJ:42:2",
+    "MSK:GEOPROJ:43:1",
+    "MSK:GEOPROJ:43:2",
+    "MSK:GEOPROJ:43:3",
+    "MSK:GEOPROJ:44:1",
+    "MSK:GEOPROJ:44:2",
+    "MSK:GEOPROJ:44:3",
+    "MSK:GEOPROJ:45:1",
+    "MSK:GEOPROJ:45:2",
+    "MSK:GEOPROJ:45:3",
+    "MSK:GEOPROJ:46:1",
+    "MSK:GEOPROJ:46:2",
+    "MSK:GEOPROJ:48:1",
+    "MSK:GEOPROJ:48:2",
+    "MSK:GEOPROJ:49:1",
+    "MSK:GEOPROJ:49:2",
+    "MSK:GEOPROJ:49:3",
+    "MSK:GEOPROJ:49:4",
+    "MSK:GEOPROJ:51:1",
+    "MSK:GEOPROJ:51:2",
+    "MSK:GEOPROJ:53:1",
+    "MSK:GEOPROJ:53:2",
+    "MSK:GEOPROJ:53:3",
+    "MSK:GEOPROJ:54:1",
+    "MSK:GEOPROJ:54:2",
+    "MSK:GEOPROJ:54:3",
+    "MSK:GEOPROJ:54:4",
+    "MSK:GEOPROJ:55:1",
+    "MSK:GEOPROJ:55:2",
+    "MSK:GEOPROJ:56:1",
+    "MSK:GEOPROJ:56:2",
+    "MSK:GEOPROJ:56:3",
+    "MSK:GEOPROJ:56:4",
+    "MSK:GEOPROJ:57:1",
+    "MSK:GEOPROJ:57:2",
+    "MSK:GEOPROJ:57:3",
+    "MSK:GEOPROJ:58:1",
+    "MSK:GEOPROJ:58:2",
+    "MSK:GEOPROJ:59:1",
+    "MSK:GEOPROJ:59:2",
+    "MSK:GEOPROJ:59:3",
+    "MSK:GEOPROJ:60:1",
+    "MSK:GEOPROJ:60:2",
+    "MSK:GEOPROJ:60:3",
+    "MSK:GEOPROJ:61:1",
+    "MSK:GEOPROJ:61:2",
+    "MSK:GEOPROJ:61:3",
+    "MSK:GEOPROJ:62:1",
+    "MSK:GEOPROJ:62:2",
+    "MSK:GEOPROJ:62:3",
+    "MSK:GEOPROJ:64:1",
+    "MSK:GEOPROJ:64:2",
+    "MSK:GEOPROJ:64:3",
+    "MSK:GEOPROJ:65:1",
+    "MSK:GEOPROJ:66_3:1",
+    "MSK:GEOPROJ:66_3:2",
+    "MSK:GEOPROJ:66_3:3",
+    "MSK:GEOPROJ:66_6:1",
+    "MSK:GEOPROJ:66_6:2",
+    "MSK:GEOPROJ:67:1",
+    "MSK:GEOPROJ:67:2",
+    "MSK:GEOPROJ:67:3",
+    "MSK:GEOPROJ:68:1",
+    "MSK:GEOPROJ:68:2",
+    "MSK:GEOPROJ:68:3",
+    "MSK:GEOPROJ:69:1",
+    "MSK:GEOPROJ:69:2",
+    "MSK:GEOPROJ:69:3",
+    "MSK:GEOPROJ:70:1",
+    "MSK:GEOPROJ:70:2",
+    "MSK:GEOPROJ:70:3",
+    "MSK:GEOPROJ:70:4",
+    "MSK:GEOPROJ:70:5",
+    "MSK:GEOPROJ:70:6",
+    "MSK:GEOPROJ:71:1",
+    "MSK:GEOPROJ:71:2",
+    "MSK:GEOPROJ:72_1:1",
+    "MSK:GEOPROJ:72_1:2",
+    "MSK:GEOPROJ:72_1:3",
+    "MSK:GEOPROJ:72_1:4",
+    "MSK:GEOPROJ:72_1:5",
+    "MSK:GEOPROJ:72_1:6",
+    "MSK:GEOPROJ:72_3:1",
+    "MSK:GEOPROJ:72_3:2",
+    "MSK:GEOPROJ:72_3:3",
+    "MSK:GEOPROJ:72_3:4",
+    "MSK:GEOPROJ:72_3:5",
+    "MSK:GEOPROJ:72_6:1",
+    "MSK:GEOPROJ:72_6:2",
+    "MSK:GEOPROJ:72_6:3",
+    "MSK:GEOPROJ:73:1",
+    "MSK:GEOPROJ:73:2",
+    "MSK:GEOPROJ:74:1",
+    "MSK:GEOPROJ:74:2",
+    "MSK:GEOPROJ:74:3",
+    "MSK:GEOPROJ:75:1",
+    "MSK:GEOPROJ:75:2",
+    "MSK:GEOPROJ:75:3",
+    "MSK:GEOPROJ:75:4",
+    "MSK:GEOPROJ:75:5",
+    "MSK:GEOPROJ:76:1",
+    "MSK:GEOPROJ:76:2",
+    "MSK:GEOPROJ:83:3",
+    "MSK:GEOPROJ:83:4",
+    "MSK:GEOPROJ:83:5",
+    "MSK:GEOPROJ:83:6",
+    "MSK:GEOPROJ:83:7",
+    "MSK:GEOPROJ:86:1",
+    "MSK:GEOPROJ:86:2",
+    "MSK:GEOPROJ:86:3",
+    "MSK:GEOPROJ:86:4",
+    "MSK:GEOPROJ:86:5",
+    "MSK:GEOPROJ:87:3",
+    "MSK:GEOPROJ:87:4",
+    "MSK:GEOPROJ:87:5",
+    "MSK:GEOPROJ:87:6",
+    "MSK:GEOPROJ:87:7",
+    "MSK:GEOPROJ:87:8",
+    "MSK:GEOPROJ:krasn:1",
+    "SK63:GEOPROJ:C:3",
+    "SK63:GEOPROJ:C:4",
+    "SK63:GEOPROJ:C:5",
+    "SK63:GEOPROJ:C:6",
+    "SK63:GEOPROJ:D:1",
+    "SK63:GEOPROJ:D:2",
+    "SK63:GEOPROJ:D:3",
+    "SK63:GEOPROJ:D:4",
+    "SK63:GEOPROJ:D:5",
+    "SK63:GEOPROJ:D:6",
+    "SK63:GEOPROJ:D:7",
+    "SK63:GEOPROJ:D:8",
+    "SK63:GEOPROJ:E:1",
+    "SK63:GEOPROJ:E:2",
+    "SK63:GEOPROJ:E:3",
+    "SK63:GEOPROJ:E:4",
+    "SK63:GEOPROJ:E:5",
+    "SK63:GEOPROJ:F:1",
+    "SK63:GEOPROJ:F:2",
+    "SK63:GEOPROJ:F:3",
+    "SK63:GEOPROJ:G:1",
+    "SK63:GEOPROJ:G:2",
+    "SK63:GEOPROJ:G:3",
+    "SK63:GEOPROJ:G:4",
+    "SK63:GEOPROJ:G:5",
+    "SK63:GEOPROJ:G:6",
+    "SK63:GEOPROJ:G:7",
+    "SK63:GEOPROJ:G:8",
+    "SK63:GEOPROJ:G:9",
+    "SK63:GEOPROJ:I:1",
+    "SK63:GEOPROJ:I:2",
+    "SK63:GEOPROJ:I:3",
+    "SK63:GEOPROJ:I:4",
+    "SK63:GEOPROJ:J:1",
+    "SK63:GEOPROJ:J:2",
+    "SK63:GEOPROJ:J:3",
+    "SK63:GEOPROJ:J:4",
+    "SK63:GEOPROJ:J:5",
+    "SK63:GEOPROJ:L:1",
+    "SK63:GEOPROJ:L:2",
+    "SK63:GEOPROJ:L:3",
+    "SK63:GEOPROJ:L:4",
+    "SK63:GEOPROJ:L:5",
+    "SK63:GEOPROJ:L:6",
+    "SK63:GEOPROJ:M:1",
+    "SK63:GEOPROJ:M:2",
+    "SK63:GEOPROJ:M:3",
+    "SK63:GEOPROJ:M:4",
+    "SK63:GEOPROJ:Q:1",
+    "SK63:GEOPROJ:Q:2",
+    "SK63:GEOPROJ:Q:3",
+    "SK63:GEOPROJ:Q:4",
+    "SK63:GEOPROJ:Q:5",
+    "SK63:GEOPROJ:R:1",
+    "SK63:GEOPROJ:R:2",
+    "SK63:GEOPROJ:R:3",
+    "SK63:GEOPROJ:S:1",
+    "SK63:GEOPROJ:S:10",
+    "SK63:GEOPROJ:S:11",
+    "SK63:GEOPROJ:S:12",
+    "SK63:GEOPROJ:S:13",
+    "SK63:GEOPROJ:S:2",
+    "SK63:GEOPROJ:S:3",
+    "SK63:GEOPROJ:S:4",
+    "SK63:GEOPROJ:S:5",
+    "SK63:GEOPROJ:S:6",
+    "SK63:GEOPROJ:S:7",
+    "SK63:GEOPROJ:S:8",
+    "SK63:GEOPROJ:S:9",
+    "SK63:GEOPROJ:T:1",
+    "SK63:GEOPROJ:T:2",
+    "SK63:GEOPROJ:T:3",
+    "SK63:GEOPROJ:T:4",
+    "SK63:GEOPROJ:W3:1",
+    "SK63:GEOPROJ:W3:2",
+    "SK63:GEOPROJ:W3:3",
+    "SK63:GEOPROJ:W3:4",
+    "SK63:GEOPROJ:W3:5",
+    "SK63:GEOPROJ:W3:6",
+    "SK63:GEOPROJ:W3:7",
+    "SK63:GEOPROJ:W3:8",
+    "SK63:GEOPROJ:W6:1",
+    "SK63:GEOPROJ:W6:2",
+    "SK63:GEOPROJ:W6:3",
+    "SK63:GEOPROJ:W6:4"
+  ],
+  "reference_points_per_new_definition": 3,
+  "tolerance_metres": 0.01,
+  "sources": [
+    {
+      "url": "https://github.com/geo-ts/msk/blob/946049d80f0f4b4956a53383961c8c6f4431169f/index.ts",
+      "sha256": "4862fc4121c2afd0919b7a0349dbc2cfb0264a82a8e4263da7610b28b59b4cad"
+    },
+    {
+      "url": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298"
+    },
+    {
+      "url": "https://geobridge.ru/proj/api",
+      "sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d"
+    }
+  ],
+  "rejected_candidates": [
+    {
+      "id": "MSK30z2",
+      "name": "МСК-30, Зона 2",
+      "region": "Астраханская область",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=49.05 +k=1 +x_0=2300000 +y_0=-4714743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "MSK:GEOPROJ:30:2",
+      "category": "MSK",
+      "source_region": "30",
+      "source_zone": "2",
+      "definition_source": "https://github.com/geo-ts/msk/blob/946049d80f0f4b4956a53383961c8c6f4431169f/index.ts",
+      "source_sha256": "4862fc4121c2afd0919b7a0349dbc2cfb0264a82a8e4263da7610b28b59b4cad",
+      "geobridge_matches": [
+        {
+          "id": "1641",
+          "title": "МСК-30 зона 2 Астраханская область",
+          "pkey": "EPSG:6333002"
+        }
+      ],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 45.27,
+          "lon": 49.05000000000001,
+          "easting": 2300098.737,
+          "northing": 300291.471
+        },
+        {
+          "lat": 44.970000000000006,
+          "lon": 48.650000000000006,
+          "easting": 2268543.485,
+          "northing": 267029.254
+        },
+        {
+          "lat": 45.57,
+          "lon": 49.45000000000002,
+          "easting": 2331323.261,
+          "northing": 333711.127
+        }
+      ],
+      "observed_max_error_metres": 2.724142180662734,
+      "published_equivalence_error_metres": 2.7239188034951725,
+      "inverse_max_error_degrees": 2.6915415482164917e-05
+    },
+    {
+      "id": "SK63I3_1",
+      "name": "СК-63 Район I (3°), Зона 1",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=71.73333333333 +k=1 +x_0=1250000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:I:1",
+      "category": "SK63",
+      "source_region": "I",
+      "source_zone": "1",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 71.73333333333,
+          "easting": 1250060.899,
+          "northing": 6084379.609
+        },
+        {
+          "lat": 54.7,
+          "lon": 71.33333333332999,
+          "easting": 1224272.662,
+          "northing": 6051057.099
+        },
+        {
+          "lat": 55.3,
+          "lon": 72.13333333333,
+          "easting": 1275467.16,
+          "northing": 6117850.157
+        }
+      ],
+      "observed_max_error_metres": 0.03448075399784492,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.0735546374671685e-07
+    },
+    {
+      "id": "SK63I3_2",
+      "name": "СК-63 Район I (3°), Зона 2",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=74.73333333333 +k=1 +x_0=2250000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:I:2",
+      "category": "SK63",
+      "source_region": "I",
+      "source_zone": "2",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 74.73333333333,
+          "easting": 2250054.323,
+          "northing": 6084376.356
+        },
+        {
+          "lat": 54.7,
+          "lon": 74.33333333332999,
+          "easting": 2224266.093,
+          "northing": 6051053.857
+        },
+        {
+          "lat": 55.3,
+          "lon": 75.13333333333,
+          "easting": 2275460.577,
+          "northing": 6117846.894
+        }
+      ],
+      "observed_max_error_metres": 0.034338441131951274,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.0586288346512447e-07
+    },
+    {
+      "id": "SK63I3_3",
+      "name": "СК-63 Район I (3°), Зона 3",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=77.73333333333 +k=1 +x_0=3250000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:I:3",
+      "category": "SK63",
+      "source_region": "I",
+      "source_zone": "3",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 77.73333333333,
+          "easting": 3250047.559,
+          "northing": 6084373.387
+        },
+        {
+          "lat": 54.7,
+          "lon": 77.33333333332996,
+          "easting": 3224259.336,
+          "northing": 6051050.896
+        },
+        {
+          "lat": 55.3,
+          "lon": 78.13333333333003,
+          "easting": 3275453.807,
+          "northing": 6117843.916
+        }
+      ],
+      "observed_max_error_metres": 0.034445882651447254,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.0659386140996503e-07
+    },
+    {
+      "id": "SK63I3_4",
+      "name": "СК-63 Район I (3°), Зона 4",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=80.73333333333 +k=1 +x_0=4250000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:I:4",
+      "category": "SK63",
+      "source_region": "I",
+      "source_zone": "4",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 80.73333333333,
+          "easting": 4250040.627,
+          "northing": 6084370.709
+        },
+        {
+          "lat": 54.7,
+          "lon": 80.33333333332996,
+          "easting": 4224252.409,
+          "northing": 6051048.227
+        },
+        {
+          "lat": 55.3,
+          "lon": 81.13333333333003,
+          "easting": 4275446.869,
+          "northing": 6117841.23
+        }
+      ],
+      "observed_max_error_metres": 0.03446450838278862,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.064679603426157e-07
+    },
+    {
+      "id": "SK63L6_2",
+      "name": "СК-63 Район L (6°), Зона 2",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=87.516667 +k=1 +x_0=2500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:L:2",
+      "category": "SK63",
+      "source_region": "L",
+      "source_zone": "2",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [
+        {
+          "id": "1865",
+          "title": "СК-1963 район L зона 2 (6-ти градусная)",
+          "pkey": "EPSG:636L02"
+        }
+      ],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 87.51666699999998,
+          "easting": 2500024.45,
+          "northing": 6080679.926
+        },
+        {
+          "lat": 54.7,
+          "lon": 87.116667,
+          "easting": 2474236.243,
+          "northing": 6047357.457
+        },
+        {
+          "lat": 55.3,
+          "lon": 87.91666699999996,
+          "easting": 2525430.683,
+          "northing": 6114150.433
+        }
+      ],
+      "observed_max_error_metres": 0.021580530941700187,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.344622427903232e-07
+    },
+    {
+      "id": "SK63L6_1",
+      "name": "СК-63 Район L (6°), Зона 1",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=81.516667 +k=1 +x_0=1500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:L:1",
+      "category": "SK63",
+      "source_region": "L",
+      "source_zone": "1",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [
+        {
+          "id": "1864",
+          "title": "СК-1963 район L зона 1 (6-ти градусная)",
+          "pkey": "EPSG:636L01"
+        }
+      ],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 81.51666699999998,
+          "easting": 1500038.812,
+          "northing": 6080684.217
+        },
+        {
+          "lat": 54.7,
+          "lon": 81.116667,
+          "easting": 1474250.596,
+          "northing": 6047361.736
+        },
+        {
+          "lat": 55.3,
+          "lon": 81.91666699999996,
+          "easting": 1525445.053,
+          "northing": 6114154.736
+        }
+      ],
+      "observed_max_error_metres": 0.02134492240141795,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.2819218631630065e-07
+    },
+    {
+      "id": "SK63L6_3",
+      "name": "СК-63 Район L (6°), Зона 3",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=93.516667 +k=1 +x_0=3500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:L:3",
+      "category": "SK63",
+      "source_region": "L",
+      "source_zone": "3",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [
+        {
+          "id": "1866",
+          "title": "СК-1963 район L зона 3 (6-ти градусная)",
+          "pkey": "EPSG:636L03"
+        }
+      ],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 93.51666699999998,
+          "easting": 3500009.667,
+          "northing": 6080676.884
+        },
+        {
+          "lat": 54.7,
+          "lon": 93.116667,
+          "easting": 3474221.465,
+          "northing": 6047354.422
+        },
+        {
+          "lat": 55.3,
+          "lon": 93.91666699999996,
+          "easting": 3525415.894,
+          "northing": 6114147.384
+        }
+      ],
+      "observed_max_error_metres": 0.02153628605276225,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.3278516298196337e-07
+    },
+    {
+      "id": "SK63L6_4",
+      "name": "СК-63 Район L (6°), Зона 4",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=99.516667 +k=1 +x_0=4500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:L:4",
+      "category": "SK63",
+      "source_region": "L",
+      "source_zone": "4",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [
+        {
+          "id": "1867",
+          "title": "СК-1963 район L зона 4 (6-ти градусная)",
+          "pkey": "EPSG:636L04"
+        }
+      ],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 99.51666699999998,
+          "easting": 4499994.624,
+          "northing": 6080675.124
+        },
+        {
+          "lat": 54.7,
+          "lon": 99.116667,
+          "easting": 4474206.424,
+          "northing": 6047352.664
+        },
+        {
+          "lat": 55.3,
+          "lon": 99.91666699999996,
+          "easting": 4525400.849,
+          "northing": 6114145.623
+        }
+      ],
+      "observed_max_error_metres": 0.02133192311298466,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.339691261317057e-07
+    },
+    {
+      "id": "SK63L6_5",
+      "name": "СК-63 Район L (6°), Зона 5",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=105.516667 +k=1 +x_0=5500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:L:5",
+      "category": "SK63",
+      "source_region": "L",
+      "source_zone": "5",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [
+        {
+          "id": "1868",
+          "title": "СК-1963 район L зона 5 (6-ти градусная)",
+          "pkey": "EPSG:636L05"
+        }
+      ],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 105.51666699999998,
+          "easting": 5499979.486,
+          "northing": 6080674.667
+        },
+        {
+          "lat": 54.7,
+          "lon": 105.116667,
+          "easting": 5474191.285,
+          "northing": 6047352.204
+        },
+        {
+          "lat": 55.3,
+          "lon": 105.91666699999996,
+          "easting": 5525385.712,
+          "northing": 6114145.168
+        }
+      ],
+      "observed_max_error_metres": 0.021088620785723645,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.297270154689613e-07
+    },
+    {
+      "id": "SK63L6_6",
+      "name": "СК-63 Район L (6°), Зона 6",
+      "proj": "+proj=tmerc +lat_0=0 +lon_0=111.516667 +k=1 +x_0=6500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "code": "SK63:GEOPROJ:L:6",
+      "category": "SK63",
+      "source_region": "L",
+      "source_zone": "6",
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "geobridge_matches": [
+        {
+          "id": "1869",
+          "title": "СК-1963 район L зона 6 (6-ти градусная)",
+          "pkey": "EPSG:636L06"
+        }
+      ],
+      "status": "rejected",
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 111.51666699999998,
+          "easting": 6499964.42,
+          "northing": 6080675.517
+        },
+        {
+          "lat": 54.7,
+          "lon": 111.116667,
+          "easting": 6474176.214,
+          "northing": 6047353.046
+        },
+        {
+          "lat": 55.3,
+          "lon": 111.91666699999996,
+          "easting": 6525370.65,
+          "northing": 6114146.026
+        }
+      ],
+      "observed_max_error_metres": 0.021550886572025453,
+      "published_equivalence_error_metres": 0.0,
+      "inverse_max_error_degrees": 3.3968903778713866e-07
+    }
+  ],
+  "published_alternatives_used": [
+    {
+      "code": "SK63:GEOPROJ:I:1",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:633I01",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.0005021258420029155
+    },
+    {
+      "code": "SK63:GEOPROJ:I:2",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:633I02",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.0004439874138400062
+    },
+    {
+      "code": "SK63:GEOPROJ:I:3",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:633I03",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.0005280044185823186
+    },
+    {
+      "code": "SK63:GEOPROJ:I:4",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:633I04",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.0006412073508168003
+    },
+    {
+      "code": "SK63:GEOPROJ:L:2",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:636L02",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.00046398961725110797
+    },
+    {
+      "code": "SK63:GEOPROJ:L:1",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:636L01",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.00048560246608720704
+    },
+    {
+      "code": "SK63:GEOPROJ:L:3",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:636L03",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.0003657379189133329
+    },
+    {
+      "code": "SK63:GEOPROJ:L:4",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:636L04",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.00046511023691375627
+    },
+    {
+      "code": "SK63:GEOPROJ:L:5",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:636L05",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.0005534138380495304
+    },
+    {
+      "code": "SK63:GEOPROJ:L:6",
+      "definition_source": "https://geobridge.ru/proj/api",
+      "source_record_id": "EPSG:636L06",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "observed_max_error_metres": 0.0006303213495865057
+    }
+  ],
+  "unmapped_source_records": [
+    {
+      "category": "MSK",
+      "id": "MSK33s95",
+      "reason": "No exact catalogue variant"
+    },
+    {
+      "category": "MSK",
+      "id": "MSK35z5",
+      "reason": "Zone absent in current catalogue"
+    },
+    {
+      "category": "MSK",
+      "id": "MSK36z1",
+      "reason": "No exact catalogue variant"
+    },
+    {
+      "category": "MSK",
+      "id": "MSK36z2",
+      "reason": "No exact catalogue variant"
+    },
+    {
+      "category": "MSK",
+      "id": "MSK71s95",
+      "reason": "No exact catalogue variant"
+    }
+  ],
+  "accuracy_note": "Synthetic reference points check implementation agreement only; no surveyed control network, regional localisation accuracy, zone boundaries or coordinate epoch validated."
+}

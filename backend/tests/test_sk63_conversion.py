@@ -10,7 +10,7 @@ from fastapi import HTTPException, UploadFile
 from openpyxl import Workbook, load_workbook
 
 from app.schemas import ConvertRequest, Point
-from app.sk63_registry import READY_CRS, SK63_ITEMS, VERIFIED_DEFINITIONS
+from app.sk63_registry import READY_CRS, SK63_ITEMS, VERIFIED_DEFINITIONS, CATALOG
 
 
 class Sk63Tests(unittest.IsolatedAsyncioTestCase):
@@ -35,12 +35,12 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
     async def test_registry_ready_and_dev_statuses(self):
         msk = [item for item in self.api.list_crs() if item.category == 'msk']
         self.assertEqual(len(msk), 260)
-        self.assertEqual(sum(item.status == 'ready' for item in msk), 17)
-        self.assertEqual(sum(item.status == 'dev' for item in msk), 243)
+        self.assertEqual(sum(item.status == 'ready' for item in msk), 256)
+        self.assertEqual(sum(item.status == 'dev' for item in msk), 4)
         choices = [item for item in self.api.list_crs() if item.category == 'sk63']
         self.assertEqual(len({item.code for item in choices}), len(choices))
-        self.assertEqual(sum(item.status == 'ready' for item in choices), 35)
-        self.assertEqual(sum(item.status == 'dev' for item in choices), 89)
+        self.assertEqual(sum(item.status == 'ready' for item in choices), 120)
+        self.assertEqual(sum(item.status == 'dev' for item in choices), 4)
         for item in choices:
             self.assertTrue(item.region)
             self.assertTrue(item.description)
@@ -52,7 +52,7 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
                 params = {p.code: p.value for p in crs.coordinate_operation.params}
                 # Known projection invariant also catches an X/Y swap.
                 projected = self.convert('SK42_GEOG', code,
-                    [Point(lat=params['8801'], lon=params['8802'])]).points[0]
+                    [Point(lat=params['8801'], lon=(params['8802'] + 180) % 360 - 180)]).points[0]
                 self.assertAlmostEqual(projected.x, params['8806'], places=6)
                 self.assertAlmostEqual(projected.y, params['8807'], places=6)
                 area = crs.area_of_use
@@ -67,9 +67,9 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
                 self.assertTrue(result.meta['operations'])
 
     async def test_independent_catalogue_reference_points(self):
-        expected = {f'SK63:GEOPROJ:{district}:{zone}'
-                    for district, count in [('C', 2), ('P', 4), ('V', 6), ('X', 6)]
-                    for zone in range(1, count + 1)}
+        expected = {f"SK63:GEOPROJ:{system['source_id']}:{zone['source_value']}"
+                    for system in CATALOG['sk63'] for zone in system['zones']}
+        self.assertEqual(len(expected), 103)
         self.assertEqual(set(VERIFIED_DEFINITIONS), expected)
         for code, definition in VERIFIED_DEFINITIONS.items():
             for point in definition['control_points'] + definition.get('additional_control_points', []):
@@ -102,16 +102,23 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
                 self.assertAlmostEqual(restored.x, source.points[0].x, delta=.02)
                 self.assertAlmostEqual(restored.y, source.points[0].y, delta=.02)
 
-    async def test_c_numbering_and_unconfirmed_t_are_not_inferred(self):
+    async def test_c_and_t_use_verified_numbering_instead_of_rejected_paper(self):
         # geoproj C1 is EPSG C1 (24.95 degrees); paper C1 is 21.95 degrees.
         crs = READY_CRS['SK63:GEOPROJ:C:1']
         parameters = {p.code: p.value for p in crs.coordinate_operation.params}
         self.assertAlmostEqual(parameters['8802'], 24.95)
+        for district, zones, first in [('C', range(3, 7), 24.95), ('T', range(1, 5), 37.98333333333)]:
+            for zone in zones:
+                crs = READY_CRS[f'SK63:GEOPROJ:{district}:{zone}']
+                parameters = {p.code: p.value for p in crs.coordinate_operation.params}
+                self.assertAlmostEqual(parameters['8802'], first + (zone - 1) * 3)
         for zone in range(1, 5):
-            code = f'SK63:GEOPROJ:T:{zone}'
-            self.assertNotIn(code, READY_CRS)
-            with self.assertRaises(HTTPException):
-                self.convert('EPSG:4326', code, [Point(lat=48, lon=38)])
+            d = VERIFIED_DEFINITIONS[f'SK63:GEOPROJ:I:{zone}']
+            self.assertEqual(d['false_northing'], -12900.60)
+            self.assertEqual(d['definition_source'], 'https://geobridge.ru/proj/api')
+        for zone in range(1, 7):
+            d = VERIFIED_DEFINITIONS[f'SK63:GEOPROJ:L:{zone}']
+            self.assertAlmostEqual(d['longitude_natural_origin'], 81 + 31 / 60 + (zone - 1) * 6, places=10)
 
     async def test_dev_unknown_missing_fields_and_invalid_coordinates(self):
         for item in SK63_ITEMS:
@@ -137,8 +144,18 @@ class Sk63Tests(unittest.IsolatedAsyncioTestCase):
                 self.assertAlmostEqual(back.points[0].y, start.points[0].y, places=2)
 
     async def test_100_sk63_points_import_convert_and_both_exports(self):
-        original = [Point(lat=48 + i / 10000, lon=32 + i / 10000) for i in range(100)]
-        code = 'SK63:GEOPROJ:P:2'
+        await self.check_import_convert_export('SK63:GEOPROJ:P:2', 48, 32)
+
+    async def test_new_batch_100_point_import_export_three_and_six_degree_variants(self):
+        for code in ['SK63:GEOPROJ:C:3', 'SK63:GEOPROJ:T:1', 'SK63:GEOPROJ:I:2',
+                     'SK63:GEOPROJ:L:2', 'SK63:GEOPROJ:W3:2', 'SK63:GEOPROJ:W6:2',
+                     'SK63:GEOPROJ:S:13', 'SK63:GEOPROJ:J:5']:
+            control = VERIFIED_DEFINITIONS[code]['control_points'][0]
+            with self.subTest(code=code):
+                await self.check_import_convert_export(code, control['lat'], control['lon'])
+
+    async def check_import_convert_export(self, code, lat, lon):
+        original = [Point(lat=lat + i / 10000, lon=lon + i / 10000) for i in range(100)]
         projected = self.convert('EPSG:4326', code, original).points
         workbook = Workbook()
         workbook.active.append(['X (м)', 'Y (м)'])

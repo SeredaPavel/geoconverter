@@ -1,11 +1,12 @@
 """Local MSK definitions, checked separately from the source's catalogue labels."""
 from .schemas import CRSItem
 from .sk63_registry import CATALOG
-from .regional_definitions import load_definitions, build_projection, verification_description
+from .regional_definitions import load_definitions, load_pending_notes, build_projection, verification_description
 
 
 DEFINITIONS_BY_CODE = load_definitions('msk_definitions.json')
 DEFINITIONS = list(DEFINITIONS_BY_CODE.values())
+PENDING_NOTES = load_pending_notes('msk_definitions.json')
 READY_MSK_CRS = {}
 MSK_ITEMS = []
 
@@ -13,7 +14,7 @@ for system in CATALOG['msk']:
     for zone in system['zones']:
         code = f"MSK:GEOPROJ:{system['source_id']}:{zone['source_value']}"
         definition = DEFINITIONS_BY_CODE.get(code)
-        description = 'Параметры преобразования МСК пока не подтверждены.'
+        description = PENDING_NOTES.get(code, 'Параметры преобразования МСК пока не подтверждены.')
         if definition:
             READY_MSK_CRS[code] = build_projection(definition)
             description = verification_description(definition)

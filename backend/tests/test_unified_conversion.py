@@ -7,6 +7,8 @@ from pyproj import CRS, Transformer
 from app.conversion_engine import convert_numeric, GEODETIC_EPSG, REGIONAL_CRS
 from app.gk_registry import get_crs, supported_zones, longitude_zone, FAMILIES
 from app.reference_frames import to_anchor
+from app.msk_registry import DEFINITIONS as MSK_DEFINITIONS
+from app.sk63_registry import VERIFIED_DEFINITIONS as SK63_DEFINITIONS
 from app.schemas import ConvertRequest, Point
 
 
@@ -147,12 +149,22 @@ class UnifiedConversionTests(unittest.TestCase):
     def test_regional_and_gk_pairs_share_one_path(self):
         # Every connected regional definition can enter and leave each GK family.
         # These are route checks, not accuracy controls outside a zone's area.
-        for regional in REGIONAL_CRS:
-            point = convert('EPSG:4326', regional, [Point(lat=55.75, lon=37.6)])
+        definitions = {**{d['code']: d for d in MSK_DEFINITIONS}, **SK63_DEFINITIONS}
+        for regional, crs in REGIONAL_CRS.items():
+            if regional in definitions:
+                control = definitions[regional]['control_points'][0]
+                geographic = Point(lat=control['lat'], lon=control['lon'])
+            else:
+                area = crs.area_of_use
+                east = area.east + (360 if area.west > area.east else 0)
+                geographic = Point(lat=(area.south + area.north) / 2,
+                                   lon=((area.west + east) / 2 + 180) % 360 - 180)
+            point = convert('EPSG:4326', regional, [geographic])
             for family in FAMILIES:
                 with self.subTest(regional=regional, family=family):
-                    result = convert(regional, family, point.points, target_gk=manual(3, 13))
-                    restored = convert(family, regional, result.points, source_gk=manual(3, 13))
+                    zone = longitude_zone(family, 3, geographic.lon)
+                    result = convert(regional, family, point.points, target_gk=manual(3, zone))
+                    restored = convert(family, regional, result.points, source_gk=manual(3, zone))
                     self.assertAlmostEqual(restored.points[0].x, point.points[0].x, delta=.05)
                     self.assertAlmostEqual(restored.points[0].y, point.points[0].y, delta=.05)
 

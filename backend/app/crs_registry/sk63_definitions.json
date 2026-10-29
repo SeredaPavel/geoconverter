@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 4,
   "definitions": [
     {
       "code": "SK63:GEOPROJ:C:1",
@@ -62,6 +62,2198 @@
       "definition_author": "EPSG:3352 (база PROJ)",
       "observed_max_error_metres": 0.0028056254795581345,
       "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
+    },
+    {
+      "code": "SK63:GEOPROJ:C:3",
+      "name": "Pulkovo 1942 / SK63 C zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 30.95,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3250000.0,
+      "false_northing": -11057.626999999397,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63C3_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0012973333214024397,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 30.94999999999999,
+          "easting": 3250123.499,
+          "northing": 6086289.225
+        },
+        {
+          "lat": 54.7,
+          "lon": 30.549999999999983,
+          "easting": 3224335.103,
+          "northing": 6052966.482
+        },
+        {
+          "lat": 55.3,
+          "lon": 31.349999999999994,
+          "easting": 3275529.914,
+          "northing": 6119760.007
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=30.95 +k=1 +x_0=3250000 +y_0=-11057.626999999397 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район С (3°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:C:4",
+      "name": "Pulkovo 1942 / SK63 C zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 33.95,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4250000.0,
+      "false_northing": -11057.626999999397,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63C3_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0009394305847234523,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 33.94999999999999,
+          "easting": 4250120.971,
+          "northing": 6086283.279
+        },
+        {
+          "lat": 54.7,
+          "lon": 33.54999999999998,
+          "easting": 4224332.589,
+          "northing": 6052960.557
+        },
+        {
+          "lat": 55.3,
+          "lon": 34.349999999999994,
+          "easting": 4275527.371,
+          "northing": 6119754.039
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=33.95 +k=1 +x_0=4250000 +y_0=-11057.626999999397 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район С (3°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:C:5",
+      "name": "Pulkovo 1942 / SK63 C zone 5",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 36.95,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5250000.0,
+      "false_northing": -11057.626999999397,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63C3_5",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.001325371775532987,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 36.94999999999999,
+          "easting": 5250118.072,
+          "northing": 6086277.44
+        },
+        {
+          "lat": 54.7,
+          "lon": 36.54999999999998,
+          "easting": 5224329.705,
+          "northing": 6052954.74
+        },
+        {
+          "lat": 55.3,
+          "lon": 37.349999999999994,
+          "easting": 5275524.459,
+          "northing": 6119748.179
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=36.95 +k=1 +x_0=5250000 +y_0=-11057.626999999397 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район С (3°), Зона 5",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:C:6",
+      "name": "Pulkovo 1942 / SK63 C zone 6",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 39.95,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 6250000.0,
+      "false_northing": -11057.626999999397,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63C3_6",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0013617019813744777,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 39.94999999999999,
+          "easting": 6250114.812,
+          "northing": 6086271.726
+        },
+        {
+          "lat": 54.7,
+          "lon": 39.54999999999998,
+          "easting": 6224326.459,
+          "northing": 6052949.046
+        },
+        {
+          "lat": 55.3,
+          "lon": 40.349999999999994,
+          "easting": 6275521.185,
+          "northing": 6119742.444
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=39.95 +k=1 +x_0=6250000 +y_0=-11057.626999999397 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район С (3°), Зона 6",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:D:1",
+      "name": "Pulkovo 1942 / SK63 D zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 38.55,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1250000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63D3_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00046777613480242203,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 38.55000000000001,
+          "easting": 1250116.378,
+          "northing": 6082588.5
+        },
+        {
+          "lat": 54.7,
+          "lon": 38.150000000000006,
+          "easting": 1224328.018,
+          "northing": 6049265.811
+        },
+        {
+          "lat": 55.3,
+          "lon": 38.95000000000002,
+          "easting": 1275522.757,
+          "northing": 6116059.228
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=38.55 +k=1 +x_0=1250000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район D (3°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1838",
+          "title": "СК-1963 район D зона 1",
+          "pkey": "EPSG:633D01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:D:2",
+      "name": "Pulkovo 1942 / SK63 D zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 41.55,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2250000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63D3_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00031574875926422053,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 41.55000000000001,
+          "easting": 2250112.928,
+          "northing": 6082582.859
+        },
+        {
+          "lat": 54.7,
+          "lon": 41.150000000000006,
+          "easting": 2224324.582,
+          "northing": 6049260.19
+        },
+        {
+          "lat": 55.3,
+          "lon": 41.95000000000002,
+          "easting": 2275519.294,
+          "northing": 6116053.566
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=41.55 +k=1 +x_0=2250000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район D (3°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1839",
+          "title": "СК-1963 район D зона 2",
+          "pkey": "EPSG:633D02"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:D:3",
+      "name": "Pulkovo 1942 / SK63 D zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 44.55,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3250000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63D3_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005238440506926585,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 44.55000000000001,
+          "easting": 3250109.13,
+          "northing": 6082577.366
+        },
+        {
+          "lat": 54.7,
+          "lon": 44.150000000000006,
+          "easting": 3224320.797,
+          "northing": 6049254.716
+        },
+        {
+          "lat": 55.3,
+          "lon": 44.95000000000002,
+          "easting": 3275515.483,
+          "northing": 6116048.053
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=44.55 +k=1 +x_0=3250000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район D (3°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1840",
+          "title": "СК-1963 район D зона 3",
+          "pkey": "EPSG:633D03"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:D:4",
+      "name": "Pulkovo 1942 / SK63 D zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 47.55,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4250000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63D3_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005618068525091157,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 47.55000000000001,
+          "easting": 4250104.994,
+          "northing": 6082572.036
+        },
+        {
+          "lat": 54.7,
+          "lon": 47.150000000000006,
+          "easting": 4224316.675,
+          "northing": 6049249.405
+        },
+        {
+          "lat": 55.3,
+          "lon": 47.95000000000002,
+          "easting": 4275511.335,
+          "northing": 6116042.705
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=47.55 +k=1 +x_0=4250000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район D (3°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1841",
+          "title": "СК-1963 район D зона 4",
+          "pkey": "EPSG:633D04"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:D:5",
+      "name": "Pulkovo 1942 / SK63 D zone 5",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 50.55,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5250000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63D3_5",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0003743030782444681,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 50.55000000000001,
+          "easting": 5250100.532,
+          "northing": 6082566.884
+        },
+        {
+          "lat": 54.7,
+          "lon": 50.150000000000006,
+          "easting": 5224312.225,
+          "northing": 6049244.271
+        },
+        {
+          "lat": 55.3,
+          "lon": 50.95000000000002,
+          "easting": 5275506.861,
+          "northing": 6116037.534
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=50.55 +k=1 +x_0=5250000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район D (3°), Зона 5",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1842",
+          "title": "СК-1963 район D зона 5",
+          "pkey": "EPSG:633D05"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:D:6",
+      "name": "Pulkovo 1942 / SK63 D zone 6",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 53.55,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 6250000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63D3_6",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005584769481697972,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 53.55000000000001,
+          "easting": 6250095.756,
+          "northing": 6082561.924
+        },
+        {
+          "lat": 54.7,
+          "lon": 53.150000000000006,
+          "easting": 6224307.461,
+          "northing": 6049239.329
+        },
+        {
+          "lat": 55.3,
+          "lon": 53.95000000000002,
+          "easting": 6275502.074,
+          "northing": 6116032.557
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=53.55 +k=1 +x_0=6250000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район D (3°), Зона 6",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1843",
+          "title": "СК-1963 район D зона 6",
+          "pkey": "EPSG:633D06"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:D:7",
+      "name": "Pulkovo 1942 / SK63 D zone 7",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 56.55,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 7250000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63D3_7",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004551910111121699,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 56.55000000000001,
+          "easting": 7250090.679,
+          "northing": 6082557.169
+        },
+        {
+          "lat": 54.7,
+          "lon": 56.150000000000006,
+          "easting": 7224302.395,
+          "northing": 6049234.59
+        },
+        {
+          "lat": 55.3,
+          "lon": 56.95000000000002,
+          "easting": 7275496.986,
+          "northing": 6116027.786
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=56.55 +k=1 +x_0=7250000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район D (3°), Зона 7",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1844",
+          "title": "СК-1963 район D зона 7",
+          "pkey": "EPSG:633D07"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:D:8",
+      "name": "Pulkovo 1942 / SK63 D zone 8",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 59.55,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 8250000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63D3_8",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005246948822628695,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 59.55000000000001,
+          "easting": 8250085.315,
+          "northing": 6082552.633
+        },
+        {
+          "lat": 54.7,
+          "lon": 59.150000000000006,
+          "easting": 8224297.042,
+          "northing": 6049230.07
+        },
+        {
+          "lat": 55.3,
+          "lon": 59.95000000000002,
+          "easting": 8275491.612,
+          "northing": 6116023.234
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=59.55 +k=1 +x_0=8250000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район D (3°), Зона 8",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1845",
+          "title": "СК-1963 район D зона 8",
+          "pkey": "EPSG:633D08"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:E:1",
+      "name": "Pulkovo 1942 / SK63 E zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 77.783333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1300000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63E3_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005982728354700719,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 77.78333333333302,
+          "easting": 1300047.445,
+          "northing": 6082530.436
+        },
+        {
+          "lat": 54.7,
+          "lon": 77.38333333333298,
+          "easting": 1274259.222,
+          "northing": 6049207.946
+        },
+        {
+          "lat": 55.3,
+          "lon": 78.18333333333305,
+          "easting": 1325453.693,
+          "northing": 6116000.965
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=77.783333333333 +k=1 +x_0=1300000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район E (3°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:E:2",
+      "name": "Pulkovo 1942 / SK63 E zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 80.783333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2300000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63E3_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00046716273509700396,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 80.78333333333302,
+          "easting": 2300040.51,
+          "northing": 6082527.763
+        },
+        {
+          "lat": 54.7,
+          "lon": 80.38333333333298,
+          "easting": 2274252.292,
+          "northing": 6049205.281
+        },
+        {
+          "lat": 55.3,
+          "lon": 81.18333333333305,
+          "easting": 2325446.752,
+          "northing": 6115998.284
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=80.783333333333 +k=1 +x_0=2300000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район E (3°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:E:3",
+      "name": "Pulkovo 1942 / SK63 E zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 83.783333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3300000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63E3_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005226489954644867,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 83.78333333333302,
+          "easting": 3300033.425,
+          "northing": 6082525.39
+        },
+        {
+          "lat": 54.7,
+          "lon": 83.38333333333298,
+          "easting": 3274245.212,
+          "northing": 6049202.914
+        },
+        {
+          "lat": 55.3,
+          "lon": 84.18333333333305,
+          "easting": 3325439.662,
+          "northing": 6115995.904
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=83.783333333333 +k=1 +x_0=3300000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район E (3°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:E:4",
+      "name": "Pulkovo 1942 / SK63 E zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 86.783333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4300000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63E3_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00045824456464330516,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 86.78333333333302,
+          "easting": 4300026.21,
+          "northing": 6082523.322
+        },
+        {
+          "lat": 54.7,
+          "lon": 86.38333333333298,
+          "easting": 4274238.002,
+          "northing": 6049200.852
+        },
+        {
+          "lat": 55.3,
+          "lon": 87.18333333333305,
+          "easting": 4325432.444,
+          "northing": 6115993.83
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=86.783333333333 +k=1 +x_0=4300000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район E (3°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:E:5",
+      "name": "Pulkovo 1942 / SK63 E zone 5",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 89.783333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5300000.0,
+      "false_northing": -14743.504,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63E3_5",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00047579051453539034,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 89.78333333333302,
+          "easting": 5300018.885,
+          "northing": 6082521.566
+        },
+        {
+          "lat": 54.7,
+          "lon": 89.38333333333298,
+          "easting": 5274230.68,
+          "northing": 6049199.1
+        },
+        {
+          "lat": 55.3,
+          "lon": 90.18333333333305,
+          "easting": 5325425.115,
+          "northing": 6115992.069
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=89.783333333333 +k=1 +x_0=5300000 +y_0=-14743.504 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район E (3°), Зона 5",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:F:1",
+      "name": "Pulkovo 1942 / SK63 F zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 97.033333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1250000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63F3_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004893424798612186,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 97.03333333333302,
+          "easting": 1250000.85,
+          "northing": 6086204.509
+        },
+        {
+          "lat": 54.7,
+          "lon": 96.63333333333298,
+          "easting": 1224212.649,
+          "northing": 6052882.049
+        },
+        {
+          "lat": 55.3,
+          "lon": 97.43333333333305,
+          "easting": 1275407.075,
+          "northing": 6119675.008
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=97.033333333333 +k=1 +x_0=1250000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район F (3°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1846",
+          "title": "СК-1963 район F зона 1",
+          "pkey": "EPSG:633F01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:F:2",
+      "name": "Pulkovo 1942 / SK63 F zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 100.033333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2250000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63F3_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005912465765130964,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 100.03333333333302,
+          "easting": 2249993.301,
+          "northing": 6086203.848
+        },
+        {
+          "lat": 54.7,
+          "lon": 99.63333333333298,
+          "easting": 2224205.101,
+          "northing": 6052881.388
+        },
+        {
+          "lat": 55.3,
+          "lon": 100.43333333333305,
+          "easting": 2275399.526,
+          "northing": 6119674.346
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=100.033333333333 +k=1 +x_0=2250000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район F (3°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1847",
+          "title": "СК-1963 район F зона 2",
+          "pkey": "EPSG:633F02"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:F:3",
+      "name": "Pulkovo 1942 / SK63 F zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 103.033333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3250000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63F3_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00046908450845469776,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 103.03333333333302,
+          "easting": 3249985.731,
+          "northing": 6086203.512
+        },
+        {
+          "lat": 54.7,
+          "lon": 102.63333333333298,
+          "easting": 3224197.531,
+          "northing": 6052881.051
+        },
+        {
+          "lat": 55.3,
+          "lon": 103.43333333333305,
+          "easting": 3275391.957,
+          "northing": 6119674.011
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=103.033333333333 +k=1 +x_0=3250000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район F (3°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1848",
+          "title": "СК-1963 район F зона 3",
+          "pkey": "EPSG:633F03"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:G:1",
+      "name": "Pulkovo 1942 / SK63 G zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 121.71666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1300000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63G3_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0023409865759955726,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 121.71666666667,
+          "easting": 1299939.415,
+          "northing": 6080679.931
+        },
+        {
+          "lat": 54.7,
+          "lon": 121.31666666667002,
+          "easting": 1274151.194,
+          "northing": 6047357.435
+        },
+        {
+          "lat": 55.3,
+          "lon": 122.11666666666997,
+          "easting": 1325345.659,
+          "northing": 6114150.464
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=121.71666666667 +k=1 +x_0=1300000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район G (3°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:G:2",
+      "name": "Pulkovo 1942 / SK63 G zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 124.71666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2300000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63G3_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.002514352537425215,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 124.71666666667,
+          "easting": 2299932.312,
+          "northing": 6080681.923
+        },
+        {
+          "lat": 54.7,
+          "lon": 124.31666666667002,
+          "easting": 2274144.085,
+          "northing": 6047359.418
+        },
+        {
+          "lat": 55.3,
+          "lon": 125.11666666666997,
+          "easting": 2325338.563,
+          "northing": 6114152.467
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=124.71666666667 +k=1 +x_0=2300000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район G (3°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:G:3",
+      "name": "Pulkovo 1942 / SK63 G zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 127.71666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3300000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63G3_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.001804625052425922,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 127.71666666667,
+          "easting": 3299925.356,
+          "northing": 6080684.223
+        },
+        {
+          "lat": 54.7,
+          "lon": 127.31666666667002,
+          "easting": 3274137.123,
+          "northing": 6047361.707
+        },
+        {
+          "lat": 55.3,
+          "lon": 128.11666666666997,
+          "easting": 3325331.614,
+          "northing": 6114154.777
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=127.71666666667 +k=1 +x_0=3300000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район G (3°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:G:4",
+      "name": "Pulkovo 1942 / SK63 G zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 130.71666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4300000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63G3_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.002160364068804371,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 130.71666666667,
+          "easting": 4299918.567,
+          "northing": 6080686.824
+        },
+        {
+          "lat": 54.7,
+          "lon": 130.31666666667002,
+          "easting": 4274130.326,
+          "northing": 6047364.296
+        },
+        {
+          "lat": 55.3,
+          "lon": 131.11666666666997,
+          "easting": 4325324.831,
+          "northing": 6114157.39
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=130.71666666667 +k=1 +x_0=4300000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район G (3°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:G:5",
+      "name": "Pulkovo 1942 / SK63 G zone 5",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 133.71666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5300000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63G3_5",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0017900001217454095,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 133.71666666667,
+          "easting": 5299911.962,
+          "northing": 6080689.718
+        },
+        {
+          "lat": 54.7,
+          "lon": 133.31666666667002,
+          "easting": 5274123.713,
+          "northing": 6047367.177
+        },
+        {
+          "lat": 55.3,
+          "lon": 134.11666666666997,
+          "easting": 5325318.235,
+          "northing": 6114160.297
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=133.71666666667 +k=1 +x_0=5300000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район G (3°), Зона 5",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:G:6",
+      "name": "Pulkovo 1942 / SK63 G zone 6",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 136.71666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 6300000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63G3_6",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.001616357936623356,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 136.71666666667,
+          "easting": 6299905.56,
+          "northing": 6080692.898
+        },
+        {
+          "lat": 54.7,
+          "lon": 136.31666666667002,
+          "easting": 6274117.302,
+          "northing": 6047370.343
+        },
+        {
+          "lat": 55.3,
+          "lon": 137.11666666666997,
+          "easting": 6325311.841,
+          "northing": 6114163.491
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=136.71666666667 +k=1 +x_0=6300000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район G (3°), Зона 6",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:G:7",
+      "name": "Pulkovo 1942 / SK63 G zone 7",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 139.71666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 7300000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63G3_7",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0024705270918799495,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 139.71666666667,
+          "easting": 7299899.378,
+          "northing": 6080696.356
+        },
+        {
+          "lat": 54.7,
+          "lon": 139.31666666667002,
+          "easting": 7274111.111,
+          "northing": 6047373.786
+        },
+        {
+          "lat": 55.3,
+          "lon": 140.11666666666997,
+          "easting": 7325305.669,
+          "northing": 6114166.964
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=139.71666666667 +k=1 +x_0=7300000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район G (3°), Зона 7",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:G:8",
+      "name": "Pulkovo 1942 / SK63 G zone 8",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 142.71666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 8300000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63G3_8",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0017663197733833265,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 142.71666666667,
+          "easting": 8299893.434,
+          "northing": 6080700.08
+        },
+        {
+          "lat": 54.7,
+          "lon": 142.31666666667002,
+          "easting": 8274105.156,
+          "northing": 6047377.494
+        },
+        {
+          "lat": 55.3,
+          "lon": 143.11666666666997,
+          "easting": 8325299.735,
+          "northing": 6114170.704
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=142.71666666667 +k=1 +x_0=8300000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район G (3°), Зона 8",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:G:9",
+      "name": "Pulkovo 1942 / SK63 G zone 9",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 145.71666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 9300000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63G3_9",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.002515907537275918,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 145.71666666667,
+          "easting": 9299887.743,
+          "northing": 6080704.062
+        },
+        {
+          "lat": 54.7,
+          "lon": 145.31666666667002,
+          "easting": 9274099.454,
+          "northing": 6047381.46
+        },
+        {
+          "lat": 55.3,
+          "lon": 146.11666666666997,
+          "easting": 9325294.054,
+          "northing": 6114174.703
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=145.71666666667 +k=1 +x_0=9300000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район G (3°), Зона 9",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:I:1",
+      "name": "Pulkovo 1942 / SK63 I zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 71.73333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1250000.0,
+      "false_northing": -12900.6,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:633I01",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005021258420029155,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 71.73333333333,
+          "easting": 1250060.899,
+          "northing": 6084379.609
+        },
+        {
+          "lat": 54.7,
+          "lon": 71.33333333332999,
+          "easting": 1224272.662,
+          "northing": 6051057.099
+        },
+        {
+          "lat": 55.3,
+          "lon": 72.13333333333,
+          "easting": 1275467.16,
+          "northing": 6117850.157
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=71.73333333333 +k=1 +x_0=1250000 +y_0=-12900.60 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район I зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1858",
+          "title": "СК-1963 район I зона 1",
+          "pkey": "EPSG:633I01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:I:2",
+      "name": "Pulkovo 1942 / SK63 I zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 74.73333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2250000.0,
+      "false_northing": -12900.6,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:633I02",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004439874138400062,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 74.73333333333,
+          "easting": 2250054.323,
+          "northing": 6084376.356
+        },
+        {
+          "lat": 54.7,
+          "lon": 74.33333333332999,
+          "easting": 2224266.093,
+          "northing": 6051053.857
+        },
+        {
+          "lat": 55.3,
+          "lon": 75.13333333333,
+          "easting": 2275460.577,
+          "northing": 6117846.894
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=74.73333333333 +k=1 +x_0=2250000 +y_0=-12900.60 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район I зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1859",
+          "title": "СК-1963 район I зона 2",
+          "pkey": "EPSG:633I02"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:I:3",
+      "name": "Pulkovo 1942 / SK63 I zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 77.73333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3250000.0,
+      "false_northing": -12900.6,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:633I03",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005280044185823186,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 77.73333333333,
+          "easting": 3250047.559,
+          "northing": 6084373.387
+        },
+        {
+          "lat": 54.7,
+          "lon": 77.33333333332996,
+          "easting": 3224259.336,
+          "northing": 6051050.896
+        },
+        {
+          "lat": 55.3,
+          "lon": 78.13333333333003,
+          "easting": 3275453.807,
+          "northing": 6117843.916
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=77.73333333333 +k=1 +x_0=3250000 +y_0=-12900.60 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район I зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1860",
+          "title": "СК-1963 район I зона 3",
+          "pkey": "EPSG:633I03"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:I:4",
+      "name": "Pulkovo 1942 / SK63 I zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 80.73333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4250000.0,
+      "false_northing": -12900.6,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:633I04",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006412073508168003,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 80.73333333333,
+          "easting": 4250040.627,
+          "northing": 6084370.709
+        },
+        {
+          "lat": 54.7,
+          "lon": 80.33333333332996,
+          "easting": 4224252.409,
+          "northing": 6051048.227
+        },
+        {
+          "lat": 55.3,
+          "lon": 81.13333333333003,
+          "easting": 4275446.869,
+          "northing": 6117841.23
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=80.73333333333 +k=1 +x_0=4250000 +y_0=-12900.60 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район I зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1861",
+          "title": "СК-1963 район I зона 4",
+          "pkey": "EPSG:633I04"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:J:1",
+      "name": "Pulkovo 1942 / SK63 J zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 158.46666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1400000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63J6_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005087948677392071,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 158.46666666667,
+          "easting": 1399866.735,
+          "northing": 6080723.589
+        },
+        {
+          "lat": 54.7,
+          "lon": 158.06666666667002,
+          "easting": 1374078.394,
+          "northing": 6047400.906
+        },
+        {
+          "lat": 55.3,
+          "lon": 158.86666666666997,
+          "easting": 1425273.097,
+          "northing": 6114194.311
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=158.46666666667 +k=1 +x_0=1400000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район J(6°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2209",
+          "title": "СК-1963 район J зона 1 (6-ти градусная)",
+          "pkey": "GB:2209"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:J:2",
+      "name": "Pulkovo 1942 / SK63 J zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 164.46666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2400000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63J6_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005690326803120142,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 164.46666666667,
+          "easting": 2399858.83,
+          "northing": 6080734.046
+        },
+        {
+          "lat": 54.7,
+          "lon": 164.06666666667002,
+          "easting": 2374070.461,
+          "northing": 6047411.321
+        },
+        {
+          "lat": 55.3,
+          "lon": 164.86666666666997,
+          "easting": 2425265.219,
+          "northing": 6114204.81
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=164.46666666667 +k=1 +x_0=2400000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район J(6°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:J:3",
+      "name": "Pulkovo 1942 / SK63 J zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 170.46666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3400000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63J6_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005177591431116538,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 170.46666666667,
+          "easting": 3399852.318,
+          "northing": 6080745.16
+        },
+        {
+          "lat": 54.7,
+          "lon": 170.06666666667002,
+          "easting": 3374063.92,
+          "northing": 6047422.39
+        },
+        {
+          "lat": 55.3,
+          "lon": 170.86666666666997,
+          "easting": 3425258.735,
+          "northing": 6114215.967
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=170.46666666667 +k=1 +x_0=3400000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район J(6°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:J:4",
+      "name": "Pulkovo 1942 / SK63 J zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 176.46666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4400000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63J6_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.000673332873915153,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 176.46666666667,
+          "easting": 4399847.271,
+          "northing": 6080756.808
+        },
+        {
+          "lat": 54.7,
+          "lon": 176.06666666667002,
+          "easting": 4374058.842,
+          "northing": 6047433.992
+        },
+        {
+          "lat": 55.3,
+          "lon": 176.86666666666997,
+          "easting": 4425253.716,
+          "northing": 6114227.662
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=176.46666666667 +k=1 +x_0=4400000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район J(6°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:J:5",
+      "name": "Pulkovo 1942 / SK63 J zone 5",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 182.46666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5400000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63J6_5",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004123715064808643,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": -177.53333333333,
+          "easting": 5399843.742,
+          "northing": 6080768.864
+        },
+        {
+          "lat": 54.7,
+          "lon": -177.93333333333,
+          "easting": 5374055.283,
+          "northing": 6047446.001
+        },
+        {
+          "lat": 55.3,
+          "lon": -177.13333333333,
+          "easting": 5425250.218,
+          "northing": 6114239.764
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=182.46666666667 +k=1 +x_0=5400000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район J(6°), Зона 5",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:L:1",
+      "name": "Pulkovo 1942 / SK63 L zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 81.51666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1500000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:636L01",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00048560246608720704,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 81.51666699999998,
+          "easting": 1500038.812,
+          "northing": 6080684.217
+        },
+        {
+          "lat": 54.7,
+          "lon": 81.116667,
+          "easting": 1474250.596,
+          "northing": 6047361.736
+        },
+        {
+          "lat": 55.3,
+          "lon": 81.91666699999996,
+          "easting": 1525445.053,
+          "northing": 6114154.736
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=81.51666666667 +k=1 +x_0=1500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район L зона 1 (6-ти градусная)",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1864",
+          "title": "СК-1963 район L зона 1 (6-ти градусная)",
+          "pkey": "EPSG:636L01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:L:2",
+      "name": "Pulkovo 1942 / SK63 L zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 87.51666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2500000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:636L02",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00046398961725110797,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 87.51666699999998,
+          "easting": 2500024.45,
+          "northing": 6080679.926
+        },
+        {
+          "lat": 54.7,
+          "lon": 87.116667,
+          "easting": 2474236.243,
+          "northing": 6047357.457
+        },
+        {
+          "lat": 55.3,
+          "lon": 87.91666699999996,
+          "easting": 2525430.683,
+          "northing": 6114150.433
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=87.51666666667 +k=1 +x_0=2500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район L зона 2 (6-ти градусная)",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1865",
+          "title": "СК-1963 район L зона 2 (6-ти градусная)",
+          "pkey": "EPSG:636L02"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:L:3",
+      "name": "Pulkovo 1942 / SK63 L zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 93.51666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3500000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:636L03",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0003657379189133329,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 93.51666699999998,
+          "easting": 3500009.667,
+          "northing": 6080676.884
+        },
+        {
+          "lat": 54.7,
+          "lon": 93.116667,
+          "easting": 3474221.465,
+          "northing": 6047354.422
+        },
+        {
+          "lat": 55.3,
+          "lon": 93.91666699999996,
+          "easting": 3525415.894,
+          "northing": 6114147.384
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=93.51666666667 +k=1 +x_0=3500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район L зона 3 (6-ти градусная)",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1866",
+          "title": "СК-1963 район L зона 3 (6-ти градусная)",
+          "pkey": "EPSG:636L03"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:L:4",
+      "name": "Pulkovo 1942 / SK63 L zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 99.51666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4500000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:636L04",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00046511023691375627,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 99.51666699999998,
+          "easting": 4499994.624,
+          "northing": 6080675.124
+        },
+        {
+          "lat": 54.7,
+          "lon": 99.116667,
+          "easting": 4474206.424,
+          "northing": 6047352.664
+        },
+        {
+          "lat": 55.3,
+          "lon": 99.91666699999996,
+          "easting": 4525400.849,
+          "northing": 6114145.623
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=99.51666666667 +k=1 +x_0=4500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район L зона 4 (6-ти градусная)",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1867",
+          "title": "СК-1963 район L зона 4 (6-ти градусная)",
+          "pkey": "EPSG:636L04"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:L:5",
+      "name": "Pulkovo 1942 / SK63 L zone 5",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 105.51666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5500000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:636L05",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005534138380495304,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 105.51666699999998,
+          "easting": 5499979.486,
+          "northing": 6080674.667
+        },
+        {
+          "lat": 54.7,
+          "lon": 105.116667,
+          "easting": 5474191.285,
+          "northing": 6047352.204
+        },
+        {
+          "lat": 55.3,
+          "lon": 105.91666699999996,
+          "easting": 5525385.712,
+          "northing": 6114145.168
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=105.51666666667 +k=1 +x_0=5500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район L зона 5 (6-ти градусная)",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1868",
+          "title": "СК-1963 район L зона 5 (6-ти градусная)",
+          "pkey": "EPSG:636L05"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:L:6",
+      "name": "Pulkovo 1942 / SK63 L zone 6",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 111.51666666667,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 6500000.0,
+      "false_northing": -16586.442,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "source_record_id": "EPSG:636L06",
+      "source_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006303213495865057,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 111.51666699999998,
+          "easting": 6499964.42,
+          "northing": 6080675.517
+        },
+        {
+          "lat": 54.7,
+          "lon": 111.116667,
+          "easting": 6474176.214,
+          "northing": 6047353.046
+        },
+        {
+          "lat": 55.3,
+          "lon": 111.91666699999996,
+          "easting": 6525370.65,
+          "northing": 6114146.026
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=111.51666666667 +k=1 +x_0=6500000 +y_0=-16586.442 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-1963 район L зона 6 (6-ти градусная)",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "usage_note": "Использован опубликованный вариант GeoBridge; отличающийся вариант GitHub сохранён в отчёте как отклонённый.",
+      "source_catalogue_records": [
+        {
+          "id": "1869",
+          "title": "СК-1963 район L зона 6 (6-ти градусная)",
+          "pkey": "EPSG:636L06"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:M:1",
+      "name": "Pulkovo 1942 / SK63 M zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 79.466666666677,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1300000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63M3_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.004098800544473961,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 79.46666666667699,
+          "easting": 1300043.573,
+          "northing": 6084371.834
+        },
+        {
+          "lat": 54.7,
+          "lon": 79.06666666667695,
+          "easting": 1274255.353,
+          "northing": 6051049.348
+        },
+        {
+          "lat": 55.3,
+          "lon": 79.86666666667702,
+          "easting": 1325449.818,
+          "northing": 6117842.358
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=79.466666666677 +k=1 +x_0=1300000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район M (3°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:M:2",
+      "name": "Pulkovo 1942 / SK63 M zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 82.466666666677,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2300000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63M3_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.004304115893112157,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 82.46666666667699,
+          "easting": 2300036.552,
+          "northing": 6084369.328
+        },
+        {
+          "lat": 54.7,
+          "lon": 82.06666666667695,
+          "easting": 2274248.337,
+          "northing": 6051046.85
+        },
+        {
+          "lat": 55.3,
+          "lon": 82.86666666667702,
+          "easting": 2325442.791,
+          "northing": 6117839.845
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=82.466666666677 +k=1 +x_0=2300000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район M (3°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:M:3",
+      "name": "Pulkovo 1942 / SK63 M zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 85.466666666677,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3300000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63M3_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.004202998544862433,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 85.46666666667699,
+          "easting": 3300029.391,
+          "northing": 6084367.126
+        },
+        {
+          "lat": 54.7,
+          "lon": 85.06666666667695,
+          "easting": 3274241.181,
+          "northing": 6051044.653
+        },
+        {
+          "lat": 55.3,
+          "lon": 85.86666666667702,
+          "easting": 3325435.627,
+          "northing": 6117837.636
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=85.466666666677 +k=1 +x_0=3300000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район M (3°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
+    },
+    {
+      "code": "SK63:GEOPROJ:M:4",
+      "name": "Pulkovo 1942 / SK63 M zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 88.466666666677,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4300000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63M3_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.004383733970064997,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 88.46666666667699,
+          "easting": 4300022.112,
+          "northing": 6084365.232
+        },
+        {
+          "lat": 54.7,
+          "lon": 88.06666666667695,
+          "easting": 4274233.906,
+          "northing": 6051042.764
+        },
+        {
+          "lat": 55.3,
+          "lon": 88.86666666667702,
+          "easting": 4325428.344,
+          "northing": 6117835.737
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=88.466666666677 +k=1 +x_0=4300000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район M (3°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md"
     },
     {
       "code": "SK63:GEOPROJ:P:1",
@@ -214,6 +2406,2255 @@
       "observed_max_error_metres": 0.0034861159244709166,
       "interpretation": "The published positive meridional offset is subtracted from northing (lat_0=0). Sign, east shift and zone identity verified against geoproj. Printed 0.001 m precision retained; no adjustment to fit samples.",
       "source_parameter_reference": "paper2021:P4"
+    },
+    {
+      "code": "SK63:GEOPROJ:Q:1",
+      "name": "Pulkovo 1942 / SK63 Q zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 32.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1400000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63Q6_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004709453095715243,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 32.033333333330006,
+          "easting": 1400122.629,
+          "northing": 6086287.066
+        },
+        {
+          "lat": 54.7,
+          "lon": 31.63333333333,
+          "easting": 1374334.239,
+          "northing": 6052964.331
+        },
+        {
+          "lat": 55.3,
+          "lon": 32.43333333333001,
+          "easting": 1425529.039,
+          "northing": 6119757.84
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=32.03333333333 +k=1 +x_0=1400000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район Q (6°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1878",
+          "title": "СК-1963 район Q зона 1 (6-ти градусная)",
+          "pkey": "EPSG:636Q01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:Q:2",
+      "name": "Pulkovo 1942 / SK63 Q zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 38.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2400000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63Q6_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004930070201411046,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 38.033333333330006,
+          "easting": 2400116.936,
+          "northing": 6086275.362
+        },
+        {
+          "lat": 54.7,
+          "lon": 37.63333333333,
+          "easting": 2374328.574,
+          "northing": 6052952.669
+        },
+        {
+          "lat": 55.3,
+          "lon": 38.43333333333001,
+          "easting": 2425523.318,
+          "northing": 6119746.093
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=38.03333333333 +k=1 +x_0=2400000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район Q (6°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1879",
+          "title": "СК-1963 район Q зона 2 (6-ти градусная)",
+          "pkey": "EPSG:636Q02"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:Q:3",
+      "name": "Pulkovo 1942 / SK63 Q zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 44.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3400000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63Q6_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00043196067516659836,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 44.033333333330006,
+          "easting": 3400109.808,
+          "northing": 6086264.177
+        },
+        {
+          "lat": 54.7,
+          "lon": 43.63333333333,
+          "easting": 3374321.474,
+          "northing": 6052941.524
+        },
+        {
+          "lat": 55.3,
+          "lon": 44.43333333333001,
+          "easting": 3425516.164,
+          "northing": 6119734.868
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=44.03333333333 +k=1 +x_0=3400000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район Q (6°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1880",
+          "title": "СК-1963 район Q зона 3 (6-ти градусная)",
+          "pkey": "EPSG:636Q03"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:Q:4",
+      "name": "Pulkovo 1942 / SK63 Q zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 50.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4400000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63Q6_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005450885465142589,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 50.033333333330006,
+          "easting": 4400101.323,
+          "northing": 6086253.634
+        },
+        {
+          "lat": 54.7,
+          "lon": 49.63333333333,
+          "easting": 4374313.014,
+          "northing": 6052931.018
+        },
+        {
+          "lat": 55.3,
+          "lon": 50.43333333333001,
+          "easting": 4425507.654,
+          "northing": 6119724.287
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=50.03333333333 +k=1 +x_0=4400000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район Q (6°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1881",
+          "title": "СК-1963 район Q зона 4 (6-ти градусная)",
+          "pkey": "EPSG:636Q04"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:Q:5",
+      "name": "Pulkovo 1942 / SK63 Q zone 5",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 56.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5400000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63Q6_5",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006305994218867123,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 56.033333333330006,
+          "easting": 5400091.575,
+          "northing": 6086243.848
+        },
+        {
+          "lat": 54.7,
+          "lon": 55.63333333333,
+          "easting": 5374303.288,
+          "northing": 6052921.267
+        },
+        {
+          "lat": 55.3,
+          "lon": 56.43333333333001,
+          "easting": 5425497.883,
+          "northing": 6119714.468
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=56.03333333333 +k=1 +x_0=5400000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район Q (6°), Зона 5",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1882",
+          "title": "СК-1963 район Q зона 5 (6-ти градусная)",
+          "pkey": "EPSG:636Q05"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:R:1",
+      "name": "Pulkovo 1942 / SK63 R zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 43.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1300000.0,
+      "false_northing": -14743.501,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63R3_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005140440549161157,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 43.05000000000001,
+          "easting": 1300111.072,
+          "northing": 6082580.096
+        },
+        {
+          "lat": 54.7,
+          "lon": 42.650000000000006,
+          "easting": 1274322.733,
+          "northing": 6049257.437
+        },
+        {
+          "lat": 55.3,
+          "lon": 43.45000000000002,
+          "easting": 1325517.431,
+          "northing": 6116050.793
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=43.05 +k=1 +x_0=1300000 +y_0=-14743.501 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район R (3°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1883",
+          "title": "СК-1963 район R зона 1",
+          "pkey": "EPSG:633R01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:R:2",
+      "name": "Pulkovo 1942 / SK63 R zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 46.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2300000.0,
+      "false_northing": -14743.501,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63R3_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006625684971462123,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 46.05000000000001,
+          "easting": 2300107.103,
+          "northing": 6082574.683
+        },
+        {
+          "lat": 54.7,
+          "lon": 45.650000000000006,
+          "easting": 2274318.778,
+          "northing": 6049252.043
+        },
+        {
+          "lat": 55.3,
+          "lon": 46.45000000000002,
+          "easting": 2325513.451,
+          "northing": 6116045.361
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=46.05 +k=1 +x_0=2300000 +y_0=-14743.501 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район R (3°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1884",
+          "title": "СК-1963 район R зона 2",
+          "pkey": "EPSG:633R02"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:R:3",
+      "name": "Pulkovo 1942 / SK63 R zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 49.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3300000.0,
+      "false_northing": -14743.501,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63R3_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0003932624871739213,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 49.05000000000001,
+          "easting": 3300102.803,
+          "northing": 6082569.44
+        },
+        {
+          "lat": 54.7,
+          "lon": 48.650000000000006,
+          "easting": 3274314.49,
+          "northing": 6049246.818
+        },
+        {
+          "lat": 55.3,
+          "lon": 49.45000000000002,
+          "easting": 3325509.138,
+          "northing": 6116040.099
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=49.05 +k=1 +x_0=3300000 +y_0=-14743.501 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район R (3°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1885",
+          "title": "СК-1963 район R зона 3",
+          "pkey": "EPSG:633R03"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:1",
+      "name": "Pulkovo 1942 / SK63 S zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 108.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0003304541555249616,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 108.44999999999999,
+          "easting": 1399972.08,
+          "northing": 6084360.796
+        },
+        {
+          "lat": 54.7,
+          "lon": 108.04999999999995,
+          "easting": 1374183.877,
+          "northing": 6051038.33
+        },
+        {
+          "lat": 55.3,
+          "lon": 108.85000000000002,
+          "easting": 1425378.308,
+          "northing": 6117831.3
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=108.45 +k=1 +x_0=1400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1886",
+          "title": "СК-1963 район S зона 1 (6-ти градусная)",
+          "pkey": "EPSG:636S01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:10",
+      "name": "Pulkovo 1942 / SK63 S zone 10",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 162.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 10400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_10",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004765036275338302,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 162.45,
+          "easting": 10399861.336,
+          "northing": 6084416.328
+        },
+        {
+          "lat": 54.7,
+          "lon": 162.04999999999995,
+          "easting": 10374072.976,
+          "northing": 6051093.617
+        },
+        {
+          "lat": 55.3,
+          "lon": 162.85000000000002,
+          "easting": 10425267.715,
+          "northing": 6117887.078
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=162.45 +k=1 +x_0=10400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 10",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1895",
+          "title": "СК-1963 район S зона 10 (6-ти градусная)",
+          "pkey": "EPSG:636S10"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:11",
+      "name": "Pulkovo 1942 / SK63 S zone 11",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 168.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 11400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_11",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004750249734224852,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 168.45,
+          "easting": 11399854.347,
+          "northing": 6084427.234
+        },
+        {
+          "lat": 54.7,
+          "lon": 168.04999999999995,
+          "easting": 11374065.959,
+          "northing": 6051104.48
+        },
+        {
+          "lat": 55.3,
+          "lon": 168.85000000000002,
+          "easting": 11425260.754,
+          "northing": 6117898.027
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=168.45 +k=1 +x_0=11400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 11",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1896",
+          "title": "СК-1963 район S зона 11 (6-ти градусная)",
+          "pkey": "EPSG:636S11"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:12",
+      "name": "Pulkovo 1942 / SK63 S zone 12",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 174.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 12400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_12",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00022968030395520544,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 174.45,
+          "easting": 12399848.8,
+          "northing": 6084438.717
+        },
+        {
+          "lat": 54.7,
+          "lon": 174.04999999999995,
+          "easting": 12374060.382,
+          "northing": 6051115.917
+        },
+        {
+          "lat": 55.3,
+          "lon": 174.85000000000002,
+          "easting": 12425255.236,
+          "northing": 6117909.555
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=174.45 +k=1 +x_0=12400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 12",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1897",
+          "title": "СК-1963 район S зона 12 (6-ти градусная)",
+          "pkey": "EPSG:636S12"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:13",
+      "name": "Pulkovo 1942 / SK63 S zone 13",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 180.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 13400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_13",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00044920462338468277,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": -179.55,
+          "easting": 13399844.756,
+          "northing": 6084450.65
+        },
+        {
+          "lat": 54.7,
+          "lon": -179.95000000000002,
+          "easting": 13374056.307,
+          "northing": 6051127.804
+        },
+        {
+          "lat": 55.3,
+          "lon": -179.15,
+          "easting": 13425251.221,
+          "northing": 6117921.535
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=180.45 +k=1 +x_0=13400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 13",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1898",
+          "title": "СК-1963 район S зона 13 (6-ти градусная)",
+          "pkey": "EPSG:636S13"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:2",
+      "name": "Pulkovo 1942 / SK63 S zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 114.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.000498016723355478,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 114.44999999999999,
+          "easting": 2399957.108,
+          "northing": 6084362.282
+        },
+        {
+          "lat": 54.7,
+          "lon": 114.04999999999995,
+          "easting": 2374168.9,
+          "northing": 6051039.806
+        },
+        {
+          "lat": 55.3,
+          "lon": 114.85000000000002,
+          "easting": 2425363.342,
+          "northing": 6117832.797
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=114.45 +k=1 +x_0=2400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1887",
+          "title": "СК-1963 район S зона 2 (6-ти градусная)",
+          "pkey": "EPSG:636S02"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:3",
+      "name": "Pulkovo 1942 / SK63 S zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 120.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005946752997694567,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 120.44999999999999,
+          "easting": 3399942.453,
+          "northing": 6084365.057
+        },
+        {
+          "lat": 54.7,
+          "lon": 120.04999999999995,
+          "easting": 3374154.235,
+          "northing": 6051042.565
+        },
+        {
+          "lat": 55.3,
+          "lon": 120.85000000000002,
+          "easting": 3425348.695,
+          "northing": 6117835.586
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=120.45 +k=1 +x_0=3400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1888",
+          "title": "СК-1963 район S зона 3 (6-ти градусная)",
+          "pkey": "EPSG:636S03"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:4",
+      "name": "Pulkovo 1942 / SK63 S zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 126.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005219086003821478,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 126.44999999999999,
+          "easting": 4399928.274,
+          "northing": 6084369.089
+        },
+        {
+          "lat": 54.7,
+          "lon": 126.04999999999995,
+          "easting": 4374140.044,
+          "northing": 6051046.578
+        },
+        {
+          "lat": 55.3,
+          "lon": 126.85000000000002,
+          "easting": 4425334.528,
+          "northing": 6117839.638
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=126.45 +k=1 +x_0=4400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1889",
+          "title": "СК-1963 район S зона 4 (6-ти градусная)",
+          "pkey": "EPSG:636S04"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:5",
+      "name": "Pulkovo 1942 / SK63 S zone 5",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 132.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_5",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005491921246343378,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 132.45,
+          "easting": 5399914.727,
+          "northing": 6084374.335
+        },
+        {
+          "lat": 54.7,
+          "lon": 132.04999999999995,
+          "easting": 5374126.481,
+          "northing": 6051051.8
+        },
+        {
+          "lat": 55.3,
+          "lon": 132.85000000000002,
+          "easting": 5425320.996,
+          "northing": 6117844.908
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=132.45 +k=1 +x_0=5400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 5",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1890",
+          "title": "СК-1963 район S зона 5 (6-ти градусная)",
+          "pkey": "EPSG:636S05"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:6",
+      "name": "Pulkovo 1942 / SK63 S zone 6",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 138.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 6400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_6",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.000529559861353366,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 138.45,
+          "easting": 6399901.96,
+          "northing": 6084380.737
+        },
+        {
+          "lat": 54.7,
+          "lon": 138.04999999999995,
+          "easting": 6374113.697,
+          "northing": 6051058.173
+        },
+        {
+          "lat": 55.3,
+          "lon": 138.85000000000002,
+          "easting": 6425308.247,
+          "northing": 6117851.338
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=138.45 +k=1 +x_0=6400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 6",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1891",
+          "title": "СК-1963 район S зона 6 (6-ти градусная)",
+          "pkey": "EPSG:636S06"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:7",
+      "name": "Pulkovo 1942 / SK63 S zone 7",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 144.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 7400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_7",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00035922409621027965,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 144.45,
+          "easting": 7399890.114,
+          "northing": 6084388.224
+        },
+        {
+          "lat": 54.7,
+          "lon": 144.04999999999995,
+          "easting": 7374101.83,
+          "northing": 6051065.629
+        },
+        {
+          "lat": 55.3,
+          "lon": 144.85000000000002,
+          "easting": 7425296.421,
+          "northing": 6117858.858
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=144.45 +k=1 +x_0=7400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 7",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1892",
+          "title": "СК-1963 район S зона 7 (6-ти градусная)",
+          "pkey": "EPSG:636S07"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:8",
+      "name": "Pulkovo 1942 / SK63 S zone 8",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 150.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 8400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_8",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005928678646309912,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 150.45,
+          "easting": 8399879.318,
+          "northing": 6084396.716
+        },
+        {
+          "lat": 54.7,
+          "lon": 150.04999999999995,
+          "easting": 8374091.01,
+          "northing": 6051074.085
+        },
+        {
+          "lat": 55.3,
+          "lon": 150.85000000000002,
+          "easting": 8425285.647,
+          "northing": 6117867.385
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=150.45 +k=1 +x_0=8400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 8",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1893",
+          "title": "СК-1963 район S зона 8 (6-ти градусная)",
+          "pkey": "EPSG:636S08"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:S:9",
+      "name": "Pulkovo 1942 / SK63 S zone 9",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 156.45,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 9400000.0,
+      "false_northing": -12900.566,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63S6_9",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004770792268045798,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 156.45,
+          "easting": 9399869.69,
+          "northing": 6084406.118
+        },
+        {
+          "lat": 54.7,
+          "lon": 156.04999999999995,
+          "easting": 9374081.357,
+          "northing": 6051083.448
+        },
+        {
+          "lat": 55.3,
+          "lon": 156.85000000000002,
+          "easting": 9425276.043,
+          "northing": 6117876.826
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=156.45 +k=1 +x_0=9400000 +y_0=-12900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район S (6°), Зона 9",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1894",
+          "title": "СК-1963 район S зона 9 (6-ти градусная)",
+          "pkey": "EPSG:636S09"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:T:1",
+      "name": "Pulkovo 1942 / SK63 T zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 37.98333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1300000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63T3_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004720109583993134,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 37.983333333329995,
+          "easting": 1300116.99,
+          "northing": 6086275.457
+        },
+        {
+          "lat": 54.7,
+          "lon": 37.58333333332999,
+          "easting": 1274328.628,
+          "northing": 6052952.764
+        },
+        {
+          "lat": 55.3,
+          "lon": 38.38333333333,
+          "easting": 1325523.372,
+          "northing": 6119746.189
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=37.98333333333 +k=1 +x_0=1300000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район T (3°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1899",
+          "title": "СК-1963 район T зона 1",
+          "pkey": "EPSG:633T01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:T:2",
+      "name": "Pulkovo 1942 / SK63 T zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 40.98333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2300000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63T3_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005247878625287703,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 40.983333333329995,
+          "easting": 2300113.606,
+          "northing": 6086269.79
+        },
+        {
+          "lat": 54.7,
+          "lon": 40.58333333332999,
+          "easting": 2274325.258,
+          "northing": 6052947.117
+        },
+        {
+          "lat": 55.3,
+          "lon": 41.38333333333,
+          "easting": 2325519.975,
+          "northing": 6119740.501
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=40.98333333333 +k=1 +x_0=2300000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район T (3°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1900",
+          "title": "СК-1963 район T зона 2",
+          "pkey": "EPSG:633T02"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:T:3",
+      "name": "Pulkovo 1942 / SK63 T zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 43.98333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3300000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63T3_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.000559086504331914,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 43.983333333329995,
+          "easting": 3300109.873,
+          "northing": 6086264.267
+        },
+        {
+          "lat": 54.7,
+          "lon": 43.58333333332999,
+          "easting": 3274321.538,
+          "northing": 6052941.614
+        },
+        {
+          "lat": 55.3,
+          "lon": 44.38333333333,
+          "easting": 3325516.229,
+          "northing": 6119734.959
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=43.98333333333 +k=1 +x_0=3300000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район T (3°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1901",
+          "title": "СК-1963 район T зона 3",
+          "pkey": "EPSG:633T03"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:T:4",
+      "name": "Pulkovo 1942 / SK63 T zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 46.98333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4300000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63T3_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005689205918340189,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 46.983333333329995,
+          "easting": 4300105.801,
+          "northing": 6086258.905
+        },
+        {
+          "lat": 54.7,
+          "lon": 46.58333333332999,
+          "easting": 4274317.479,
+          "northing": 6052936.271
+        },
+        {
+          "lat": 55.3,
+          "lon": 47.38333333333,
+          "easting": 4325512.144,
+          "northing": 6119729.578
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=46.98333333333 +k=1 +x_0=4300000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район T (3°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1578",
+          "title": "МСК-05 зона 1 Республика Дагестан",
+          "pkey": "EPSG:6330501"
+        },
+        {
+          "id": "1902",
+          "title": "СК-1963 район T зона 4",
+          "pkey": "EPSG:633T04"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:V:1",
+      "name": "СК-1963 район V зона 1",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 49.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.000377269538711709,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 49.03333333333,
+          "easting": 1300102.398,
+          "northing": 5976584.125
+        },
+        {
+          "lat": 53.7,
+          "lon": 48.63333333333,
+          "easting": 1273683.828,
+          "northing": 5943267.93
+        },
+        {
+          "lat": 54.3,
+          "lon": 49.43333333333,
+          "easting": 1326143.778,
+          "northing": 6010050.139
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 49.03333333333,
+          "easting": 1300102.3980774814,
+          "northing": 5976584.125178554
+        },
+        {
+          "lat": 53.7,
+          "lon": 48.63333333333,
+          "easting": 1273683.828135289,
+          "northing": 5943267.9302584715
+        },
+        {
+          "lat": 54.3,
+          "lon": 49.43333333333,
+          "easting": 1326143.7781634033,
+          "northing": 6010050.139793292
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=49.03333333333 +k=1 +x_0=1300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V01",
+      "source_catalog_record_id": "1903",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:2",
+      "name": "СК-1963 район V зона 2",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 52.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004904188166087659,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 52.03333333333,
+          "easting": 2300097.776,
+          "northing": 5976579.123
+        },
+        {
+          "lat": 53.7,
+          "lon": 51.63333333333,
+          "easting": 2273679.218,
+          "northing": 5943262.946
+        },
+        {
+          "lat": 54.3,
+          "lon": 52.43333333333,
+          "easting": 2326139.143,
+          "northing": 6010045.119
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 52.03333333333,
+          "easting": 2300097.775662469,
+          "northing": 5976579.123373042
+        },
+        {
+          "lat": 53.7,
+          "lon": 51.63333333333,
+          "easting": 2273679.218413777,
+          "northing": 5943262.946680735
+        },
+        {
+          "lat": 54.3,
+          "lon": 52.43333333333,
+          "easting": 2326139.143448831,
+          "northing": 6010045.119756324
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=52.03333333333 +k=1 +x_0=2300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V02",
+      "source_catalog_record_id": "1904",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:3",
+      "name": "СК-1963 район V зона 3",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 55.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00040847777435799334,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 55.03333333333,
+          "easting": 3300092.846,
+          "northing": 5976574.317
+        },
+        {
+          "lat": 53.7,
+          "lon": 54.63333333333,
+          "easting": 3273674.301,
+          "northing": 5943258.158
+        },
+        {
+          "lat": 54.3,
+          "lon": 55.43333333333,
+          "easting": 3326134.202,
+          "northing": 6010040.296
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 55.03333333333,
+          "easting": 3300092.845815805,
+          "northing": 5976574.317614106
+        },
+        {
+          "lat": 53.7,
+          "lon": 54.63333333333,
+          "easting": 3273674.3006843543,
+          "northing": 5943258.158277618
+        },
+        {
+          "lat": 54.3,
+          "lon": 55.43333333333,
+          "easting": 3326134.201860311,
+          "northing": 6010040.296637613
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=55.03333333333 +k=1 +x_0=3300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V03",
+      "source_catalog_record_id": "1905",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:4",
+      "name": "СК-1963 район V зона 4",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 58.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005603611625368824,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 58.03333333333,
+          "easting": 4300087.622,
+          "northing": 5976569.721
+        },
+        {
+          "lat": 53.7,
+          "lon": 57.63333333333,
+          "easting": 4273669.088,
+          "northing": 5943253.578
+        },
+        {
+          "lat": 54.3,
+          "lon": 58.43333333333,
+          "easting": 4326128.967,
+          "northing": 6010035.683
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 58.03333333333,
+          "easting": 4300087.6220499305,
+          "northing": 5976569.721073338
+        },
+        {
+          "lat": 53.7,
+          "lon": 57.63333333333,
+          "easting": 4273669.088426252,
+          "northing": 5943253.57817314
+        },
+        {
+          "lat": 54.3,
+          "lon": 58.43333333333,
+          "easting": 4326128.966942468,
+          "northing": 6010035.68365633
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=58.03333333333 +k=1 +x_0=4300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V04",
+      "source_catalog_record_id": "1906",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:5",
+      "name": "СК-1963 район V зона 5",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 61.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.00039058255801569197,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 61.03333333333,
+          "easting": 5300082.119,
+          "northing": 5976565.346
+        },
+        {
+          "lat": 53.7,
+          "lon": 60.63333333333,
+          "easting": 5273663.596,
+          "northing": 5943249.218
+        },
+        {
+          "lat": 54.3,
+          "lon": 61.43333333333,
+          "easting": 5326123.453,
+          "northing": 6010031.293
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 61.03333333333,
+          "easting": 5300082.118682817,
+          "northing": 5976565.346348868
+        },
+        {
+          "lat": 53.7,
+          "lon": 60.63333333333,
+          "easting": 5273663.595925899,
+          "northing": 5943249.218920376
+        },
+        {
+          "lat": 54.3,
+          "lon": 61.43333333333,
+          "easting": 5326123.453043834,
+          "northing": 6010031.2934556715
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=61.03333333333 +k=1 +x_0=5300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V05",
+      "source_catalog_record_id": "1907",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:V:6",
+      "name": "СК-1963 район V зона 6",
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 64.03333333333,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 6300000.0,
+      "false_northing": -9414.7,
+      "definition_source": "https://geobridge.ru/proj/api",
+      "definition_author": "GeoBridge (публичный каталог)",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005635459892428055,
+      "control_points": [
+        {
+          "lat": 54,
+          "lon": 64.03333333333,
+          "easting": 6300076.351,
+          "northing": 5976561.205
+        },
+        {
+          "lat": 53.7,
+          "lon": 63.63333333333001,
+          "easting": 6273657.838,
+          "northing": 5943245.092
+        },
+        {
+          "lat": 54.3,
+          "lon": 64.43333333333001,
+          "easting": 6326117.675,
+          "northing": 6010027.138
+        }
+      ],
+      "additional_control_points": [
+        {
+          "lat": 54,
+          "lon": 64.03333333333,
+          "easting": 6300076.350798713,
+          "northing": 5976561.205430843
+        },
+        {
+          "lat": 53.7,
+          "lon": 63.63333333333001,
+          "easting": 6273657.838237766,
+          "northing": 5943245.09246707
+        },
+        {
+          "lat": 54.3,
+          "lon": 64.43333333333001,
+          "easting": 6326117.675277527,
+          "northing": 6010027.138068208
+        }
+      ],
+      "additional_verification_source": "https://geobridge.ru/proj",
+      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=64.03333333333 +k=1 +x_0=6300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "source_catalog_key": "EPSG:633V06",
+      "source_catalog_record_id": "1908",
+      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
+      "base_epsg": 4284,
+      "corroborating_page": 173,
+      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
+    },
+    {
+      "code": "SK63:GEOPROJ:W3:1",
+      "name": "Pulkovo 1942 / SK63 W3 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 60.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W3_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006037810762244493,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 60.05000000000001,
+          "easting": 1500084.395,
+          "northing": 6086237.775
+        },
+        {
+          "lat": 54.7,
+          "lon": 59.650000000000006,
+          "easting": 1474296.123,
+          "northing": 6052915.214
+        },
+        {
+          "lat": 55.3,
+          "lon": 60.45000000000002,
+          "easting": 1525490.689,
+          "northing": 6119708.374
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=60.05 +k=1 +x_0=1500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (3°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2280",
+          "title": "СК-1963 район W зона 1 (3-х градусная)",
+          "pkey": "GB:2280"
+        },
+        {
+          "id": "1909",
+          "title": "СК-1963 район W зона 1 (6-ти градусная)",
+          "pkey": "EPSG:636W01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W3:2",
+      "name": "Pulkovo 1942 / SK63 W3 zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 63.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W3_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006182935850543775,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 63.05000000000001,
+          "easting": 2500078.714,
+          "northing": 6086233.509
+        },
+        {
+          "lat": 54.7,
+          "lon": 62.650000000000006,
+          "easting": 2474290.452,
+          "northing": 6052910.963
+        },
+        {
+          "lat": 55.3,
+          "lon": 63.45000000000002,
+          "easting": 2525485.0,
+          "northing": 6119704.094
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=63.05 +k=1 +x_0=2500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (3°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2281",
+          "title": "СК-1963 район W зона 2 (3-х градусная)",
+          "pkey": "GB:2281"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W3:3",
+      "name": "Pulkovo 1942 / SK63 W3 zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 66.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W3_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005665143018973529,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 66.05000000000001,
+          "easting": 3500072.78,
+          "northing": 6086229.489
+        },
+        {
+          "lat": 54.7,
+          "lon": 65.65,
+          "easting": 3474284.527,
+          "northing": 6052906.956
+        },
+        {
+          "lat": 55.3,
+          "lon": 66.45000000000002,
+          "easting": 3525479.056,
+          "northing": 6119700.06
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=66.05 +k=1 +x_0=3500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (3°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2282",
+          "title": "СК-1963 район W зона 3 (3-х градусная)",
+          "pkey": "GB:2282"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W3:4",
+      "name": "Pulkovo 1942 / SK63 W3 zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 69.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W3_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006241123365799137,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 69.05000000000001,
+          "easting": 4500066.608,
+          "northing": 6086225.724
+        },
+        {
+          "lat": 54.7,
+          "lon": 68.65,
+          "easting": 4474278.364,
+          "northing": 6052903.203
+        },
+        {
+          "lat": 55.3,
+          "lon": 69.45000000000002,
+          "easting": 4525472.876,
+          "northing": 6119696.282
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=69.05 +k=1 +x_0=4500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (3°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2283",
+          "title": "СК-1963 район W зона 4 (3-х градусная)",
+          "pkey": "GB:2283"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W3:5",
+      "name": "Pulkovo 1942 / SK63 W3 zone 5",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 72.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 5500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W3_5",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004281198581197956,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 72.05000000000001,
+          "easting": 5500060.214,
+          "northing": 6086222.225
+        },
+        {
+          "lat": 54.7,
+          "lon": 71.65,
+          "easting": 5474271.978,
+          "northing": 6052899.716
+        },
+        {
+          "lat": 55.3,
+          "lon": 72.45000000000002,
+          "easting": 5525466.475,
+          "northing": 6119692.772
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=72.05 +k=1 +x_0=5500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (3°), Зона 5",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2284",
+          "title": "СК-1963 район W зона 5 (3-х градусная)",
+          "pkey": "GB:2284"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W3:6",
+      "name": "Pulkovo 1942 / SK63 W3 zone 6",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 75.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 6500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W3_6",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005077655393900977,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 75.05000000000001,
+          "easting": 6500053.617,
+          "northing": 6086219.001
+        },
+        {
+          "lat": 54.7,
+          "lon": 74.65,
+          "easting": 6474265.388,
+          "northing": 6052896.503
+        },
+        {
+          "lat": 55.3,
+          "lon": 75.45000000000002,
+          "easting": 6525459.871,
+          "northing": 6119689.538
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=75.05 +k=1 +x_0=6500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (3°), Зона 6",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2285",
+          "title": "СК-1963 район W зона 6 (3-х градусная)",
+          "pkey": "GB:2285"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W3:7",
+      "name": "Pulkovo 1942 / SK63 W3 zone 7",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 78.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 7500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W3_7",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004951484321437717,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 78.05000000000001,
+          "easting": 7500046.835,
+          "northing": 6086216.063
+        },
+        {
+          "lat": 54.7,
+          "lon": 77.64999999999998,
+          "easting": 7474258.612,
+          "northing": 6052893.573
+        },
+        {
+          "lat": 55.3,
+          "lon": 78.45000000000005,
+          "easting": 7525453.082,
+          "northing": 6119686.59
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=78.05 +k=1 +x_0=7500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (3°), Зона 7",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2286",
+          "title": "СК-1963 район W зона 7 (3-х градусная)",
+          "pkey": "GB:2286"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W3:8",
+      "name": "Pulkovo 1942 / SK63 W3 zone 8",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 81.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 8500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W3_8",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.000511945870362269,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 81.05000000000001,
+          "easting": 8500039.886,
+          "northing": 6086213.416
+        },
+        {
+          "lat": 54.7,
+          "lon": 80.64999999999998,
+          "easting": 8474251.669,
+          "northing": 6052890.934
+        },
+        {
+          "lat": 55.3,
+          "lon": 81.45000000000005,
+          "easting": 8525446.127,
+          "northing": 6119683.936
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=81.05 +k=1 +x_0=8500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (3°), Зона 8",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2287",
+          "title": "СК-1963 район W зона 8 (3-х градусная)",
+          "pkey": "GB:2287"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W6:1",
+      "name": "Pulkovo 1942 / SK63 W6 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 60.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 1500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W6_1",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0006037810762244493,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 60.05000000000001,
+          "easting": 1500084.395,
+          "northing": 6086237.775
+        },
+        {
+          "lat": 54.7,
+          "lon": 59.650000000000006,
+          "easting": 1474296.123,
+          "northing": 6052915.214
+        },
+        {
+          "lat": 55.3,
+          "lon": 60.45000000000002,
+          "easting": 1525490.689,
+          "northing": 6119708.374
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=60.05 +k=1 +x_0=1500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (6°), Зона 1",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "2280",
+          "title": "СК-1963 район W зона 1 (3-х градусная)",
+          "pkey": "GB:2280"
+        },
+        {
+          "id": "1909",
+          "title": "СК-1963 район W зона 1 (6-ти градусная)",
+          "pkey": "EPSG:636W01"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W6:2",
+      "name": "Pulkovo 1942 / SK63 W6 zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 66.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 2500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W6_2",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0005665143018973529,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 66.05000000000001,
+          "easting": 2500072.78,
+          "northing": 6086229.489
+        },
+        {
+          "lat": 54.7,
+          "lon": 65.65,
+          "easting": 2474284.527,
+          "northing": 6052906.956
+        },
+        {
+          "lat": 55.3,
+          "lon": 66.45000000000002,
+          "easting": 2525479.056,
+          "northing": 6119700.06
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=66.05 +k=1 +x_0=2500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (6°), Зона 2",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1910",
+          "title": "СК-1963 район W зона 2 (6-ти градусная)",
+          "pkey": "EPSG:636W02"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W6:3",
+      "name": "Pulkovo 1942 / SK63 W6 zone 3",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 72.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 3500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W6_3",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004281207344428412,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 72.05000000000001,
+          "easting": 3500060.214,
+          "northing": 6086222.225
+        },
+        {
+          "lat": 54.7,
+          "lon": 71.65,
+          "easting": 3474271.978,
+          "northing": 6052899.716
+        },
+        {
+          "lat": 55.3,
+          "lon": 72.45000000000002,
+          "easting": 3525466.475,
+          "northing": 6119692.772
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=72.05 +k=1 +x_0=3500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (6°), Зона 3",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1911",
+          "title": "СК-1963 район W зона 3 (6-ти градусная)",
+          "pkey": "EPSG:636W03"
+        }
+      ]
+    },
+    {
+      "code": "SK63:GEOPROJ:W6:4",
+      "name": "Pulkovo 1942 / SK63 W6 zone 4",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0.0,
+      "longitude_natural_origin": 78.05,
+      "scale_factor_natural_origin": 1.0,
+      "false_easting": 4500000.0,
+      "false_northing": -11057.628,
+      "definition_source": "https://github.com/geo-ts/sk63/blob/ea767b0fe5afe96bfe6fc4c8c5aff85a54112dda/index.ts",
+      "definition_author": "geo-ts/sk63 (GitHub, Apache-2.0)",
+      "source_record_id": "SK63W6_4",
+      "source_sha256": "fa7a5b1a520a7e2675a13a32dd35e65d119a36056ede0111f7c5afeef69ce298",
+      "verification_source": "https://geoproj.ru/",
+      "verified_on": "2026-10-29",
+      "verification_tolerance_metres": 0.01,
+      "observed_max_error_metres": 0.0004951484321437717,
+      "control_points": [
+        {
+          "lat": 55.0,
+          "lon": 78.05000000000001,
+          "easting": 4500046.835,
+          "northing": 6086216.063
+        },
+        {
+          "lat": 54.7,
+          "lon": 77.64999999999998,
+          "easting": 4474258.612,
+          "northing": 6052893.573
+        },
+        {
+          "lat": 55.3,
+          "lon": 78.45000000000005,
+          "easting": 4525453.082,
+          "northing": 6119686.59
+        }
+      ],
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=78.05 +k=1 +x_0=4500000 +y_0=-11057.628 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "published_equivalence_error_metres": 0.0,
+      "source_name": "СК-63 Район W (6°), Зона 4",
+      "verification_report": "PUBLISHED_BATCH_2026_10_29.md",
+      "corroborating_source": "https://geobridge.ru/proj/api",
+      "corroborating_records": [
+        {
+          "id": "1912",
+          "title": "СК-1963 район W зона 4 (6-ти градусная)",
+          "pkey": "EPSG:636W04"
+        }
+      ]
     },
     {
       "code": "SK63:GEOPROJ:X:1",
@@ -400,396 +4841,6 @@
       "definition_author": "EPSG:7830 (база PROJ)",
       "observed_max_error_metres": 0.0019451126728245467,
       "interpretation": "Verified catalogue-to-authority equivalence. Never identify this label with a differently numbered paper candidate."
-    },
-    {
-      "code": "SK63:GEOPROJ:V:1",
-      "name": "СК-1963 район V зона 1",
-      "latitude_natural_origin": 0.0,
-      "longitude_natural_origin": 49.03333333333,
-      "scale_factor_natural_origin": 1.0,
-      "false_easting": 1300000.0,
-      "false_northing": -9414.7,
-      "definition_source": "https://geobridge.ru/proj/api",
-      "definition_author": "GeoBridge (публичный каталог)",
-      "verification_source": "https://geoproj.ru/",
-      "verified_on": "2026-10-29",
-      "verification_tolerance_metres": 0.01,
-      "observed_max_error_metres": 0.000377269538711709,
-      "control_points": [
-        {
-          "lat": 54,
-          "lon": 49.03333333333,
-          "easting": 1300102.398,
-          "northing": 5976584.125
-        },
-        {
-          "lat": 53.7,
-          "lon": 48.63333333333,
-          "easting": 1273683.828,
-          "northing": 5943267.93
-        },
-        {
-          "lat": 54.3,
-          "lon": 49.43333333333,
-          "easting": 1326143.778,
-          "northing": 6010050.139
-        }
-      ],
-      "additional_control_points": [
-        {
-          "lat": 54,
-          "lon": 49.03333333333,
-          "easting": 1300102.3980774814,
-          "northing": 5976584.125178554
-        },
-        {
-          "lat": 53.7,
-          "lon": 48.63333333333,
-          "easting": 1273683.828135289,
-          "northing": 5943267.9302584715
-        },
-        {
-          "lat": 54.3,
-          "lon": 49.43333333333,
-          "easting": 1326143.7781634033,
-          "northing": 6010050.139793292
-        }
-      ],
-      "additional_verification_source": "https://geobridge.ru/proj",
-      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
-      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=49.03333333333 +k=1 +x_0=1300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
-      "source_catalog_key": "EPSG:633V01",
-      "source_catalog_record_id": "1903",
-      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
-      "base_epsg": 4284,
-      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
-      "corroborating_page": 173,
-      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
-    },
-    {
-      "code": "SK63:GEOPROJ:V:2",
-      "name": "СК-1963 район V зона 2",
-      "latitude_natural_origin": 0.0,
-      "longitude_natural_origin": 52.03333333333,
-      "scale_factor_natural_origin": 1.0,
-      "false_easting": 2300000.0,
-      "false_northing": -9414.7,
-      "definition_source": "https://geobridge.ru/proj/api",
-      "definition_author": "GeoBridge (публичный каталог)",
-      "verification_source": "https://geoproj.ru/",
-      "verified_on": "2026-10-29",
-      "verification_tolerance_metres": 0.01,
-      "observed_max_error_metres": 0.0004904188166087659,
-      "control_points": [
-        {
-          "lat": 54,
-          "lon": 52.03333333333,
-          "easting": 2300097.776,
-          "northing": 5976579.123
-        },
-        {
-          "lat": 53.7,
-          "lon": 51.63333333333,
-          "easting": 2273679.218,
-          "northing": 5943262.946
-        },
-        {
-          "lat": 54.3,
-          "lon": 52.43333333333,
-          "easting": 2326139.143,
-          "northing": 6010045.119
-        }
-      ],
-      "additional_control_points": [
-        {
-          "lat": 54,
-          "lon": 52.03333333333,
-          "easting": 2300097.775662469,
-          "northing": 5976579.123373042
-        },
-        {
-          "lat": 53.7,
-          "lon": 51.63333333333,
-          "easting": 2273679.218413777,
-          "northing": 5943262.946680735
-        },
-        {
-          "lat": 54.3,
-          "lon": 52.43333333333,
-          "easting": 2326139.143448831,
-          "northing": 6010045.119756324
-        }
-      ],
-      "additional_verification_source": "https://geobridge.ru/proj",
-      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
-      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=52.03333333333 +k=1 +x_0=2300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
-      "source_catalog_key": "EPSG:633V02",
-      "source_catalog_record_id": "1904",
-      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
-      "base_epsg": 4284,
-      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
-      "corroborating_page": 173,
-      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
-    },
-    {
-      "code": "SK63:GEOPROJ:V:3",
-      "name": "СК-1963 район V зона 3",
-      "latitude_natural_origin": 0.0,
-      "longitude_natural_origin": 55.03333333333,
-      "scale_factor_natural_origin": 1.0,
-      "false_easting": 3300000.0,
-      "false_northing": -9414.7,
-      "definition_source": "https://geobridge.ru/proj/api",
-      "definition_author": "GeoBridge (публичный каталог)",
-      "verification_source": "https://geoproj.ru/",
-      "verified_on": "2026-10-29",
-      "verification_tolerance_metres": 0.01,
-      "observed_max_error_metres": 0.00040847777435799334,
-      "control_points": [
-        {
-          "lat": 54,
-          "lon": 55.03333333333,
-          "easting": 3300092.846,
-          "northing": 5976574.317
-        },
-        {
-          "lat": 53.7,
-          "lon": 54.63333333333,
-          "easting": 3273674.301,
-          "northing": 5943258.158
-        },
-        {
-          "lat": 54.3,
-          "lon": 55.43333333333,
-          "easting": 3326134.202,
-          "northing": 6010040.296
-        }
-      ],
-      "additional_control_points": [
-        {
-          "lat": 54,
-          "lon": 55.03333333333,
-          "easting": 3300092.845815805,
-          "northing": 5976574.317614106
-        },
-        {
-          "lat": 53.7,
-          "lon": 54.63333333333,
-          "easting": 3273674.3006843543,
-          "northing": 5943258.158277618
-        },
-        {
-          "lat": 54.3,
-          "lon": 55.43333333333,
-          "easting": 3326134.201860311,
-          "northing": 6010040.296637613
-        }
-      ],
-      "additional_verification_source": "https://geobridge.ru/proj",
-      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
-      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=55.03333333333 +k=1 +x_0=3300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
-      "source_catalog_key": "EPSG:633V03",
-      "source_catalog_record_id": "1905",
-      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
-      "base_epsg": 4284,
-      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
-      "corroborating_page": 173,
-      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
-    },
-    {
-      "code": "SK63:GEOPROJ:V:4",
-      "name": "СК-1963 район V зона 4",
-      "latitude_natural_origin": 0.0,
-      "longitude_natural_origin": 58.03333333333,
-      "scale_factor_natural_origin": 1.0,
-      "false_easting": 4300000.0,
-      "false_northing": -9414.7,
-      "definition_source": "https://geobridge.ru/proj/api",
-      "definition_author": "GeoBridge (публичный каталог)",
-      "verification_source": "https://geoproj.ru/",
-      "verified_on": "2026-10-29",
-      "verification_tolerance_metres": 0.01,
-      "observed_max_error_metres": 0.0005603611625368824,
-      "control_points": [
-        {
-          "lat": 54,
-          "lon": 58.03333333333,
-          "easting": 4300087.622,
-          "northing": 5976569.721
-        },
-        {
-          "lat": 53.7,
-          "lon": 57.63333333333,
-          "easting": 4273669.088,
-          "northing": 5943253.578
-        },
-        {
-          "lat": 54.3,
-          "lon": 58.43333333333,
-          "easting": 4326128.967,
-          "northing": 6010035.683
-        }
-      ],
-      "additional_control_points": [
-        {
-          "lat": 54,
-          "lon": 58.03333333333,
-          "easting": 4300087.6220499305,
-          "northing": 5976569.721073338
-        },
-        {
-          "lat": 53.7,
-          "lon": 57.63333333333,
-          "easting": 4273669.088426252,
-          "northing": 5943253.57817314
-        },
-        {
-          "lat": 54.3,
-          "lon": 58.43333333333,
-          "easting": 4326128.966942468,
-          "northing": 6010035.68365633
-        }
-      ],
-      "additional_verification_source": "https://geobridge.ru/proj",
-      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
-      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=58.03333333333 +k=1 +x_0=4300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
-      "source_catalog_key": "EPSG:633V04",
-      "source_catalog_record_id": "1906",
-      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
-      "base_epsg": 4284,
-      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
-      "corroborating_page": 173,
-      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
-    },
-    {
-      "code": "SK63:GEOPROJ:V:5",
-      "name": "СК-1963 район V зона 5",
-      "latitude_natural_origin": 0.0,
-      "longitude_natural_origin": 61.03333333333,
-      "scale_factor_natural_origin": 1.0,
-      "false_easting": 5300000.0,
-      "false_northing": -9414.7,
-      "definition_source": "https://geobridge.ru/proj/api",
-      "definition_author": "GeoBridge (публичный каталог)",
-      "verification_source": "https://geoproj.ru/",
-      "verified_on": "2026-10-29",
-      "verification_tolerance_metres": 0.01,
-      "observed_max_error_metres": 0.00039058255801569197,
-      "control_points": [
-        {
-          "lat": 54,
-          "lon": 61.03333333333,
-          "easting": 5300082.119,
-          "northing": 5976565.346
-        },
-        {
-          "lat": 53.7,
-          "lon": 60.63333333333,
-          "easting": 5273663.596,
-          "northing": 5943249.218
-        },
-        {
-          "lat": 54.3,
-          "lon": 61.43333333333,
-          "easting": 5326123.453,
-          "northing": 6010031.293
-        }
-      ],
-      "additional_control_points": [
-        {
-          "lat": 54,
-          "lon": 61.03333333333,
-          "easting": 5300082.118682817,
-          "northing": 5976565.346348868
-        },
-        {
-          "lat": 53.7,
-          "lon": 60.63333333333,
-          "easting": 5273663.595925899,
-          "northing": 5943249.218920376
-        },
-        {
-          "lat": 54.3,
-          "lon": 61.43333333333,
-          "easting": 5326123.453043834,
-          "northing": 6010031.2934556715
-        }
-      ],
-      "additional_verification_source": "https://geobridge.ru/proj",
-      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
-      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=61.03333333333 +k=1 +x_0=5300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
-      "source_catalog_key": "EPSG:633V05",
-      "source_catalog_record_id": "1907",
-      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
-      "base_epsg": 4284,
-      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
-      "corroborating_page": 173,
-      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
-    },
-    {
-      "code": "SK63:GEOPROJ:V:6",
-      "name": "СК-1963 район V зона 6",
-      "latitude_natural_origin": 0.0,
-      "longitude_natural_origin": 64.03333333333,
-      "scale_factor_natural_origin": 1.0,
-      "false_easting": 6300000.0,
-      "false_northing": -9414.7,
-      "definition_source": "https://geobridge.ru/proj/api",
-      "definition_author": "GeoBridge (публичный каталог)",
-      "verification_source": "https://geoproj.ru/",
-      "verified_on": "2026-10-29",
-      "verification_tolerance_metres": 0.01,
-      "observed_max_error_metres": 0.0005635459892428055,
-      "control_points": [
-        {
-          "lat": 54,
-          "lon": 64.03333333333,
-          "easting": 6300076.351,
-          "northing": 5976561.205
-        },
-        {
-          "lat": 53.7,
-          "lon": 63.63333333333001,
-          "easting": 6273657.838,
-          "northing": 5943245.092
-        },
-        {
-          "lat": 54.3,
-          "lon": 64.43333333333001,
-          "easting": 6326117.675,
-          "northing": 6010027.138
-        }
-      ],
-      "additional_control_points": [
-        {
-          "lat": 54,
-          "lon": 64.03333333333,
-          "easting": 6300076.350798713,
-          "northing": 5976561.205430843
-        },
-        {
-          "lat": 53.7,
-          "lon": 63.63333333333001,
-          "easting": 6273657.838237766,
-          "northing": 5943245.09246707
-        },
-        {
-          "lat": 54.3,
-          "lon": 64.43333333333001,
-          "easting": 6326117.675277527,
-          "northing": 6010027.138068208
-        }
-      ],
-      "additional_verification_source": "https://geobridge.ru/proj",
-      "additional_verification_method": "GeoBridge published Proj4js implementation executed offline on the same inputs; not an independent geodetic survey.",
-      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=64.03333333333 +k=1 +x_0=6300000 +y_0=-9414.70 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
-      "source_catalog_key": "EPSG:633V06",
-      "source_catalog_record_id": "1908",
-      "source_catalog_sha256": "1e9b0fe0706d66934ae4a1fb321b1cf2aa8621313cd38b567a03ae31b2ca0d2d",
-      "base_epsg": 4284,
-      "corroborating_source": "https://kerzhenskiy.ru/wp-content/uploads/2020/03/gis-metodichka_final.pdf",
-      "corroborating_page": 173,
-      "additional_parameter_source": "https://ecency.com/@dab/sk-63-raion-v"
     }
   ],
   "rejected_candidates": [
@@ -823,7 +4874,9 @@
           "northing": 6122768.816
         }
       ],
-      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction.",
+      "historical": true,
+      "current_resolution": "This published candidate remains rejected. Another independently checked published definition for the catalogue label was connected in PUBLISHED_BATCH_2026_10_29.md."
     },
     {
       "code": "SK63:GEOPROJ:C:4",
@@ -855,7 +4908,9 @@
           "northing": 6122762.852
         }
       ],
-      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction.",
+      "historical": true,
+      "current_resolution": "This published candidate remains rejected. Another independently checked published definition for the catalogue label was connected in PUBLISHED_BATCH_2026_10_29.md."
     },
     {
       "code": "SK63:GEOPROJ:T:1",
@@ -887,7 +4942,9 @@
           "northing": 5351069.413
         }
       ],
-      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction.",
+      "historical": true,
+      "current_resolution": "This published candidate remains rejected. Another independently checked published definition for the catalogue label was connected in PUBLISHED_BATCH_2026_10_29.md."
     },
     {
       "code": "SK63:GEOPROJ:T:2",
@@ -919,7 +4976,9 @@
           "northing": 5351064.217
         }
       ],
-      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction.",
+      "historical": true,
+      "current_resolution": "This published candidate remains rejected. Another independently checked published definition for the catalogue label was connected in PUBLISHED_BATCH_2026_10_29.md."
     },
     {
       "code": "SK63:GEOPROJ:T:3",
@@ -951,7 +5010,9 @@
           "northing": 5351059.151
         }
       ],
-      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction.",
+      "historical": true,
+      "current_resolution": "This published candidate remains rejected. Another independently checked published definition for the catalogue label was connected in PUBLISHED_BATCH_2026_10_29.md."
     },
     {
       "code": "SK63:GEOPROJ:T:4",
@@ -983,7 +5044,10 @@
           "northing": 5351054.229
         }
       ],
-      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction."
+      "reason": "Published table parameters do not match the geoproj label. Kept dev; no guessed correction.",
+      "historical": true,
+      "current_resolution": "This published candidate remains rejected. Another independently checked published definition for the catalogue label was connected in PUBLISHED_BATCH_2026_10_29.md."
     }
-  ]
+  ],
+  "pending_notes": {}
 }

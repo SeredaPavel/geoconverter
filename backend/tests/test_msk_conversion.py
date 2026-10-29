@@ -11,15 +11,14 @@ from openpyxl import Workbook, load_workbook
 
 from app.msk_registry import DEFINITIONS, MSK_ITEMS, READY_MSK_CRS
 from app.schemas import ConvertRequest, Point
+from app.sk63_registry import CATALOG
 
 
 MSK47 = 'MSK:GEOPROJ:47:2'
-EXPECTED_MSK = {
-    f'MSK:GEOPROJ:{region}:{zone}'
-    for region, zones in [('02', 2), ('16', 3), ('47', 3), ('50', 2),
-                          ('52', 3), ('63', 2), ('1964', 1)]
-    for zone in range(1, zones + 1)
-} | {'MSK:GEOPROJ:mos:1'}
+PENDING_MSK = {'MSK:GEOPROJ:09:2', 'MSK:GEOPROJ:09:3', 'MSK:GEOPROJ:30:2'}
+EXPECTED_MSK = {f"MSK:GEOPROJ:{system['source_id']}:{zone['source_value']}"
+                for system in CATALOG['msk'] for zone in system['zones']} - PENDING_MSK
+
 
 
 class MskTests(unittest.IsolatedAsyncioTestCase):
@@ -45,6 +44,8 @@ class MskTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual(len(MSK_ITEMS), 260)
         self.assertEqual(len({item.code for item in MSK_ITEMS}), 260)
         self.assertEqual(set(READY_MSK_CRS), EXPECTED_MSK)
+        self.assertEqual(len(READY_MSK_CRS), 256)
+        self.assertEqual({i.code for i in MSK_ITEMS if i.status == "dev"}, PENDING_MSK | {"MSK:GEOBRIDGE:78:1"})
         for item in MSK_ITEMS:
             self.assertEqual(item.status == 'ready', item.code in READY_MSK_CRS)
             self.assertTrue(item.region)
@@ -82,7 +83,7 @@ class MskTests(unittest.IsolatedAsyncioTestCase):
                 else:
                     result = self.convert('SK42_GEOG', code, [Point(
                         lat=definition['latitude_natural_origin'],
-                        lon=definition['longitude_natural_origin'])]).points[0]
+                        lon=(definition['longitude_natural_origin'] + 180) % 360 - 180)]).points[0]
                     x, y = result.x, result.y
                 self.assertAlmostEqual(x, definition['false_easting'], places=6)
                 self.assertAlmostEqual(y, definition['false_northing'], places=6)
@@ -159,6 +160,20 @@ class MskTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_100_points_import_convert_and_export(self):
         await self.check_import_convert_export('MSK:GEOPROJ:50:2', 55.75, 37.6)
+
+    async def test_new_batch_100_point_import_export_widths_and_eastern_russia(self):
+        for code in ['MSK:GEOPROJ:01:2', 'MSK:GEOPROJ:66_3:2', 'MSK:GEOPROJ:66_6:1',
+                     'MSK:GEOPROJ:72_1:3', 'MSK:GEOPROJ:72_3:2', 'MSK:GEOPROJ:72_6:1',
+                     'MSK:GEOPROJ:87:7']:
+            point = next(d for d in DEFINITIONS if d['code'] == code)['control_points'][0]
+            with self.subTest(code=code):
+                await self.check_import_convert_export(code, point['lat'], point['lon'])
+
+    async def test_pending_astrakhan_variant_has_explicit_reason(self):
+        item = next(i for i in MSK_ITEMS if i.code == 'MSK:GEOPROJ:30:2')
+        self.assertEqual(item.status, 'dev')
+        self.assertIn('2,724', item.description)
+        self.assertNotIn(item.code, READY_MSK_CRS)
 
     async def test_100_moscow_points_with_negative_easting(self):
         await self.check_import_convert_export('MSK:GEOPROJ:mos:1', 55.5, 37.3)

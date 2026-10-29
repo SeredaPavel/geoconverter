@@ -22,6 +22,10 @@ def load_definitions(filename):
     return by_code
 
 
+def load_pending_notes(filename):
+    return json.loads((REGISTRY_DIR / filename).read_text(encoding='utf-8')).get('pending_notes', {})
+
+
 def build_projection(definition):
     if 'bound_proj4' in definition:
         crs = CRS.from_proj4(definition['bound_proj4'])
