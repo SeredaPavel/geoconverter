@@ -19,10 +19,15 @@ class Point(BaseModel):
             return None
         return parse_angle(value, 90 if info.field_name == "lat" else 180)
 
-class ConvertOptions(BaseModel):
+class GKOptions(BaseModel):
     auto_zone: bool = True
     zone_mode: Literal[3, 6] = 6
-    zone: Optional[int] = Field(default=None, ge=2, le=33)
+    zone: Optional[int] = Field(default=None, ge=1, le=120)
+
+class ConvertOptions(GKOptions):
+    # Legacy flat options remain valid; explicit side settings take precedence.
+    source_gk: Optional[GKOptions] = None
+    target_gk: Optional[GKOptions] = None
     msk_code: Optional[str] = None
 
 class ConvertRequest(BaseModel):
@@ -46,3 +51,4 @@ class CRSItem(BaseModel):
     status: Literal["ready", "dev"] = "ready"
     region: Optional[str] = None
     description: Optional[str] = None
+    gk_zones: Optional[dict[int, List[int]]] = None

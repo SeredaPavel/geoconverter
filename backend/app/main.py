@@ -3,7 +3,6 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse  # ← ДОБАВЛЕНО
 from typing import List
-from functools import lru_cache
 
 from pydantic import BaseModel  # ← ДОБАВЛЕНО
 
@@ -12,19 +11,17 @@ from .schemas import (
     ConvertResponse,
     Point,
     CRSItem,
-    ConvertOptions,
     Format,            # ← ДОБАВЛЕНО
 )
-from .utils import auto_zone_6, auto_zone_3  # пока не используем, но оставляем импорт
 from .export_utils import (                  # ← ДОБАВЛЕНО
     build_catalog_xlsx,
     build_statement_xlsx,
 )
 
-from pyproj import CRS, Transformer
-from pyproj.exceptions import ProjError
-from .sk63_registry import READY_CRS, SK63_ITEMS, ITEMS_BY_CODE
-from .msk_registry import READY_MSK_CRS, MSK_ITEMS
+from .sk63_registry import SK63_ITEMS
+from .msk_registry import MSK_ITEMS
+from .conversion_engine import convert_numeric as _convert_numeric
+from .gk_registry import supported_zones
 import pandas as pd
 import io
 import os
@@ -119,22 +116,25 @@ CRS_REGISTRY: List[CRSItem] = [
         status="ready",
     ),
 
-    # Проекция Гаусса-Крюгера (6° зоны)
+    # Проекция Гаусса-Крюгера (3° и 6° зоны)
     CRSItem(
         code="GK_GSK2011",
-        title="ГК-ГСК-2011 (6° зоны)",
+        title="ГК-ГСК-2011 (зоны 3° и 6°)",
+        gk_zones=supported_zones("GK_GSK2011"),
         category="projected",
         status="ready",
     ),
     CRSItem(
         code="GK_SK42",
-        title="ГК-СК-42 (6° зоны)",
+        title="ГК-СК-42 (зоны 3° и 6°)",
+        gk_zones=supported_zones("GK_SK42"),
         category="projected",
         status="ready",
     ),
     CRSItem(
         code="GK_SK95",
-        title="ГК-СК-95 (6° зоны)",
+        title="ГК-СК-95 (зоны 3° и 6°)",
+        gk_zones=supported_zones("GK_SK95"),
         category="projected",
         status="ready",
     ),
@@ -231,264 +231,10 @@ CRS_REGISTRY: List[CRSItem] = [
 ]
 
 # ----------------------------------------------------------------------
-# Внутренний движок для WGS-84 и проекций Гаусса-Крюгера (6° зоны)
+# Объединённый реестр географических и плоских систем координат
 # ----------------------------------------------------------------------
 
-WGS84_CRS = CRS.from_epsg(4326)
 CRS_REGISTRY = [item for item in CRS_REGISTRY if item.category not in {'sk63', 'msk'}] + MSK_ITEMS + SK63_ITEMS
-
-
-@lru_cache(maxsize=32)
-def _crs_gk_sk42_6(zone: int) -> CRS:
-    """Pulkovo 1942 / Gauss-Kruger zone N, EPSG:28400+zone (зоны 2–33)."""
-    if zone < 2 or zone > 33:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Зона ГК-СК-42 должна быть в диапазоне 2–33, получено: {zone}",
-        )
-    epsg_code = 28400 + zone
-    return CRS.from_epsg(epsg_code)
-
-
-@lru_cache(maxsize=32)
-def _crs_gk_gsk2011_6(zone: int) -> CRS:
-    """GSK-2011 / Gauss-Kruger zone N, EPSG:20900+zone (зоны 2–33)."""
-    if zone < 2 or zone > 33:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Зона ГК-ГСК-2011 должна быть в диапазоне 2–33, получено: {zone}",
-        )
-    epsg_code = 20900 + zone
-    return CRS.from_epsg(epsg_code)
-
-
-@lru_cache(maxsize=32)
-def _crs_gk_sk95_6(zone: int) -> CRS:
-    """Pulkovo 1995 / Gauss-Kruger zone N, EPSG:20000+zone (зоны 2–33)."""
-    if zone < 2 or zone > 33:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Зона ГК-СК-95 должна быть в диапазоне 2–33, получено: {zone}",
-        )
-    epsg_code = 20000 + zone
-    return CRS.from_epsg(epsg_code)
-
-
-@lru_cache(maxsize=64)
-def _tr_wgs84_to_gk_sk42(zone: int) -> Transformer:
-    return Transformer.from_crs(WGS84_CRS, _crs_gk_sk42_6(zone), always_xy=True)
-
-
-@lru_cache(maxsize=64)
-def _tr_gk_sk42_to_wgs84(zone: int) -> Transformer:
-    return Transformer.from_crs(_crs_gk_sk42_6(zone), WGS84_CRS, always_xy=True)
-
-
-@lru_cache(maxsize=64)
-def _tr_wgs84_to_gk_gsk2011(zone: int) -> Transformer:
-    return Transformer.from_crs(WGS84_CRS, _crs_gk_gsk2011_6(zone), always_xy=True)
-
-
-@lru_cache(maxsize=64)
-def _tr_gk_gsk2011_to_wgs84(zone: int) -> Transformer:
-    return Transformer.from_crs(_crs_gk_gsk2011_6(zone), WGS84_CRS, always_xy=True)
-
-
-@lru_cache(maxsize=64)
-def _tr_wgs84_to_gk_sk95(zone: int) -> Transformer:
-    return Transformer.from_crs(WGS84_CRS, _crs_gk_sk95_6(zone), always_xy=True)
-
-
-@lru_cache(maxsize=64)
-def _tr_gk_sk95_to_wgs84(zone: int) -> Transformer:
-    return Transformer.from_crs(_crs_gk_sk95_6(zone), WGS84_CRS, always_xy=True)
-
-
-def _detect_zone_from_lon(lon: float, opts: ConvertOptions) -> int:
-    """Авто-определение 6° зоны ГК по долготе."""
-    if opts.zone_mode != 6:
-        raise HTTPException(
-            status_code=400,
-            detail="Для проекций Гаусса-Крюгера сейчас реализованы только 6° зоны. Выберите ширину зоны 6°.",
-        )
-
-    if not opts.auto_zone:
-        if opts.zone is None:
-            raise HTTPException(status_code=400, detail="Укажите номер зоны ГК от 2 до 33.")
-        return opts.zone
-    lon_norm = ((lon + 180.0) % 360.0) - 180.0
-    zone = int(lon_norm // 6.0) + 1
-
-    if zone < 1 or zone > 60:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Не удалось определить 6° зону ГК по долготе {lon}. Получена зона {zone}.",
-        )
-
-    return zone
-
-
-def _detect_zone_from_x(x: float, opts: ConvertOptions) -> int:
-    """
-    Для 6° ГК: X ≈ ZONE * 1_000_000 + 500_000.
-    Берём целую часть от деления на 1_000_000 как номер зоны.
-    """
-    if opts.zone_mode != 6:
-        raise HTTPException(status_code=400, detail="Поддерживаются только 6° зоны ГК.")
-    if not math.isfinite(x) or x <= 0:
-        raise HTTPException(status_code=400, detail="Некорректное значение X (easting) для проекции Гаусса-Крюгера.")
-
-    zone = int(x // 1_000_000)
-
-    if not opts.auto_zone:
-        if opts.zone is None:
-            raise HTTPException(status_code=400, detail="Укажите номер зоны ГК от 2 до 33.")
-        return opts.zone
-
-    if zone < 1 or zone > 60:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Не удалось определить зону по X={x} для Гаусса-Крюгера (получена зона {zone}).",
-        )
-
-    return zone
-
-
-# --- Обобщённые конверторы WGS-84 ⇄ любая 6° ГК-проекция ----------------
-
-
-def _convert_wgs84_to_gk_generic(
-    points: List[Point],
-    opts: ConvertOptions,
-    tr_factory,
-) -> tuple[List[Point], List[int]]:
-    out: List[Point] = []
-    used_zones: set[int] = set()
-
-    for p in points:
-        if p.lat is None or p.lon is None:
-            raise HTTPException(
-                status_code=400,
-                detail="Для преобразования WGS-84 → Гаусса-Крюгера нужно заполнить lat и lon.",
-            )
-
-        zone = _detect_zone_from_lon(p.lon, opts)
-        used_zones.add(zone)
-
-        tr: Transformer = tr_factory(zone)
-        x, y = tr.transform(p.lon, p.lat)  # always_xy=True → (lon, lat)
-        out.append(Point(x=x, y=y, name=p.name))
-
-    return out, sorted(used_zones)
-
-
-def _convert_gk_to_wgs84_generic(
-    points: List[Point],
-    opts: ConvertOptions,
-    tr_factory,
-) -> tuple[List[Point], List[int]]:
-    out: List[Point] = []
-    used_zones: set[int] = set()
-
-    for p in points:
-        if p.x is None or p.y is None:
-            raise HTTPException(
-                status_code=400,
-                detail="Для проекции Гаусса-Крюгера → WGS-84 нужно заполнить X и Y.",
-            )
-
-        zone = _detect_zone_from_x(p.x, opts)
-        used_zones.add(zone)
-
-        tr: Transformer = tr_factory(zone)
-        lon, lat = tr.transform(p.x, p.y)
-        out.append(Point(lat=lat, lon=lon, name=p.name))
-
-    return out, sorted(used_zones)
-
-
-def _convert_wgs84_to_gk_sk42(points: List[Point], opts: ConvertOptions):
-    return _convert_wgs84_to_gk_generic(points, opts, _tr_wgs84_to_gk_sk42)
-
-
-def _convert_gk_sk42_to_wgs84(points: List[Point], opts: ConvertOptions):
-    return _convert_gk_to_wgs84_generic(points, opts, _tr_gk_sk42_to_wgs84)
-
-
-def _convert_wgs84_to_gk_gsk2011(points: List[Point], opts: ConvertOptions):
-    return _convert_wgs84_to_gk_generic(points, opts, _tr_wgs84_to_gk_gsk2011)
-
-
-def _convert_gk_gsk2011_to_wgs84(points: List[Point], opts: ConvertOptions):
-    return _convert_gk_to_wgs84_generic(points, opts, _tr_gk_gsk2011_to_wgs84)
-
-
-def _convert_wgs84_to_gk_sk95(points: List[Point], opts: ConvertOptions):
-    return _convert_wgs84_to_gk_generic(points, opts, _tr_wgs84_to_gk_sk95)
-
-
-def _convert_gk_sk95_to_wgs84(points: List[Point], opts: ConvertOptions):
-    return _convert_gk_to_wgs84_generic(points, opts, _tr_gk_sk95_to_wgs84)
-
-
-# ----------------------------------------------------------------------
-# Геодезические СК ↔ геодезические СК (lat/lon в градусах)
-# ----------------------------------------------------------------------
-
-GEODETIC_EPSG = {
-    "EPSG:4326": 4326,     # WGS-84
-    "GSK2011_GEOG": 7683,  # ГСК-2011 (географические)
-    "SK42_GEOG": 4284,     # Пулково-1942 (СК-42, географические)
-    "SK95_GEOG": 4200,     # Пулково-1995 (СК-95, географические)
-    "PZ90_GEOG": 4740,     # ПЗ-90 (географические)
-    "PZ90_02_GEOG": 9474,  # ПЗ-90.02 (географические)
-    "PZ90_11_GEOG": 9475,  # ПЗ-90.11 (географические)
-}
-
-
-def _convert_geodetic(req: ConvertRequest) -> List[Point]:
-    if req.crs_from not in GEODETIC_EPSG:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Геодезическая СК '{req.crs_from}' не поддерживается.",
-        )
-    if req.crs_to not in GEODETIC_EPSG:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Геодезическая СК '{req.crs_to}' не поддерживается.",
-        )
-
-    src = CRS.from_epsg(GEODETIC_EPSG[req.crs_from])
-    dst = CRS.from_epsg(GEODETIC_EPSG[req.crs_to])
-    tr = Transformer.from_crs(src, dst, always_xy=True)
-
-    out: List[Point] = []
-
-    for p in req.points:
-        if p.lat is None or p.lon is None:
-            raise HTTPException(
-                status_code=400,
-                detail="Для преобразования между геодезическими СК нужно заполнить lat и lon.",
-            )
-
-        lon_in = float(p.lon)
-        lat_in = float(p.lat)
-
-        lon_out, lat_out = tr.transform(lon_in, lat_in)
-        out.append(
-            Point(
-                lat=round(lat_out, 10),
-                lon=round(lon_out, 10),
-                name=p.name,
-            )
-        )
-
-    return out
-
-
-# ----------------------------------------------------------------------
-# Модель запроса для экспорта
-# ----------------------------------------------------------------------
 
 
 class ExportRequest(BaseModel):
@@ -527,186 +273,6 @@ def convert(req: ConvertRequest):
         for p in result.points
     ]
     return result
-
-
-def _convert_numeric(req: ConvertRequest):
-    if any(code.startswith(('SK63:', 'MSK:', 'MSK-')) for code in (req.crs_from, req.crs_to)):
-        return _convert_with_regional_crs(req)
-    # 1) Спец-случаи: WGS-84 ⇄ ГК-* (6° зоны)
-
-    # WGS-84 ⇄ ГК-СК-42
-    if req.crs_from == "EPSG:4326" and req.crs_to == "GK_SK42":
-        points, zones = _convert_wgs84_to_gk_sk42(req.points, req.options)
-        meta = {
-            "engine": "pyproj EPSG:4326 → EPSG:284xx",
-            "auto_zone": req.options.auto_zone,
-            "zone_mode": req.options.zone_mode,
-            "used_zones": zones,
-        }
-        return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=points, meta=meta)
-
-    if req.crs_from == "GK_SK42" and req.crs_to == "EPSG:4326":
-        points, zones = _convert_gk_sk42_to_wgs84(req.points, req.options)
-        meta = {
-            "engine": "pyproj EPSG:284xx → EPSG:4326",
-            "auto_zone": req.options.auto_zone,
-            "zone_mode": req.options.zone_mode,
-            "used_zones": zones,
-        }
-        return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=points, meta=meta)
-
-    # WGS-84 ⇄ ГК-ГСК-2011
-    if req.crs_from == "EPSG:4326" and req.crs_to == "GK_GSK2011":
-        points, zones = _convert_wgs84_to_gk_gsk2011(req.points, req.options)
-        meta = {
-            "engine": "pyproj EPSG:4326 → EPSG:209xx",
-            "auto_zone": req.options.auto_zone,
-            "zone_mode": req.options.zone_mode,
-            "used_zones": zones,
-        }
-        return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=points, meta=meta)
-
-    if req.crs_from == "GK_GSK2011" and req.crs_to == "EPSG:4326":
-        points, zones = _convert_gk_gsk2011_to_wgs84(req.points, req.options)
-        meta = {
-            "engine": "pyproj EPSG:209xx → EPSG:4326",
-            "auto_zone": req.options.auto_zone,
-            "zone_mode": req.options.zone_mode,
-            "used_zones": zones,
-        }
-        return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=points, meta=meta)
-
-    # WGS-84 ⇄ ГК-СК-95
-    if req.crs_from == "EPSG:4326" and req.crs_to == "GK_SK95":
-        points, zones = _convert_wgs84_to_gk_sk95(req.points, req.options)
-        meta = {
-            "engine": "pyproj EPSG:4326 → EPSG:200xx",
-            "auto_zone": req.options.auto_zone,
-            "zone_mode": req.options.zone_mode,
-            "used_zones": zones,
-        }
-        return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=points, meta=meta)
-
-    if req.crs_from == "GK_SK95" and req.crs_to == "EPSG:4326":
-        points, zones = _convert_gk_sk95_to_wgs84(req.points, req.options)
-        meta = {
-            "engine": "pyproj EPSG:200xx → EPSG:4326",
-            "auto_zone": req.options.auto_zone,
-            "zone_mode": req.options.zone_mode,
-            "used_zones": zones,
-        }
-        return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=points, meta=meta)
-
-    # 2) Геодезические СК → геодезические СК
-    if req.crs_from in GEODETIC_EPSG and req.crs_to in GEODETIC_EPSG:
-        points = _convert_geodetic(req)
-        meta = {
-            "engine": "pyproj geodetic → geodetic",
-            "crs_from_epsg": GEODETIC_EPSG[req.crs_from],
-            "crs_to_epsg": GEODETIC_EPSG[req.crs_to],
-        }
-        return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=points, meta=meta)
-
-    # 3) Общий случай: только EPSG-коды, всё как раньше
-    def resolve_crs(code: str) -> CRS:
-        if code.startswith("EPSG:"):
-            return CRS.from_user_input(code)
-        raise HTTPException(
-            status_code=400,
-            detail=f"CRS '{code}' пока не сконфигурирован (в разработке).",
-        )
-
-    src = resolve_crs(req.crs_from)
-    dst = resolve_crs(req.crs_to)
-    tr = Transformer.from_crs(src, dst, always_xy=True)
-
-    out_points: List[Point] = []
-    for p in req.points:
-        if p.lat is not None and p.lon is not None:
-            x, y = tr.transform(p.lon, p.lat)
-        elif p.x is not None and p.y is not None:
-            x, y = tr.transform(p.x, p.y)
-        else:
-            raise HTTPException(
-                status_code=400,
-                detail="Точка должна содержать пару lat/lon или x/y.",
-            )
-        out_points.append(Point(lat=y, lon=x, name=p.name) if dst.is_geographic
-                          else Point(x=x, y=y, name=p.name))
-
-    meta = {
-        "auto_zone": req.options.auto_zone,
-        "zone_mode": req.options.zone_mode,
-    }
-
-    return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=out_points, meta=meta)
-
-
-@lru_cache(maxsize=256)
-def _strict_transformer(source: str, target: str):
-    return Transformer.from_crs(source, target, always_xy=True, allow_ballpark=False)
-
-
-def _convert_with_regional_crs(req: ConvertRequest):
-    factories = {'GK_SK42': _crs_gk_sk42_6, 'GK_SK95': _crs_gk_sk95_6, 'GK_GSK2011': _crs_gk_gsk2011_6}
-    ready = {**READY_CRS, **READY_MSK_CRS}
-    items = {**ITEMS_BY_CODE, **{item.code: item for item in MSK_ITEMS}}
-
-    def resolve(code, point, source):
-        if code.startswith(('SK63:', 'MSK:', 'MSK-')):
-            if code not in ready:
-                label = items[code].title if code in items else code
-                raise HTTPException(status_code=400, detail=f'{label}: система в разработке или код неизвестен.')
-            return ready[code]
-        if code in GEODETIC_EPSG:
-            return CRS.from_epsg(GEODETIC_EPSG[code])
-        if code in factories:
-            if source:
-                if point.x is None:
-                    raise HTTPException(status_code=400, detail='Для исходной проекции заполните X и Y.')
-                return factories[code](_detect_zone_from_x(point.x, req.options))
-            return factories[code](_detect_zone_from_lon(point.lon, req.options))
-        if code.startswith('EPSG:'):
-            return CRS.from_user_input(code)
-        raise HTTPException(status_code=400, detail=f"CRS '{code}' пока не сконфигурирован (в разработке).")
-
-    # Validate even an empty request, so a dev code can never succeed silently.
-    for code in (req.crs_from, req.crs_to):
-        if code.startswith(('SK63:', 'MSK:', 'MSK-')) and code not in ready:
-            raise HTTPException(status_code=400, detail=f'{code}: система в разработке или код неизвестен.')
-    out, operations = [], {}
-    try:
-        for index, point in enumerate(req.points, start=1):
-            src = resolve(req.crs_from, point, True)
-            first, second = (point.lon, point.lat) if src.is_geographic else (point.x, point.y)
-            if first is None or second is None:
-                raise HTTPException(status_code=400, detail=f'Строка {index}: заполните пару lat/lon или X/Y согласно исходной СК.')
-            if req.crs_to in factories:
-                lon, lat = _strict_transformer(src.srs, WGS84_CRS.srs).transform(first, second, errcheck=True)
-                dst = resolve(req.crs_to, Point(lat=lat, lon=lon), False)
-            else:
-                dst = resolve(req.crs_to, point, False)
-            transformer = _strict_transformer(src.srs, dst.srs)
-            x, y = transformer.transform(first, second, errcheck=True)
-            if not math.isfinite(x) or not math.isfinite(y):
-                raise HTTPException(status_code=400, detail=f'Строка {index}: преобразование не дало конечных координат.')
-            out.append(Point(lat=y, lon=x, name=point.name) if dst.is_geographic else Point(x=x, y=y, name=point.name))
-            try:
-                used = transformer.get_last_used_operation()
-            except ProjError:
-                used = transformer
-            operations[(src.srs, dst.srs)] = {'source': src.srs, 'target': dst.srs,
-                'description': used.description, 'accuracy_metres': used.accuracy if used.accuracy >= 0 else None}
-    except ProjError as error:
-        raise HTTPException(status_code=400, detail=f'Не удалось выполнить переход. Проверьте выбранные системы, область применения и доступность параметров/сеток PROJ: {error}')
-    definitions = [
-        {'code': item.code, 'description': item.description}
-        for item in [*MSK_ITEMS, *ITEMS_BY_CODE.values()] if item.code in {req.crs_from, req.crs_to}
-    ]
-    return ConvertResponse(crs_from=req.crs_from, crs_to=req.crs_to, points=out,
-        meta={'engine': 'pyproj regional CRS', 'axis_order': 'x=easting, y=northing',
-              'allow_ballpark': False, 'operations': list(operations.values()),
-              'regional_definitions': definitions})
 
 
 @app.post("/import")

@@ -124,8 +124,8 @@ class CoordinateOptionTests(unittest.IsolatedAsyncioTestCase):
                 for source, destination, points, options in (
                     ("EPSG:4326", target, [Point(lat=55, lon=37)], ConvertOptions(auto_zone=False)),
                     (target, "EPSG:4326", manual.points, ConvertOptions(auto_zone=False)),
-                    ("EPSG:4326", target, [Point(lat=55, lon=37)], ConvertOptions(zone_mode=3)),
-                    (target, "EPSG:4326", manual.points, ConvertOptions(zone_mode=3)),
+                    ("EPSG:4326", target, [Point(lat=55, lon=37)], ConvertOptions(auto_zone=False, zone=33)),
+                    (target, "EPSG:4326", manual.points, ConvertOptions(auto_zone=False, zone=3)),
                 ):
                     with self.assertRaises(HTTPException) as error:
                         self.api.convert(ConvertRequest(crs_from=source, crs_to=destination,

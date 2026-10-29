@@ -1,0 +1,1073 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-29",
+  "proj_version": "9.3.0",
+  "sources": [
+    "https://github.com/OSGeo/PROJ/blob/9.3.0/data/sql/projected_crs.sql",
+    "https://proj.org/en/stable/operations/projections/tmerc.html"
+  ],
+  "source_sql_sha256": "d9ae3d9ace69911acaa55528abbef8a5c067a132d9f18c16251a8f429efa9f0e",
+  "families": {
+    "GK_SK42": {
+      "name": "Pulkovo 1942",
+      "base_epsg": 4284,
+      "epsg_zones": {
+        "3": {
+          "7": 2523,
+          "8": 2524,
+          "9": 2525,
+          "10": 2526,
+          "11": 2527,
+          "12": 2528,
+          "13": 2529,
+          "14": 2530,
+          "15": 2531,
+          "16": 2532,
+          "17": 2533,
+          "18": 2534,
+          "19": 2535,
+          "20": 2536,
+          "21": 2537,
+          "22": 2538,
+          "23": 2539,
+          "24": 2540,
+          "25": 2541,
+          "26": 2542,
+          "27": 2543,
+          "28": 2544,
+          "29": 2545,
+          "30": 2546,
+          "31": 2547,
+          "32": 2548,
+          "33": 2549,
+          "34": 2551,
+          "35": 2552,
+          "36": 2553,
+          "37": 2554,
+          "38": 2555,
+          "39": 2556,
+          "40": 2557,
+          "41": 2558,
+          "42": 2559,
+          "43": 2560,
+          "44": 2561,
+          "45": 2562,
+          "46": 2563,
+          "47": 2564,
+          "48": 2565,
+          "49": 2566,
+          "50": 2567,
+          "51": 2568,
+          "52": 2569,
+          "53": 2570,
+          "54": 2571,
+          "55": 2572,
+          "56": 2573,
+          "57": 2574,
+          "58": 2575,
+          "59": 2576,
+          "61": 2578,
+          "62": 2579,
+          "63": 2580,
+          "64": 2581,
+          "60": 3389
+        },
+        "6": {
+          "4": 28404,
+          "5": 28405,
+          "6": 28406,
+          "7": 28407,
+          "8": 28408,
+          "9": 28409,
+          "10": 28410,
+          "11": 28411,
+          "12": 28412,
+          "13": 28413,
+          "14": 28414,
+          "15": 28415,
+          "16": 28416,
+          "17": 28417,
+          "18": 28418,
+          "19": 28419,
+          "20": 28420,
+          "21": 28421,
+          "22": 28422,
+          "23": 28423,
+          "24": 28424,
+          "25": 28425,
+          "26": 28426,
+          "27": 28427,
+          "28": 28428,
+          "29": 28429,
+          "30": 28430,
+          "31": 28431,
+          "32": 28432
+        }
+      }
+    },
+    "GK_SK95": {
+      "name": "Pulkovo 1995",
+      "base_epsg": 4200,
+      "epsg_zones": {
+        "3": {
+          "7": 2641,
+          "8": 2642,
+          "9": 2643,
+          "10": 2644,
+          "11": 2645,
+          "12": 2646,
+          "13": 2647,
+          "14": 2648,
+          "15": 2649,
+          "16": 2650,
+          "17": 2651,
+          "18": 2652,
+          "19": 2653,
+          "20": 2654,
+          "21": 2655,
+          "22": 2656,
+          "23": 2657,
+          "24": 2658,
+          "25": 2659,
+          "26": 2660,
+          "27": 2661,
+          "28": 2662,
+          "29": 2663,
+          "30": 2664,
+          "31": 2665,
+          "32": 2666,
+          "33": 2667,
+          "34": 2668,
+          "35": 2669,
+          "36": 2670,
+          "37": 2671,
+          "38": 2672,
+          "39": 2673,
+          "40": 2674,
+          "41": 2675,
+          "42": 2676,
+          "43": 2677,
+          "44": 2678,
+          "45": 2679,
+          "46": 2680,
+          "47": 2681,
+          "48": 2682,
+          "49": 2683,
+          "50": 2684,
+          "51": 2685,
+          "52": 2686,
+          "53": 2687,
+          "54": 2688,
+          "55": 2689,
+          "56": 2690,
+          "57": 2691,
+          "58": 2692,
+          "59": 2693,
+          "61": 2695,
+          "62": 2696,
+          "63": 2697,
+          "64": 2698,
+          "60": 3390
+        },
+        "6": {
+          "4": 20004,
+          "5": 20005,
+          "6": 20006,
+          "7": 20007,
+          "8": 20008,
+          "9": 20009,
+          "10": 20010,
+          "11": 20011,
+          "12": 20012,
+          "13": 20013,
+          "14": 20014,
+          "15": 20015,
+          "16": 20016,
+          "17": 20017,
+          "18": 20018,
+          "19": 20019,
+          "20": 20020,
+          "21": 20021,
+          "22": 20022,
+          "23": 20023,
+          "24": 20024,
+          "25": 20025,
+          "26": 20026,
+          "27": 20027,
+          "28": 20028,
+          "29": 20029,
+          "30": 20030,
+          "31": 20031,
+          "32": 20032
+        }
+      }
+    },
+    "GK_GSK2011": {
+      "name": "GSK-2011",
+      "base_epsg": 7683,
+      "epsg_zones": {
+        "3": {
+          "7": 21207,
+          "8": 21208,
+          "9": 21209,
+          "10": 21210,
+          "11": 21211,
+          "12": 21212,
+          "13": 21213,
+          "14": 21214,
+          "15": 21215,
+          "16": 21216,
+          "17": 21217,
+          "18": 21218,
+          "19": 21219,
+          "20": 21220,
+          "21": 21221,
+          "22": 21222,
+          "23": 21223,
+          "24": 21224,
+          "25": 21225,
+          "26": 21226,
+          "27": 21227,
+          "28": 21228,
+          "29": 21229,
+          "30": 21230,
+          "31": 21231,
+          "32": 21232,
+          "33": 21233,
+          "34": 21234,
+          "35": 21235,
+          "36": 21236,
+          "37": 21237,
+          "38": 21238,
+          "39": 21239,
+          "40": 21240,
+          "41": 21241,
+          "42": 21242,
+          "43": 21243,
+          "44": 21244,
+          "45": 21245,
+          "46": 21246,
+          "47": 21247,
+          "48": 21248,
+          "49": 21249,
+          "50": 21250,
+          "51": 21251,
+          "52": 21252,
+          "53": 21253,
+          "54": 21254,
+          "55": 21255,
+          "56": 21256,
+          "57": 21257,
+          "58": 21258,
+          "59": 21259,
+          "60": 21260,
+          "61": 21261,
+          "62": 21262,
+          "63": 21263,
+          "64": 21264
+        },
+        "6": {
+          "4": 20904,
+          "5": 20905,
+          "6": 20906,
+          "7": 20907,
+          "8": 20908,
+          "9": 20909,
+          "10": 20910,
+          "11": 20911,
+          "12": 20912,
+          "13": 20913,
+          "14": 20914,
+          "15": 20915,
+          "16": 20916,
+          "17": 20917,
+          "18": 20918,
+          "19": 20919,
+          "20": 20920,
+          "21": 20921,
+          "22": 20922,
+          "23": 20923,
+          "24": 20924,
+          "25": 20925,
+          "26": 20926,
+          "27": 20927,
+          "28": 20928,
+          "29": 20929,
+          "30": 20930,
+          "31": 20931,
+          "32": 20932
+        }
+      }
+    }
+  },
+  "gsk2011_3_degree": {
+    "base_epsg": 7683,
+    "note": "Published EPSG definitions from the pinned PROJ revision; constructed locally only when absent in the installed EPSG database. False easting is zone * 1000000 + 250000 (not 500000).",
+    "definitions": {
+      "7": {
+        "epsg": 21207,
+        "name": "GSK-2011 / GSK 3GK zone 7",
+        "conversion_epsg": 16907,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 21.0,
+          "8805": 1.0,
+          "8806": 7250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 7"
+      },
+      "8": {
+        "epsg": 21208,
+        "name": "GSK-2011 / GSK 3GK zone 8",
+        "conversion_epsg": 16908,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 24.0,
+          "8805": 1.0,
+          "8806": 8250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 8"
+      },
+      "9": {
+        "epsg": 21209,
+        "name": "GSK-2011 / GSK 3GK zone 9",
+        "conversion_epsg": 16909,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 27.0,
+          "8805": 1.0,
+          "8806": 9250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 9"
+      },
+      "10": {
+        "epsg": 21210,
+        "name": "GSK-2011 / GSK 3GK zone 10",
+        "conversion_epsg": 16910,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 30.0,
+          "8805": 1.0,
+          "8806": 10250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 10"
+      },
+      "11": {
+        "epsg": 21211,
+        "name": "GSK-2011 / GSK 3GK zone 11",
+        "conversion_epsg": 16911,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 33.0,
+          "8805": 1.0,
+          "8806": 11250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 11"
+      },
+      "12": {
+        "epsg": 21212,
+        "name": "GSK-2011 / GSK 3GK zone 12",
+        "conversion_epsg": 16912,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 36.0,
+          "8805": 1.0,
+          "8806": 12250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 12"
+      },
+      "13": {
+        "epsg": 21213,
+        "name": "GSK-2011 / GSK 3GK zone 13",
+        "conversion_epsg": 16913,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 39.0,
+          "8805": 1.0,
+          "8806": 13250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 13"
+      },
+      "14": {
+        "epsg": 21214,
+        "name": "GSK-2011 / GSK 3GK zone 14",
+        "conversion_epsg": 16914,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 42.0,
+          "8805": 1.0,
+          "8806": 14250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 14"
+      },
+      "15": {
+        "epsg": 21215,
+        "name": "GSK-2011 / GSK 3GK zone 15",
+        "conversion_epsg": 16915,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 45.0,
+          "8805": 1.0,
+          "8806": 15250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 15"
+      },
+      "16": {
+        "epsg": 21216,
+        "name": "GSK-2011 / GSK 3GK zone 16",
+        "conversion_epsg": 16916,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 48.0,
+          "8805": 1.0,
+          "8806": 16250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 16"
+      },
+      "17": {
+        "epsg": 21217,
+        "name": "GSK-2011 / GSK 3GK zone 17",
+        "conversion_epsg": 16917,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 51.0,
+          "8805": 1.0,
+          "8806": 17250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 17"
+      },
+      "18": {
+        "epsg": 21218,
+        "name": "GSK-2011 / GSK 3GK zone 18",
+        "conversion_epsg": 16918,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 54.0,
+          "8805": 1.0,
+          "8806": 18250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 18"
+      },
+      "19": {
+        "epsg": 21219,
+        "name": "GSK-2011 / GSK 3GK zone 19",
+        "conversion_epsg": 16919,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 57.0,
+          "8805": 1.0,
+          "8806": 19250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 19"
+      },
+      "20": {
+        "epsg": 21220,
+        "name": "GSK-2011 / GSK 3GK zone 20",
+        "conversion_epsg": 16920,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 60.0,
+          "8805": 1.0,
+          "8806": 20250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 20"
+      },
+      "21": {
+        "epsg": 21221,
+        "name": "GSK-2011 / GSK 3GK zone 21",
+        "conversion_epsg": 16921,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 63.0,
+          "8805": 1.0,
+          "8806": 21250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 21"
+      },
+      "22": {
+        "epsg": 21222,
+        "name": "GSK-2011 / GSK 3GK zone 22",
+        "conversion_epsg": 16922,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 66.0,
+          "8805": 1.0,
+          "8806": 22250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 22"
+      },
+      "23": {
+        "epsg": 21223,
+        "name": "GSK-2011 / GSK 3GK zone 23",
+        "conversion_epsg": 16923,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 69.0,
+          "8805": 1.0,
+          "8806": 23250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 23"
+      },
+      "24": {
+        "epsg": 21224,
+        "name": "GSK-2011 / GSK 3GK zone 24",
+        "conversion_epsg": 16924,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 72.0,
+          "8805": 1.0,
+          "8806": 24250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 24"
+      },
+      "25": {
+        "epsg": 21225,
+        "name": "GSK-2011 / GSK 3GK zone 25",
+        "conversion_epsg": 16925,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 75.0,
+          "8805": 1.0,
+          "8806": 25250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 25"
+      },
+      "26": {
+        "epsg": 21226,
+        "name": "GSK-2011 / GSK 3GK zone 26",
+        "conversion_epsg": 16926,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 78.0,
+          "8805": 1.0,
+          "8806": 26250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 26"
+      },
+      "27": {
+        "epsg": 21227,
+        "name": "GSK-2011 / GSK 3GK zone 27",
+        "conversion_epsg": 16927,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 81.0,
+          "8805": 1.0,
+          "8806": 27250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 27"
+      },
+      "28": {
+        "epsg": 21228,
+        "name": "GSK-2011 / GSK 3GK zone 28",
+        "conversion_epsg": 16928,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 84.0,
+          "8805": 1.0,
+          "8806": 28250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 28"
+      },
+      "29": {
+        "epsg": 21229,
+        "name": "GSK-2011 / GSK 3GK zone 29",
+        "conversion_epsg": 16929,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 87.0,
+          "8805": 1.0,
+          "8806": 29250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 29"
+      },
+      "30": {
+        "epsg": 21230,
+        "name": "GSK-2011 / GSK 3GK zone 30",
+        "conversion_epsg": 16930,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 90.0,
+          "8805": 1.0,
+          "8806": 30250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 30"
+      },
+      "31": {
+        "epsg": 21231,
+        "name": "GSK-2011 / GSK 3GK zone 31",
+        "conversion_epsg": 16931,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 93.0,
+          "8805": 1.0,
+          "8806": 31250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 31"
+      },
+      "32": {
+        "epsg": 21232,
+        "name": "GSK-2011 / GSK 3GK zone 32",
+        "conversion_epsg": 16932,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 96.0,
+          "8805": 1.0,
+          "8806": 32250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 32"
+      },
+      "33": {
+        "epsg": 21233,
+        "name": "GSK-2011 / GSK 3GK zone 33",
+        "conversion_epsg": 16933,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 99.0,
+          "8805": 1.0,
+          "8806": 33250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 33"
+      },
+      "34": {
+        "epsg": 21234,
+        "name": "GSK-2011 / GSK 3GK zone 34",
+        "conversion_epsg": 16934,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 102.0,
+          "8805": 1.0,
+          "8806": 34250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 34"
+      },
+      "35": {
+        "epsg": 21235,
+        "name": "GSK-2011 / GSK 3GK zone 35",
+        "conversion_epsg": 16935,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 105.0,
+          "8805": 1.0,
+          "8806": 35250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 35"
+      },
+      "36": {
+        "epsg": 21236,
+        "name": "GSK-2011 / GSK 3GK zone 36",
+        "conversion_epsg": 16936,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 108.0,
+          "8805": 1.0,
+          "8806": 36250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 36"
+      },
+      "37": {
+        "epsg": 21237,
+        "name": "GSK-2011 / GSK 3GK zone 37",
+        "conversion_epsg": 16937,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 111.0,
+          "8805": 1.0,
+          "8806": 37250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 37"
+      },
+      "38": {
+        "epsg": 21238,
+        "name": "GSK-2011 / GSK 3GK zone 38",
+        "conversion_epsg": 16938,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 114.0,
+          "8805": 1.0,
+          "8806": 38250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 38"
+      },
+      "39": {
+        "epsg": 21239,
+        "name": "GSK-2011 / GSK 3GK zone 39",
+        "conversion_epsg": 16939,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 117.0,
+          "8805": 1.0,
+          "8806": 39250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 39"
+      },
+      "40": {
+        "epsg": 21240,
+        "name": "GSK-2011 / GSK 3GK zone 40",
+        "conversion_epsg": 16940,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 120.0,
+          "8805": 1.0,
+          "8806": 40250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 40"
+      },
+      "41": {
+        "epsg": 21241,
+        "name": "GSK-2011 / GSK 3GK zone 41",
+        "conversion_epsg": 16941,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 123.0,
+          "8805": 1.0,
+          "8806": 41250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 41"
+      },
+      "42": {
+        "epsg": 21242,
+        "name": "GSK-2011 / GSK 3GK zone 42",
+        "conversion_epsg": 16942,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 126.0,
+          "8805": 1.0,
+          "8806": 42250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 42"
+      },
+      "43": {
+        "epsg": 21243,
+        "name": "GSK-2011 / GSK 3GK zone 43",
+        "conversion_epsg": 16943,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 129.0,
+          "8805": 1.0,
+          "8806": 43250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 43"
+      },
+      "44": {
+        "epsg": 21244,
+        "name": "GSK-2011 / GSK 3GK zone 44",
+        "conversion_epsg": 16944,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 132.0,
+          "8805": 1.0,
+          "8806": 44250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 44"
+      },
+      "45": {
+        "epsg": 21245,
+        "name": "GSK-2011 / GSK 3GK zone 45",
+        "conversion_epsg": 16945,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 135.0,
+          "8805": 1.0,
+          "8806": 45250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 45"
+      },
+      "46": {
+        "epsg": 21246,
+        "name": "GSK-2011 / GSK 3GK zone 46",
+        "conversion_epsg": 16946,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 138.0,
+          "8805": 1.0,
+          "8806": 46250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 46"
+      },
+      "47": {
+        "epsg": 21247,
+        "name": "GSK-2011 / GSK 3GK zone 47",
+        "conversion_epsg": 16947,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 141.0,
+          "8805": 1.0,
+          "8806": 47250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 47"
+      },
+      "48": {
+        "epsg": 21248,
+        "name": "GSK-2011 / GSK 3GK zone 48",
+        "conversion_epsg": 16948,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 144.0,
+          "8805": 1.0,
+          "8806": 48250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 48"
+      },
+      "49": {
+        "epsg": 21249,
+        "name": "GSK-2011 / GSK 3GK zone 49",
+        "conversion_epsg": 16949,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 147.0,
+          "8805": 1.0,
+          "8806": 49250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 49"
+      },
+      "50": {
+        "epsg": 21250,
+        "name": "GSK-2011 / GSK 3GK zone 50",
+        "conversion_epsg": 16950,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 150.0,
+          "8805": 1.0,
+          "8806": 50250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 50"
+      },
+      "51": {
+        "epsg": 21251,
+        "name": "GSK-2011 / GSK 3GK zone 51",
+        "conversion_epsg": 16951,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 153.0,
+          "8805": 1.0,
+          "8806": 51250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 51"
+      },
+      "52": {
+        "epsg": 21252,
+        "name": "GSK-2011 / GSK 3GK zone 52",
+        "conversion_epsg": 16952,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 156.0,
+          "8805": 1.0,
+          "8806": 52250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 52"
+      },
+      "53": {
+        "epsg": 21253,
+        "name": "GSK-2011 / GSK 3GK zone 53",
+        "conversion_epsg": 16953,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 159.0,
+          "8805": 1.0,
+          "8806": 53250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 53"
+      },
+      "54": {
+        "epsg": 21254,
+        "name": "GSK-2011 / GSK 3GK zone 54",
+        "conversion_epsg": 16954,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 162.0,
+          "8805": 1.0,
+          "8806": 54250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 54"
+      },
+      "55": {
+        "epsg": 21255,
+        "name": "GSK-2011 / GSK 3GK zone 55",
+        "conversion_epsg": 16955,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 165.0,
+          "8805": 1.0,
+          "8806": 55250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 55"
+      },
+      "56": {
+        "epsg": 21256,
+        "name": "GSK-2011 / GSK 3GK zone 56",
+        "conversion_epsg": 16956,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 168.0,
+          "8805": 1.0,
+          "8806": 56250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 56"
+      },
+      "57": {
+        "epsg": 21257,
+        "name": "GSK-2011 / GSK 3GK zone 57",
+        "conversion_epsg": 16957,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 171.0,
+          "8805": 1.0,
+          "8806": 57250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 57"
+      },
+      "58": {
+        "epsg": 21258,
+        "name": "GSK-2011 / GSK 3GK zone 58",
+        "conversion_epsg": 16958,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 174.0,
+          "8805": 1.0,
+          "8806": 58250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 58"
+      },
+      "59": {
+        "epsg": 21259,
+        "name": "GSK-2011 / GSK 3GK zone 59",
+        "conversion_epsg": 16959,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 177.0,
+          "8805": 1.0,
+          "8806": 59250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 59"
+      },
+      "60": {
+        "epsg": 21260,
+        "name": "GSK-2011 / GSK 3GK zone 60",
+        "conversion_epsg": 16960,
+        "parameters": {
+          "8801": 0.0,
+          "8802": 180.0,
+          "8805": 1.0,
+          "8806": 60250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 60"
+      },
+      "61": {
+        "epsg": 21261,
+        "name": "GSK-2011 / GSK 3GK zone 61",
+        "conversion_epsg": 16961,
+        "parameters": {
+          "8801": 0.0,
+          "8802": -177.0,
+          "8805": 1.0,
+          "8806": 61250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 61"
+      },
+      "62": {
+        "epsg": 21262,
+        "name": "GSK-2011 / GSK 3GK zone 62",
+        "conversion_epsg": 16962,
+        "parameters": {
+          "8801": 0.0,
+          "8802": -174.0,
+          "8805": 1.0,
+          "8806": 62250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 62"
+      },
+      "63": {
+        "epsg": 21263,
+        "name": "GSK-2011 / GSK 3GK zone 63",
+        "conversion_epsg": 16963,
+        "parameters": {
+          "8801": 0.0,
+          "8802": -171.0,
+          "8805": 1.0,
+          "8806": 63250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 63"
+      },
+      "64": {
+        "epsg": 21264,
+        "name": "GSK-2011 / GSK 3GK zone 64",
+        "conversion_epsg": 16964,
+        "parameters": {
+          "8801": 0.0,
+          "8802": -168.0,
+          "8805": 1.0,
+          "8806": 64250000.0,
+          "8807": 0.0
+        },
+        "conversion_name": "GSK 3-degree Gauss-Kruger zone 64"
+      }
+    }
+  },
+  "additional_sources": [
+    {
+      "url": "https://github.com/OSGeo/PROJ/blob/5fa31c29f0a806568ed7bc76c1a557604db4a804/data/sql/projected_crs.sql",
+      "sha256": "b433b1b573c95fa1f316e1853dceb594acee818e2200a351ab789c17464f2df2"
+    },
+    {
+      "url": "https://github.com/OSGeo/PROJ/blob/5fa31c29f0a806568ed7bc76c1a557604db4a804/data/sql/conversion.sql",
+      "sha256": "fd20f6baccc5a6ae9b2b72d711e1a2f67cea779c58d4342a357abddcf85e12a2"
+    }
+  ]
+}

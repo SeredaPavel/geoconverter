@@ -4,6 +4,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Point, AngleFormat, formatAngle, numericPoints, reformatPoints, excelPoints } from "@/lib/coordinates";
 
+import GkSettingsPanel from "@/components/GkSettings";
+import { defaultGkSettings, gkRequest, GkZones } from "@/lib/gk";
+
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "/api";
 const TOAST_DURATION_MS = 7000;
 
@@ -91,6 +94,7 @@ type CrsOption = {
   category: string; // 'geographic' | 'projected' | 'msk' | ...
   status: string;
   description?: string;
+  gk_zones?: GkZones;
 };
 
 export default function ConverterPanel() {
@@ -117,9 +121,9 @@ export default function ConverterPanel() {
   const canExpandRows = rowsIn.length > 5 || rowsOut.length > 5;
 
   // опции
-  const [zoneMode, setZoneMode] = useState<3 | 6>(6);
-  const [autoZone, setAutoZone] = useState(true);
-  const [manualZone, setManualZone] = useState("7");
+  const [sourceGk, setSourceGk] = useState(defaultGkSettings);
+  const [targetGk, setTargetGk] = useState(defaultGkSettings);
+  const [calculationNotes, setCalculationNotes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
   // UI
@@ -138,9 +142,6 @@ export default function ConverterPanel() {
   const [openExport, setOpenExport] = useState(false);
   const importRef = useRef<HTMLDivElement | null>(null);
   const exportRef = useRef<HTMLDivElement | null>(null);
-
-  const [openZoneMenu, setOpenZoneMenu] = useState(false);
-  const zoneRef = useRef<HTMLDivElement | null>(null);
 
   const [openCrsFromMenu, setOpenCrsFromMenu] = useState(false);
   const [openCrsToMenu, setOpenCrsToMenu] = useState(false);
@@ -188,6 +189,7 @@ export default function ConverterPanel() {
             category: (item.category as string) || "other",
             status: status || "ready",
             description: item.description || undefined,
+            gk_zones: item.gk_zones || undefined,
           };
         });
 
@@ -224,6 +226,9 @@ export default function ConverterPanel() {
       const result = numericPoints(rowsOut);
       setCrsFrom(crsTo);
       setCrsTo(crsFrom);
+      setSourceGk(targetGk);
+      setTargetGk(sourceGk);
+      setCalculationNotes([]);
       setRowsIn(reformatPoints(result, formatOut));
       setRowsOut(source);
       setFormatIn(formatOut);
@@ -251,14 +256,12 @@ export default function ConverterPanel() {
         !importRef.current?.contains(t) &&
         !exportRef.current?.contains(t) &&
         !crsFromRef.current?.contains(t) &&
-        !crsToRef.current?.contains(t) &&
-        !zoneRef.current?.contains(t)
+        !crsToRef.current?.contains(t)
       ) {
         setOpenImport(false);
         setOpenExport(false);
         setOpenCrsFromMenu(false);
         setOpenCrsToMenu(false);
-        setOpenZoneMenu(false);
       }
     };
     const onEsc = (e: KeyboardEvent) => {
@@ -267,7 +270,6 @@ export default function ConverterPanel() {
         setOpenExport(false);
         setOpenCrsFromMenu(false);
         setOpenCrsToMenu(false);
-        setOpenZoneMenu(false);
       }
     };
     document.addEventListener("pointerdown", onDocDown);
@@ -294,10 +296,11 @@ export default function ConverterPanel() {
     setLoading(true);
     setToast(null);
     try {
-      const zone = !autoZone && usesGk ? Number(manualZone) : null;
-      if (zone !== null && (!Number.isInteger(zone) || zone < 2 || zone > 33)) {
-        throw new Error("Укажите целый номер зоны от 2 до 33.");
-      }
+      setCalculationNotes([]);
+      const options = {
+        source_gk: crsFrom.startsWith("GK_") ? gkRequest(sourceGk, crsOptions.find(o => o.code === crsFrom)?.gk_zones) : undefined,
+        target_gk: crsTo.startsWith("GK_") ? gkRequest(targetGk, crsOptions.find(o => o.code === crsTo)?.gk_zones) : undefined,
+      };
       const res = await fetch(`${API_BASE}/convert`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -307,7 +310,7 @@ export default function ConverterPanel() {
           format_in: formatIn,
           format_out: formatOut,
           points: numericPoints(rowsIn),
-          options: { auto_zone: autoZone, zone_mode: zoneMode, zone },
+          options,
         }),
       });
       const data = await res.json();
@@ -319,6 +322,7 @@ export default function ConverterPanel() {
           ? data.points
           : [{ lat: undefined, lon: undefined }],
       );
+      setCalculationNotes(data.meta?.assumptions || []);
       setOk(true);
     } catch (e: any) {
       showToast(e.message);
@@ -534,71 +538,7 @@ export default function ConverterPanel() {
   return (
     <div className="grid gap-5 md:gap-6">
       {/* 1) Верхняя полоска */}
-      <section className="card card-overflow-visible relative z-20 p-4 md:p-5 grid gap-3 md:grid-cols-5 md:items-end">
-        {/* Авто-зона */}
-        <div className="space-y-1 min-w-0">
-          <label className="text-xs opacity-70">Авто-зона ГК</label>
-          <div className="flex items-center gap-2 h-10">
-            <input
-              id="autoZone"
-              type="checkbox"
-              checked={autoZone}
-              disabled={!usesGk}
-              onChange={(e) => setAutoZone(e.target.checked)}
-            />
-            <label htmlFor="autoZone" className="text-sm">
-              вкл.
-            </label>
-          </div>
-          {usesGk && !autoZone && (
-            <label className="block text-xs">
-              Номер зоны (2–33)
-              <input className="input w-full mt-1" type="number" min={2} max={33}
-                value={manualZone} onChange={e => setManualZone(e.target.value)} />
-              <span>Зона применяется ко всем точкам, включая обратный расчёт.</span>
-            </label>
-          )}
-        </div>
-
-        {/* Ширина зоны */}
-        <div className="space-y-1 min-w-0">
-          <label className="text-xs opacity-70">Ширина зоны</label>
-          <div className="relative" ref={zoneRef}>
-            <button
-              type="button"
-              className="select w-full h-10 pr-8 flex items-center justify-between text-left"
-              disabled={!usesGk}
-              onClick={() => setOpenZoneMenu((v) => !v)}
-            >
-              <span className="truncate">
-                {zoneMode === 6 ? "6°" : "3°"}
-              </span>
-              <span className="ml-2 shrink-0 pointer-events-none opacity-70">
-                <IconChevronDown />
-              </span>
-            </button>
-
-            {openZoneMenu && (
-              <div className="theme-menu absolute top-full left-0 mt-2 z-[1002] min-w-[120px] rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft py-1">
-                {[6, 3].map((v) => (
-                  <button
-                    key={v}
-                    type="button"
-                    disabled={v === 3}
-                    className="w-full text-left px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800"
-                    onClick={() => {
-                      setZoneMode(v as 3 | 6);
-                      setOpenZoneMenu(false);
-                    }}
-                  >
-                    {v}°{v === 3 ? " — пока недоступно" : ""}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-
+      <section className="card card-overflow-visible relative z-20 p-4 md:p-5 grid gap-3 md:grid-cols-3 md:items-end">
         {/* Выгрузка */}
         <div className="space-y-1 min-w-0" ref={exportRef}>
           <label className="text-xs opacity-70">Выгрузить координаты</label>
@@ -608,7 +548,6 @@ export default function ConverterPanel() {
               onClick={() => {
                 setOpenExport((v) => !v);
                 setOpenImport(false);
-                setOpenZoneMenu(false);
               }}
               type="button"
             >
@@ -659,7 +598,6 @@ export default function ConverterPanel() {
               onClick={() => {
                 setOpenImport((v) => !v);
                 setOpenExport(false);
-                setOpenZoneMenu(false);
               }}
               type="button"
             >
@@ -731,6 +669,20 @@ export default function ConverterPanel() {
           </button>
         </div>
       </section>
+
+      {usesGk && (
+        <section className="card p-4 md:p-5 grid md:grid-cols-2 gap-5 md:gap-6" aria-label="Настройки зон Гаусса–Крюгера">
+          <GkSettingsPanel side="source" value={sourceGk} onChange={setSourceGk}
+            zones={crsOptions.find(o => o.code === crsFrom)?.gk_zones} />
+          <GkSettingsPanel side="target" value={targetGk} onChange={setTargetGk}
+            zones={crsOptions.find(o => o.code === crsTo)?.gk_zones} />
+        </section>
+      )}
+      {calculationNotes.length > 0 && (
+        <aside className="card p-4 text-sm" role="status">
+          {calculationNotes.map(note => <p key={note}>{note}</p>)}
+        </aside>
+      )}
 
       {/* 2–3) Блоки */}
       <div className="grid md:grid-cols-2 gap-5 md:gap-6">
