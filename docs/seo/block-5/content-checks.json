@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-30T19:12:05.159Z",
+  "pages": [
+    "/",
+    "/features",
+    "/faq",
+    "/converter"
+  ],
+  "checkedLinks": [
+    "http://127.0.0.1:3103/",
+    "http://127.0.0.1:3103/converter",
+    "http://127.0.0.1:3103/features",
+    "http://127.0.0.1:3103/faq",
+    "http://127.0.0.1:3103/support",
+    "http://127.0.0.1:3103/features#systems",
+    "http://127.0.0.1:3103/features#accuracy",
+    "http://127.0.0.1:3103/#",
+    "http://127.0.0.1:3103/features#operations",
+    "http://127.0.0.1:3103/features#excel",
+    "http://127.0.0.1:3103/features#sources",
+    "http://127.0.0.1:3103/features#examples",
+    "http://127.0.0.1:3103/templates/template_latlon.xlsx",
+    "http://127.0.0.1:3103/templates/template_xy.xlsx",
+    "http://127.0.0.1:3103/converter#converter-guide-title"
+  ],
+  "singleH1": true,
+  "contentInInitialHtml": true,
+  "uniqueAnchors": true
+}

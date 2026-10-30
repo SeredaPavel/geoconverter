@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-30",
+  "language": "ru",
+  "target_region_assumption": "Россия для МСК, русскоязычные пользователи для остальных тем",
+  "frequency_source": null,
+  "priority_basis": "Редакционный порядок по возможностям продукта, не рейтинг частотности",
+  "generic_query_owner": "/",
+  "existing_tool_url": "/converter",
+  "pages": [
+    {
+      "url": "/wgs84-v-msk",
+      "status": "deferred",
+      "priority": 1,
+      "intent": "Пересчёт WGS84 и конкретной МСК в обоих направлениях",
+      "title": "WGS84 в МСК и обратно — перевод координат | ГеоКонвертер",
+      "h1": "Перевод координат WGS84 в МСК и обратно",
+      "queries": [
+        "wgs84 в мск",
+        "мск в wgs84",
+        "перевод координат мск онлайн",
+        "конвертер wgs 84 мск",
+        "широта долгота в мск",
+        "мск в широту и долготу"
+      ],
+      "monthly_frequency": null,
+      "cta_url": "/converter",
+      "related_urls": [
+        "/metodika-i-tochnost",
+        "/sk42-v-wgs84",
+        "/excel"
+      ]
+    },
+    {
+      "url": "/sk42-v-wgs84",
+      "status": "deferred",
+      "priority": 2,
+      "intent": "Пересчёт СК-42 или ГК-СК-42 и WGS84 в обоих направлениях",
+      "title": "СК-42 в WGS84 и обратно — конвертер | ГеоКонвертер",
+      "h1": "Перевод координат СК-42 в WGS84 и обратно",
+      "queries": [
+        "ск 42 в wgs84",
+        "wgs84 в ск 42",
+        "перевод координат ск42 онлайн",
+        "гаусса крюгера в wgs84",
+        "wgs84 в гаусса крюгера",
+        "пулково 1942 в wgs84"
+      ],
+      "monthly_frequency": null,
+      "cta_url": "/converter",
+      "related_urls": [
+        "/metodika-i-tochnost",
+        "/wgs84-v-msk",
+        "/formaty-koordinat",
+        "/excel"
+      ]
+    },
+    {
+      "url": "/utm",
+      "status": "deferred",
+      "priority": 3,
+      "intent": "Пересчёт WGS84 и UTM с явной зоной и полушарием",
+      "title": "Координаты UTM — перевод в WGS84 и обратно | ГеоКонвертер",
+      "h1": "Перевод координат UTM и WGS84",
+      "queries": [
+        "координаты utm",
+        "utm в широту и долготу",
+        "wgs84 в utm",
+        "utm в wgs84",
+        "конвертер utm онлайн",
+        "зона и полушарие utm"
+      ],
+      "monthly_frequency": null,
+      "cta_url": "/converter",
+      "related_urls": [
+        "/metodika-i-tochnost",
+        "/formaty-koordinat",
+        "/excel"
+      ]
+    },
+    {
+      "url": "/formaty-koordinat",
+      "status": "deferred",
+      "priority": 4,
+      "intent": "Перевод формата углов без смены системы координат",
+      "title": "Градусы, минуты и секунды — перевод координат | ГеоКонвертер",
+      "h1": "Перевод градусов, минут и секунд в десятичные градусы",
+      "queries": [
+        "градусы минуты секунды в десятичные",
+        "десятичные градусы в гмс",
+        "перевод формата координат",
+        "dms в decimal degrees",
+        "градусы и минуты в десятичные градусы",
+        "координаты с десятичной запятой"
+      ],
+      "monthly_frequency": null,
+      "cta_url": "/converter",
+      "related_urls": [
+        "/metodika-i-tochnost",
+        "/utm",
+        "/excel"
+      ]
+    },
+    {
+      "url": "/excel",
+      "status": "deferred",
+      "priority": 5,
+      "intent": "Подготовка XLSX, пакетный пересчёт и обе выгрузки",
+      "title": "Пересчёт координат Excel — импорт и выгрузка | ГеоКонвертер",
+      "h1": "Пакетный пересчёт координат из Excel",
+      "queries": [
+        "пересчёт координат excel",
+        "импорт координат xlsx",
+        "каталог координат excel",
+        "ведомость пересчёта координат excel",
+        "пакетный перевод координат онлайн",
+        "шаблон excel для координат"
+      ],
+      "monthly_frequency": null,
+      "cta_url": "/converter",
+      "related_urls": [
+        "/metodika-i-tochnost",
+        "/wgs84-v-msk",
+        "/sk42-v-wgs84",
+        "/formaty-koordinat"
+      ]
+    },
+    {
+      "url": "/metodika-i-tochnost",
+      "status": "deferred",
+      "priority": 0,
+      "publication_dependency": "Подготовить вместе с первой тематической страницей",
+      "intent": "Источники, контрольные примеры и ограничения результатов",
+      "title": "Методика и точность пересчёта координат | ГеоКонвертер",
+      "h1": "Методика и точность пересчёта координат",
+      "queries": [
+        "точность геоконвертера",
+        "методика пересчёта координат геоконвертер",
+        "почему расходятся координаты после пересчёта"
+      ],
+      "monthly_frequency": null,
+      "cta_url": "/converter",
+      "related_urls": [
+        "/wgs84-v-msk",
+        "/sk42-v-wgs84",
+        "/utm"
+      ]
+    }
+  ],
+  "excluded_or_deferred_intents": [
+    "Автоматическое определение региона и зоны МСК",
+    "Официальная локализация и гарантированная сантиметровая точность",
+    "Преобразование высот и динамическая модель эпохи",
+    "Геокодирование адреса в координаты",
+    "Импорт CSV, KML, GPX или MGRS",
+    "Обработка всей таблицы свыше 100 строк за один импорт",
+    "Массовые региональные страницы без подтверждённого спроса",
+    "Самостоятельные дубли для обратных направлений и вариантов написания"
+  ],
+  "implementation_strategy": "existing_pages_first",
+  "current_methodology_url": "/features#accuracy",
+  "current_content_urls": [
+    "/features",
+    "/faq",
+    "/converter"
+  ]
+}

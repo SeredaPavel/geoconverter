@@ -1,0 +1,34 @@
+{
+  "source": "https://proj.org/en/stable/operations/projections/utm.html",
+  "checked_at": "2026-10-30T19:10:20.637Z",
+  "results": [
+    {
+      "lat": 56,
+      "lon": 12,
+      "zone": 32,
+      "hemisphere": "N",
+      "expected": {
+        "x": 687071.44,
+        "y": 6210141.33
+      },
+      "actual": {
+        "x": 687071.439107327,
+        "y": 6210141.326872105
+      }
+    },
+    {
+      "lat": -44,
+      "lon": 174,
+      "zone": 59,
+      "hemisphere": "S",
+      "expected": {
+        "x": 740526.32,
+        "y": 5123750.87
+      },
+      "actual": {
+        "x": 740526.3210524899,
+        "y": 5123750.873037999
+      }
+    }
+  ]
+}

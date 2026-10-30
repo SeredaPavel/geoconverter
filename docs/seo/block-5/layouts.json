@@ -1,0 +1,194 @@
+[
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/features",
+    "scrollWidth": 305,
+    "width": 320
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/features",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/features",
+    "scrollWidth": 753,
+    "width": 768
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/features",
+    "scrollWidth": 1265,
+    "width": 1280
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/faq",
+    "scrollWidth": 305,
+    "width": 320
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/faq",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/faq",
+    "scrollWidth": 753,
+    "width": 768
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/faq",
+    "scrollWidth": 1265,
+    "width": 1280
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/converter",
+    "scrollWidth": 305,
+    "width": 320
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/converter",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/converter",
+    "scrollWidth": 753,
+    "width": 768
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "h1": 1,
+    "path": "/converter",
+    "scrollWidth": 1265,
+    "width": 1280
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/features",
+    "scrollWidth": 305,
+    "width": 320
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/features",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/features",
+    "scrollWidth": 753,
+    "width": 768
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/features",
+    "scrollWidth": 1265,
+    "width": 1280
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/faq",
+    "scrollWidth": 305,
+    "width": 320
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/faq",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/faq",
+    "scrollWidth": 753,
+    "width": 768
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/faq",
+    "scrollWidth": 1265,
+    "width": 1280
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/converter",
+    "scrollWidth": 305,
+    "width": 320
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/converter",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/converter",
+    "scrollWidth": 753,
+    "width": 768
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "h1": 1,
+    "path": "/converter",
+    "scrollWidth": 1265,
+    "width": 1280
+  }
+]

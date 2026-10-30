@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const systems = ["WGS84", "СК-42", "СК-95", "ГСК-2011", "ПЗ-90", "МСК"];
 
 const steps = [
@@ -25,6 +27,7 @@ export default function LandingContent() {
           {systems.map(system => <li key={system}>{system}</li>)}
         </ul>
         <p className="landing-note">Также доступны проекции Гаусса–Крюгера, UTM и СК-63. Доступность зависит от выбранной системы и зоны.</p>
+        <Link className="guide-link text-sm" href="/features#systems">Подробнее о системах и настройках</Link>
       </section>
 
       <section className="card landing-section" aria-labelledby="how-to-title">
@@ -47,6 +50,7 @@ export default function LandingContent() {
           <div>
             <p>Проверьте систему, зону и единицы измерения. В этом сервисе X — восток, Y — север. Для UTM также важно выбрать полушарие.</p>
             <p className="landing-note">Точность зависит от исходных данных и параметров преобразования. Приближённый вариант МГГТ отмечен отдельно; неподтверждённые системы недоступны. Excel: две колонки, файл до 1 МБ, импорт первых 100 строк данных.</p>
+            <Link className="guide-link text-sm" href="/features#accuracy">Методика и ограничения точности</Link>
           </div>
         </div>
       </section>
