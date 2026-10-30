@@ -1,0 +1,126 @@
+- banner:
+  - link "ГеоКонвертер":
+    - /url: /
+    - generic: ГеоКонвертер
+  - navigation:
+    - button "Запуск"
+    - button "Возможности"
+    - button "FAQ"
+    - button "Поддержать проект"
+- main:
+  - link "Поделиться в Telegram":
+    - /url: https://t.me/share/url?url=https%3A%2F%2Fgeoconverter.ru&text=%D0%93%D0%B5%D0%BE%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%E2%80%94%20%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BA%D0%BE%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D1%82
+  - link "Поделиться в WhatsApp":
+    - /url: https://api.whatsapp.com/send?text=%D0%93%D0%B5%D0%BE%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%E2%80%94%20https%3A%2F%2Fgeoconverter.ru
+  - link "Поделиться ссылкой":
+    - /url: "#"
+  - button "Запуск конвертера":
+    - text: Запуск конвертера
+  - dialog "ГеоКонвертер":
+    - generic: ГеоКонвертер
+    - button "Закрыть":
+    - text: Выгрузить координаты
+    - button "Выбрать формат":
+      - generic: Выбрать формат
+    - text: Загрузить координаты
+    - button "Выбрать формат":
+      - generic: Выбрать формат
+    - text: Реверс
+    - button "Реверс"
+    - region "Настройки зон Гаусса–Крюгера":
+      - group "Зона исходной ГК":
+        - generic: Зона исходной ГК
+        - paragraph: Для выбранной СК настройки зоны не требуются.
+      - group "Зона целевой ГК":
+        - generic: Зона целевой ГК
+        - text: Ширина зоны
+        - combobox "Ширина зоны":
+          - option "6°" [selected]
+          - option "3°"
+        - text: Номер зоны
+        - combobox "Номер зоны":
+          - option "4"
+          - option "5"
+          - option "6"
+          - option "7" [selected]
+          - option "8"
+          - option "9"
+          - option "10"
+          - option "11"
+          - option "12"
+          - option "13"
+          - option "14"
+          - option "15"
+          - option "16"
+          - option "17"
+          - option "18"
+          - option "19"
+          - option "20"
+          - option "21"
+          - option "22"
+          - option "23"
+          - option "24"
+          - option "25"
+          - option "26"
+          - option "27"
+          - option "28"
+          - option "29"
+          - option "30"
+          - option "31"
+          - option "32"
+        - checkbox "Определять зону автоматически"
+        - text: Определять зону автоматически
+        - paragraph: Выбранная зона применяется ко всем точкам этой стороны.
+        - paragraph: "Доступные номера: 4–32."
+    - generic: Исходные данные
+    - text: Исходная СК
+    - button "WGS-84 (географические)":
+      - generic: WGS-84 (географические)
+    - text: Формат
+    - button "гг.ггг°"
+    - button "гг°мм.мм′"
+    - button "гг°мм′сс″"
+    - table:
+      - rowgroup:
+        - row "№ Широта (lat) Долгота (lon)":
+          - columnheader "№"
+          - columnheader "Широта (lat)"
+          - columnheader "Долгота (lon)"
+          - columnheader
+      - rowgroup:
+        - row "1 55.75 37.6":
+          - cell "1"
+          - cell "55.75":
+            - textbox "00.000000°": "55.75"
+          - cell "37.6":
+            - textbox "00.000000°": "37.6"
+          - cell
+    - paragraph
+    - button "Добавить точку"
+    - button "Удалить точку"
+    - generic: Результат
+    - text: Целевая СК
+    - button "ГК-СК-42 (зоны 3° и 6°)":
+      - generic: ГК-СК-42 (зоны 3° и 6°)
+    - text: Формат
+    - button "гг.ггг°" [disabled]
+    - button "гг°мм.мм′" [disabled]
+    - button "гг°мм′сс″" [disabled]
+    - table:
+      - rowgroup:
+        - row "№ X — восток (м) Y — север (м)":
+          - columnheader "№"
+          - columnheader "X — восток (м)"
+          - columnheader "Y — север (м)"
+      - rowgroup:
+        - row "1 7412206.43620038 6181717.190719904":
+          - cell "1"
+          - cell "7412206.43620038":
+            - textbox: "7412206.43620038"
+          - cell "6181717.190719904":
+            - textbox: "6181717.190719904"
+    - paragraph
+    - button "Пересчитать"
+    - status
+  - generic: "Проекции Гаусса–Крюгера: зоны 6° (4–32) и 3° (7–64). МСК и СК-63: доступны зоны с проверенными определениями. Неподтверждённые зоны отмечены в списке «в разработке»."
+- alert

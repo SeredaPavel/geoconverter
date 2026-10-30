@@ -1,0 +1,116 @@
+[
+  {
+    "name": "home",
+    "url": "https://geoconverter.ru/",
+    "captured_at_utc": "2026-10-30T12:06:37.3552547Z",
+    "status": 200,
+    "location": "",
+    "content_type": "text/html; charset=utf-8",
+    "x_robots_tag": "",
+    "title": [
+      "ГеоКонвертер"
+    ],
+    "h1": [],
+    "seo_tags": [],
+    "body_file": "home.html"
+  },
+  {
+    "name": "http",
+    "url": "http://geoconverter.ru/",
+    "captured_at_utc": "2026-10-30T12:06:37.4183807Z",
+    "status": 308,
+    "location": "https://geoconverter.ru/",
+    "content_type": "",
+    "x_robots_tag": "",
+    "title": [],
+    "h1": [],
+    "seo_tags": [],
+    "body_file": "http.html"
+  },
+  {
+    "name": "www",
+    "url": "https://www.geoconverter.ru/",
+    "captured_at_utc": "2026-10-30T12:06:37.4519305Z",
+    "status": 301,
+    "location": "https://geoconverter.ru/",
+    "content_type": "",
+    "x_robots_tag": "",
+    "title": [],
+    "h1": [],
+    "seo_tags": [],
+    "body_file": "www.html"
+  },
+  {
+    "name": "robots",
+    "url": "https://geoconverter.ru/robots.txt",
+    "captured_at_utc": "2026-10-30T12:06:38.0264440Z",
+    "status": 404,
+    "location": "",
+    "content_type": "text/html; charset=utf-8",
+    "x_robots_tag": "",
+    "title": [
+      "404: This page could not be found.",
+      "ГеоКонвертер"
+    ],
+    "h1": [
+      "404"
+    ],
+    "seo_tags": [
+      "<meta name=\"robots\" content=\"noindex\"/>"
+    ],
+    "body_file": "robots.html"
+  },
+  {
+    "name": "sitemap",
+    "url": "https://geoconverter.ru/sitemap.xml",
+    "captured_at_utc": "2026-10-30T12:06:38.6090484Z",
+    "status": 404,
+    "location": "",
+    "content_type": "text/html; charset=utf-8",
+    "x_robots_tag": "",
+    "title": [
+      "404: This page could not be found.",
+      "ГеоКонвертер"
+    ],
+    "h1": [
+      "404"
+    ],
+    "seo_tags": [
+      "<meta name=\"robots\" content=\"noindex\"/>"
+    ],
+    "body_file": "sitemap.html"
+  },
+  {
+    "name": "missing",
+    "url": "https://geoconverter.ru/seo-audit-nonexistent-20261030",
+    "captured_at_utc": "2026-10-30T12:06:39.3621759Z",
+    "status": 404,
+    "location": "",
+    "content_type": "text/html; charset=utf-8",
+    "x_robots_tag": "",
+    "title": [
+      "404: This page could not be found.",
+      "ГеоКонвертер"
+    ],
+    "h1": [
+      "404"
+    ],
+    "seo_tags": [
+      "<meta name=\"robots\" content=\"noindex\"/>"
+    ],
+    "body_file": "missing.html"
+  },
+  {
+    "name": "crs",
+    "url": "https://geoconverter.ru/api/crs",
+    "captured_at_utc": "2026-10-30T12:06:40.8536556Z",
+    "status": 200,
+    "location": "",
+    "content_type": "application/json",
+    "x_robots_tag": "",
+    "title": [],
+    "h1": [],
+    "seo_tags": [],
+    "body_file": "crs.json"
+  }
+]

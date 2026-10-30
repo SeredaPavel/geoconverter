@@ -186,6 +186,7 @@ export default function FAQPanel() {
               <button
                 type="button"
                 aria-expanded={isOpen}
+                aria-controls={`faq-answer-${idx}`}
                 className="w-full flex items-center justify-between gap-3 px-3 md:px-4 py-2.5 md:py-3 text-left"
                 onClick={() => toggleIndex(idx)}
               >
@@ -197,11 +198,12 @@ export default function FAQPanel() {
                 </span>
               </button>
 
-              {/* Анимированное раскрытие блока ответа */}
+              {/* Answers grow naturally so long text remains readable on mobile. */}
               <div
+                id={`faq-answer-${idx}`}
                 className={
-                  "px-3 md:px-4 overflow-hidden border-t border-slate-200/70 dark:border-slate-700/70 transition-[max-height] duration-200 ease-out " +
-                  (isOpen ? "max-h-96" : "max-h-0")
+                  "px-3 md:px-4 border-t border-slate-200/70 dark:border-slate-700/70 " +
+                  (isOpen ? "block" : "hidden")
                 }
               >
                 <div className="pt-1 md:pt-2 pb-3 md:pb-4 text-sm md:text-[15px] leading-relaxed opacity-80">

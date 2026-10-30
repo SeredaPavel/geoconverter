@@ -1,0 +1,86 @@
+- banner:
+  - link "ГеоКонвертер":
+    - /url: /
+    - generic: ГеоКонвертер
+  - navigation:
+    - button "Запуск"
+    - button "Возможности"
+    - button "FAQ"
+    - button "Поддержать проект"
+- main:
+  - link "Поделиться в Telegram":
+    - /url: https://t.me/share/url?url=https%3A%2F%2Fgeoconverter.ru&text=%D0%93%D0%B5%D0%BE%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%E2%80%94%20%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BA%D0%BE%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D1%82
+  - link "Поделиться в WhatsApp":
+    - /url: https://api.whatsapp.com/send?text=%D0%93%D0%B5%D0%BE%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%E2%80%94%20https%3A%2F%2Fgeoconverter.ru
+  - link "Поделиться ссылкой":
+    - /url: "#"
+  - button "Запуск конвертера":
+    - text: Запуск конвертера
+  - dialog "ГеоКонвертер":
+    - generic: ГеоКонвертер
+    - button "Закрыть":
+    - text: Выгрузить координаты
+    - button "Выбрать формат":
+      - generic: Выбрать формат
+    - text: Загрузить координаты
+    - button "Выбрать формат":
+      - generic: Выбрать формат
+    - text: Реверс
+    - button "Реверс"
+    - generic: Исходные данные
+    - text: Исходная СК
+    - button "WGS-84 (географические)":
+      - generic: WGS-84 (географические)
+    - text: Формат
+    - button "гг.ггг°"
+    - button "гг°мм.мм′"
+    - button "гг°мм′сс″"
+    - table:
+      - rowgroup:
+        - row "№ Широта (lat) Долгота (lon)":
+          - columnheader "№"
+          - columnheader "Широта (lat)"
+          - columnheader "Долгота (lon)"
+          - columnheader
+      - rowgroup:
+        - row "1":
+          - cell "1"
+          - cell:
+            - textbox "00.000000°"
+          - cell:
+            - textbox "00.000000°"
+          - cell
+    - paragraph
+    - button "Добавить точку"
+    - button "Удалить точку" [disabled]
+    - generic: Результат
+    - text: Целевая СК
+    - button "WGS-84 (географические)":
+      - generic: WGS-84 (географические)
+    - generic: Поиск
+    - textbox "Название или код СК" [active]: UTM
+    - generic: Проекция UTM
+    - button "UTM (WGS-84)":
+      - generic: UTM (WGS-84)
+    - text: Формат
+    - button "гг.ггг°"
+    - button "гг°мм.мм′"
+    - button "гг°мм′сс″"
+    - table:
+      - rowgroup:
+        - row "№ Широта Долгота":
+          - columnheader "№"
+          - columnheader "Широта"
+          - columnheader "Долгота"
+      - rowgroup:
+        - row "1":
+          - cell "1"
+          - cell:
+            - textbox
+          - cell:
+            - textbox
+    - paragraph
+    - button "Пересчитать"
+    - status
+  - generic: "Проекции Гаусса–Крюгера: зоны 6° (4–32) и 3° (7–64). МСК и СК-63: доступны зоны с проверенными определениями. Неподтверждённые зоны отмечены в списке «в разработке»."
+- alert

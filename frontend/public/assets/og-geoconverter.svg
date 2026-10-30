@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1">
+      <stop stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#082f49"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g fill="none" stroke="#38bdf8" opacity="0.12" stroke-width="2">
+    <path d="M0 126h1200M0 252h1200M0 378h1200M0 504h1200M200 0v630M400 0v630M600 0v630M800 0v630M1000 0v630"/>
+  </g>
+  <g transform="translate(1010 160)" fill="none" stroke="#7dd3fc" stroke-width="4">
+    <circle r="78" fill="#0369a1"/>
+    <ellipse rx="36" ry="78"/>
+    <path d="M-78 0H78M-65-42H65M-65 42H65"/>
+  </g>
+  <g font-family="Arial, DejaVu Sans, sans-serif">
+    <text x="76" y="104" fill="#7dd3fc" font-size="30" font-weight="700">ГеоКонвертер</text>
+    <text x="72" y="252" fill="#f8fafc" font-size="68" font-weight="700">Конвертер координат</text>
+    <text x="72" y="334" fill="#f8fafc" font-size="68" font-weight="700">онлайн</text>
+    <text x="76" y="424" fill="#bae6fd" font-size="32">WGS84 · МСК · СК-42 · UTM</text>
+    <text x="76" y="492" fill="#cbd5e1" font-size="28">Импорт и экспорт Excel</text>
+    <text x="76" y="570" fill="#7dd3fc" font-size="24">geoconverter.ru</text>
+  </g>
+</svg>

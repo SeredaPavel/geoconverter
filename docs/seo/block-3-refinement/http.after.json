@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-10-30T17:29:35.326Z",
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 25576
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "contentType": "text/plain",
+      "bytes": 103
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "contentType": "application/xml",
+      "bytes": 382
+    },
+    {
+      "route": "/converter",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 20152
+    },
+    {
+      "route": "/features",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 17197
+    },
+    {
+      "route": "/faq",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 28166
+    },
+    {
+      "route": "/support",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 15391
+    },
+    {
+      "route": "/seo-block-2-missing-page",
+      "status": 404,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 8703
+    },
+    {
+      "route": "/assets/og-geoconverter.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": 79077
+    },
+    {
+      "route": "/favicon.ico",
+      "status": 200,
+      "contentType": "image/x-icon",
+      "bytes": 1162
+    },
+    {
+      "route": "/icon.svg",
+      "status": 200,
+      "contentType": "image/svg+xml",
+      "bytes": 380
+    },
+    {
+      "route": "/_next/static/css/0ad82eff449c3749.css",
+      "status": 200,
+      "contentType": "text/css; charset=UTF-8",
+      "bytes": 39200
+    },
+    {
+      "route": "/_next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=UTF-8",
+      "bytes": 173019
+    },
+    {
+      "route": "/api/crs",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 188320
+    }
+  ],
+  "robots": "User-Agent: *\nAllow: /\nDisallow: /api\nDisallow: /healthz\n\nSitemap: https://geoconverter.ru/sitemap.xml\n",
+  "sitemap": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n<url>\n<loc>https://geoconverter.ru/</loc>\n</url>\n<url>\n<loc>https://geoconverter.ru/converter</loc>\n</url>\n<url>\n<loc>https://geoconverter.ru/features</loc>\n</url>\n<url>\n<loc>https://geoconverter.ru/faq</loc>\n</url>\n<url>\n<loc>https://geoconverter.ru/support</loc>\n</url>\n</urlset>\n"
+}

@@ -1,0 +1,378 @@
+/* /geoconverter/frontend/src/styles/globals.css */
+/* ... базовые стили из вашей версии остаются ... */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+  --card-background: rgba(255, 255, 255, 0.5);
+  --modal-background: rgba(248, 250, 252, 0.4);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card-background: rgba(15, 23, 42, 0.58);
+    --modal-background: rgba(15, 23, 42, 0.42);
+  }
+}
+body { @apply bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100; }
+
+/* Карточки/кнопки */
+.card {
+  @apply rounded-2xl border border-slate-200/70 dark:border-slate-700/60 backdrop-blur shadow-soft;
+  background-color: var(--card-background);
+}
+.btn  { @apply inline-flex items-center gap-2 px-4 rounded-xl border border-slate-300/80 dark:border-slate-600 hover:border-brand-500/80 transition-colors; }
+.btn-primary { @apply bg-brand-600 text-white border-brand-600 hover:bg-brand-700; }
+.btn-ghost { @apply border-transparent hover:border-slate-300/80; }
+.input{ @apply border border-slate-300 dark:border-slate-600 rounded-lg px-3 h-10 bg-white/70 dark:bg-slate-900/60 outline-none focus:border-brand-500; }
+.select{ @apply input pr-8; }
+
+/* Footer layout follows the actual card width, including split-screen windows. */
+.coordinate-card { container-type: inline-size; }
+.coordinate-row-summary { min-height: 2rem; }
+.coordinate-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.coordinate-expand { grid-column: 1 / -1; }
+.coordinate-actions--result[data-expandable="true"] {
+  grid-template-rows: repeat(2, 2.5rem);
+}
+.coordinate-actions--result[data-expandable="true"] .coordinate-calculate {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.coordinate-actions--result[data-expandable="true"] .coordinate-status {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+@container (min-width: 460px) {
+  .coordinate-actions { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .coordinate-expand { grid-column: auto; }
+  .coordinate-actions--result[data-expandable="true"] { grid-template-rows: 2.5rem; }
+  .coordinate-actions--result[data-expandable="true"] .coordinate-calculate {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .coordinate-actions--result .coordinate-status,
+  .coordinate-actions--result[data-expandable="true"] .coordinate-status {
+    grid-column: 2 / -1;
+    grid-row: 1;
+  }
+}
+.shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.06) }
+
+/* Размеры кнопок */
+.btn-md { @apply h-11 text-base; }
+.btn-lg { @apply h-12 md:h-14 text-lg md:text-xl px-7 md:px-9; }
+
+/* Сегмент-переключатель */
+.segment { @apply flex w-full flex-wrap rounded-xl p-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700; }
+.segment button { @apply flex-1 px-2 h-9 rounded-lg text-xs text-slate-600 dark:text-slate-300; }
+.segment .active { @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-soft; }
+
+/* Дропдаун и дропзона */
+.dropdown { @apply relative; }
+.dropdown-menu { @apply absolute z-40 mt-2 min-w-56 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-soft p-2; }
+.dropzone { @apply mt-3 rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-600 p-6 text-sm text-slate-500 dark:text-slate-400 text-center; }
+.dropzone.drag { @apply border-brand-500 bg-brand-50/40 dark:bg-slate-800; }
+
+/* Плавающие соц-кнопки */
+.social-fab { @apply fixed left-4 bottom-4 flex flex-col gap-2 z-50; }
+.social-fab a { @apply w-11 h-11 rounded-full flex items-center justify-center border bg-white/80 dark:bg-slate-900/70 border-slate-200 dark:border-slate-700 shadow-soft hover:border-brand-500; }
+
+/* === SPLASH === */
+
+:root {
+  --splash-curtain-bg: #0b1220;
+  --splash-border-color: #5bd6ff;
+  --splash-text-color: #0e5a85;
+  --splash-box-pad-y: 62px;
+  --splash-box-pad-x: 76px;
+  --splash-box-radius: 20px;
+  --splash-box-font: 28px;
+  --splash-border-thickness: 2px;
+  --splash-border-glow: 28px;
+  --splash-border-duration: 1.7s;
+  --splash-curtain-duration: 0.9s;
+}
+
+.splash-overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; pointer-events: none; }
+
+@keyframes borderRun {
+  0%{background-size:0% var(--splash-border-thickness),var(--splash-border-thickness) 0%,0% var(--splash-border-thickness),var(--splash-border-thickness) 0%}
+  25%{background-size:100% var(--splash-border-thickness),var(--splash-border-thickness) 0%,0% var(--splash-border-thickness),var(--splash-border-thickness) 0%}
+  50%{background-size:100% var(--splash-border-thickness),var(--splash-border-thickness) 100%,0% var(--splash-border-thickness),var(--splash-border-thickness) 0%}
+  75%{background-size:100% var(--splash-border-thickness),var(--splash-border-thickness) 100%,100% var(--splash-border-thickness),var(--splash-border-thickness) 0%}
+  100%{background-size:100% var(--splash-border-thickness),var(--splash-border-thickness) 100%,100% var(--splash-border-thickness),var(--splash-border-thickness) 100%}
+}
+@keyframes splashFadeOut { 0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-12px)} }
+
+.splash-box{
+  padding:var(--splash-box-pad-y) var(--splash-box-pad-x);
+  border-radius:var(--splash-box-radius);
+  font-size:var(--splash-box-font); font-weight:600; letter-spacing:.02em;
+  background:
+    linear-gradient(var(--splash-border-color), var(--splash-border-color)) 0 0 / 0% var(--splash-border-thickness) no-repeat,
+    linear-gradient(var(--splash-border-color), var(--splash-border-color)) 100% 0 / var(--splash-border-thickness) 0% no-repeat,
+    linear-gradient(var(--splash-border-color), var(--splash-border-color)) 100% 100% / 0% var(--splash-border-thickness) no-repeat,
+    linear-gradient(var(--splash-border-color), var(--splash-border-color)) 0 100% / var(--splash-border-thickness) 0% no-repeat;
+  color:var(--splash-text-color);
+  box-shadow:0 0 var(--splash-border-glow) color-mix(in oklab, var(--splash-border-color) 70%, transparent), inset 0 0 0 1px rgba(255,255,255,.12);
+  position:relative; z-index:2;
+  animation:borderRun var(--splash-border-duration) ease-in-out forwards;
+}
+@keyframes curtainUp { 0%{transform:translateY(0%)} 100%{transform:translateY(-100%)} }
+.splash-curtain{
+  position:fixed; inset:0; z-index:1; background:var(--splash-curtain-bg);
+  animation:curtainUp var(--splash-curtain-duration) ease-in-out forwards;
+  animation-delay:var(--splash-border-duration); will-change:transform;
+}
+.splash-box.splash-fade-out{
+  animation:
+    borderRun var(--splash-border-duration) ease-in-out forwards,
+    splashFadeOut var(--splash-curtain-duration) ease-in-out forwards var(--splash-border-duration);
+}
+
+/* ===== Мобильные фиксы ===== */
+html, body { height: 100%; }
+
+@media (max-width: 767px) {
+  body { background-attachment: scroll !important; }
+  :root{
+    --splash-box-pad-y: 14px;
+    --splash-box-pad-x: 22px;
+    --splash-box-radius: 14px;
+    --splash-box-font: 20px;
+    --splash-border-thickness: 2px;
+    --splash-border-glow: 18px;
+    --splash-border-duration: 1.4s;
+    --splash-curtain-duration: 0.55s;
+  }
+  .social-fab { left: 12px; bottom: 12px; }
+  .table-wrap { overflow-x: auto; }
+  .table-xs { font-size: 12px; }
+}
+
+@layer components {
+  .gc-cta {
+    @apply inline-flex items-center gap-2 rounded-2xl text-white border;
+    border-color: rgba(166, 220, 255, 0.65);
+    background: linear-gradient(160deg, rgba(30, 165, 240, 0.76), rgba(14, 90, 133, 0.6));
+    -webkit-backdrop-filter: blur(10px) saturate(1.2);
+    backdrop-filter: blur(10px) saturate(1.2);
+    box-shadow:
+      0 5px 0 rgba(2, 44, 74, 0.5),
+      0 16px 32px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      inset 0 -2px 0 rgba(2, 44, 74, 0.35);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .gc-cta:hover {
+      transform: translateY(-2px);
+      border-color: rgba(213, 239, 255, 0.9);
+      box-shadow:
+        0 7px 0 rgba(2, 44, 74, 0.5),
+        0 20px 36px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        inset 0 -2px 0 rgba(2, 44, 74, 0.35);
+    }
+  }
+  .gc-cta:active {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 rgba(2, 44, 74, 0.5),
+      0 6px 16px rgba(0, 0, 0, 0.3),
+      inset 0 1px 3px rgba(2, 44, 74, 0.3);
+  }
+  .gc-cta:focus-visible {
+    outline: 2px solid #a6dcff;
+    outline-offset: 5px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gc-cta { transition: none; }
+    .gc-cta:hover, .gc-cta:active { transform: none; }
+  }
+  .gc-cta-lg { @apply h-[60px] md:h-[64px] text-xl md:text-2xl px-8 md:px-10; }
+  .gc-icon { width: 20px; height: 20px; }
+}
+
+/* ----- iOS safe-area + модалка ----- */
+.modal-wrap{
+  padding-left:  calc(env(safe-area-inset-left)  + 1rem);
+  padding-right: calc(env(safe-area-inset-right) + 1rem);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 1rem);
+  /* ВАЖНО: не скроллим обёртку, скролл только у .modal-card */
+  overflow: hidden;
+}
+/* Внутренний flex-ребёнок не должен «съедать» скролл */
+.modal-wrap > * { min-height: 0; }
+
+/* Скролл у карточки */
+.modal-card {
+  max-height: calc(100svh - 2rem);
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+@supports not (height: 1svh){
+  .modal-card { max-height: calc(100vh - 2rem); }
+}
+
+/* --- iOS: запрет системного зума при фокусе, т.к. font-size >= 16px --- */
+@supports (-webkit-touch-callout: none) {
+  .input,
+  .select {
+    font-size: 16px; /* iOS перестаёт увеличивать страницу */
+  }
+}
+
+/* ----- Фиксы границ карточки для iOS ----- */
+.card{
+  position: relative;
+  overflow: hidden;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+@supports (-webkit-touch-callout: none){
+  :root {
+    --card-background: rgba(241, 245, 249, 0.96);
+    --modal-background: rgba(226, 232, 240, 0.98);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --card-background: rgba(15, 23, 42, 0.96);
+      --modal-background: rgba(2, 6, 23, 0.98);
+    }
+  }
+  .card{
+    -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+  }
+  .modal-backdrop { background-color: rgba(2, 6, 23, 0.7); }
+}
+/* --- Модалка: вернуть скролл только для карточки модалки --- */
+.card.modal-card{
+  background-color: var(--modal-background);
+  overflow: auto !important;               /* перебиваем .card { overflow:hidden } */
+  -webkit-overflow-scrolling: touch;       /* инерционный скролл на iOS */
+  overscroll-behavior: contain;            /* не «тянуть» фон под модалкой */
+}
+
+/* svh → vh фолбэк (оставлено для совместимости) */
+.max-h-90svh{ max-height: 90svh; }
+@supports not (height: 1svh){
+  .max-h-90svh{ max-height: 90vh; }
+}
+
+/* --- Карточки, которым нужно пропускать выпадающие списки наружу --- */
+.card-overflow-visible{
+  overflow: visible !important;
+
+
+/* отключаем iOS-маску, которая обрезает всё по краю карточки */
+  -webkit-mask-image: none;
+          mask-image: none;
+}
+
+/* Light surfaces need visible boundaries as well as a distinct active state. */
+@media (prefers-color-scheme: light) {
+  .card:not(.modal-card), .faq-item {
+    border-color: rgba(100, 116, 139, 0.7);
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+  .card:not(.modal-card):focus-within, .faq-item:focus-within {
+    border-color: #0f6ea4;
+    box-shadow: 0 0 0 2px rgba(18, 137, 204, 0.3), 0 12px 28px rgba(15, 23, 42, 0.16);
+  }
+  .btn:not(.btn-primary):not(.btn-ghost) {
+    border-color: #64748b;
+    background-color: rgba(248, 250, 252, 0.94);
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  .input, .select {
+    border-color: #64748b;
+    background-color: rgba(255, 255, 255, 0.94);
+  }
+  .input::placeholder { color: #64748b; opacity: 1; }
+  .input:focus, .select:focus {
+    border-color: #0f6ea4;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(18, 137, 204, 0.22);
+  }
+  .card .btn:focus-visible, .segment button:focus-visible,
+  .theme-menu button:focus-visible, .faq-item button:focus-visible {
+    outline: 2px solid #0f6ea4;
+    outline-offset: 2px;
+  }
+  .btn-primary {
+    background-color: #0f6ea4;
+    border-color: #0e5a85;
+    box-shadow: 0 2px 4px rgba(14, 90, 133, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  .btn:not(.btn-primary):not(.btn-ghost):active:not(:disabled) {
+    background-color: #d5efff;
+    border-color: #0f6ea4;
+  }
+  .select:disabled, .segment button:disabled { opacity: 0.6; }
+  .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  .segment {
+    border-color: #94a3b8;
+    background-color: rgba(226, 232, 240, 0.94);
+  }
+  .segment button {
+    color: #334155;
+    border: 1px solid transparent;
+  }
+  .segment .active {
+    background-color: #d5efff;
+    border-color: #0f6ea4;
+    color: #0c4a6e;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(14, 90, 133, 0.2);
+  }
+  .theme-menu, .dropdown-menu {
+    border-color: #94a3b8;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.22);
+  }
+  .theme-menu button:focus-visible, .theme-menu button:active:not(:disabled) {
+    background-color: #d5efff;
+    border-color: #0f6ea4;
+    color: #0c4a6e;
+    box-shadow: inset 3px 0 0 #0f6ea4;
+  }
+  .theme-menu button[aria-pressed="true"], .faq-item button[aria-expanded="true"] {
+    background-color: #d5efff;
+    color: #0c4a6e;
+    box-shadow: inset 3px 0 0 #0f6ea4;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .card:not(.modal-card):hover:not(:focus-within), .faq-item:hover:not(:focus-within) { border-color: #64748b; }
+    .btn:not(.btn-primary):not(.btn-ghost):hover:not(:disabled),
+    .theme-menu button:hover:not(:disabled), .faq-item button:hover {
+      background-color: #d5efff;
+      border-color: #0f6ea4;
+      color: #0c4a6e;
+    }
+    .input:hover:not(:focus), .select:hover:not(:disabled):not(:focus) { border-color: #0f6ea4; }
+    .btn-primary:hover:not(:disabled) { background-color: #0e5a85; }
+    .segment button:hover:not(.active):not(:disabled) { background-color: #eaf7ff; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card:not(.modal-card), .faq-item { transition: none; }
+  }
+}
+
+/* Keep FAQ hover/selected fills inside the same contour in every theme. */
+.faq-item { overflow: hidden; }
+.faq-item > button { border-radius: inherit; }
+.faq-item > button[aria-expanded="true"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.faq-item > button:focus-visible { outline-offset: -3px; }

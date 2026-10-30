@@ -1,0 +1,30 @@
+{
+  "desktopViewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "mobileViewport": {
+    "width": 390,
+    "height": 844
+  },
+  "mobileIdentityResult": {
+    "lat": 56,
+    "lon": 12
+  },
+  "desktopGkResult": {
+    "lat": 55.75,
+    "lon": 37.6,
+    "zoneWidth": 6,
+    "zone": 7,
+    "x": 7412206.43620038,
+    "y": 6181717.190719904
+  },
+  "consoleErrors": [],
+  "consoleWarnings": [],
+  "mobileLayout": {
+    "bodyOverflow": "",
+    "documentWidth": 390,
+    "htmlOverflow": "",
+    "viewportWidth": 390
+  }
+}

@@ -1,0 +1,161 @@
+- banner:
+  - link "ГеоКонвертер":
+    - /url: /
+    - generic: ГеоКонвертер
+  - navigation:
+    - button "Запуск"
+    - button "Возможности"
+    - button "FAQ"
+    - button "Поддержать проект"
+- main:
+  - link "Поделиться в Telegram":
+    - /url: https://t.me/share/url?url=https%3A%2F%2Fgeoconverter.ru&text=%D0%93%D0%B5%D0%BE%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%E2%80%94%20%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BA%D0%BE%D0%BE%D1%80%D0%B4%D0%B8%D0%BD%D0%B0%D1%82
+  - link "Поделиться в WhatsApp":
+    - /url: https://api.whatsapp.com/send?text=%D0%93%D0%B5%D0%BE%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%82%D0%B5%D1%80%20%E2%80%94%20https%3A%2F%2Fgeoconverter.ru
+  - link "Поделиться ссылкой":
+    - /url: "#"
+  - button "Запуск конвертера":
+    - text: Запуск конвертера
+  - dialog "ГеоКонвертер":
+    - generic: ГеоКонвертер
+    - button "Закрыть":
+    - text: Выгрузить координаты
+    - button "Выбрать формат":
+      - generic: Выбрать формат
+    - text: Загрузить координаты
+    - button "Выбрать формат":
+      - generic: Выбрать формат
+    - text: Реверс
+    - button "Реверс"
+    - region "Настройки зон проекций":
+      - group "Исходная СК":
+        - generic: Исходная СК
+        - paragraph: Для выбранной СК настройки зоны не требуются.
+      - group "Зона целевой UTM":
+        - generic: Зона целевой UTM
+        - text: Номер зоны
+        - combobox "Номер зоны":
+          - option "Выберите зону" [disabled]
+          - option "1"
+          - option "2"
+          - option "3"
+          - option "4"
+          - option "5"
+          - option "6"
+          - option "7"
+          - option "8"
+          - option "9"
+          - option "10"
+          - option "11"
+          - option "12"
+          - option "13"
+          - option "14"
+          - option "15"
+          - option "16"
+          - option "17"
+          - option "18"
+          - option "19"
+          - option "20"
+          - option "21"
+          - option "22"
+          - option "23"
+          - option "24"
+          - option "25"
+          - option "26"
+          - option "27"
+          - option "28"
+          - option "29"
+          - option "30"
+          - option "31"
+          - option "32" [selected]
+          - option "33"
+          - option "34"
+          - option "35"
+          - option "36"
+          - option "37"
+          - option "38"
+          - option "39"
+          - option "40"
+          - option "41"
+          - option "42"
+          - option "43"
+          - option "44"
+          - option "45"
+          - option "46"
+          - option "47"
+          - option "48"
+          - option "49"
+          - option "50"
+          - option "51"
+          - option "52"
+          - option "53"
+          - option "54"
+          - option "55"
+          - option "56"
+          - option "57"
+          - option "58"
+          - option "59"
+          - option "60"
+        - text: Полушарие
+        - combobox "Полушарие":
+          - option "Северное" [selected]
+          - option "Южное"
+        - paragraph: Номер зоны и полушарие берите из исходных данных. X — восток, Y — север, в метрах; X не содержит номер зоны.
+    - generic: Исходные данные
+    - paragraph: "Координаты: широта и долгота. Формат углов задаётся ниже."
+    - button "О системе координат":
+      - text: О системе координат
+    - text: Исходная СК
+    - button "WGS-84 (географические)":
+      - generic: WGS-84 (географические)
+    - text: Формат
+    - button "гг.ггг°"
+    - button "гг°мм.мм′"
+    - button "гг°мм′сс″"
+    - table:
+      - rowgroup:
+        - row "№ Широта (lat) Долгота (lon)":
+          - columnheader "№"
+          - columnheader "Широта (lat)"
+          - columnheader "Долгота (lon)"
+          - columnheader
+      - rowgroup:
+        - row "1 56 12":
+          - cell "1"
+          - cell "56":
+            - textbox "00.000000°": "56"
+          - cell "12":
+            - textbox "00.000000°": "12"
+          - cell
+    - paragraph
+    - button "Добавить точку"
+    - button "Удалить точку"
+    - generic: Результат
+    - paragraph: X — восток, Y — север. Выберите номер зоны UTM и полушарие.
+    - button "О системе координат":
+      - text: О системе координат
+    - text: Целевая СК
+    - button "UTM (WGS-84)":
+      - generic: UTM (WGS-84)
+    - text: Формат
+    - button "гг.ггг°" [disabled]
+    - button "гг°мм.мм′" [disabled]
+    - button "гг°мм′сс″" [disabled]
+    - table:
+      - rowgroup:
+        - row "№ X — восток (м) Y — север (м)":
+          - columnheader "№"
+          - columnheader "X — восток (м)"
+          - columnheader "Y — север (м)"
+      - rowgroup:
+        - row "1 687071.439107327 6210141.326872105":
+          - cell "1"
+          - cell "687071.439107327":
+            - textbox: "687071.439107327"
+          - cell "6210141.326872105":
+            - textbox: "6210141.326872105"
+    - paragraph
+    - button "Пересчитать"
+    - status
+  - generic: "Проекции Гаусса–Крюгера: зоны 6° (4–32) и 3° (7–64). МСК и СК-63: доступны зоны с проверенными определениями. Неподтверждённые зоны отмечены в списке «в разработке»."
+- alert

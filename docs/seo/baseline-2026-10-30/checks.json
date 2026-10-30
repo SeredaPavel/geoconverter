@@ -1,0 +1,38 @@
+{
+  "checked_date": "2026-10-30",
+  "branch": "devcodex",
+  "commit": "f4c5e169a4159e4bedf0162036449856eb9490f9",
+  "frontend_tests": {
+    "exit_code": 0,
+    "passed": 13,
+    "failed": 0,
+    "skipped": 0
+  },
+  "backend_tests": {
+    "elapsed_seconds": 219.794,
+    "exit_code": 0,
+    "passed": 50,
+    "failed": 0
+  },
+  "frontend_build": {
+    "shared_js_kb": 103,
+    "first_load_js_kb": 119,
+    "exit_code": 0,
+    "next_version": "15.5.27",
+    "route_size_kb": 16.2,
+    "warnings": [
+      "Webpack cache: Unable to snapshot resolve dependencies",
+      "Browserslist: caniuse-lite is 14 months old"
+    ]
+  },
+  "backend_warnings": [
+    "FastAPI on_event deprecated",
+    "asyncio slow task diagnostics"
+  ],
+  "runtime": {
+    "proj_network_enabled": false,
+    "python": "3.12.14",
+    "node": "24.22.1"
+  },
+  "scope": "Local Windows checks; no Docker build or VPS deployment"
+}

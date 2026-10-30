@@ -1,0 +1,23 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "versions": {
+    "pyproj": "3.6.1",
+    "fastapi": "0.115.0",
+    "pandas": "2.2.2",
+    "openpyxl": "3.1.5",
+    "pydantic": "2.8.2"
+  },
+  "proj": "9.3.0",
+  "proj_network_enabled": false,
+  "local_crs_count": 399,
+  "public_crs_count": 394,
+  "local_only_crs_codes": [
+    "MSK:17:UNVERIFIED",
+    "MSK:19:UNVERIFIED",
+    "MSK:36:1",
+    "MSK:36:2",
+    "UTM_WGS84"
+  ],
+  "public_only_crs_codes": []
+}

@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import GlobeLogo from "./GlobeLogo";
-import type { PanelType } from "@/lib/panels";
+import { usePathname } from "next/navigation";
 
 /* Иконки c поддержкой className для размера */
 function IconBurger(props: React.SVGProps<SVGSVGElement>) {
@@ -35,17 +35,18 @@ function IconClose(props: React.SVGProps<SVGSVGElement>) {
 type NavItem = {
   id: "start" | "features" | "faq" | "support";
   label: string;
-  panel: PanelType;
+  href: "/converter" | "/features" | "/faq" | "/support";
 };
 
 const navItems: NavItem[] = [
-  { id: "start", label: "Запуск", panel: "converter" },
-  { id: "features", label: "Возможности", panel: "features" },
-  { id: "faq", label: "FAQ", panel: "faq" },
-  { id: "support", label: "Поддержать проект", panel: "support" },
+  { id: "start", label: "Запуск", href: "/converter" },
+  { id: "features", label: "Возможности", href: "/features" },
+  { id: "faq", label: "FAQ", href: "/faq" },
+  { id: "support", label: "Поддержать проект", href: "/support" },
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -65,18 +66,7 @@ export default function Header() {
     };
   }, [mobileOpen]);
 
-  const handleNavClick = (item: NavItem) => {
-    if (typeof window === "undefined") return;
-    const detail: { panel: PanelType } = {
-      panel: item.panel,
-    };
-
-    window.dispatchEvent(
-      new CustomEvent("gc-open-panel", {
-        detail,
-      })
-    );
-  };
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
 
   return (
     <header
@@ -115,17 +105,17 @@ export default function Header() {
         {/* Десктоп-меню */}
         <nav className="ml-auto hidden lg:flex items-center gap-3">
           {navItems.map((item) => (
-            <button
+            <Link
               key={item.id}
-              type="button"
+              href={item.href}
+              aria-current={pathname === item.href ? "page" : undefined}
               className={
                 "btn btn-ghost h-11 text-base " +
                 (item.id === "start" ? "font-semibold" : "font-medium")
               }
-              onClick={() => handleNavClick(item)}
             >
               {item.label}
-            </button>
+            </Link>
           ))}
         </nav>
 
@@ -163,17 +153,17 @@ export default function Header() {
                             bg-white/90 dark:bg-slate-900/10 text-slate-900 dark:text-slate-100 backdrop-blur p-2 shadow-soft"
             >
               {navItems.map((item) => (
-                <button
+                <Link
                   key={item.id}
-                  type="button"
+                  href={item.href}
+                  aria-current={pathname === item.href ? "page" : undefined}
                   className="btn btn-ghost h-10 w-full justify-start text-base"
                   onClick={() => {
                     setMobileOpen(false);
-                    handleNavClick(item);
                   }}
                 >
                   {item.label}
-                </button>
+                </Link>
               ))}
             </div>
           </div>

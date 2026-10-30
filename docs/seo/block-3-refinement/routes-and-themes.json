@@ -1,0 +1,162 @@
+[
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "dialogs": 0,
+    "h1": "Конвертер координат",
+    "landing": 0,
+    "path": "/converter",
+    "scrollWidth": 1280,
+    "width": 1280
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "dialogs": 0,
+    "h1": "Конвертер координат",
+    "landing": 0,
+    "path": "/converter",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "dialogs": 0,
+    "h1": "Возможности",
+    "landing": 0,
+    "path": "/features",
+    "scrollWidth": 1265,
+    "width": 1280
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "dialogs": 0,
+    "h1": "Возможности",
+    "landing": 0,
+    "path": "/features",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "dialogs": 0,
+    "h1": "Часто задаваемые вопросы",
+    "landing": 0,
+    "path": "/faq",
+    "scrollWidth": 1265,
+    "width": 1280
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "dialogs": 0,
+    "h1": "Часто задаваемые вопросы",
+    "landing": 0,
+    "path": "/faq",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "dialogs": 0,
+    "h1": "Поддержать проект",
+    "landing": 0,
+    "path": "/support",
+    "scrollWidth": 1280,
+    "width": 1280
+  },
+  {
+    "theme": "light",
+    "color": "rgb(15, 23, 42)",
+    "dialogs": 0,
+    "h1": "Поддержать проект",
+    "landing": 0,
+    "path": "/support",
+    "scrollWidth": 390,
+    "width": 390
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "dialogs": 0,
+    "h1": "Конвертер координат",
+    "landing": 0,
+    "path": "/converter",
+    "scrollWidth": 1280,
+    "width": 1280
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "dialogs": 0,
+    "h1": "Конвертер координат",
+    "landing": 0,
+    "path": "/converter",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "dialogs": 0,
+    "h1": "Возможности",
+    "landing": 0,
+    "path": "/features",
+    "scrollWidth": 1265,
+    "width": 1280
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "dialogs": 0,
+    "h1": "Возможности",
+    "landing": 0,
+    "path": "/features",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "dialogs": 0,
+    "h1": "Часто задаваемые вопросы",
+    "landing": 0,
+    "path": "/faq",
+    "scrollWidth": 1265,
+    "width": 1280
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "dialogs": 0,
+    "h1": "Часто задаваемые вопросы",
+    "landing": 0,
+    "path": "/faq",
+    "scrollWidth": 375,
+    "width": 390
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "dialogs": 0,
+    "h1": "Поддержать проект",
+    "landing": 0,
+    "path": "/support",
+    "scrollWidth": 1280,
+    "width": 1280
+  },
+  {
+    "theme": "dark",
+    "color": "rgb(241, 245, 249)",
+    "dialogs": 0,
+    "h1": "Поддержать проект",
+    "landing": 0,
+    "path": "/support",
+    "scrollWidth": 390,
+    "width": 390
+  }
+]

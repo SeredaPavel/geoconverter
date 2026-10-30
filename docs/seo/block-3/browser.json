@@ -1,0 +1,29 @@
+{
+  "layouts": [
+    {
+      "scrollWidth": 305,
+      "width": 320
+    },
+    {
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "scrollWidth": 375,
+      "width": 390
+    }
+  ],
+  "converterValues": [
+    "55.75",
+    "37.6",
+    "7412206.43620038",
+    "6181717.190719904"
+  ],
+  "scrollBefore": 1319,
+  "afterClosing": {
+    "bodyOverflow": "",
+    "htmlOverflow": "",
+    "scrollY": 1295
+  },
+  "logs": []
+}

@@ -1,0 +1,429 @@
+{
+  "purpose": "Regression baseline from current implementation; not independent accuracy certification",
+  "cases": [
+    {
+      "name": "identity",
+      "request": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "EPSG:4326",
+        "format_in": "deg_dec",
+        "format_out": "deg_dec",
+        "points": [
+          {
+            "lat": 56.0,
+            "lon": 12.0,
+            "x": null,
+            "y": null,
+            "name": null
+          }
+        ],
+        "options": {
+          "auto_zone": true,
+          "zone_mode": 6,
+          "zone": null,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": null,
+          "msk_code": null
+        }
+      },
+      "response": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "EPSG:4326",
+        "points": [
+          {
+            "lat": 56.0,
+            "lon": 12.0,
+            "x": null,
+            "y": null,
+            "name": null
+          }
+        ],
+        "meta": {
+          "engine": "pyproj unified CRS",
+          "axis_order": "x=easting, y=northing",
+          "allow_ballpark": false,
+          "auto_zone": true,
+          "zone_mode": 6,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": null,
+          "source_used_zones": [],
+          "target_used_zones": [],
+          "used_zones": [],
+          "operations": [
+            {
+              "source": "EPSG:4326",
+              "target": "EPSG:4326",
+              "description": "axis order change (2D) + Null geographic offset from WGS 84 to WGS 84 + axis order change (2D)",
+              "accuracy_metres": 0.0
+            }
+          ],
+          "assumptions": [],
+          "regional_definitions": []
+        }
+      }
+    },
+    {
+      "name": "gk_sk42",
+      "request": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "GK_SK42",
+        "format_in": "deg_dec",
+        "format_out": "deg_dec",
+        "points": [
+          {
+            "lat": 55.75,
+            "lon": 37.6,
+            "x": null,
+            "y": null,
+            "name": null
+          }
+        ],
+        "options": {
+          "auto_zone": true,
+          "zone_mode": 6,
+          "zone": null,
+          "source_gk": null,
+          "target_gk": {
+            "auto_zone": false,
+            "zone_mode": 6,
+            "zone": 7
+          },
+          "source_utm": null,
+          "target_utm": null,
+          "msk_code": null
+        }
+      },
+      "response": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "GK_SK42",
+        "points": [
+          {
+            "lat": null,
+            "lon": null,
+            "x": 7412206.43620038,
+            "y": 6181717.190719904,
+            "name": null
+          }
+        ],
+        "meta": {
+          "engine": "pyproj unified CRS",
+          "axis_order": "x=easting, y=northing",
+          "allow_ballpark": false,
+          "auto_zone": true,
+          "zone_mode": 6,
+          "source_gk": null,
+          "target_gk": {
+            "auto_zone": false,
+            "zone_mode": 6,
+            "zone": 7
+          },
+          "source_utm": null,
+          "target_utm": null,
+          "source_used_zones": [],
+          "target_used_zones": [
+            7
+          ],
+          "used_zones": [
+            7
+          ],
+          "operations": [
+            {
+              "source": "EPSG:4326",
+              "target": "EPSG:28407",
+              "description": "axis order change (2D) + Inverse of Pulkovo 1942 to WGS 84 (20) + 6-degree Gauss-Kruger zone 7 + axis order change (2D)",
+              "accuracy_metres": 3.0
+            }
+          ],
+          "assumptions": [],
+          "regional_definitions": []
+        }
+      }
+    },
+    {
+      "name": "utm_north",
+      "request": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "UTM_WGS84",
+        "format_in": "deg_dec",
+        "format_out": "deg_dec",
+        "points": [
+          {
+            "lat": 56.0,
+            "lon": 12.0,
+            "x": null,
+            "y": null,
+            "name": null
+          }
+        ],
+        "options": {
+          "auto_zone": true,
+          "zone_mode": 6,
+          "zone": null,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": {
+            "zone": 32,
+            "hemisphere": "N"
+          },
+          "msk_code": null
+        }
+      },
+      "response": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "UTM_WGS84",
+        "points": [
+          {
+            "lat": null,
+            "lon": null,
+            "x": 687071.439107327,
+            "y": 6210141.326872105,
+            "name": null
+          }
+        ],
+        "meta": {
+          "engine": "pyproj unified CRS",
+          "axis_order": "x=easting, y=northing",
+          "allow_ballpark": false,
+          "auto_zone": true,
+          "zone_mode": 6,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": {
+            "zone": 32,
+            "hemisphere": "N"
+          },
+          "source_used_zones": [],
+          "target_used_zones": [],
+          "used_zones": [],
+          "operations": [
+            {
+              "source": "EPSG:4326",
+              "target": "EPSG:32632",
+              "description": "axis order change (2D) + UTM zone 32N",
+              "accuracy_metres": 0.0
+            }
+          ],
+          "assumptions": [],
+          "regional_definitions": []
+        }
+      }
+    },
+    {
+      "name": "utm_south",
+      "request": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "UTM_WGS84",
+        "format_in": "deg_dec",
+        "format_out": "deg_dec",
+        "points": [
+          {
+            "lat": -44.0,
+            "lon": 174.0,
+            "x": null,
+            "y": null,
+            "name": null
+          }
+        ],
+        "options": {
+          "auto_zone": true,
+          "zone_mode": 6,
+          "zone": null,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": {
+            "zone": 59,
+            "hemisphere": "S"
+          },
+          "msk_code": null
+        }
+      },
+      "response": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "UTM_WGS84",
+        "points": [
+          {
+            "lat": null,
+            "lon": null,
+            "x": 740526.3210524899,
+            "y": 5123750.873037999,
+            "name": null
+          }
+        ],
+        "meta": {
+          "engine": "pyproj unified CRS",
+          "axis_order": "x=easting, y=northing",
+          "allow_ballpark": false,
+          "auto_zone": true,
+          "zone_mode": 6,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": {
+            "zone": 59,
+            "hemisphere": "S"
+          },
+          "source_used_zones": [],
+          "target_used_zones": [],
+          "used_zones": [],
+          "operations": [
+            {
+              "source": "EPSG:4326",
+              "target": "EPSG:32759",
+              "description": "axis order change (2D) + UTM zone 59S",
+              "accuracy_metres": 0.0
+            }
+          ],
+          "assumptions": [],
+          "regional_definitions": []
+        }
+      }
+    },
+    {
+      "name": "msk50",
+      "request": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "MSK:GEOPROJ:50:2",
+        "format_in": "deg_dec",
+        "format_out": "deg_dec",
+        "points": [
+          {
+            "lat": 55.75,
+            "lon": 37.6,
+            "x": null,
+            "y": null,
+            "name": null
+          }
+        ],
+        "options": {
+          "auto_zone": true,
+          "zone_mode": 6,
+          "zone": null,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": null,
+          "msk_code": null
+        }
+      },
+      "response": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "MSK:GEOPROJ:50:2",
+        "points": [
+          {
+            "lat": null,
+            "lon": null,
+            "x": 2194648.6691427454,
+            "y": 468283.08977493737,
+            "name": null
+          }
+        ],
+        "meta": {
+          "engine": "pyproj unified CRS",
+          "axis_order": "x=easting, y=northing",
+          "allow_ballpark": false,
+          "auto_zone": true,
+          "zone_mode": 6,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": null,
+          "source_used_zones": [],
+          "target_used_zones": [],
+          "used_zones": [],
+          "operations": [
+            {
+              "source": "EPSG:4326",
+              "target": "{\"$schema\": \"https://proj.org/schemas/v0.7/projjson.schema.json\", \"type\": \"ProjectedCRS\", \"name\": \"Pulkovo 1942 / MSK50 zone 2\", \"base_crs\": {\"name\": \"Pulkovo 1942\", \"datum\": {\"type\": \"GeodeticReferenceFrame\", \"name\": \"Pulkovo 1942\", \"ellipsoid\": {\"name\": \"Krassowsky 1940\", \"semi_major_axis\": 6378245, \"inverse_flattening\": 298.3}}, \"coordinate_system\": {\"subtype\": \"ellipsoidal\", \"axis\": [{\"name\": \"Geodetic latitude\", \"abbreviation\": \"Lat\", \"direction\": \"north\", \"unit\": \"degree\"}, {\"name\": \"Geodetic longitude\", \"abbreviation\": \"Lon\", \"direction\": \"east\", \"unit\": \"degree\"}]}, \"id\": {\"authority\": \"EPSG\", \"code\": 4284}}, \"conversion\": {\"name\": \"unknown\", \"method\": {\"name\": \"Transverse Mercator\", \"id\": {\"authority\": \"EPSG\", \"code\": 9807}}, \"parameters\": [{\"name\": \"Latitude of natural origin\", \"value\": 0, \"unit\": \"degree\", \"id\": {\"authority\": \"EPSG\", \"code\": 8801}}, {\"name\": \"Longitude of natural origin\", \"value\": 38.48333333333, \"unit\": \"degree\", \"id\": {\"authority\": \"EPSG\", \"code\": 8802}}, {\"name\": \"Scale factor at natural origin\", \"value\": 1, \"unit\": \"unity\", \"id\": {\"authority\": \"EPSG\", \"code\": 8805}}, {\"name\": \"False easting\", \"value\": 2250000, \"unit\": \"metre\", \"id\": {\"authority\": \"EPSG\", \"code\": 8806}}, {\"name\": \"False northing\", \"value\": -5712900.566, \"unit\": \"metre\", \"id\": {\"authority\": \"EPSG\", \"code\": 8807}}]}, \"coordinate_system\": {\"subtype\": \"Cartesian\", \"axis\": [{\"name\": \"Easting\", \"abbreviation\": \"E\", \"direction\": \"east\", \"unit\": \"metre\"}, {\"name\": \"Northing\", \"abbreviation\": \"N\", \"direction\": \"north\", \"unit\": \"metre\"}]}}",
+              "description": "axis order change (2D) + Inverse of Pulkovo 1942 to WGS 84 (20) + unknown",
+              "accuracy_metres": 3.0
+            }
+          ],
+          "assumptions": [],
+          "regional_definitions": [
+            {
+              "code": "MSK:GEOPROJ:50:2",
+              "description": "Регион: Москва и Московская область. Зона 2.\nКоординаты в метрах: X — восток, Y — север.\nНомер зоны должен совпадать с указанным в исходных данных."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "sk63",
+      "request": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "SK63:GEOPROJ:X:4",
+        "format_in": "deg_dec",
+        "format_out": "deg_dec",
+        "points": [
+          {
+            "lat": 55.75,
+            "lon": 37.6,
+            "x": null,
+            "y": null,
+            "name": null
+          }
+        ],
+        "options": {
+          "auto_zone": true,
+          "zone_mode": 6,
+          "zone": null,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": null,
+          "msk_code": null
+        }
+      },
+      "response": {
+        "crs_from": "EPSG:4326",
+        "crs_to": "SK63:GEOPROJ:X:4",
+        "points": [
+          {
+            "lat": null,
+            "lon": null,
+            "x": 4620222.153065933,
+            "y": 6183414.479832034,
+            "name": null
+          }
+        ],
+        "meta": {
+          "engine": "pyproj unified CRS",
+          "axis_order": "x=easting, y=northing",
+          "allow_ballpark": false,
+          "auto_zone": true,
+          "zone_mode": 6,
+          "source_gk": null,
+          "target_gk": null,
+          "source_utm": null,
+          "target_utm": null,
+          "source_used_zones": [],
+          "target_used_zones": [],
+          "used_zones": [],
+          "operations": [
+            {
+              "source": "EPSG:4326",
+              "target": "EPSG:7828",
+              "description": "axis order change (2D) + Inverse of Pulkovo 1942 to WGS 84 (20) + CS63 zone X4 + axis order change (2D)",
+              "accuracy_metres": 3.0
+            }
+          ],
+          "assumptions": [],
+          "regional_definitions": [
+            {
+              "code": "SK63:GEOPROJ:X:4",
+              "description": "СК-63: район X, зона 4. Ширина зоны — 3°.\nКоординаты в метрах: X — восток, Y — север.\nБуква района и номер зоны должны совпадать с указанными в исходных данных."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "utmInput": {
+    "lat": 56,
+    "lon": 12,
+    "zone": 32,
+    "hemisphere": "N"
+  },
+  "utmValues": [
+    "56",
+    "12",
+    "687071.439107327",
+    "6210141.326872105"
+  ],
+  "mobileLayout": {
+    "bodyOverflow": "",
+    "htmlOverflow": "",
+    "scrollWidth": 390,
+    "width": 390
+  },
+  "mobileMenuAndFaq": "passed",
+  "logs": []
+}

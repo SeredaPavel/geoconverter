@@ -1,5 +1,6 @@
 // /geoconverter/frontend/src/app/layout.tsx
 import "./../styles/globals.css";
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Header from "@/components/Header";
 import Splash from "@/components/Splash";
@@ -10,8 +11,12 @@ export const viewport = {
   viewportFit: "cover",
 };
 
-export const metadata = {
-  title: "ГеоКонвертер",
+export const metadata: Metadata = {
+  metadataBase: new URL("https://geoconverter.ru"),
+  title: {
+    default: "ГеоКонвертер",
+    template: "%s | ГеоКонвертер",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

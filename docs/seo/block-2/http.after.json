@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-10-30T17:09:04.380Z",
+  "results": [
+    {
+      "route": "/",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 25260
+    },
+    {
+      "route": "/robots.txt",
+      "status": 200,
+      "contentType": "text/plain",
+      "bytes": 103
+    },
+    {
+      "route": "/sitemap.xml",
+      "status": 200,
+      "contentType": "application/xml",
+      "bytes": 159
+    },
+    {
+      "route": "/seo-block-2-missing-page",
+      "status": 404,
+      "contentType": "text/html; charset=utf-8",
+      "bytes": 8559
+    },
+    {
+      "route": "/assets/og-geoconverter.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": 79077
+    },
+    {
+      "route": "/favicon.ico",
+      "status": 200,
+      "contentType": "image/x-icon",
+      "bytes": 1162
+    },
+    {
+      "route": "/icon.svg",
+      "status": 200,
+      "contentType": "image/svg+xml",
+      "bytes": 380
+    },
+    {
+      "route": "/_next/static/css/d4b56f43216a059e.css",
+      "status": 200,
+      "contentType": "text/css; charset=UTF-8",
+      "bytes": 38667
+    },
+    {
+      "route": "/_next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=UTF-8",
+      "bytes": 173019
+    },
+    {
+      "route": "/api/crs",
+      "status": 200,
+      "contentType": "application/json",
+      "bytes": 188320
+    }
+  ],
+  "robots": "User-Agent: *\nAllow: /\nDisallow: /api\nDisallow: /healthz\n\nSitemap: https://geoconverter.ru/sitemap.xml\n",
+  "sitemap": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n<url>\n<loc>https://geoconverter.ru/</loc>\n</url>\n</urlset>\n"
+}

@@ -1,6 +1,6 @@
 // /geoconverter/frontend/src/components/Splash.tsx
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 type Props = {
@@ -27,29 +27,33 @@ export default function Splash({
 }: Props) {
   const pathname = usePathname();
   const [visible, setVisible] = useState(false);
-
-  const shouldShow = useMemo(() => {
-    if (pathname !== "/") return false;
-    try {
-      const nav = performance?.getEntriesByType?.("navigation")?.[0] as PerformanceNavigationTiming | undefined;
-      const isReload = nav?.type === "reload";
-      const firstTime = sessionStorage.getItem("splashShown") !== "1";
-      return firstTime || isReload;
-    } catch {
-      return pathname === "/";
-    }
-  }, [pathname]);
+  const initialPathname = useRef(pathname);
+  const showOnMount = useRef<boolean | null>(null);
 
   useEffect(() => {
-    if (!shouldShow) return;
+    // Decide once per layout mount. Preserve the decision during Strict Mode replay
+    // so effect cleanup can safely cancel and recreate the animation timer.
+    if (showOnMount.current === null) {
+      let firstVisit = true;
+      try {
+        firstVisit = sessionStorage.getItem("splashShown") !== "1";
+        sessionStorage.setItem("splashShown", "1");
+      } catch {}
+      showOnMount.current = firstVisit && initialPathname.current === "/";
+    }
+    if (!showOnMount.current) return;
     setVisible(true);
-    try { sessionStorage.setItem("splashShown", "1"); } catch {}
 
     // Время = бег рамки + штора
     const total = 1800 + 700 + 150; // мс (небольшой запас)
     const t = setTimeout(() => setVisible(false), total);
     return () => clearTimeout(t);
-  }, [shouldShow]);
+  }, []);
+
+  // Leaving home during the animation dismisses it; returning never restarts it.
+  useEffect(() => {
+    if (pathname !== "/") setVisible(false);
+  }, [pathname]);
 
   if (!visible) return null;
 
