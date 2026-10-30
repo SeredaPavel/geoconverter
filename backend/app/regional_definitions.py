@@ -22,10 +22,6 @@ def load_definitions(filename):
     return by_code
 
 
-def load_pending_notes(filename):
-    return json.loads((REGISTRY_DIR / filename).read_text(encoding='utf-8')).get('pending_notes', {})
-
-
 def build_projection(definition):
     if 'bound_proj4' in definition:
         crs = CRS.from_proj4(definition['bound_proj4'])
@@ -50,20 +46,3 @@ def build_projection(definition):
             'north_latitude': north, 'east_longitude': east,
         })
     return CRS.from_json_dict(crs)
-
-
-def verification_description(definition):
-    tolerance = str(definition['verification_tolerance_metres']).replace('.', ',')
-    description = (
-        f"Источник определения: {definition['definition_author']}. "
-        f"Сверено с geoproj.ru на {len(definition['control_points'])} контрольных точках "
-        f"(допуск {tolerance} м; это не оценка точности на всей территории). "
-        'X — восток, Y — север; на geoproj.ru обозначения X/Y обратные. '
-        'Зону выбирайте по исходным данным; автоматическое определение границ не выполняется.'
-    )
-    if 'bbox' in definition:
-        south, west, north, east = definition['bbox']
-        description += f' Область определения: {south}–{north}° с. ш., {west}–{east}° в. д.'
-    if definition.get('usage_note'):
-        description += ' ' + definition['usage_note']
-    return description

@@ -5,7 +5,8 @@ from pathlib import Path
 
 from pyproj import CRS
 from .schemas import CRSItem
-from .regional_definitions import load_definitions, build_projection, verification_description
+from .regional_definitions import load_definitions, build_projection
+from .crs_help import sk63_help
 
 CATALOG = json.loads((Path(__file__).parent / 'crs_registry/geoproj_catalog.reference.json').read_text(encoding='utf-8'))
 APPROVED_EPSG = {2935, 2936, 2937, 2938, 2939, 2940, 2941, 3350, 3351, 3352, 7825, 7826, 7827, 7828, 7829, 7830, 7831}
@@ -32,7 +33,7 @@ for definition in CATALOG['sk63_authority_definitions']:
     SK63_ITEMS.append(CRSItem(code=code,
         title=f"СК-63 район {definition['district']}, зона {definition['zone_number']} — EPSG:{epsg}",
         category='sk63', status='ready', region=definition['district'],
-        description=f"Определение EPSG. Область применения: {definition['area_of_use']['description']}. X — восток, Y — север. Точность перехода зависит от исходной СК."))
+        description=sk63_help(definition['district'], definition['zone_number'])))
 
 # Only explicit, independently checked records can enable a catalogue label.
 # In particular, paper C1 and geoproj C1 use different numbering conventions.
@@ -40,23 +41,20 @@ for system in CATALOG['sk63']:
     for zone in system['zones']:
         code = f"SK63:GEOPROJ:{system['source_id']}:{zone['source_value']}"
         definition = VERIFIED_DEFINITIONS.get(code)
-        description = 'Параметры или соответствие определению EPSG ещё не подтверждены.'
+        description = sk63_help(system['district'], zone['label'], system['zone_width_degrees'])
         if definition:
             READY_CRS[code] = (CRS.from_epsg(definition['epsg']) if 'epsg' in definition
                                else build_projection(definition))
-            description = verification_description(definition)
-            if 'epsg' in definition:
-                description += f" Проверенное соответствие: EPSG:{definition['epsg']}."
         SK63_ITEMS.append(CRSItem(
             code=code,
-            title=f"СК-63 район {system['district']}, зона {zone['label']} ({system['zone_width_degrees']}°), каталог geoproj",
+            title=f"СК-63 район {system['district']}, зона {zone['label']} ({system['zone_width_degrees']}°)",
             category='sk63', status='ready' if definition else 'dev', region=system['district'],
             description=description))
 for district in CATALOG['sk63_district_inventory']:
     if not district['geoproj_variant_ids'] and not district['authority_definition_ids']:
         SK63_ITEMS.append(CRSItem(code=f"SK63:DISTRICT:{district['district']}",
             title=f"СК-63 район {district['district']} — зоны уточняются", category='sk63', status='dev',
-            region=district['district'], description='Определения зон пока не найдены.'))
+            region=district['district'], description=f"СК-63, район {district['district']}. Перечень зон и их параметры ещё уточняются. Пересчёт пока недоступен."))
 
 ITEMS_BY_CODE = {item.code: item for item in SK63_ITEMS}
 if set(READY_CRS) != {f'SK63:EPSG:{epsg}' for epsg in APPROVED_EPSG} | set(VERIFIED_DEFINITIONS):

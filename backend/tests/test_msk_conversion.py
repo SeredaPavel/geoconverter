@@ -172,7 +172,7 @@ class MskTests(unittest.IsolatedAsyncioTestCase):
     async def test_pending_astrakhan_variant_has_explicit_reason(self):
         item = next(i for i in MSK_ITEMS if i.code == 'MSK:GEOPROJ:30:2')
         self.assertEqual(item.status, 'dev')
-        self.assertIn('2,724', item.description)
+        self.assertIn('требуют уточнения', item.description)
         self.assertNotIn(item.code, READY_MSK_CRS)
 
     async def test_100_moscow_points_with_negative_easting(self):

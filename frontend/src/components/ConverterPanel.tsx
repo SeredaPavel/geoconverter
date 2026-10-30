@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { Point, AngleFormat, formatAngle, numericPoints, reformatPoints, excelPoints } from "@/lib/coordinates";
 
 import GkSettingsPanel from "@/components/GkSettings";
+import CrsInfo from "@/components/CrsInfo";
 import { defaultGkSettings, gkRequest, GkZones } from "@/lib/gk";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "/api";
@@ -179,8 +180,6 @@ export default function ConverterPanel() {
           const suffix =
             status === "dev"
               ? " (в разработке)"
-              : status === "ready"
-              ? " (готово)"
               : "";
           return {
             code: item.code as string,
@@ -534,6 +533,9 @@ export default function ConverterPanel() {
   }, [crsOptions, crsFrom]);
 
   const usesGk = crsFrom.startsWith("GK_") || crsTo.startsWith("GK_");
+  const sourceCrs = crsOptions.find(o => o.code === crsFrom);
+  const targetCrs = crsOptions.find(o => o.code === crsTo);
+  const showCrsInfo = [sourceCrs, targetCrs].some(crs => crs && ["sk63", "msk"].includes(crs.category));
 
   return (
     <div className="grid gap-5 md:gap-6">
@@ -689,9 +691,7 @@ export default function ConverterPanel() {
         {/* Исходные данные */}
         <section className="coordinate-card card card-overflow-visible p-4 md:p-5 flex flex-col gap-4 min-w-0 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
           <div className="text-lg font-semibold">Исходные данные</div>
-          {["sk63", "msk"].includes(crsOptions.find(o => o.code === crsFrom)?.category || "") && (
-            <p className="text-xs opacity-80">{crsOptions.find(o => o.code === crsFrom)?.description}</p>
-          )}
+          {showCrsInfo && <CrsInfo key={crsFrom} crs={sourceCrs} />}
 
           <div className="grid md:grid-cols-2 gap-3">
             <div className="space-y-1">
@@ -872,9 +872,7 @@ export default function ConverterPanel() {
         {/* Результат */}
         <section className="coordinate-card card card-overflow-visible p-4 md:p-5 flex flex-col gap-4 min-w-0 focus-within:border-brand-500 focus-within:ring-1 focus-within:ring-brand-400/50">
           <div className="text-lg font-semibold">Результат</div>
-          {["sk63", "msk"].includes(crsOptions.find(o => o.code === crsTo)?.category || "") && (
-            <p className="text-xs opacity-80">{crsOptions.find(o => o.code === crsTo)?.description}</p>
-          )}
+          {showCrsInfo && <CrsInfo key={crsTo} crs={targetCrs} />}
 
           <div className="grid md:grid-cols-2 gap-3">
             <div className="space-y-1">

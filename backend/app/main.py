@@ -22,6 +22,7 @@ from .sk63_registry import SK63_ITEMS
 from .msk_registry import MSK_ITEMS
 from .conversion_engine import convert_numeric as _convert_numeric
 from .gk_registry import supported_zones
+from .crs_help import BASE_HELP
 import pandas as pd
 import io
 import os
@@ -235,6 +236,9 @@ CRS_REGISTRY: List[CRSItem] = [
 # ----------------------------------------------------------------------
 
 CRS_REGISTRY = [item for item in CRS_REGISTRY if item.category not in {'sk63', 'msk'}] + MSK_ITEMS + SK63_ITEMS
+for item in CRS_REGISTRY:
+    if item.code in BASE_HELP:
+        item.description = BASE_HELP[item.code]
 
 
 class ExportRequest(BaseModel):
