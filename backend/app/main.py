@@ -4,13 +4,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse  # ← ДОБАВЛЕНО
 from typing import List
 
-from pydantic import BaseModel  # ← ДОБАВЛЕНО
+from pydantic import BaseModel, Field
 
 from .schemas import (
     ConvertRequest,
     ConvertResponse,
     Point,
     CRSItem,
+    ConvertOptions,
     Format,            # ← ДОБАВЛЕНО
 )
 from .export_utils import (                  # ← ДОБАВЛЕНО
@@ -23,6 +24,7 @@ from .msk_registry import MSK_ITEMS
 from .conversion_engine import convert_numeric as _convert_numeric
 from .gk_registry import supported_zones
 from .crs_help import BASE_HELP
+from .utm_registry import CRS_CODE as UTM_CODE, ZONES as UTM_ZONES, export_label
 import pandas as pd
 import io
 import os
@@ -140,6 +142,8 @@ CRS_REGISTRY: List[CRSItem] = [
         status="ready",
     ),
 
+    CRSItem(code=UTM_CODE, title="UTM (WGS-84)", category="projected", utm_zones=UTM_ZONES),
+
     # Старые записи МСК ниже заменяются зональным реестром MSK_ITEMS.
     CRSItem(code="MSK-01", title="МСК-01  Республика Адыгея", category="msk", status="dev"),
     CRSItem(code="MSK-02", title="МСК-02  Республика Башкортостан", category="msk", status="dev"),
@@ -249,6 +253,7 @@ class ExportRequest(BaseModel):
     format_out: Format | None = None
     rows_in: List[Point]
     rows_out: List[Point]
+    options: ConvertOptions = Field(default_factory=ConvertOptions)
 
 
 # ----------------------------------------------------------------------
@@ -352,11 +357,14 @@ def export(kind: str, req: ExportRequest):
     if not req.rows_out:
         raise HTTPException(status_code=400, detail="Нет данных для выгрузки")
 
+    source_label = export_label(req.crs_from, req.options.source_utm, 'source')
+    target_label = export_label(req.crs_to, req.options.target_utm, 'target')
+
     if kind == "catalog":
         data = build_catalog_xlsx(
             rows=req.rows_out,
-            crs_from=req.crs_from,
-            crs_to=req.crs_to,
+            crs_from=source_label,
+            crs_to=target_label,
             format_out=req.format_out or req.format,
         )
         filename = "catalog.xlsx"
@@ -364,8 +372,8 @@ def export(kind: str, req: ExportRequest):
         data = build_statement_xlsx(
             rows_in=req.rows_in,
             rows_out=req.rows_out,
-            crs_from=req.crs_from,
-            crs_to=req.crs_to,
+            crs_from=source_label,
+            crs_to=target_label,
             format_in=req.format_in,
             format_out=req.format_out or req.format,
         )

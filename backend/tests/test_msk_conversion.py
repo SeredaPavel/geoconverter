@@ -17,7 +17,7 @@ from app.sk63_registry import CATALOG
 MSK47 = 'MSK:GEOPROJ:47:2'
 PENDING_MSK = {'MSK:GEOPROJ:09:2', 'MSK:GEOPROJ:09:3', 'MSK:GEOPROJ:30:2'}
 EXPECTED_MSK = {f"MSK:GEOPROJ:{system['source_id']}:{zone['source_value']}"
-                for system in CATALOG['msk'] for zone in system['zones']} - PENDING_MSK
+                for system in CATALOG['msk'] for zone in system['zones']} - PENDING_MSK | {'MSK:36:1', 'MSK:36:2'}
 
 
 
@@ -41,11 +41,12 @@ class MskTests(unittest.IsolatedAsyncioTestCase):
         return self.api.api_convert(ConvertRequest(crs_from=source, crs_to=target, points=points))
 
     async def test_registry_matches_executable_definitions(self):
-        self.assertEqual(len(MSK_ITEMS), 260)
-        self.assertEqual(len({item.code for item in MSK_ITEMS}), 260)
+        self.assertEqual(len(MSK_ITEMS), 264)
+        self.assertEqual(len({item.code for item in MSK_ITEMS}), 264)
         self.assertEqual(set(READY_MSK_CRS), EXPECTED_MSK)
-        self.assertEqual(len(READY_MSK_CRS), 256)
-        self.assertEqual({i.code for i in MSK_ITEMS if i.status == "dev"}, PENDING_MSK | {"MSK:GEOBRIDGE:78:1"})
+        self.assertEqual(len(READY_MSK_CRS), 258)
+        self.assertEqual({i.code for i in MSK_ITEMS if i.status == "dev"}, PENDING_MSK | {
+            'MSK:GEOBRIDGE:78:1', 'MSK:17:UNVERIFIED', 'MSK:19:UNVERIFIED'})
         for item in MSK_ITEMS:
             self.assertEqual(item.status == 'ready', item.code in READY_MSK_CRS)
             self.assertTrue(item.region)

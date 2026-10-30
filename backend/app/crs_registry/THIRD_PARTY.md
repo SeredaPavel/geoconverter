@@ -1,6 +1,6 @@
 # Атрибуция опубликованных определений
 
-В `msk_definitions.json` и `sk63_definitions.json` использована проверенная
+В `msk_definitions.json`, `additional_msk_definitions.json` и `sk63_definitions.json` использована проверенная
 часть каталогов проектов **geo-ts/msk** и **geo-ts/sk63**:
 
 - [geo-ts/msk, ревизия 946049d80f0f4b4956a53383961c8c6f4431169f](https://github.com/geo-ts/msk/tree/946049d80f0f4b4956a53383961c8c6f4431169f)

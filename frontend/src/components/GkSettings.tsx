@@ -11,7 +11,8 @@ export default function GkSettings({ side, value, zones, onChange }: {
   return (
     <fieldset className="min-w-0 space-y-3">
       <legend className="font-semibold text-sm mb-2">
-        {side === "source" ? "Зона исходной ГК" : "Зона целевой ГК"}
+        {zones ? (side === "source" ? "Зона исходной ГК" : "Зона целевой ГК")
+          : (side === "source" ? "Исходная СК" : "Целевая СК")}
       </legend>
       {!zones ? <p className="text-xs opacity-70">Для выбранной СК настройки зоны не требуются.</p> : <>
         <div className="grid grid-cols-2 gap-3">

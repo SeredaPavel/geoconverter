@@ -24,10 +24,16 @@ class GKOptions(BaseModel):
     zone_mode: Literal[3, 6] = 6
     zone: Optional[int] = Field(default=None, ge=1, le=120)
 
+class UTMOptions(BaseModel):
+    zone: int = Field(..., ge=1, le=60, strict=True)
+    hemisphere: Literal['N', 'S']
+
 class ConvertOptions(GKOptions):
     # Legacy flat options remain valid; explicit side settings take precedence.
     source_gk: Optional[GKOptions] = None
     target_gk: Optional[GKOptions] = None
+    source_utm: Optional[UTMOptions] = None
+    target_utm: Optional[UTMOptions] = None
     msk_code: Optional[str] = None
 
 class ConvertRequest(BaseModel):
@@ -52,3 +58,4 @@ class CRSItem(BaseModel):
     region: Optional[str] = None
     description: Optional[str] = None
     gk_zones: Optional[dict[int, List[int]]] = None
+    utm_zones: Optional[List[int]] = None

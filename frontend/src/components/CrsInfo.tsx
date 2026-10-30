@@ -13,6 +13,8 @@ export default function CrsInfo({ crs }: { crs?: Crs }) {
   const regional = crs?.category === "msk" || crs?.category === "sk63";
   const hint = regional
     ? "X — восток, Y — север. Выберите зону, указанную в исходных данных."
+    : crs?.code === "UTM_WGS84"
+      ? "X — восток, Y — север. Выберите номер зоны UTM и полушарие."
     : crs?.category === "projected"
       ? "X — восток, Y — север. Ширина и номер зоны задаются в настройках ГК."
       : "Координаты: широта и долгота. Формат углов задаётся ниже.";

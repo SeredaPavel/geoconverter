@@ -32,6 +32,9 @@ def sk63_help(district, zone, width=None):
 
 
 BASE_HELP = {
+    'UTM_WGS84': f'Проекция UTM на основе WGS-84.\n{PLANAR_COORDINATES}\n'
+                 'Выберите зону 1–60 и полушарие. X не содержит номер зоны. '
+                 'Область применения: от 80° ю. ш. до 84° с. ш.',
     'EPSG:4326': f'Глобальная система координат WGS-84.\n{GEOGRAPHIC_COORDINATES}',
     'GSK2011_GEOG': f'Географические координаты ГСК-2011.\n{GEOGRAPHIC_COORDINATES}',
     'SK42_GEOG': f'Географические координаты СК-42.\n{GEOGRAPHIC_COORDINATES}',

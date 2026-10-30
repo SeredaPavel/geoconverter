@@ -6,7 +6,9 @@ import { Point, AngleFormat, formatAngle, numericPoints, reformatPoints, excelPo
 
 import GkSettingsPanel from "@/components/GkSettings";
 import CrsInfo from "@/components/CrsInfo";
+import UtmSettingsPanel from "@/components/UtmSettings";
 import { defaultGkSettings, gkRequest, GkZones } from "@/lib/gk";
+import { defaultUtmSettings, utmRequest, UTM_CODE } from "@/lib/utm";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "/api";
 const TOAST_DURATION_MS = 7000;
@@ -96,6 +98,7 @@ type CrsOption = {
   status: string;
   description?: string;
   gk_zones?: GkZones;
+  utm_zones?: number[];
 };
 
 export default function ConverterPanel() {
@@ -124,6 +127,9 @@ export default function ConverterPanel() {
   // опции
   const [sourceGk, setSourceGk] = useState(defaultGkSettings);
   const [targetGk, setTargetGk] = useState(defaultGkSettings);
+  const [sourceUtm, setSourceUtm] = useState(defaultUtmSettings);
+  const [targetUtm, setTargetUtm] = useState(defaultUtmSettings);
+  const [lastCalculation, setLastCalculation] = useState<{ key: string; usesUtm: boolean } | null>(null);
   const [calculationNotes, setCalculationNotes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -183,12 +189,13 @@ export default function ConverterPanel() {
               : "";
           return {
             code: item.code as string,
-            group: mapCategoryToGroup(item.category as string),
+            group: item.code === UTM_CODE ? "Проекция UTM" : mapCategoryToGroup(item.category as string),
             title: baseTitle + suffix,
             category: (item.category as string) || "other",
             status: status || "ready",
             description: item.description || undefined,
             gk_zones: item.gk_zones || undefined,
+            utm_zones: item.utm_zones || undefined,
           };
         });
 
@@ -227,6 +234,8 @@ export default function ConverterPanel() {
       setCrsTo(crsFrom);
       setSourceGk(targetGk);
       setTargetGk(sourceGk);
+      setSourceUtm(targetUtm);
+      setTargetUtm(sourceUtm);
       setCalculationNotes([]);
       setRowsIn(reformatPoints(result, formatOut));
       setRowsOut(source);
@@ -291,25 +300,31 @@ export default function ConverterPanel() {
     return () => clearTimeout(timer);
   }, [toast]);
 
+  const conversionRequest = () => ({
+    crs_from: crsFrom,
+    crs_to: crsTo,
+    points: numericPoints(rowsIn),
+    options: {
+      source_gk: crsFrom.startsWith("GK_") ? gkRequest(sourceGk, crsOptions.find(o => o.code === crsFrom)?.gk_zones) : undefined,
+      target_gk: crsTo.startsWith("GK_") ? gkRequest(targetGk, crsOptions.find(o => o.code === crsTo)?.gk_zones) : undefined,
+      source_utm: crsFrom === UTM_CODE ? utmRequest(sourceUtm, crsOptions.find(o => o.code === crsFrom)?.utm_zones) : undefined,
+      target_utm: crsTo === UTM_CODE ? utmRequest(targetUtm, crsOptions.find(o => o.code === crsTo)?.utm_zones) : undefined,
+    },
+  });
+
   const recalc = async () => {
     setLoading(true);
     setToast(null);
     try {
       setCalculationNotes([]);
-      const options = {
-        source_gk: crsFrom.startsWith("GK_") ? gkRequest(sourceGk, crsOptions.find(o => o.code === crsFrom)?.gk_zones) : undefined,
-        target_gk: crsTo.startsWith("GK_") ? gkRequest(targetGk, crsOptions.find(o => o.code === crsTo)?.gk_zones) : undefined,
-      };
+      const request = conversionRequest();
       const res = await fetch(`${API_BASE}/convert`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          crs_from: crsFrom,
-          crs_to: crsTo,
+          ...request,
           format_in: formatIn,
           format_out: formatOut,
-          points: numericPoints(rowsIn),
-          options,
         }),
       });
       const data = await res.json();
@@ -322,6 +337,7 @@ export default function ConverterPanel() {
           : [{ lat: undefined, lon: undefined }],
       );
       setCalculationNotes(data.meta?.assumptions || []);
+      setLastCalculation({ key: JSON.stringify(request), usesUtm: crsFrom === UTM_CODE || crsTo === UTM_CODE });
       setOk(true);
     } catch (e: any) {
       showToast(e.message);
@@ -406,6 +422,11 @@ export default function ConverterPanel() {
   const exportFile = async (kind: "catalog" | "statement") => {
     try {
       setToast(null);
+      const request = conversionRequest();
+      if ((crsFrom === UTM_CODE || crsTo === UTM_CODE || lastCalculation?.usesUtm)
+          && lastCalculation?.key !== JSON.stringify(request)) {
+        throw new Error("После изменения координат, СК или настроек зоны нажмите «Пересчитать» перед выгрузкой.");
+      }
       const res = await fetch(`${API_BASE}/export/${kind}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -417,6 +438,7 @@ export default function ConverterPanel() {
           format_out: formatOut,
           rows_in: numericPoints(rowsIn),
           rows_out: numericPoints(rowsOut),
+          options: request.options,
         }),
       });
       if (!res.ok) throw new Error("Экспорт недоступен");
@@ -533,9 +555,10 @@ export default function ConverterPanel() {
   }, [crsOptions, crsFrom]);
 
   const usesGk = crsFrom.startsWith("GK_") || crsTo.startsWith("GK_");
+  const usesUtm = crsFrom === UTM_CODE || crsTo === UTM_CODE;
   const sourceCrs = crsOptions.find(o => o.code === crsFrom);
   const targetCrs = crsOptions.find(o => o.code === crsTo);
-  const showCrsInfo = [sourceCrs, targetCrs].some(crs => crs && ["sk63", "msk"].includes(crs.category));
+  const showCrsInfo = usesUtm || [sourceCrs, targetCrs].some(crs => crs && ["sk63", "msk"].includes(crs.category));
 
   return (
     <div className="grid gap-5 md:gap-6">
@@ -672,12 +695,14 @@ export default function ConverterPanel() {
         </div>
       </section>
 
-      {usesGk && (
-        <section className="card p-4 md:p-5 grid md:grid-cols-2 gap-5 md:gap-6" aria-label="Настройки зон Гаусса–Крюгера">
-          <GkSettingsPanel side="source" value={sourceGk} onChange={setSourceGk}
-            zones={crsOptions.find(o => o.code === crsFrom)?.gk_zones} />
-          <GkSettingsPanel side="target" value={targetGk} onChange={setTargetGk}
-            zones={crsOptions.find(o => o.code === crsTo)?.gk_zones} />
+      {(usesGk || usesUtm) && (
+        <section className="card p-4 md:p-5 grid md:grid-cols-2 gap-5 md:gap-6" aria-label="Настройки зон проекций">
+          {sourceCrs?.utm_zones
+            ? <UtmSettingsPanel side="source" value={sourceUtm} onChange={setSourceUtm} zones={sourceCrs.utm_zones} />
+            : <GkSettingsPanel side="source" value={sourceGk} onChange={setSourceGk} zones={sourceCrs?.gk_zones} />}
+          {targetCrs?.utm_zones
+            ? <UtmSettingsPanel side="target" value={targetUtm} onChange={setTargetUtm} zones={targetCrs.utm_zones} />
+            : <GkSettingsPanel side="target" value={targetGk} onChange={setTargetGk} zones={targetCrs?.gk_zones} />}
         </section>
       )}
       {calculationNotes.length > 0 && (

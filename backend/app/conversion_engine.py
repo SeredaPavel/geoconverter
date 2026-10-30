@@ -11,6 +11,7 @@ from .msk_registry import READY_MSK_CRS, MSK_ITEMS
 from .sk63_registry import READY_CRS, SK63_ITEMS
 from .schemas import ConvertRequest, ConvertResponse, GKOptions, Point
 from .reference_frames import ANCHOR, PZ_FRAMES, frame_code, to_anchor
+from . import utm_registry as utm
 
 
 GEODETIC_EPSG = {'EPSG:4326': 4326, 'GSK2011_GEOG': 7683, 'SK42_GEOG': 4284,
@@ -63,7 +64,7 @@ def transform(source, target, first, second):
 
 
 def resolve_static(code):
-    if code in FAMILIES:
+    if code in FAMILIES or code == utm.CRS_CODE:
         return None
     if code in REGIONAL_CRS:
         return REGIONAL_CRS[code]
@@ -100,13 +101,17 @@ def convert_numeric(req: ConvertRequest):
     target_settings = side_settings(req.options, 'target')
     validate_settings(req.crs_from, source_settings)
     validate_settings(req.crs_to, target_settings)
+    source_utm = req.options.source_utm if req.crs_from == utm.CRS_CODE else None
+    target_utm = req.options.target_utm if req.crs_to == utm.CRS_CODE else None
+    source_utm_crs = utm.require_settings(source_utm, 'source') if req.crs_from == utm.CRS_CODE else None
+    target_utm_crs = utm.require_settings(target_utm, 'target') if req.crs_to == utm.CRS_CODE else None
     source_zones, target_zones = set(), set()
     out, operations = [], {}
     index = 0
     try:
         source_static, target_static = resolve_static(req.crs_from), resolve_static(req.crs_to)
         for index, point in enumerate(req.points, start=1):
-            source = source_static
+            source = source_utm_crs or source_static
             if req.crs_from in FAMILIES:
                 if point.x is None:
                     raise HTTPException(status_code=400, detail=f'Строка {index}: заполните X и Y исходной проекции.')
@@ -118,7 +123,13 @@ def convert_numeric(req: ConvertRequest):
             if first is None or second is None:
                 raise HTTPException(status_code=400,
                     detail=f'Строка {index}: заполните lat/lon или X/Y согласно исходной СК.')
-            target = target_static
+            if source_utm is not None:
+                _, latitude, _ = transform(source, CRS.from_epsg(4326), first, second)
+                utm.check_latitude(latitude, source_utm.hemisphere, index)
+            target = target_utm_crs or target_static
+            if target_utm is not None:
+                _, latitude, _ = transform(source, CRS.from_epsg(4326), first, second)
+                utm.check_latitude(latitude, target_utm.hemisphere, index)
             if req.crs_to in FAMILIES:
                 if target_settings.auto_zone:
                     base = CRS.from_epsg(FAMILIES[req.crs_to]['base_epsg'])
@@ -141,6 +152,8 @@ def convert_numeric(req: ConvertRequest):
         'auto_zone': req.options.auto_zone, 'zone_mode': req.options.zone_mode,
         'source_gk': source_settings.model_dump() if req.crs_from in FAMILIES else None,
         'target_gk': target_settings.model_dump() if req.crs_to in FAMILIES else None,
+        'source_utm': source_utm.model_dump() if source_utm is not None else None,
+        'target_utm': target_utm.model_dump() if target_utm is not None else None,
         'source_used_zones': sorted(source_zones), 'target_used_zones': sorted(target_zones),
         'used_zones': sorted(source_zones | target_zones), 'operations': list(operations.values()),
         'assumptions': ['Переход ПЗ-90.02/ПЗ-90.11 выполнен на фиксированных параметрах EPSG; '

@@ -6,6 +6,10 @@ from .crs_help import msk_help
 
 
 DEFINITIONS_BY_CODE = load_definitions('msk_definitions.json')
+ADDITIONAL_DEFINITIONS = load_definitions('additional_msk_definitions.json')
+if set(DEFINITIONS_BY_CODE) & set(ADDITIONAL_DEFINITIONS):
+    raise ValueError('Duplicate MSK code across catalogues')
+DEFINITIONS_BY_CODE.update(ADDITIONAL_DEFINITIONS)
 DEFINITIONS = list(DEFINITIONS_BY_CODE.values())
 READY_MSK_CRS = {}
 MSK_ITEMS = []
@@ -23,6 +27,26 @@ for system in CATALOG['msk']:
             status='ready' if definition else 'dev', region=system['region_label'],
             description=description,
         ))
+
+for code, definition in ADDITIONAL_DEFINITIONS.items():
+    READY_MSK_CRS[code] = build_projection(definition)
+    MSK_ITEMS.append(CRSItem(
+        code=code, title=definition['title'], category='msk', status='ready',
+        region=definition['region'],
+        description=msk_help(
+            {'source_id': '36', 'region_label': definition['region'], 'zone_width_degrees': 3},
+            {'label': code.rsplit(':', 1)[1]}, True),
+    ))
+
+# Published descriptions of these systems do not yet identify an unambiguous
+# verified variant. Keep them visible without inventing zone numbers or aliases.
+for region, title in [('17', 'Республика Тыва'), ('19', 'Республика Хакасия')]:
+    MSK_ITEMS.append(CRSItem(
+        code=f'MSK:{region}:UNVERIFIED', title=f'МСК-{region} {title}',
+        category='msk', status='dev', region=title,
+        description=f'Регион: {title}. Варианты системы и параметры перехода ещё уточняются. '
+                    'Пересчёт пока недоступен.',
+    ))
 
 # GeoBridge distinguishes its tile corrections from the SK-1964 projection.
 # No verified reversible definition is available here: never alias the two.

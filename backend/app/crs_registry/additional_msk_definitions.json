@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "definitions": [
+    {
+      "code": "MSK:36:1",
+      "title": "МСК-36 Воронежская область — зона 1",
+      "region": "Воронежская область",
+      "name": "Pulkovo 1942 / MSK 36 zone 1",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 38.48333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 1250000,
+      "false_northing": -5212900.566,
+      "definition_source": "https://github.com/geo-ts/msk/blob/946049d80f0f4b4956a53383961c8c6f4431169f/index.ts",
+      "source_sha256": "4862fc4121c2afd0919b7a0349dbc2cfb0264a82a8e4263da7610b28b59b4cad",
+      "source_record_id": "MSK36z1",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=38.48333333333 +k=1 +x_0=1250000 +y_0=-5212900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "corroborating_sources": [
+        "https://terraingis.ru/msk-36.html",
+        "https://geobridge.ru/proj/api"
+      ],
+      "corroborating_record_id": "1656",
+      "verified_on": "2026-10-30",
+      "verification_source": "https://geobridge.ru/proj (published Proj4js implementation)",
+      "verification_report": "UTM_MSK_2026_10_30.md",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 51.67,
+          "lon": 39.2,
+          "easting": 1299695.148550718,
+          "northing": 514070.4238341665
+        },
+        {
+          "lat": 50.9,
+          "lon": 38.8,
+          "easting": 1272391.7704065696,
+          "northing": 428209.62906198855
+        },
+        {
+          "lat": 51.9,
+          "lon": 39.4,
+          "easting": 1313209.6030794864,
+          "northing": 539814.8899715915
+        }
+      ],
+      "observed_max_error_metres": 0.00047231372449408503
+    },
+    {
+      "code": "MSK:36:2",
+      "title": "МСК-36 Воронежская область — зона 2",
+      "region": "Воронежская область",
+      "name": "Pulkovo 1942 / MSK 36 zone 2",
+      "base_epsg": 4284,
+      "latitude_natural_origin": 0,
+      "longitude_natural_origin": 41.48333333333,
+      "scale_factor_natural_origin": 1,
+      "false_easting": 2250000,
+      "false_northing": -5212900.566,
+      "definition_source": "https://github.com/geo-ts/msk/blob/946049d80f0f4b4956a53383961c8c6f4431169f/index.ts",
+      "source_sha256": "4862fc4121c2afd0919b7a0349dbc2cfb0264a82a8e4263da7610b28b59b4cad",
+      "source_record_id": "MSK36z2",
+      "published_proj4": "+proj=tmerc +lat_0=0 +lon_0=41.48333333333 +k=1 +x_0=2250000 +y_0=-5212900.566 +ellps=krass +towgs84=23.57,-140.95,-79.8,0,0.35,0.79,-0.22 +units=m +no_defs",
+      "corroborating_sources": [
+        "https://terraingis.ru/msk-36.html",
+        "https://geobridge.ru/proj/api"
+      ],
+      "corroborating_record_id": "1657",
+      "verified_on": "2026-10-30",
+      "verification_source": "https://geobridge.ru/proj (published Proj4js implementation)",
+      "verification_report": "UTM_MSK_2026_10_30.md",
+      "verification_tolerance_metres": 0.01,
+      "control_points": [
+        {
+          "lat": 51.37,
+          "lon": 40.58,
+          "easting": 2187205.839292481,
+          "northing": 480832.10480381176
+        },
+        {
+          "lat": 50.9,
+          "lon": 40.5,
+          "easting": 2180936.008129453,
+          "northing": 428617.5101514207
+        },
+        {
+          "lat": 51.8,
+          "lon": 41,
+          "easting": 2216769.6678568376,
+          "northing": 528396.6798475161
+        }
+      ],
+      "observed_max_error_metres": 0.00046877842396497726
+    }
+  ]
+}
